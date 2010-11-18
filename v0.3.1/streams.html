@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>streams &mdash; Node.js &mdash; Документация</title>
+  <link rel="stylesheet" href="assets/style.css" type="text/css" media="all" />
+  <link rel="stylesheet" href="assets/sh.css" type="text/css" media="all" />
+  <script type="text/javascript" src="assets/jquery.js"></script>
+</head>
+<body>
+  <div id="container">
+    <header>
+      <h1>Node.js &mdash; Документация</h1>
+      <div id="gtoc">
+        <p><a href="index.html">Содержание</a> | <a href="all.html">Просмотреть на одной странице</a></p>
+      </div>
+      <hr />
+    </header>
+    <h2 id="_">Потоки</h2>
+
+<p>Поток — это абстрактный интерфейс, реализуемый многими объектами в Node.
+Например, запрос к HTTP-серверу является потоком, также как stdout. Потоки
+могут быть с возможностью чтения, записи или и того и другого. Все потоки
+являются экземплярами <code>EventEmitter</code>.</p>
+
+<h2 id="_">Поток с возможностью чтения</h2>
+
+<p><code>Поток с возможностью чтения</code> имеет следующие методы, свойства и события.</p>
+
+<h3 id="event_data_">Event: 'data'</h3>
+
+<p><code>function (data) { }</code></p>
+
+<p>Событие <code>'data'</code> передаёт обработчику либо <code>Buffer</code> (по умолчанию),
+либо строку, если предварительно был вызван <code>setEncoding()</code>.</p>
+
+<h3 id="event_end_">Event: 'end'</h3>
+
+<p><code>function () { }</code></p>
+
+<p>Генерируется когда поток получает символ конца файла EOF (FIN в терминологии TCP).
+Означает что событий <code>'data'</code> больше не предвидится. Если поток также имеет
+возможность записи, писать данные можно и дальше.</p>
+
+<h3 id="event_error_">Event: 'error'</h3>
+
+<p><code>function (exception) { }</code></p>
+
+<p>Генерируется если при приёме данных произошла ошибка.</p>
+
+<h3 id="event_close_">Event: 'close'</h3>
+
+<p><code>function () { }</code></p>
+
+<p>Генерируется когда соответствующий потоку файловый дескриптор закрывается.
+Не все потоки генерируют это событие. Например, входящий HTTP запрос
+не генерирует <code>'close'</code>.</p>
+
+<h3 id="event_fd_">Event: 'fd'</h3>
+
+<p><code>function (fd) { }</code></p>
+
+<p>Генерируется когда поток получает файловый дескриптор. Только UNIX потоки
+поддерживают этот функционал; остальные никогда не генерируют это событие.</p>
+
+<h3 id="stream.readable">stream.readable</h3>
+
+<p>A boolean that is <code>true</code> by default, but turns <code>false</code> after an <code>'error'</code>
+occured, the stream came to an <code>'end'</code>, or <code>destroy()</code> was called.</p>
+
+<h3 id="stream.setEncoding">stream.setEncoding(encoding)</h3>
+
+<p>Заставляет событие <code>'data'</code> передавать обработчику строку вместо буфера.
+<code>encoding</code> может быть <code>'utf8'</code>, <code>'ascii'</code> или <code>'base64'</code>.</p>
+
+<h3 id="stream.pause">stream.pause()</h3>
+
+<p>Прекращает поступление событий <code>'data'</code>.</p>
+
+<h3 id="stream.resume">stream.resume()</h3>
+
+<p>Возобновляет поступление событий <code>'data'</code> после <code>pause()</code>.</p>
+
+<h3 id="stream.destroy">stream.destroy()</h3>
+
+<p>Закрывает соответствующий потоку файловый дескриптор.
+Поток больше не будет генерировать событий.</p>
+
+<h2 id="_">Поток с возможностью записи</h2>
+
+<p>У <code>потока с возможностью записи</code> есть следующие методы, свойства и события.</p>
+
+<h3 id="event_drain_">Event: 'drain'</h3>
+
+<p><code>function () { }</code></p>
+
+<p>Генерируется после вызова метода <code>write()</code> вернувшего <code>false</code> — сигнал о том,
+что можно писать дальше.</p>
+
+<h3 id="event_error_">Event: 'error'</h3>
+
+<p><code>function (exception) { }</code></p>
+
+<p>Генерируется при ошибке с исключением <code>exception</code>.</p>
+
+<h3 id="event_close_">Event: 'close'</h3>
+
+<p><code>function () { }</code></p>
+
+<p>Генерируется когда закрывается соответствующий потоку дескриптор.</p>
+
+<h3 id="stream.writeable">stream.writeable</h3>
+
+<p>Булево свойство, по умолчанию <code>true</code>, но становящиеся <code>false</code> после наступления
+события <code>'error'</code> или вызова <code>end()</code> / <code>destroy()</code>.</p>
+
+<h3 id="stream.write">stream.write(string, encoding='utf8', [fd])</h3>
+
+<p>Записывает строку <code>string</code> в указанной кодировке <code>encoding</code> в поток. Возвращает
+<code>true</code> если строка попала в буфер ядра. Возвращает <code>false</code> если буфер ядра полон
+и данные будут отправлены позже. Когда данные будут отправлены и буфер ядра опустеет,
+будет сгенерировано событие <code>'drain'</code>. Кодировка по умолчанию — <code>'utf8'</code>.</p>
+
+<p>Если указан необязательный параметр <code>fd</code>, он интерпретируется как файловый
+дескриптор для отправки в поток. Это поддерживается только в UNIX потоках,
+и просто игнорируется в другом окружении. Когда дескриптор пересылается таким
+образом, если он будет закрыт до события 'drain' потока, может быть отправлен
+повреждённый (закрытый) дескриптор.</p>
+
+<h3 id="stream.write">stream.write(buffer)</h3>
+
+<p>То же что и выше, но с использованием буфера.</p>
+
+<h3 id="stream.end">stream.end()</h3>
+
+<p>Закрывает поток отправкой EOF или FIN.</p>
+
+<h3 id="stream.end">stream.end(string, encoding)</h3>
+
+<p>Посылает строку <code>string</code> в указанной кодировке <code>encoding</code> и закрывает поток
+отправкой EOF или FIN. Так можно уменьшить общее число отправленных пакетов.</p>
+
+<h3 id="stream.end">stream.end(buffer)</h3>
+
+<p>То же что выше но с использованием буфера.</p>
+
+<h3 id="stream.destroy">stream.destroy()</h3>
+
+<p>Закрывает соответствующий потоку файловый дескриптор.
+Поток больше не будет генерировать событий.</p>
+  </div>
+  <script type="text/javascript" src="assets/sh_main.js"></script>
+  <script type="text/javascript" src="assets/sh_javascript.min.js"></script>
+  <script type="text/javascript" src="assets/core.js"></script>
+</body>
+</html>
+

@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>buffers &mdash; Node.js &mdash; Документация</title>
+  <link rel="stylesheet" href="assets/style.css" type="text/css" media="all" />
+  <link rel="stylesheet" href="assets/sh.css" type="text/css" media="all" />
+  <script type="text/javascript" src="assets/jquery.js"></script>
+</head>
+<body>
+  <div id="container">
+    <header>
+      <h1>Node.js &mdash; Документация</h1>
+      <div id="gtoc">
+        <p><a href="index.html">Содержание</a> | <a href="all.html">Просмотреть на одной странице</a></p>
+      </div>
+      <hr />
+    </header>
+    <h2 id="_">Буферы</h2>
+
+<p>Чистый JavaScript поддерживает Unicode, но в нём нет средств для работы
+с двоичными данными. При работе с TCP или файловой системой часто необходимо
+работать именно с потоками двоичных данных. В Node предусмотрено несколько
+средств управления, создания и приёма двоичных потоков.</p>
+
+<p>Бинарные данные хранятся в экземплярах класса Buffer. Buffer похож на массив
+целых чисел, но ему соответствует область памяти, выделенная вне стандартной
+кучи V8. Размер Buffer невозможно изменить после создания. </p>
+
+<p>Объект <code>Buffer</code> существует в глобальном пространстве имён.</p>
+
+<p>При преобразовании между буферами и строками JavaScript требуется явно
+указывать метод кодирования символов. Node поддерживает 3 кодировки для строк:</p>
+
+<ul><li><p><code>'ascii'</code> — только для 7-битных ASCII-строк. Этот метод кодирования очень
+быстрый, и будет сбрасывать старший бит символа, если тот установлен.</p></li><li><p><code>'utf8'</code> — Unicode-символы. Многие веб-страницы и документы используют UTF-8.</p></li><li><p><code>'binary'</code> — устаревший способ. Хранит двоичные данные в строке используя
+младшие 8 бит каждого символа. Не используйте эту кодировку.</p></li></ul>
+
+<h3 id="new_Buffer">new Buffer(size)</h3>
+
+<p>Создаёт новый буфер размера <code>size</code> байт.</p>
+
+<h3 id="new_Buffer">new Buffer(array)</h3>
+
+<p>Создаёт новый буфер из массива <code>array</code> 8-битных символов.</p>
+
+<h3 id="new_Buffer">new Buffer(str, encoding='utf8')</h3>
+
+<p>Создаёт новый буфер, содержащий строку <code>str</code> в кодировке <code>encoding</code>.</p>
+
+<h3 id="buffer.write">buffer.write(string, offset=0, encoding='utf8')</h3>
+
+<p>Записывает строку <code>string</code> в буфер по смещению <code>offset</code> от его начала
+с использованием указанной кодировки. Возвращает количество записанных байт.
+Если <code>buffer</code> не имеет достаточно места для сохранения всей строки,
+то метод запишет только её часть. В случае если кодировка строки — <code>'utf8'</code>,
+то метод не будет записывать частичные символы.</p>
+
+<p>Пример: записать UTF-8 строку в буфер, потом напечатать его.</p>
+
+<pre><code>buf = new Buffer(256);
+len = buf.write('\u00bd + \u00bc = \u00be', 0);
+console.log(len + " bytes: " + buf.toString('utf8', 0, len));
+
+// 12 bytes: ½ + ¼ = ¾</code></pre>
+
+<h3 id="buffer.toString">buffer.toString(encoding, start=0, end=buffer.length)</h3>
+
+<p>Декодирует и возвращает строку из данных буфера, закодированных в кодировке
+<code>encoding</code> начиная с позиции <code>start</code> и заканчивая позицией <code>end</code>.</p>
+
+<p>См. пример <code>buffer.write()</code> выше.</p>
+
+<h3 id="buffer_index_">buffer[index]</h3>
+
+<p>Получает или устанавливает байт на позиции <code>index</code>. Значения соответствуют индивидуальным
+байтам и могут лежать в пределах от <code>0x00</code> до <code>0xFF</code> в шестнадцатиричной записи
+и от <code>0</code> до <code>255</code> в десятичной. </p>
+
+<p>Пример: скопировать ASCII строку в буфер, байт за байтом.</p>
+
+<pre><code>str = "node.js";
+buf = new Buffer(str.length);
+
+for (var i = 0; i &lt; str.length ; i++) {
+  buf[i] = str.charCodeAt(i);
+}
+
+console.log(buf);
+
+// node.js</code></pre>
+
+<h3 id="buffer.byteLength">Buffer.byteLength(string, encoding='utf8')</h3>
+
+<p>Возвращает количество байт в строке. Это не то же самое что <code>String.prototype.length</code>,
+так как этот метод возвращает число <em>символов</em> в строке.</p>
+
+<p>Пример:</p>
+
+<pre><code>str = '\u00bd + \u00bc = \u00be';
+
+console.log(str + ": " + str.length + " characters, " +
+  Buffer.byteLength(str, 'utf8') + " bytes");
+
+// ½ + ¼ = ¾: 9 characters, 12 bytes</code></pre>
+
+<h3 id="buffer.length">buffer.length</h3>
+
+<p>Размер буфера в байтах. Заметьте, что это значение не всегда соответствует размеру
+содержимого. <code>length</code> возвращает объем памяти, зарезервированный для объекта буфера.
+Это значение не изменяется при изменении содержимого буфера.</p>
+
+<pre><code>buf = new Buffer(1234);
+
+console.log(buf.length);
+buf.write("some string", "ascii", 0);
+console.log(buf.length);
+
+// 1234
+// 1234</code></pre>
+
+<h3 id="buffer.copy">buffer.copy(targetBuffer, targetStart, sourceStart, sourceEnd=buffer.length)</h3>
+
+<p>Копирует данные между буферами с помощью memcpy().</p>
+
+<p>Пример: создадим два буфера, потом скопировать <code>buf1</code>
+с байта 16 по байт 19 в <code>buf2</code>, начиная с 8-го байта в <code>buf2</code>.</p>
+
+<pre><code>buf1 = new Buffer(26);
+buf2 = new Buffer(26);
+
+for (var i = 0 ; i &lt; 26 ; i++) {
+  buf1[i] = i + 97; // 97 is ASCII a
+  buf2[i] = 33; // ASCII !
+}
+
+buf1.copy(buf2, 8, 16, 20);
+console.log(buf2.toString('ascii', 0, 25));
+
+// !!!!!!!!qrst!!!!!!!!!!!!!</code></pre>
+
+<h3 id="buffer.slice">buffer.slice(start, end=buffer.length)</h3>
+
+<p>Возвращает новый буфер, указывающий на ту же область памяти что предыдущий,
+но начиная со <code>start</code> и заканчивая <code>end</code> байтами.</p>
+
+<p><strong>Изменение содержимого нового буфера затронет содержимое старого!</strong></p>
+
+<p>Пример: построить буфер с ASCII-алфавитом, вырезать часть в новый буфер, затем
+изменить 1 часть в оригинальном буфере.</p>
+
+<pre><code>var buf1 = new Buffer(26);
+
+for (var i = 0 ; i &lt; 26 ; i++) {
+  buf1[i] = i + 97; // 97 is ASCII a
+}
+
+var buf2 = buf1.slice(0, 3);
+console.log(buf2.toString('ascii', 0, buf2.length));
+buf1[0] = 33;
+console.log(buf2.toString('ascii', 0, buf2.length));
+
+// abc
+// !bc</code></pre>
+  </div>
+  <script type="text/javascript" src="assets/sh_main.js"></script>
+  <script type="text/javascript" src="assets/sh_javascript.min.js"></script>
+  <script type="text/javascript" src="assets/core.js"></script>
+</body>
+</html>
+

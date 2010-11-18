@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>crypto &mdash; Node.js &mdash; Документация</title>
+  <link rel="stylesheet" href="assets/style.css" type="text/css" media="all" />
+  <link rel="stylesheet" href="assets/sh.css" type="text/css" media="all" />
+  <script type="text/javascript" src="assets/jquery.js"></script>
+</head>
+<body>
+  <div id="container">
+    <header>
+      <h1>Node.js &mdash; Документация</h1>
+      <div id="gtoc">
+        <p><a href="index.html">Содержание</a> | <a href="all.html">Просмотреть на одной странице</a></p>
+      </div>
+      <hr />
+    </header>
+    <h2 id="_">Модуль криптографии</h2>
+
+<p>Используйте <code>require('crypto')</code> чтобы получить доступ к функциям модуля.</p>
+
+<p>Криптографический модуль требует для своей работы наличия OpenSSL.
+Он предоставляет возможность использовать аутентификацию в HTTPS и HTTP-соединениях.</p>
+
+<p>Модуль также предоставляет набор обёрток для некоторых методов OpenSSL:
+hash, hmac, cipher, decipher, sign и verify.</p>
+
+<h3 id="crypto.createCredentials">crypto.createCredentials(details)</h3>
+
+<p>Создаёт объект данных аутентификации, может принимать параметром объект со следующими свойствами:</p>
+
+<ul><li><code>key</code> : строка с PEM-закодированным приватным ключом,</li><li><code>cert</code> : строка с PEM-закодированным сертификатом,</li><li><code>ca</code> : строка или список строк PEM-закодированных доверенных корневых сертификатов.</li></ul>
+
+<p>Если корневые сертификаты не указаны, node.js будет использовать список доверенных сертификатов,
+расположенный по адресу <a href="http://mxr.mozilla.org/mozilla/source/security/nss/lib/ckfw/builtins/certdata.txt">http://mxr.mozilla.org/mozilla/source/security/nss/lib/ckfw/builtins/certdata.txt</a>.</p>
+
+<h3 id="crypto.createHash">crypto.createHash(algorithm)</h3>
+
+<p>Создает и возвращает объект <code>hash</code>, который может быть использован
+для создания криптографических хэшей по заданному алгоритму.</p>
+
+<p>Возможные значения для <code>algorithm</code> зависят от доступных алгоритмах в той версии OpenSSL,
+которая у вас установлена. Например, это может быть <code>'sha1'</code>, <code>'md5'</code> и т.д.
+В последней версии OpenSSL список поддерживаемых алгоритмов можно было узнать
+с помощью команды <code>openssl list-message-digest-algorithms</code>.</p>
+
+<h3 id="hash.update">hash.update(data)</h3>
+
+<p>Обновляет содержимое на <code>data</code>. Этот метод может быть вызван несколько раз.</p>
+
+<h3 id="hash.digest">hash.digest(encoding='binary')</h3>
+
+<p>Вычисляет хеш от всех поступивших данных.
+Параметр <code>encoding</code> может равняться <code>'hex'</code>, <code>'binary'</code> или <code>'base64'</code>.</p>
+
+<h3 id="crypto.createHmac">crypto.createHmac(algorithm, key)</h3>
+
+<p>Создает и возвращает объект <code>hmac</code>, который может быть использован
+для создания хеш-кода идентификации сообщений (HMAC) по заданному алгоритму и ключу.</p>
+
+<p>Возможные значения для <code>algorithm</code> зависят от доступных алгоритмах в OpenSSL,
+см. описание для <code>crypto.createHash()</code> выше. <code>key</code> определяет используемый ключ.</p>
+
+<h3 id="hmac.update">hmac.update(data)</h3>
+
+<p>Обновляет содержимое на <code>data</code>. Этот метод может быть вызван несколько раз.</p>
+
+<h3 id="hmac.digest">hmac.digest(encoding='binary')</h3>
+
+<p>Вычисляет хеш от всех поступивших данных.
+Параметр encoding может равняться <code>'hex'</code>, <code>'binary'</code> или <code>'base64'</code>.</p>
+
+<h3 id="crypto.createCipher">crypto.createCipher(algorithm, key)</h3>
+
+<p>Создает и возвращает объект <code>cipher</code>, который может быть использован
+для шифрования по заданному алгоритму и ключу.</p>
+
+<p>Возможные значения для <code>algorithm</code> зависят от доступных алгоритмах в той версии OpenSSL,
+которая у вас установлена. Например, это может быть <code>'aes192'</code>, <code>'blowfish'</code> и т.д.
+В последней версии OpenSSL список поддерживаемых алгоритмов можно было узнать
+с помощью команды <code>openssl list-cipher-algorithms</code>.</p>
+
+<h3 id="cipher.update">cipher.update(data, input_encoding='binary', output_encoding='binary')</h3>
+
+<p>Обновляет содержимое на <code>data</code>, кодировку которых задаёт аргумент <code>input_encoding</code>
+(может равняться <code>'utf8'</code>, <code>'ascii'</code> или <code>'binary'</code>). Аргумент <code>output_encoding</code>
+определяет выходной формат и может равняться <code>'binary'</code>, <code>'base64'</code> или <code>'hex'</code>.</p>
+
+<p>Возвращает зашифрованного содержимого и может быть названо много раз с новыми данными.</p>
+
+<h3 id="cipher.final">cipher.final(output_encoding='binary')</h3>
+
+<p>Возвращает все оставшиеся зашифрованного содержимого в кодировке <code>output_encoding</code>,
+которая может равняться <code>'binary'</code>, <code>'ascii'</code> или <code>'utf8'</code>.</p>
+
+<h3 id="crypto.createDecipher">crypto.createDecipher(algorithm, key)</h3>
+
+<p>Создает и возвращает объект <code>decipher</code>, который может быть использован
+для дешифрования по заданному алгоритму и ключу. Это объект-близнец для объекта <code>cipher</code>.</p>
+
+<h3 id="decipher.update">decipher.update(data, input_encoding='binary', output_encoding='binary')</h3>
+
+<p>Обновляет содержимое на <code>data</code>, формат которых задаёт аргумент <code>input_encoding</code>
+(может равняться <code>'binary'</code>, <code>'base64'</code> или <code>'hex'</code>). Аргумент <code>output_encoding</code>
+определяет выходную кодировку и может равняться <code>'utf8'</code>, <code>'ascii'</code> или <code>'binary'</code>.</p>
+
+<h3 id="decipher.final">decipher.final(output_encoding='binary')</h3>
+
+<p>Возвращает все оставшиеся разшифрованного содержимого в виде простого текста.
+Значение аргументо output_encoding объяснено выше.</p>
+
+<h3 id="crypto.createSign">crypto.createSign(algorithm)</h3>
+
+<p>Создает и возвращает объект <code>signer</code>, который может быть использован
+для создания электронной подписи по заданному алгоритму.</p>
+
+<h3 id="signer.update">signer.update(data)</h3>
+
+<p>Обновляет содержимое на <code>data</code>. Этот метод может быть вызван несколько раз.</p>
+
+<h3 id="signer.sign">signer.sign(private_key, output_format='binary')</h3>
+
+<p>Вычисляет подпись для всех данных. <code>private_key</code> задаёт закрытый ключ в формате PEM.</p>
+
+<p>Возвращает подпись в формате <code>output_format</code>, который может равняться <code>'binary'</code>, <code>'hex'</code> или <code>'base64'</code>.</p>
+
+<h3 id="crypto.createVerify">crypto.createVerify(algorithm)</h3>
+
+<p>Создает и возвращает объект <code>verifier</code>, который может быть использован
+для проверки электронной подписи. Это объект-близнец для объекта <code>signer</code>.</p>
+
+<h3 id="verifier.update">verifier.update(data)</h3>
+
+<p>Обновляет содержимое на <code>data</code>. Этот метод может быть вызван несколько раз.</p>
+
+<h3 id="verifier.verify">verifier.verify(public_key, signature, signature_format='binary')</h3>
+
+<p>Проверяет данные с помощью открытого ключа <code>public_key</code> в формате PEM и подписи
+<code>signature</code> формата <code>signature_format</code> (может равняться <code>'binary'</code>, <code>'hex'</code> или <code>'base64'</code>.</p>
+
+<p>Возвращает <code>true</code> или <code>false</code> в зависимости от действительности подписи и публичного ключа.</p>
+  </div>
+  <script type="text/javascript" src="assets/sh_main.js"></script>
+  <script type="text/javascript" src="assets/sh_javascript.min.js"></script>
+  <script type="text/javascript" src="assets/core.js"></script>
+</body>
+</html>
+
