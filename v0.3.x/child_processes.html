@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>child_processes &mdash; Node.js &mdash; Документация</title>
+  <link rel="stylesheet" href="assets/style.css" type="text/css" media="all" />
+  <link rel="stylesheet" href="assets/sh.css" type="text/css" media="all" />
+  <script type="text/javascript" src="assets/jquery.js"></script>
+</head>
+<body>
+  <div id="container">
+    <header>
+      <h1>Node.js &mdash; Документация</h1>
+      <div id="gtoc">
+        <p><a href="index.html">Содержание</a> | <a href="all.html">Просмотреть на одной странице</a></p>
+      </div>
+      <hr />
+    </header>
+    <h2 id="_">Дочерние процессы</h2>
+
+<p>Node предоставляет tri-directional popen(3) в классе <code>ChildProcess</code>.</p>
+
+<p>С дочерним потоком можно обмениваться данными через <code>stdin</code>, <code>stdout</code> и <code>stderr</code>
+в полностью неблокирующем стиле.</p>
+
+<p>Для создания дочернего процесса используйте <code>require('child_process').spawn()</code>.</p>
+
+<p>С дочерним процессом всегда ассоциированы три потока:
+<code>child.stdin</code>, <code>child.stdout</code> и <code>child.stderr</code>.</p>
+
+<p><code>ChildProcess</code> — экземпляр <code>EventEmitter</code>.</p>
+
+<h3 id="_exit_">Событие: 'exit'</h3>
+
+<p><code>function (code, signal) {}</code></p>
+
+<p>Это событие генерируется при завершении дочернего процесса. Если процесс
+завершён нормально, в <code>code</code> передаётся код завершения процесса, иначе
+передаётся <code>null</code>. Если процесс завершился от принятия сигнала, то <code>signal</code> —
+это строка, содержащая имя сигнала, либо <code>null</code>.</p>
+
+<p>См. также: <code>waitpid(2)</code>.</p>
+
+<h3 id="child.stdin">child.stdin</h3>
+
+<p><code>Поток с возможностью записи</code>, связанный со <code>stdin</code> процесса дочернего.
+Закрытие потока с помощью <code>end()</code> часто приводит к завершению процесса.</p>
+
+<h3 id="child.stdout">child.stdout</h3>
+
+<p><code>Поток с возможностью чтения</code>, связанный со <code>stdout</code> дочернего процесса.</p>
+
+<h3 id="child.stderr">child.stderr</h3>
+
+<p><code>Поток с возможностью чтения</code>, связанный со <code>stderr</code> дочернего процесса.</p>
+
+<h3 id="child.pid">child.pid</h3>
+
+<p>Идентификатор дочернего процесса.</p>
+
+<p>Пример:</p>
+
+<pre><code>var spawn = require('child_process').spawn,
+    grep  = spawn('grep', ['ssh']);
+
+console.log('Spawned child pid: ' + grep.pid);
+grep.stdin.end();</code></pre>
+
+<h3 id="child_process.spawn">child_process.spawn(command, args=[], [options])</h3>
+
+<p>Запускает новый процесс с указанной командой <code>command</code> и аргументами командной
+строки <code>args</code>. Если аргументы пропущены, args будет пустым массивом.</p>
+
+<p>Третий аргумент функции используется для задания дополнительных опций
+со следующими значениями по умолчанию:</p>
+
+<pre><code>{ cwd: undefined
+, env: process.env,
+, customFds: [-1, -1, -1]
+}</code></pre>
+
+<p><code>cwd</code> позволяет вам задать рабочую папку для дочернего процесса.
+Используйте <code>env</code> для определия переменных окружения, видимых дочернему процессу.
+С помощью <code>customFds</code> возможно связать stdin, stout и stderr дочернего процесса
+с существующими потоками; -1 означает, что нужно создать новый поток.</p>
+
+<p>Пример запуска <code>ls -lh /usr</code>, чтения <code>stdout</code>, <code>stderr</code> и получения кода завершения:</p>
+
+<pre><code>var util   = require('util'),
+    spawn  = require('child_process').spawn,
+    ls     = spawn('ls', ['-lh', '/usr']);
+
+ls.stdout.on('data', function (data) {
+  console.log('stdout: ' + data);
+});
+
+ls.stderr.on('data', function (data) {
+  console.log('stderr: ' + data);
+});
+
+ls.on('exit', function (code) {
+  console.log('child process exited with code ' + code);
+});</code></pre>
+
+<p>Пример: достаточно сложный способ выполнить 'ps ax | grep ssh'.</p>
+
+<pre><code>var util   = require('util'),
+    spawn = require('child_process').spawn,
+    ps    = spawn('ps', ['ax']),
+    grep  = spawn('grep', ['ssh']);
+
+ps.stdout.on('data', function (data) {
+  grep.stdin.write(data);
+});
+
+ps.stderr.on('data', function (data) {
+  console.log('ps stderr: ' + data);
+});
+
+ps.on('exit', function (code) {
+  if (code !== 0) {
+    console.log('ps process exited with code ' + code);
+  }
+  grep.stdin.end();
+});
+
+grep.stdout.on('data', function (data) {
+  console.log(data);
+});
+
+grep.stderr.on('data', function (data) {
+  console.log('grep stderr: ' + data);
+});
+
+grep.on('exit', function (code) {
+  if (code !== 0) {
+    console.log('grep process exited with code ' + code);
+  }
+});</code></pre>
+
+<p>Пример проверки ошибки запуска приложения:</p>
+
+<pre><code>var spawn = require('child_process').spawn,
+    child = spawn('bad_command');
+
+child.stderr.on('data', function (data) {
+  if (/^execvp\(\)/.test(data.asciiSlice(0,data.length))) {
+    console.log('Failed to start child process.');
+  }
+});</code></pre>
+
+<p>См. также: <code>child_process.exec()</code>.</p>
+
+<h3 id="child_process.exec">child_process.exec(command, [options], callback)</h3>
+
+<p>Высокоуровневый способ выполнить команду в качестве дочернего процесса,
+сохранить весь её вывод, и передать его в callback.</p>
+
+<pre><code>var util   = require('util'),
+    exec  = require('child_process').exec,
+    child;
+
+child = exec('cat *.js bad_file | wc -l', 
+  function (error, stdout, stderr) {
+    console.log('stdout: ' + stdout);
+    console.log('stderr: ' + stderr);
+    if (error !== null) {
+      console.log('exec error: ' + error);
+    }
+});</code></pre>
+
+<p>Функция-callback получает аргументы <code>(error, stdout, stderr)</code>. При удачном
+выполнении в <code>error</code> будет <code>null</code>. При ошибке <code>error</code> будет экземпляром <code>Error</code>,
+<code>err.code</code> будет кодом завершения дочернего процесса, а в <code>err.signal</code> будет
+содержаться имя сигнала, завершившего процесс.</p>
+
+<p>Вторым аргументом могут быть переданы дополнительные опции
+со следующими значениями по умолчанию:</p>
+
+<pre><code>{ encoding: 'utf8'
+, timeout: 0
+, maxBuffer: 200*1024
+, killSignal: 'SIGTERM'
+, cwd: null
+, env: null
+}</code></pre>
+
+<p>Если <code>timeout</code> больше 0, процесс будет завершён, если он выполняется дольше,
+чем <code>timeout</code> миллисекунд. Дочерний процесс завершается с помощью сигнала
+<code>killSignal</code>. В <code>maxBuffer</code> указывается максимальный объём данных, разрешённый
+на <code>stdout</code> или <code>stderr</code> — если этот объём будет превышен,
+то дочерний процесс будет завершён.</p>
+
+<h3 id="child.kill">child.kill(signal='SIGTERM')</h3>
+
+<p>Отправляет сигнал дочернему процессу. Если аргументы не переданы, то процессу
+будет отправлен сигнал <code>'SIGTERM'</code>. См. <code>signal(7)</code> для списка возможных имён сигналов.</p>
+
+<pre><code>var spawn = require('child_process').spawn,
+    grep  = spawn('grep', ['ssh']);
+
+grep.on('exit', function (code, signal) {
+  console.log('child process terminated due to receipt of signal '+signal);
+});
+
+// send SIGHUP to process
+grep.kill('SIGHUP');</code></pre>
+
+<p>Заметьте, что хотя функция называется <code>kill</code>, сигнал, отправляемый дочернему процессу,
+не обязательно его завершит. Метод <code>kill</code> просто отправляет сигналы.</p>
+
+<p>См. также: <code>kill(2)</code>.</p>
+  </div>
+  <script type="text/javascript" src="assets/sh_main.js"></script>
+  <script type="text/javascript" src="assets/sh_javascript.min.js"></script>
+  <script type="text/javascript" src="assets/core.js"></script>
+</body>
+</html>
+

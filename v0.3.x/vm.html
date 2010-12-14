@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>vm &mdash; Node.js &mdash; Документация</title>
+  <link rel="stylesheet" href="assets/style.css" type="text/css" media="all" />
+  <link rel="stylesheet" href="assets/sh.css" type="text/css" media="all" />
+  <script type="text/javascript" src="assets/jquery.js"></script>
+</head>
+<body>
+  <div id="container">
+    <header>
+      <h1>Node.js &mdash; Документация</h1>
+      <div id="gtoc">
+        <p><a href="index.html">Содержание</a> | <a href="all.html">Просмотреть на одной странице</a></p>
+      </div>
+      <hr />
+    </header>
+    <h2 id="_JavaScript">Выполнение JavaScript</h2>
+
+<p>Для доступа к модулю используйте:</p>
+
+<pre><code>var vm = require('vm');</code></pre>
+
+<p>JavaScript-код может быть скомпилирован и исполнен немедленно,
+либо сохранён для последующего запуска.</p>
+
+<h3 id="vm.runInThisContext">vm.runInThisContext(code, [filename])</h3>
+
+<p><code>vm.runInThisContext()</code> компилирует <code>code</code> как будто он загружен из файла <code>filename</code>,
+выполняет его и возвращает результат выполнения. Запускаемый код не имеет доступа
+к локальной области видимости. <code>filename</code> не является обязательным аргументом.</p>
+
+<p>Пример использования <code>vm.runInThisContext</code> и <code>eval</code> для выполнения одинакового кода:</p>
+
+<pre><code>var localVar = 123,
+    usingscript, evaled,
+    vm = require('vm');
+
+usingscript = vm.runInThisContext('localVar = 1;',
+  'myfile.vm');
+console.log('localVar: ' + localVar + ', usingscript: ' +
+  usingscript);
+evaled = eval('localVar = 1;');
+console.log('localVar: ' + localVar + ', evaled: ' +
+  evaled);
+
+// localVar: 123, usingscript: 1
+// localVar: 1, evaled: 1</code></pre>
+
+<p><code>vm.runInThisContext</code> не имеет доступа к локальной области видимости, поэтому
+<code>localVar</code> остаётся неизменной. <code>eval</code> имеет доступ к локальной области видимости,
+поэтому <code>localVar</code> изменяется.</p>
+
+<p>В случае синтаксической ошибке в <code>code</code>, <code>vm.runInThisContext</code> выводит ошибку
+на stderr и бросает исключение.</p>
+
+<h3 id="vm.runInNewContext">vm.runInNewContext(code, [sandbox], [filename])</h3>
+
+<p><code>vm.runInNewContext</code> компилирует <code>code</code> для запуска в области видимости
+<code>sandbox</code> как будто он загружен из файла <code>filename</code>, выполняет его и возвращает
+результат выполнения. Запускаемый код не имеет доступа к локальной области
+видимости, и использует объект <code>sandbox</code> в качестве глобального объекта.
+<code>sandbox</code> и <code>filename</code> не являются обязательными аргументами.</p>
+
+<p>Пример: компиляция и выполнение кода, который увеличивает глобальную переменную
+юи создаёт новую. Эти глобальные переменные становятся доступными в <code>sandbox</code>.</p>
+
+<pre><code>var util = require('util'),
+    vm = require('vm'),
+    sandbox = {
+      animal: 'cat',
+      count: 2
+    };
+
+vm.runInNewContext('count += 1; name = "kitty"', sandbox, 'myfile.vm');
+console.log(util.inspect(sandbox));
+
+// { animal: 'cat', count: 3, name: 'kitty' }</code></pre>
+
+<p>Имейте в виду, что исполнение непроверенного кода довольно опасно. Для предотвращения
+изменения таким кодом глобальных переменных можно использовать <code>vm.runInNewContext</code>,
+но лучше всего выполнять такой код в отдельном процессе.</p>
+
+<p>В случае синтаксической ошибке в <code>code</code>, <code>vm.runInNewContext</code> выводит ошибку
+на stderr и бросает исключение.</p>
+
+<h3 id="vm.createScript">vm.createScript(code, [filename])</h3>
+
+<p><code>createScript</code> компилирует <code>code</code> как будто он загружен из файла <code>filename</code>,
+но нен выполняет его. Эта функция возвращает объект <code>vm.Script</code>, представляющий
+гдаоткомпилированный кода. Этот код может быть запущель позже с помощью описанных
+ниже методов. Возвращаемый скрипт не связан с каким-лтбо глобальным объектом,
+это связаванеи происходит при каждом выполнение. <code>filename</code> не является
+обязательным аргументом.</p>
+
+<p>В случае синтаксической ошибке в <code>code</code>, <code>vm.createScript</code> выводит ошибку
+на stderr и бросает исключение.</p>
+
+<h3 id="script.runInThisContext">script.runInThisContext()</h3>
+
+<p>Тоже самое, что и <code>vm.runInThisContext</code>, но для предварительно скомпилированного
+объекта `vm.Script. Запускаемый код не имет доступа к локальным переменным,
+но имеет дост к глобальным (v8: in actual context).</p>
+
+<p>Пример использования <code>script.runInThisContext</code> дял компиляции кода
+и множественного его исполнения:</p>
+
+<pre><code>var vm = require('vm');
+
+globalVar = 0;
+
+var script = vm.createScript('globalVar += 1', 'myfile.vm');
+
+for (var i = 0; i &lt; 1000 ; i += 1) {
+  script.runInThisContext();
+}
+
+console.log(globalVar);
+
+// 1000</code></pre>
+
+<h3 id="script.runInNewContext">script.runInNewContext([sandbox])</h3>
+
+<p>Тоже самое, что и <code>vm.runInNewContext</code>, но для предварительно скомпилированного
+объекта `vm.Script.</p>
+
+<p>Пример: компиляция кода, который увеличивает глобальную переменную
+юи создаёт новую, и множественное его выполнение. Эти глобальные переменные
+становятся доступными в <code>sandbox</code>.</p>
+
+<pre><code>var util = require('util'),
+    vm = require('vm'),
+    sandbox = {
+      animal: 'cat',
+      count: 2
+    };
+
+var script = vm.createScript('count += 1; name = "kitty"', 'myfile.vm');
+
+for (var i = 0; i &lt; 10 ; i += 1) {
+  script.runInNewContext(sandbox);
+}
+
+console.log(util.inspect(sandbox));
+
+// { animal: 'cat', count: 12, name: 'kitty' }</code></pre>
+
+<p>Имейте в виду, что исполнение непроверенного кода довольно опасно. Для предотвращения
+изменения таким кодом глобальных переменных можно использовать <code>script.runInNewContext</code>,
+но лучше всего выполнять такой код в отдельном процессе.</p>
+  </div>
+  <script type="text/javascript" src="assets/sh_main.js"></script>
+  <script type="text/javascript" src="assets/sh_javascript.min.js"></script>
+  <script type="text/javascript" src="assets/core.js"></script>
+</body>
+</html>
+

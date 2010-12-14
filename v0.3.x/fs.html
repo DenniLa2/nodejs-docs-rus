@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>fs &mdash; Node.js &mdash; Документация</title>
+  <link rel="stylesheet" href="assets/style.css" type="text/css" media="all" />
+  <link rel="stylesheet" href="assets/sh.css" type="text/css" media="all" />
+  <script type="text/javascript" src="assets/jquery.js"></script>
+</head>
+<body>
+  <div id="container">
+    <header>
+      <h1>Node.js &mdash; Документация</h1>
+      <div id="gtoc">
+        <p><a href="index.html">Содержание</a> | <a href="all.html">Просмотреть на одной странице</a></p>
+      </div>
+      <hr />
+    </header>
+    <h2 id="_">Файловая система</h2>
+
+<p>Файловый ввод/вывод обеспечивается с помощью простой обертки вокруг стандартных
+функций POSIX. Используйте <code>require('fs')</code> чтобы получить к ним доступ.
+Все эти методы имеют асинхронную и синхронную версии.</p>
+
+<p>Асинхронные версии всегда принимают функцию обратного вызова в качестве
+последнего аргумента. Аргументы, передаваемые в функцию обратного вызова зависят
+от вызываемой функции, но первый из них всегда зарезервирован для исключения.
+Если операция завершается без ошибок, то в качется первого аргумента
+передаётся <code>null</code> или <code>undefined</code>.</p>
+
+<p>Пример использования асинхронной версии:</p>
+
+<pre><code>var fs = require('fs');
+
+fs.unlink('/tmp/hello', function (err) {
+  if (err) throw err;
+  console.log('successfully deleted /tmp/hello');
+});</code></pre>
+
+<p>Пример использования асинхронной версии:</p>
+
+<pre><code>var fs = require('fs');
+
+fs.unlinkSync('/tmp/hello')
+console.log('successfully deleted /tmp/hello');</code></pre>
+
+<p>Асинхронные методы не гарантируют порядок выполнения операций.
+Следующий код может сработать неправильно:</p>
+
+<pre><code>fs.rename('/tmp/hello', '/tmp/world', function (err) {
+  if (err) throw err;
+  console.log('renamed complete');
+});
+fs.stat('/tmp/world', function (err, stats) {
+  if (err) throw err;
+  console.log('stats: ' + JSON.stringify(stats));
+});</code></pre>
+
+<p>Вполне возможно что fs.stat выполнится до fs.rename. Правильный способ сделать
+то же самое — выполнение этих методов по цепочке.</p>
+
+<pre><code>fs.rename('/tmp/hello', '/tmp/world', function (err) {
+  if (err) throw err;
+  fs.stat('/tmp/world', function (err, stats) {
+    if (err) throw err;
+    console.log('stats: ' + JSON.stringify(stats));
+  });
+});</code></pre>
+
+<p>В нагруженных процессах программисту <em>строго рекомендуется</em> использовать
+асинхронные версии вызовов. Синхронные версии будут блокировать весь процесс
+до своего завершения — предотвращая любые новые соединения.</p>
+
+<h3 id="fs.rename">fs.rename(path1, path2, [callback])</h3>
+
+<p>Асинхронное переименование (rename(2)).
+Обработчику не передаётся аргументов кроме возможного исключения.</p>
+
+<h3 id="fs.renameSync">fs.renameSync(path1, path2)</h3>
+
+<p>Синхронный rename(2).</p>
+
+<h3 id="fs.truncate">fs.truncate(fd, len, [callback])</h3>
+
+<p>Асинхронный ftruncate(2).
+Обработчику не передаётся аргументов кроме возможного исключения.</p>
+
+<h3 id="fs.truncateSync">fs.truncateSync(fd, len)</h3>
+
+<p>Синхронный ftruncate(2).</p>
+
+<h3 id="fs.chmod">fs.chmod(path, mode, [callback])</h3>
+
+<p>Асинхронное изменение прав доступа (chmod(2)).
+Обработчику не передаётся аргументов кроме возможного исключения.</p>
+
+<h3 id="fs.chmodSync">fs.chmodSync(path, mode)</h3>
+
+<p>Синхронный chmod(2).</p>
+
+<h3 id="fs.stat">fs.stat(path, [callback])</h3>
+
+<p>Асинхронный stat(2). Обработчик получает два аргумента <code>(err, stats)</code>,
+где <code>stats</code> это экземпляр <code>fs.Stats</code>. Он выглядит примерно так:</p>
+
+<pre><code>{ dev: 2049
+, ino: 305352
+, mode: 16877
+, nlink: 12
+, uid: 1000
+, gid: 1000
+, rdev: 0
+, size: 4096
+, blksize: 4096
+, blocks: 8
+, atime: '2009-06-29T11:11:55Z'
+, mtime: '2009-06-29T11:11:40Z'
+, ctime: '2009-06-29T11:11:40Z' 
+}</code></pre>
+
+<p>См. <code>fs.Stats</code> ниже для дополнительной информации.</p>
+
+<h3 id="fs.lstat">fs.lstat(path, [callback])</h3>
+
+<p>Асинхронный lstat(2). Обработчик получает два аргумента <code>(err, stats)</code>,
+где <code>stats</code> это экземпляр <code>fs.Stats</code>.</p>
+
+<h3 id="fs.fstat">fs.fstat(fd, [callback])</h3>
+
+<p>Асинхронный fstat(2). Обработчик получает два аргумента <code>(err, stats)</code>,
+где <code>stats</code> это экземпляр <code>fs.Stats</code>.</p>
+
+<h3 id="fs.statSync">fs.statSync(path)</h3>
+
+<p>Синхронный stat(2). Возвращает экземпляр <code>fs.Stats</code>.</p>
+
+<h3 id="fs.lstatSync">fs.lstatSync(path)</h3>
+
+<p>Синхронный lstat(2). Возвращает экземпляр <code>fs.Stats</code>.</p>
+
+<h3 id="fs.fstatSync">fs.fstatSync(fd)</h3>
+
+<p>Синхронный fstat(2). Возвращает экземпляр <code>fs.Stats</code>.</p>
+
+<h3 id="fs.link">fs.link(srcpath, dstpath, [callback])</h3>
+
+<p>Асинхронное создание ссылки (link(2)).
+Передаваемой функции не передаётся ничего кроме возможного исключения.</p>
+
+<h3 id="fs.linkSync">fs.linkSync(dstpath, srcpath)</h3>
+
+<p>Синхронный link(2).</p>
+
+<h3 id="fs.symlink">fs.symlink(linkdata, path, [callback])</h3>
+
+<p>Асинхронное создание символической ссылки (symlink(2)).
+Передаваемой функции не передаётся ничего кроме возможного исключения.</p>
+
+<h3 id="fs.symlinkSync">fs.symlinkSync(linkdata, path)</h3>
+
+<p>Синхронный symlink(2).</p>
+
+<h3 id="fs.readlink">fs.readlink(path, [callback])</h3>
+
+<p>Асинхронное разрешение ссылки (readlink(2)).
+Обработчик принимает два аргумента <code>(err, resolvedPath)</code>.</p>
+
+<h3 id="fs.readlinkSync">fs.readlinkSync(path)</h3>
+
+<p>Синхронный readlink(2). Возвращает полученный путь.</p>
+
+<h3 id="fs.realpath">fs.realpath(path, [callback])</h3>
+
+<p>Асинхронный realpath(2).
+Обработчик принимает два аргумента <code>(err, resolvedPath)</code>.</p>
+
+<h3 id="fs.realpathSync">fs.realpathSync(path)</h3>
+
+<p>Синхронный realpath(2). Возвращает полученный путь.</p>
+
+<h3 id="fs.unlink">fs.unlink(path, [callback])</h3>
+
+<p>Асинхронный unlink(2).
+Передаваемой функции не передаётся ничего кроме возможного исключения.</p>
+
+<h3 id="fs.unlinkSync">fs.unlinkSync(path)</h3>
+
+<p>Синхронный unlink(2).</p>
+
+<h3 id="fs.rmdir">fs.rmdir(path, [callback])</h3>
+
+<p>Асинхронный rmdir(2).
+Передаваемой функции не передаётся ничего кроме возможного исключения.</p>
+
+<h3 id="fs.rmdirSync">fs.rmdirSync(path)</h3>
+
+<p>Синхронный rmdir(2).</p>
+
+<h3 id="fs.mkdir">fs.mkdir(path, mode, [callback])</h3>
+
+<p>Асинхронный mkdir(2).
+Передаваемой функции не передаётся ничего кроме возможного исключения.</p>
+
+<h3 id="fs.mkdirSync">fs.mkdirSync(path, mode)</h3>
+
+<p>Синхронный mkdir(2).</p>
+
+<h3 id="fs.readdir">fs.readdir(path, [callback])</h3>
+
+<p>Асинхронное чтение содержимого директории (readdir(3)).
+Обработчик принимает два аргумента <code>(err, files)</code>,
+где <code>files</code> это массив имён файлов в директории исключая <code>'.'</code> и <code>'..'</code>.</p>
+
+<h3 id="fs.readdirSync">fs.readdirSync(path)</h3>
+
+<p>Синхронный readdir(3). Возвращает массив имён файлов исключая <code>'.'</code> и <code>'..'</code>.</p>
+
+<h3 id="fs.close">fs.close(fd, [callback])</h3>
+
+<p>Асинхронный close(2).
+Передаваемой функции не передаётся ничего кроме возможного исключения.</p>
+
+<h3 id="fs.closeSync">fs.closeSync(fd)</h3>
+
+<p>Синхронный close(2).</p>
+
+<h3 id="fs.open">fs.open(path, flags, mode=0666, [callback])</h3>
+
+<p>Асинхронное открытие файла. См. open(2).
+Флаги могут быть <code>'r'</code>, <code>'r+'</code>, <code>'w'</code>, <code>'w+'</code>, <code>'a'</code> или <code>'a+'</code>.
+Обработчик принимает два аргумента <code>(err, fd)</code>.</p>
+
+<h3 id="fs.openSync">fs.openSync(path, flags, mode=0666)</h3>
+
+<p>Синхронный open(2).</p>
+
+<h3 id="fs.write">fs.write(fd, buffer, offset, length, position, [callback])</h3>
+
+<p>Записывает буфер <code>buffer</code> в файл указанный дескриптором <code>fd</code>.</p>
+
+<p>Сдвиг <code>offset</code> и длина <code>length</code> определяют часть буфера, которая будет записана.</p>
+
+<p>Позиция <code>position</code> задаёт смещение от начала файла куда должны быть записаны данные.
+Если <code>position</code> равна <code>null</code>, данные записываются с текущей позиции. См. pwrite(2).</p>
+
+<p>Обработчик принимает два аргумента <code>(err, written)</code>,
+где <code>written</code> указывает сколько <em>байт</em> было записано в файлn.</p>
+
+<h3 id="fs.writeSync">fs.writeSync(fd, buffer, offset, length, position)</h3>
+
+<p>Синхронная версия <code>fs.write()</code>. Возвращает число записанных <em>байт</em>.</p>
+
+<h3 id="fs.writeSync">fs.writeSync(fd, str, position, encoding='utf8')</h3>
+
+<p>Синхронная версия <code>fs.write()</code>, записывающая в файл строку, а не буфер.
+Возвращает число записанных <em>байт</em>.</p>
+
+<h3 id="fs.read">fs.read(fd, buffer, offset, length, position, [callback])</h3>
+
+<p>Читает данные из файла, указанного дескриптором <code>fd</code>.</p>
+
+<p><code>buffer</code> — буфер, в который будут помещены прочитанные данные.</p>
+
+<p><code>offset</code> — смещение внутри буфера с которого начнётся запись.</p>
+
+<p><code>length</code> — число байт для чтения.</p>
+
+<p><code>position</code> — число означающее позицию, с которой начнётся чтение файла.
+Если <code>position</code> принимает значение <code>null</code>, данные будут прочитаны с текущей позиции.</p>
+
+<p>Функция-обработчик принимает два аргумента, <code>(err, bytesRead)</code>.</p>
+
+<h3 id="fs.readSync">fs.readSync(fd, buffer, offset, length, position)</h3>
+
+<p>Синхронная версия <code>fs.read</code>. Возвращает количество прочитанных <em>байт</em>.</p>
+
+<h3 id="fs.readSync">fs.readSync(fd, length, position, encoding)</h3>
+
+<p>Синхронная версия <code>fs.read</code>, читающая из файл строку, а не буфер.
+Возвращает количество прочитанных <em>байт</em>.</p>
+
+<h3 id="fs.readFile">fs.readFile(filename, [encoding], [callback])</h3>
+
+<p>Асинхронно загружает в память содержимое файла. Пример:</p>
+
+<pre><code>fs.readFile('/etc/passwd', function (err, data) {
+  if (err) throw err;
+  console.log(data);
+});</code></pre>
+
+<p>Обработчику передаются два аргумента: <code>(err, data)</code>, где <code>data</code> — содержимое файла.</p>
+
+<p>Если кодировка не указана, возвращается буфер.</p>
+
+<h3 id="fs.readFileSync">fs.readFileSync(filename, [encoding])</h3>
+
+<p>Синхронная версия <code>fs.readFile</code>. Возвращает содержимое файла <code>filename</code>.</p>
+
+<p>Если указана кодировка <code>encoding</code>, то функция возвращает строку. Иначе — возвращает буфер.</p>
+
+<h3 id="fs.writeFile">fs.writeFile(filename, data, encoding='utf8', [callback])</h3>
+
+<p>Асинхронно записывает данные в файл. <code>data</code> может быть строкой или буфером.</p>
+
+<p>Пример:</p>
+
+<pre><code>fs.writeFile('message.txt', 'Hello Node', function (err) {
+  if (err) throw err;
+  console.log('It\'s saved!');
+});</code></pre>
+
+<h3 id="fs.writeFileSync">fs.writeFileSync(filename, data, encoding='utf8')</h3>
+
+<p>Синхронная версия <code>fs.writeFile</code>.</p>
+
+<h3 id="fs.watchFile">fs.watchFile(filename, [options], listener)</h3>
+
+<p>Наблюдает за изменениями файла <code>filename</code>.
+Обработчик <code>listener</code> вызывается каждый раз при изменении файла.</p>
+
+<p>Второй аргумент необязателен. Объект <code>options</code>, если он передан, должен содержать
+два свойства: булево <code>persistent</code> и <code>interval</code>, задержку между проверками
+файла в миллисекундах. Значение по умолчанию: <code>{persistent: true, interval: 0}</code>.</p>
+
+<p>Обработчик <code>listener</code> принимает два аргумента: текущий объект stat и предыдущий объект stat.</p>
+
+<pre><code>fs.watchFile(f, function (curr, prev) {
+  console.log('the current mtime is: ' + curr.mtime);
+  console.log('the previous mtime was: ' + prev.mtime);
+});</code></pre>
+
+<p>Эти объекты — экземпляры <code>fs.Stat</code>.</p>
+
+<h3 id="fs.unwatchFile">fs.unwatchFile(filename)</h3>
+
+<p>Прекращает обрабатывать изменения файла <code>filename</code>.</p>
+
+<h2 id="fs.Stats">fs.Stats</h2>
+
+<p>Объекты, возвращаемые <code>fs.stat()</code>, <code>fs.lstat()</code> и <code>fs.fstat()</code> являются
+экземплярами этого класса.</p>
+
+<ul><li><code>stats.isFile()</code></li><li><code>stats.isDirectory()</code></li><li><code>stats.isBlockDevice()</code></li><li><code>stats.isCharacterDevice()</code></li><li><code>stats.isSymbolicLink()</code> (доступно только после <code>fs.lstat()</code>)</li><li><code>stats.isFIFO()</code></li><li><code>stats.isSocket()</code></li></ul>
+
+<h2 id="fs.ReadStream">fs.ReadStream</h2>
+
+<p><code>ReadStream</code> является <code>потоком с возможностью чтения</code>.</p>
+
+<h3 id="fs.createReadStream">fs.createReadStream(path, [options])</h3>
+
+<p>Возвращает новый объект ReadStream.</p>
+
+<p><code>options</code> это объект со следующими полями по умолчанию:</p>
+
+<pre><code>{ 'flags': 'r'
+, 'encoding': null
+, 'mode': 0666
+, 'bufferSize': 4 * 1024
+}</code></pre>
+
+<p>Объект <code>options</code> может содержать поля <code>start</code> и <code>end</code> для чтения фрагмента файла
+вместо всего файла. И <code>start</code>, и <code>end</code> являются границами с включением
+и начинаюся с 0. При использовании необходимо задавать обе границы</p>
+
+<p>Пример чтения последних 10 байт файла размером 100 байт:</p>
+
+<pre><code>fs.createReadStream('sample.txt', {start: 90, end: 99});</code></pre>
+
+<h2 id="fs.WriteStream">fs.WriteStream</h2>
+
+<p><code>WriteStream</code> является <code>потоком с возможностью записи</code>.</p>
+
+<h3 id="_open_">Событие: 'open'</h3>
+
+<p><code>function (fd) { }</code></p>
+
+<p><code>fd</code> содержит файловый дескриптов, используемый WriteStream.</p>
+
+<h3 id="fs.createWriteStream">fs.createWriteStream(path, [options])</h3>
+
+<p>Возвращает новый объект WriteStream.</p>
+
+<p><code>options</code> это объект со следующими свойствами по умолчанию:</p>
+
+<pre><code>{ 'flags': 'w'
+, 'encoding': null
+, 'mode': 0666
+}</code></pre>
+  </div>
+  <script type="text/javascript" src="assets/sh_main.js"></script>
+  <script type="text/javascript" src="assets/sh_javascript.min.js"></script>
+  <script type="text/javascript" src="assets/core.js"></script>
+</body>
+</html>
+

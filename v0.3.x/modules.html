@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>modules &mdash; Node.js &mdash; Документация</title>
+  <link rel="stylesheet" href="assets/style.css" type="text/css" media="all" />
+  <link rel="stylesheet" href="assets/sh.css" type="text/css" media="all" />
+  <script type="text/javascript" src="assets/jquery.js"></script>
+</head>
+<body>
+  <div id="container">
+    <header>
+      <h1>Node.js &mdash; Документация</h1>
+      <div id="gtoc">
+        <p><a href="index.html">Содержание</a> | <a href="all.html">Просмотреть на одной странице</a></p>
+      </div>
+      <hr />
+    </header>
+    <h2 id="_">Стандартные модули</h2>
+
+<p>Вместе с Node поставляется несколько стандартных встроенных модулей,
+большинство из которых описано ниже. Стандартный способ использования этих
+модулей — вызов <code>require('name')</code> и сохранение возвращаемого объекта в локальной
+переменной с именем, совпадающим с именем модуля.</p>
+
+<p>Пример:</p>
+
+<pre><code>var util = require('util');</code></pre>
+
+<p>Также возможно расширение Node другими модулями. См. <code>'Модули'</code>.</p>
+
+<h2 id="_">Модули</h2>
+
+<p>Node использует систему модулей CommonJS.</p>
+
+<p>Node имеет простую систему загрузки модулей, файлы и модули в которой являются,
+в каком-то смысле, синонимами. В примере <code>foo.js</code> загружает модуль <code>circle.js</code>,
+находящийся в той же директории.</p>
+
+<p>Содержимое <code>foo.js</code>:</p>
+
+<pre><code>var circle = require('./circle');
+console.log( 'The area of a circle of radius 4 is '
+           + circle.area(4));</code></pre>
+
+<p>Содержимое <code>circle.js</code>:</p>
+
+<pre><code>var PI = 3.14;
+
+exports.area = function (r) {
+  return PI * r * r;
+};
+
+exports.circumference = function (r) {
+  return 2 * PI * r;
+};</code></pre>
+
+<p>Модуль <code>circle.js</code> экспортирует функции <code>area()</code> и <code>circumference()</code>. Для этого
+достаточно добавить экспортируемые функции/объекты к специальному объекты <code>exports</code>.
+(В качетве альтернативы можно использовать <code>this</code> вместо <code>exports</code>.) Переменные,
+локальные для модуля, не будут видны извне. В этом примере переменная <code>PI</code> видна
+только внутри модуля <code>circle.js</code>. Модули, имена которых не начинаются с <code>'./'</code>
+являются стандартными модулями Node, о них будет рассказано позже.</p>
+
+<h3 id="_">Поиск модулей</h3>
+
+<p>модули, имена которых начинаются на <code>'./'</code> считаются относительными для
+вызывающего <code>require()</code> модуля. Это означает, что в примере выше <code>circle.js</code>
+должен находиться в той же папке, что и <code>foo.js</code>, тогда <code>require('./circle')</code>
+будет работать.</p>
+
+<p>В случае отсутствия <code>'./'</code> (например <code>require('assert')</code>), модуль будет искаться
+в папках, указаных в массиве <code>require.paths</code>. <code>require.paths</code> обычно выглядит
+примерно так:</p>
+
+<p><code>[ '/home/ryan/.node_modules' ]</code></p>
+
+<p>Соответственно, при вызове <code>require('foo')</code> Node будет пробовать найти файлы
+в следующем порядке:</p>
+
+<ul><li>1: <code>/home/ryan/.node_modules/foo</code></li><li>2: <code>/home/ryan/.node_modules/foo.js</code></li><li>3: <code>/home/ryan/.node_modules/foo.node</code></li><li>4: <code>/home/ryan/.node_modules/foo/index.js</code></li><li>5: <code>/home/ryan/.node_modules/foo/index.node</code></li></ul>
+
+<p>И остановится как только файл будет найден. Файлы с расширением <code>'node'</code>
+являются C/C++ дополнениями, см. 'C/C++ дополнения' ниже. <code>'index.js'</code> позволяет
+вам собирать модуль в отдельной папке, дающей имя модулю.</p>
+
+<p>Список <code>require.paths</code> можно изменять во время выполнения программы, или задать
+с помощью переменной окружения <code>NODE_PATH</code> (содержащей пути, разделённые двоеточием).</p>
+
+<p>Также Node будет производить поиск в папке <code>node_modules</code> в текущей папке,
+и выше по дереву проекта. Это позволяет вам иметь различыне версии пакета
+для различного окружения. Например, если у вас есть devopment версия и production
+версия проекта с различным модулем foo, располагающемся в <code>projects/x/development/node_modules/foo</code> и
+<code>projects/x/production/node_modules/foo</code> соответственно.</p>
+
+<p>При последующих вызовах <code>require('foo')</code> поиск не будет происходить второй раз,
+а модуль будет загружен из объекта <code>require.cache</code>.</p>
+
+<p>Для того, чтобы определить, какой модуль был загружен при вызове <code>require()</code>,
+можно воспользоваться функцией <code>require.resolve()</code>.</p>
+  </div>
+  <script type="text/javascript" src="assets/sh_main.js"></script>
+  <script type="text/javascript" src="assets/sh_javascript.min.js"></script>
+  <script type="text/javascript" src="assets/core.js"></script>
+</body>
+</html>
+

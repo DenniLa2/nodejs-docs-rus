@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>url &mdash; Node.js &mdash; Документация</title>
+  <link rel="stylesheet" href="assets/style.css" type="text/css" media="all" />
+  <link rel="stylesheet" href="assets/sh.css" type="text/css" media="all" />
+  <script type="text/javascript" src="assets/jquery.js"></script>
+</head>
+<body>
+  <div id="container">
+    <header>
+      <h1>Node.js &mdash; Документация</h1>
+      <div id="gtoc">
+        <p><a href="index.html">Содержание</a> | <a href="all.html">Просмотреть на одной странице</a></p>
+      </div>
+      <hr />
+    </header>
+    <h2 id="uRL">URL</h2>
+
+<p>В это модуле собраны инструменты для разрешения и разбора URL.
+Вызовите <code>require('url')</code> чтобы его использовать.</p>
+
+<p>Объекты разобранного URL имеют либо все либо некоторые из перечисленных полей,
+в зависимости от их присутствия в строке URL. Части которых не было в URL
+не будут присутствовать в объекте. Примеры показаны для URL</p>
+
+<p><code>'http://user:pass@host.com:8080/p/a/t/h?query=string#hash'</code></p>
+
+<ul><li><p><code>href</code>: Полный URL который был разобран.</p><p>Пример: <code>'http://user:pass@host.com:8080/p/a/t/h?query=string#hash'</code></p></li><li><p><code>protocol</code>: Протокол запроса.</p><p>Пример: <code>'http:'</code></p></li><li><p><code>host</code>: Полный host, включая порт и информацию аутентификации.</p><p>Пример: <code>'user:pass@host.com:8080'</code></p></li><li><p><code>auth</code>: Информация для аутентификации.</p><p>Пример: <code>'user:pass'</code></p></li><li><p><code>hostname</code>: Имя хоста.</p><p>Пример: <code>'host.com'</code></p></li><li><p><code>port</code>: Номер порта.</p><p>Пример: <code>'8080'</code></p></li><li><p><code>pathname</code>: Секция пути, которая идёт после хоста и перед строкой параметров, включая начальный слеш если он есть.</p><p>Пример: <code>'/p/a/t/h'</code></p></li><li><p><code>search</code>: Строка запроса, включая ведущий знак вопроса.</p><p>Пример: <code>'?query=string'</code></p></li><li><p><code>query</code>: Параметры из строки запроса, либо уже разобранный объект с параметрами.</p><p>Пример: <code>'query=string'</code> or <code>{'query':'string'}</code></p></li><li><p><code>hash</code>: "Якорь" URL, включая знак решётки.</p><p>Пример: <code>'#hash'</code></p></li></ul>
+
+<p>Модуль URL предоставляет следующие методы:</p>
+
+<h3 id="url.parse">url.parse(urlStr, parseQueryString=false)</h3>
+
+<p>Получает строку URL и возвращает объект. Передайте <code>true</code> вторым аргументом
+чтобы одновременно разобрать строку запроса модулем <code>querystring</code>.</p>
+
+<h3 id="url.format">url.format(urlObj)</h3>
+
+<p>Получает объект URL и возвращает отформатированный URL в виде строки.</p>
+
+<h3 id="url.resolve">url.resolve(from, to)</h3>
+
+<p>Получает базовый URL и относительный URL, и разрешает их как это сделал бы браузер для гиперссылки.</p>
+  </div>
+  <script type="text/javascript" src="assets/sh_main.js"></script>
+  <script type="text/javascript" src="assets/sh_javascript.min.js"></script>
+  <script type="text/javascript" src="assets/core.js"></script>
+</body>
+</html>
+
