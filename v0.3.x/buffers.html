@@ -2,10 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8" />
-  <title>buffers &mdash; Node.js &mdash; Документация</title>
+  <title>buffers - Node.js &mdash; Документация</title>
   <link rel="stylesheet" href="assets/style.css" type="text/css" media="all" />
   <link rel="stylesheet" href="assets/sh.css" type="text/css" media="all" />
-  <script type="text/javascript" src="assets/jquery.js"></script>
 </head>
 <body>
   <div id="container">
@@ -16,7 +15,8 @@
       </div>
       <hr />
     </header>
-    <h2 id="_">Буферы</h2>
+    <div id="toc"><h2>Содержание</h2><ul><li><a href="#javaScript_Unicode_">JavaScript поддерживает Unicode, но в нём нет средств для работы</a><ul><li><a href="#new_Buffer">new Buffer(size)</a></li><li><a href="#new_Buffer">new Buffer(array)</a></li><li><a href="#new_Buffer">new Buffer(str, encoding='utf8')</a></li><li><a href="#buffer.write">buffer.write(string, offset=0, encoding='utf8')</a></li><li><a href="#buffer.toString">buffer.toString(encoding, start=0, end=buffer.length)</a></li><li><a href="#buffer_index_">buffer[index]</a></li><li><a href="#buffer.isBuffer">Buffer.isBuffer(obj)</a></li><li><a href="#buffer.byteLength">Buffer.byteLength(string, encoding='utf8')</a></li><li><a href="#buffer.length">buffer.length</a></li><li><a href="#buffer.copy">buffer.copy(targetBuffer, targetStart=0, sourceStart=0, sourceEnd=buffer.length)</a></li><li><a href="#buffer.slice">buffer.slice(start, end=buffer.length)</a></li></ul></li></ul><hr /></div>
+<h2 id="_">Буферы</h2>
 
 <p>Чистый JavaScript поддерживает Unicode, но в нём нет средств для работы
 с двоичными данными. При работе с TCP или файловой системой часто необходимо
@@ -90,6 +90,10 @@ console.log(buf);
 
 // node.js</code></pre>
 
+<h3 id="buffer.isBuffer">Buffer.isBuffer(obj)</h3>
+
+<p>Проверяет, является ли <code>obj</code> буфером.</p>
+
 <h3 id="buffer.byteLength">Buffer.byteLength(string, encoding='utf8')</h3>
 
 <p>Возвращает количество байт в строке. Это не то же самое что <code>String.prototype.length</code>,
@@ -119,7 +123,7 @@ console.log(buf.length);
 // 1234
 // 1234</code></pre>
 
-<h3 id="buffer.copy">buffer.copy(targetBuffer, targetStart, sourceStart, sourceEnd=buffer.length)</h3>
+<h3 id="buffer.copy">buffer.copy(targetBuffer, targetStart=0, sourceStart=0, sourceEnd=buffer.length)</h3>
 
 <p>Копирует данные между буферами с помощью memcpy().</p>
 
@@ -165,6 +169,13 @@ console.log(buf2.toString('ascii', 0, buf2.length));
   </div>
   <script type="text/javascript" src="assets/sh_main.js"></script>
   <script type="text/javascript" src="assets/sh_javascript.min.js"></script>
-  <script type="text/javascript" src="assets/core.js"></script>
+  <script type="text/javascript">highlight(undefined, undefined, 'pre');</script>
+  <!-- Yandex.Metrika --> 
+  <script src="//mc.yandex.ru/metrika/watch.js" type="text/javascript"></script> 
+  <script type="text/javascript"> 
+  try { var yaCounter612423 = new Ya.Metrika(612423); } catch(e){}
+  </script> 
+  <noscript><div style="position: absolute;"><img src="//mc.yandex.ru/watch/612423" alt="" /></div></noscript> 
+  <!-- /Yandex.Metrika -->   
 </body>
 </html>

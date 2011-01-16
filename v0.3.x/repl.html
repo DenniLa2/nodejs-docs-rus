@@ -2,10 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8" />
-  <title>repl &mdash; Node.js &mdash; Документация</title>
+  <title>repl - Node.js &mdash; Документация</title>
   <link rel="stylesheet" href="assets/style.css" type="text/css" media="all" />
   <link rel="stylesheet" href="assets/sh.css" type="text/css" media="all" />
-  <script type="text/javascript" src="assets/jquery.js"></script>
 </head>
 <body>
   <div id="container">
@@ -16,7 +15,8 @@
       </div>
       <hr />
     </header>
-    <h2 id="_">Интерактивная консоль (REPL)</h2>
+    <div id="toc"><h2>Содержание</h2><ul><li><a href="#rEPL_">REPL)</a><ul><li><a href="#repl.start_">repl.start(prompt='> ', stream=process.openStdin())</a></li><li><a href="#rEPL">REPL</a></li></ul></li></ul><hr /></div>
+<h2 id="_">Интерактивная консоль (REPL)</h2>
 
 <p>Интерактивная консоль (Read-Eval-Print-Loop, REPL) доступна как самостоятельная
 программа и может включаться в другие скрипты. REPL предоставляет возможность
@@ -28,9 +28,9 @@
 
 <pre><code>mjr:~$ node
 Type '.help' for options.
-node&gt; a = [ 1, 2, 3];
+&gt; a = [ 1, 2, 3];
 [ 1, 2, 3 ]
-node&gt; a.forEach(function (v) {
+&gt; a.forEach(function (v) {
 ...   console.log(v);
 ...   });
 1
@@ -45,11 +45,11 @@ node&gt; a.forEach(function (v) {
 
 <pre><code>alias node="env NODE_NO_READLINE=1 rlwrap node"</code></pre>
 
-<h3 id="repl.start_">repl.start(prompt='node&gt; ', stream=process.openStdin())</h3>
+<h3 id="repl.start_">repl.start(prompt='&gt; ', stream=process.openStdin())</h3>
 
 <p>Запускает REPL с <code>prompt</code> в качестве приглашения и потоком <code>stream</code> для ввода/вывода.
-Параметр <code>prompt</code> необязателен и по умолчанию принимает значение <code>'node&gt;'</code>.
-Параметр <code>stream</code> также необязателен и по умолчанию принимает значение <code>process.openStdin()</code>.</p>
+Параметр <code>prompt</code> необязателен и по умолчанию принимает значение <code>'&gt;'</code>.
+Параметр <code>stream</code> также необязателен и по умолчанию принимает значение <code>process.stdin</code>.</p>
 
 <p>В одном экземпляре node могут быть запущены несколько консолей REPL.
 Все будут использовать один глобальный объект но разный ввод-вывод.</p>
@@ -88,11 +88,11 @@ net.createServer(function (socket) {
 
 <p>Специальная переменная <code>_</code> (знак подчёркивания) содержит результат последнего выражения.</p>
 
-<pre><code>node&gt; [ "a", "b", "c" ]
+<pre><code>&gt; [ "a", "b", "c" ]
 [ 'a', 'b', 'c' ]
-node&gt; _.length 
+&gt; _.length 
 3
-node&gt; _ += 1
+&gt; _ += 1
 4</code></pre>
 
 <p>REPL предоставляет доступ к любым переменным глобальной области видимости.
@@ -108,7 +108,7 @@ repl.start().context.m = msg;</code></pre>
 <p>Свойства объекта <code>context</code> выглядят внутри REPL как локальные:</p>
 
 <pre><code>mjr:~$ node repl_test.js
-node&gt; m
+&gt; m
 'message'</code></pre>
 
 <p>В REPL есть несколько специальных команд:</p>
@@ -118,6 +118,13 @@ node&gt; m
   </div>
   <script type="text/javascript" src="assets/sh_main.js"></script>
   <script type="text/javascript" src="assets/sh_javascript.min.js"></script>
-  <script type="text/javascript" src="assets/core.js"></script>
+  <script type="text/javascript">highlight(undefined, undefined, 'pre');</script>
+  <!-- Yandex.Metrika --> 
+  <script src="//mc.yandex.ru/metrika/watch.js" type="text/javascript"></script> 
+  <script type="text/javascript"> 
+  try { var yaCounter612423 = new Ya.Metrika(612423); } catch(e){}
+  </script> 
+  <noscript><div style="position: absolute;"><img src="//mc.yandex.ru/watch/612423" alt="" /></div></noscript> 
+  <!-- /Yandex.Metrika -->   
 </body>
 </html>

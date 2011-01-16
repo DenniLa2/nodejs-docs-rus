@@ -2,10 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8" />
-  <title>http &mdash; Node.js &mdash; Документация</title>
+  <title>http - Node.js &mdash; Документация</title>
   <link rel="stylesheet" href="assets/style.css" type="text/css" media="all" />
   <link rel="stylesheet" href="assets/sh.css" type="text/css" media="all" />
-  <script type="text/javascript" src="assets/jquery.js"></script>
 </head>
 <body>
   <div id="container">
@@ -16,7 +15,8 @@
       </div>
       <hr />
     </header>
-    <h2 id="hTTP">HTTP</h2>
+    <div id="toc"><h2>Содержание</h2><ul><li><a href="#hTTP">HTTP</a></li><li><a href="#http.Server">http.Server</a><ul><li><a href="#request_">request'</a></li><li><a href="#connection_">connection'</a></li><li><a href="#close_">close'</a></li><li><a href="#checkContinue_">checkContinue'</a></li><li><a href="#upgrade_">upgrade'</a></li><li><a href="#clientError_">clientError'</a></li><li><a href="#http.createServer">http.createServer(requestListener)</a></li><li><a href="#server.listen">server.listen(port, [hostname], [callback])</a></li><li><a href="#server.listen">server.listen(path, [callback])</a></li><li><a href="#server.close">server.close()</a></li></ul></li><li><a href="#http.ServerRequest">http.ServerRequest</a><ul><li><a href="#data_">data'</a></li><li><a href="#end_">end'</a></li><li><a href="#request.method">request.method</a></li><li><a href="#request.url">request.url</a></li><li><a href="#request.headers">request.headers</a></li><li><a href="#request.trailers">request.trailers</a></li><li><a href="#request.httpVersion">request.httpVersion</a></li><li><a href="#request.setEncoding">request.setEncoding(encoding=null)</a></li><li><a href="#request.pause">request.pause()</a></li><li><a href="#request.resume">request.resume()</a></li><li><a href="#request.connection">request.connection</a></li></ul></li><li><a href="#http.ServerResponse">http.ServerResponse</a><ul><li><a href="#response.writeContinue">response.writeContinue()</a></li><li><a href="#response.writeHead">response.writeHead(statusCode, [reasonPhrase], [headers])</a></li><li><a href="#response.write">response.write(chunk, encoding='utf8')</a></li><li><a href="#response.addTrailers">response.addTrailers(headers)</a></li><li><a href="#response.end">response.end([data], [encoding])</a></li></ul></li><li><a href="#http.Client">http.Client</a><ul><li><a href="#upgrade_">upgrade'</a></li><li><a href="#continue_">continue'</a></li><li><a href="#http.createClient">http.createClient(port, host='localhost', secure=false, [credentials])</a></li><li><a href="#client.request">client.request(method='GET', path, [request_headers])</a></li><li><a href="#client.verifyPeer">client.verifyPeer()</a></li><li><a href="#client.getPeerCertificate">client.getPeerCertificate()</a></li></ul></li><li><a href="#http.ClientRequest">http.ClientRequest</a><ul><li><a href="#response_">response'</a></li><li><a href="#request.write">request.write(chunk, encoding='utf8')</a></li><li><a href="#request.end">request.end([data], [encoding])</a></li></ul></li><li><a href="#http.ClientResponse">http.ClientResponse</a><ul><li><a href="#data_">data'</a></li><li><a href="#end_">end'</a></li><li><a href="#response.statusCode">response.statusCode</a></li><li><a href="#response.httpVersion">response.httpVersion</a></li><li><a href="#response.headers">response.headers</a></li><li><a href="#response.trailers">response.trailers</a></li><li><a href="#response.setEncoding">response.setEncoding(encoding=null)</a></li><li><a href="#response.pause">response.pause()</a></li><li><a href="#response.resume">response.resume()</a></li><li><a href="#response.client">response.client</a></li></ul></li></ul><hr /></div>
+<h2 id="hTTP">HTTP</h2>
 
 <p>Для использования клиента и сервера HTTP необходимо подключить
 соответствующий модуль с помощью <code>require('http')</code>.</p>
@@ -29,11 +29,10 @@
 
 <p>Заголовки сообщения HTTP представлены примерно таким объектом:</p>
 
-<pre><code>{ 'content-length': '123'
-, 'content-type': 'text/plain'
-, 'connection': 'keep-alive'
-, 'accept': '*/*'
-}</code></pre>
+<pre><code>{ 'content-length': '123',
+  'content-type': 'text/plain',
+  'connection': 'keep-alive',
+  'accept': '*/*' }</code></pre>
 
 <p>Ключи приводятся к нижнему регистру. Значения не изменяются.</p>
 
@@ -129,17 +128,6 @@ Node разбирает HTTP-сообщение на заголовки и те�
 <p>Эта функция асинхронна. Функция, переданная последним параметром <code>callback</code>
 будет вызвана когда сервер будет связан с сокетом.</p>
 
-<h3 id="server.setSecure">server.setSecure(credentials)</h3>
-
-<p>Включает поддержку HTTPS для сервера, с параметрами для криптографического модуля:
-private-ключом и сертификатом сервера; также можно передать CA-сертификат
-для аутентификации клиентов.</p>
-
-<p>Если в параметрах указан один или несколько CA-сертификатов, сервер запросит
-у клиента его сертификат при установке HTTPS-соединения. Достоверность
-и содержимое сертификата могут быть проверены с помощью методов <code>verifyPeer()</code>
-и <code>getPeerCertificate()</code> объекта <code>request.connection</code> сервера.</p>
-
 <h3 id="server.close">server.close()</h3>
 
 <p>Прекращает приём новых соединений сервером.</p>
@@ -189,22 +177,20 @@ Accept: text/plain\r\n
 <code>require('url').parse(request.url)</code>. Пример:</p>
 
 <pre><code>node&gt; require('url').parse('/status?name=ryan')
-{ href: '/status?name=ryan'
-, search: '?name=ryan'
-, query: 'name=ryan'
-, pathname: '/status'
-}</code></pre>
+{ href: '/status?name=ryan',
+  search: '?name=ryan',
+  query: 'name=ryan',
+  pathname: '/status' }</code></pre>
 
 <p>Если вам нужно извлечь параметры из строки запроса, можно использовать функцию
 <code>require('querystring').parse</code>, или передать <code>true</code> в качестве второго аргумента
 <code>require('url').parse</code>. Пример:</p>
 
 <pre><code>node&gt; require('url').parse('/status?name=ryan', true)
-{ href: '/status?name=ryan'
-, search: '?name=ryan'
-, query: { name: 'ryan' }
-, pathname: '/status'
-}</code></pre>
+{ href: '/status?name=ryan',
+  search: '?name=ryan',
+  query: { name: 'ryan' },
+  pathname: '/status' }</code></pre>
 
 <h3 id="request.headers">request.headers</h3>
 
@@ -264,8 +250,7 @@ Accept: text/plain\r\n
 <pre><code>var body = 'hello world';
 response.writeHead(200, {
   'Content-Length': body.length,
-  'Content-Type': 'text/plain'
-});</code></pre>
+  'Content-Type': 'text/plain' });</code></pre>
 
 <p>Этот метод должен быть вызван только однажды для каждого сообщения
 и должен быть вызван до <code>response.end()</code>.</p>
@@ -530,6 +515,13 @@ request.on('response', function (response) {
   </div>
   <script type="text/javascript" src="assets/sh_main.js"></script>
   <script type="text/javascript" src="assets/sh_javascript.min.js"></script>
-  <script type="text/javascript" src="assets/core.js"></script>
+  <script type="text/javascript">highlight(undefined, undefined, 'pre');</script>
+  <!-- Yandex.Metrika --> 
+  <script src="//mc.yandex.ru/metrika/watch.js" type="text/javascript"></script> 
+  <script type="text/javascript"> 
+  try { var yaCounter612423 = new Ya.Metrika(612423); } catch(e){}
+  </script> 
+  <noscript><div style="position: absolute;"><img src="//mc.yandex.ru/watch/612423" alt="" /></div></noscript> 
+  <!-- /Yandex.Metrika -->   
 </body>
 </html>

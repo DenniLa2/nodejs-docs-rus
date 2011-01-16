@@ -2,10 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8" />
-  <title>net &mdash; Node.js &mdash; Документация</title>
+  <title>net - Node.js &mdash; Документация</title>
   <link rel="stylesheet" href="assets/style.css" type="text/css" media="all" />
   <link rel="stylesheet" href="assets/sh.css" type="text/css" media="all" />
-  <script type="text/javascript" src="assets/jquery.js"></script>
 </head>
 <body>
   <div id="container">
@@ -16,7 +15,8 @@
       </div>
       <hr />
     </header>
-    <h2 id="_">Сеть</h2>
+    <div id="toc"><h2>Содержание</h2><ul><li><a href="#net_._">net` предоставляет асинхронные методы для работы с сетью. Он включает</a><ul><li><a href="#net.createServer">net.createServer(connectionListener)</a></li><li><a href="#net.createConnection">net.createConnection(arguments...)</a></li><li><a href="#net.Server">net.Server</a><ul><li><a href="#server.listen">server.listen(port, [host], [callback])</a></li><li><a href="#server.listen">server.listen(path, [callback])</a></li><li><a href="#server.listenFD">server.listenFD(fd)</a></li><li><a href="#server.close">server.close()</a></li><li><a href="#server.address">server.address()</a></li><li><a href="#server.maxConnections">server.maxConnections</a></li><li><a href="#server.connections">server.connections</a></li><li><a href="#connection_">connection'</a></li><li><a href="#close_">close'</a></li></ul></li><li><a href="#net.Socket">net.Socket</a><ul><li><a href="#socket.connect">socket.connect(port, [host])</a></li><li><a href="#socket.connect">socket.connect(path)</a></li><li><a href="#socket.setEncoding">socket.setEncoding(encoding=null)</a></li><li><a href="#socket.setSecure">socket.setSecure([credentials])</a></li><li><a href="#socket.write">socket.write(data, [encoding], [callback])</a></li><li><a href="#socket.write">socket.write(data, [encoding], [fileDescriptor], [callback])</a></li><li><a href="#socket.end">socket.end([data], [encoding])</a></li><li><a href="#socket.destroy">socket.destroy()</a></li><li><a href="#socket.pause">socket.pause()</a></li><li><a href="#socket.resume">socket.resume()</a></li><li><a href="#socket.setTimeout">socket.setTimeout(timeout)</a></li><li><a href="#socket.setNoDelay">socket.setNoDelay(noDelay=true)</a></li><li><a href="#socket.setKeepAlive">socket.setKeepAlive(enable=false, [initialDelay])</a></li><li><a href="#socket.remoteAddress">socket.remoteAddress</a></li><li><a href="#connect_">connect'</a></li><li><a href="#data_">data'</a></li><li><a href="#end_">end'</a></li><li><a href="#timeout_">timeout'</a></li><li><a href="#drain_">drain'</a></li><li><a href="#error_">error'</a></li><li><a href="#close_">close'</a></li></ul></li><li><a href="#net.isIP">net.isIP</a><ul><li><a href="#net.isIP">net.isIP(input)</a></li><li><a href="#net.isIPv4">net.isIPv4(input)</a></li><li><a href="#net.isIPv6">net.isIPv6(input)</a></li></ul></li></ul></li></ul><hr /></div>
+<h2 id="_">Сеть</h2>
 
 <p>Модуль <code>net</code> предоставляет асинхронные методы для работы с сетью. Он включает
 методы для создания как серверов, так и клиентов (называемых потоками).
@@ -29,7 +29,7 @@
 
 <h3 id="net.createConnection">net.createConnection(arguments...)</h3>
 
-<p>Создаёт новый объект потока. Когда соединение установлено, будет сгенерировано
+<p>Создаёт новый сокет. Когда соединение установлено, будет сгенерировано
 событие <code>'connect'</code>.</p>
 
 <p>Аргументы для этого метода определяются тепим соединения:</p>
@@ -48,21 +48,17 @@
 
 <pre><code>var net = require('net');
 var server = net.createServer(function (stream) {
-  stream.setEncoding('utf8');
-  stream.on('connect', function () {
-    stream.write('hello\r\n');
-  });
-  stream.on('data', function (data) {
-    stream.write(data);
-  });
-  stream.on('end', function () {
-    stream.write('goodbye\r\n');
-    stream.end();
-  });
+var server = net.createServer(function (c) {
+  c.write('hello\r\n');
+  c.pipe(c);
 });
 server.listen(8124, 'localhost');</code></pre>
 
-<p>Чтобы слушать сокет <code>'/tmp/echo.sock'</code>, последнюю строку надо заменить на</p>
+<p>Проверить работу сервера можно с помощью <code>telnet</code>:</p>
+
+<pre><code>telnet localhost 8124</code></pre>
+
+<p>Чтобы слушать сокет <code>'/tmp/echo.sock'</code>, последнюю строку скрипта надо заменить на</p>
 
 <pre><code>server.listen('/tmp/echo.sock');</code></pre>
 
@@ -81,6 +77,10 @@ server.listen(8124, 'localhost');</code></pre>
 
 <p>Эта функция асинхронна. Последний параметр <code>callback</code> будет вызван когда сервер
 начнёт принимать соединения.</p>
+
+<p>Используйте <code>nc</code> для подключения к серверу с помощью UNIX-сокета:</p>
+
+<pre><code>nc -U /tmp/echo.sock</code></pre>
 
 <h4 id="server.listenFD">server.listenFD(fd)</h4>
 
@@ -126,9 +126,9 @@ server.listen(function() {
 
 <h4 id="_connection_">Событие: 'connection'</h4>
 
-<p><code>function (stream) {}</code></p>
+<p><code>function (socket) {}</code></p>
 
-<p>Генерируется при новом соединении. <code>stream</code> — экземпляр <code>net.Stream</code>.</p>
+<p>Генерируется при новом соединении. <code>socket</code> — экземпляр <code>net.Socket</code>.</p>
 
 <h4 id="_close_">Событие: 'close'</h4>
 
@@ -138,16 +138,16 @@ server.listen(function() {
 
 <hr />
 
-<h3 id="net.Stream">net.Stream</h3>
+<h3 id="net.Socket">net.Socket</h3>
 
-<p>Этот объект — абстракция TCP порта или UNIX сокета. Экземпляр <code>net.Stream</code>
+<p>Этот объект — абстракция TCP порта или UNIX сокета. Экземпляр <code>net.Socket</code>
 имеет возможность как чтения, так и записи. Он может быть создан и использован
 как клиентом (с помощью <code>connect()</code>) либо создан внутри Node и передан
 пользователю через обработчик события <code>'connection'</code>.</p>
 
-<h4 id="stream.connect">stream.connect(port, [host])</h4>
+<h4 id="socket.connect">socket.connect(port, [host])</h4>
 
-<h4 id="stream.connect">stream.connect(path)</h4>
+<h4 id="socket.connect">socket.connect(path)</h4>
 
 <p>Открывает TCP-соединение с указанным портом <code>port</code> и адресом <code>host</code>. Если второй
 параметр не задан, предполагается значение <code>localhost</code>. Если указан параметр
@@ -161,82 +161,74 @@ server.listen(function() {
 не будет сгенерировано, вместо него будет сгенерировано событие <code>'error'</code>
 с аргументом исключения.</p>
 
-<h4 id="stream.setEncoding">stream.setEncoding(encoding=null)</h4>
+<p>Функция <code>callback</code> будет добавлена как обработчик события <code>'connect'</code>.</p>
+
+<h4 id="socket.setEncoding">socket.setEncoding(encoding=null)</h4>
 
 <p>Задаёт кодировку (<code>'ascii'</code>, <code>'utf8'</code> или <code>'base64'</code>) для принимаемых данных.</p>
 
-<h4 id="stream.setSecure">stream.setSecure([credentials])</h4>
+<h4 id="socket.setSecure">socket.setSecure([credentials])</h4>
 
-<p>Включает поддержку HTTPS для потока, параметры передаются криптографическому
-модулю и включают private key и сертификат потока, дополнительно могут включать
-сертификаты CA для аутентификации участника соединения.</p>
+<p>Эта функция удалена в v0.3. Она использовалась для установки защищённого соединения.
+См. модуль TLS с описанием нового API.</p>
 
-<p>Если объект параметров содержит один или несколько сертификатов CA, поток
-запросит у участника соединения сертификат в ходе установки HTTPS-соединения.
-Правильность и содержимое сертификата могут быть проверены функциями
-<code>verifyPeer()</code> и <code>getPeerCertificate()</code>.</p>
-
-<h4 id="stream.verifyPeer">stream.verifyPeer()</h4>
-
-<p>Возвращает <code>true</code> или <code>false</code> в зависимости от правильности сертификата участника
-соединения в контексте заданных CA-сертификатов (или списка CA по умолчанию).</p>
-
-<h4 id="stream.getPeerCertificate">stream.getPeerCertificate()</h4>
-
-<p>Возвращает JSON с деталями сертификата участника соединения, содержащий свойства
-<code>'subject'</code>, <code>'issuer'</code>, <code>'valid_from'</code> и <code>'valid_to'</code>.</p>
-
-<h4 id="stream.write">stream.write(data, encoding='ascii')</h4>
+<h4 id="socket.write">socket.write(data, [encoding], [callback])</h4>
 
 <p>Отправляет данные в поток. Второй параметр означает кодировку, если первым
-параметром передана строка. По умолчанию используется ASCII т.к. кодирование
-в UTF-8 довольно медленно.</p>
+параметром передана строка. По умолчанию используется UTF-8.</p>
 
 <p>Возвращает <code>true</code> если все данные были успешно переданы в буфер ядра. Возвращает
 <code>false</code> если все данные или их часть были помещены в очередь в памяти. Событие
 <code>'drain'</code> будет сгенерировано когда буфер ядра снова будет пуст.</p>
 
-<h4 id="stream.end">stream.end([data], [encoding])</h4>
+<p>Необязательый параметр-функци <code>callback</code> будет вызвана после завершения записи данных.</p>
+
+<h4 id="socket.write">socket.write(data, [encoding], [fileDescriptor], [callback])</h4>
+
+<p>UNIX-сокеты позволяют передавать через них файловые дескрипторы между приложениями.
+Для этого достаточно передать параметр <code>fileDescriptor</code> и ожидать события <code>'fd'</code>
+во втором приложении.</p>
+
+<h4 id="socket.end">socket.end([data], [encoding])</h4>
 
 <p>Наполовину закрывает соединение, т.е. отправляет пакет FIN. Возможно сервер ещё
-получит какие-то данные. После вызова этого метода свойство <code>readyState</code> будет
-установлено в значение <code>'readOnly'</code>.</p>
+получит какие-то данные.</p>
 
 <p>Если определён аргумент <code>data</code>, то этот вызов эквивалентен последовательному вызову
-<code>stream.write(data, encoding)</code> и <code>stream.end()</code>.</p>
+<code>socket.write(data, encoding)</code> и <code>socket.end()</code>.</p>
 
-<h4 id="stream.destroy">stream.destroy()</h4>
+<h4 id="socket.destroy">socket.destroy()</h4>
 
-<p>Закрывает поток таким образом чтобы в нём больше не происходило ввода-вывода.
+<p>Закрывает сокет таким образом чтобы в нём больше не происходило ввода-вывода.
 Необходимо только для закрытия соединения в случае серьёзных ошибок.</p>
 
-<h4 id="stream.pause">stream.pause()</h4>
+<h4 id="socket.pause">socket.pause()</h4>
 
 <p>Приостанавливает чтение данных. Т.е. события 'data' не будут генерироваться.
 Используется при приёме файлов.</p>
 
-<h4 id="stream.resume">stream.resume()</h4>
+<h4 id="socket.resume">socket.resume()</h4>
 
 <p>Возобновляет чтение данных после вызова pause().</p>
 
-<h4 id="stream.setTimeout">stream.setTimeout(timeout)</h4>
+<h4 id="socket.setTimeout">socket.setTimeout(timeout)</h4>
 
-<p>Устанавливает таймаут в <code>timeout</code> миллисекунд бездействия потока. По умолчанию
+<p>Устанавливает таймаут в <code>timeout</code> миллисекунд бездействия сокета. По умолчанию
 <code>net.Stream</code> не имеет таймаута.</p>
 
-<p>Если поток не будет проявлять активности указанное количество миллисекунд будет
+<p>Если сокет не будет проявлять активности указанное количество миллисекунд будет
 сгенерировано событие <code>'timeout'</code>, но само соединение не будет затронуто.
-Пользователь должен самостоятельно вызвать <code>end()</code> или <code>destroy()</code> для закрытия потока.</p>
+Пользователь должен самостоятельно вызвать <code>end()</code> или <code>destroy()</code> для закрытия сокета.</p>
 
 <p>Если в качестве <code>timeout</code> передан 0, существующий таймаут перестаёт действовать.</p>
 
-<h4 id="stream.setNoDelay">stream.setNoDelay(noDelay=true)</h4>
+<h4 id="socket.setNoDelay">socket.setNoDelay(noDelay=true)</h4>
 
 <p>Выключает алгоритм Нагла. По умолчанию TCP-соединения используют алгоритм Нагла,
 собирая данные в буфер перед отправкой. Установка noDelay приведёт к немедленной
 отправке всех данных, передаваемых в <code>stream.write()</code>.</p>
 
-<h4 id="stream.setKeepAlive">stream.setKeepAlive(enable=false, [initialDelay])</h4>
+<h4 id="socket.setKeepAlive">socket.setKeepAlive(enable=false, [initialDelay])</h4>
 
 <p>Включает/выключает функционал keep-alive, и дополнительно позволяет установить
 начальную задержку после которой будет отправлен первый пакет проверки соединения
@@ -244,17 +236,12 @@ server.listen(function() {
 между последним отправленным пакетом и первой проверкой соединения. Установка
 <code>initialDelay</code> в 0 оставит в силе предыдущее значение.</p>
 
-<h4 id="stream.remoteAddress">stream.remoteAddress</h4>
+<h4 id="socket.remoteAddress">socket.remoteAddress</h4>
 
 <p>Строковое представление удалённого IP адреса. Например, <code>'74.125.127.100'</code> или
 <code>'2001:4860:a005::68'</code>.</p>
 
-<p>Это ствойство доступно тольок для соединений сервер-сервер.</p>
-
-<h4 id="stream.readyState">stream.readyState</h4>
-
-<p>Текущий статус потока, может равняться <code>'closed'</code>, <code>'open'</code>, <code>'opening'</code>,
-<code>'readOnly'</code> или <code>'writeOnly'</code>.</p>
+<p>Это свойство доступно только для соединений сервер-сервер.</p>
 
 <hr />
 
@@ -266,19 +253,13 @@ server.listen(function() {
 
 <p>Генерируется после успешной установки соединения. См. <code>connect()</code>.</p>
 
-<h4 id="_secure_">Событие: 'secure'</h4>
-
-<p><code>function () { }</code></p>
-
-<p>Генерируется когда соединение успешно проходит HTTPS-аутентификацию клиента.</p>
-
 <h4 id="_data_">Событие: 'data'</h4>
 
 <p><code>function (data) { }</code></p>
 
 <p>Генерируется при приёме данных. Аргумент <code>data</code> будет экземпляром <code>Buffer</code>
 или <code>String</code>. Кодировка передаваемых данных устанавливается методом
-<code>stream.setEncoding()</code>. (См. секцию о <code>потоках с возможностью чтения</code> для
+<code>socket.setEncoding()</code>. (См. секцию о <code>потоках с возможностью чтения</code> для
 более подробной информации.)</p>
 
 <h4 id="_end_">Событие: 'end'</h4>
@@ -287,20 +268,19 @@ server.listen(function() {
 
 <p>Генерируется когда другой участник соединения посылает пакет FIN.</p>
 
-<p>По умолчанию (<code>allowHalfOpen == false</code>) поток уничтожает свой файловый дескриптор
+<p>По умолчанию (<code>allowHalfOpen == false</code>) сокет уничтожает свой файловый дескриптор
 после завершения обработки очереди записи. Но если установить <code>allowHalfOpen == true</code>,
 то поток не будет автоматически завершаться (<code>end()</code>), т.е. пользоввателю
-требуется вручную вызвать <code>end()</code>. В случае <code>allowHalfOpen == true</code> после
-генерации этого события свойство readyState будет установлено в значение 'writeOnly'.</p>
+требуется вручную вызвать <code>end()</code>.</p>
 
 <h4 id="_timeout_">Событие: 'timeout'</h4>
 
 <p><code>function () { }</code></p>
 
-<p>Генерируется если поток долгое время не используется. Это просто уведомление
-о длительной неактивности потока. Пользователь должен сам закрыть соединение.</p>
+<p>Генерируется если сокет долгое время не используется. Это просто уведомление
+о длительной неактивности сокета. Пользователь должен сам закрыть соединение.</p>
 
-<p>См. также: <code>stream.setTimeout()</code>.</p>
+<p>См. также: <code>socket.setTimeout()</code>.</p>
 
 <h4 id="_drain_">Событие: 'drain'</h4>
 
@@ -342,6 +322,13 @@ server.listen(function() {
   </div>
   <script type="text/javascript" src="assets/sh_main.js"></script>
   <script type="text/javascript" src="assets/sh_javascript.min.js"></script>
-  <script type="text/javascript" src="assets/core.js"></script>
+  <script type="text/javascript">highlight(undefined, undefined, 'pre');</script>
+  <!-- Yandex.Metrika --> 
+  <script src="//mc.yandex.ru/metrika/watch.js" type="text/javascript"></script> 
+  <script type="text/javascript"> 
+  try { var yaCounter612423 = new Ya.Metrika(612423); } catch(e){}
+  </script> 
+  <noscript><div style="position: absolute;"><img src="//mc.yandex.ru/watch/612423" alt="" /></div></noscript> 
+  <!-- /Yandex.Metrika -->   
 </body>
 </html>
