@@ -15,8 +15,8 @@
       </div>
       <hr />
     </header>
-    <div id="toc"><h2>Содержание</h2><ul><li><a href="#net_._">net` предоставляет асинхронные методы для работы с сетью. Он включает</a><ul><li><a href="#net.createServer">net.createServer(connectionListener)</a></li><li><a href="#net.createConnection">net.createConnection(arguments...)</a></li><li><a href="#net.Server">net.Server</a><ul><li><a href="#server.listen">server.listen(port, [host], [callback])</a></li><li><a href="#server.listen">server.listen(path, [callback])</a></li><li><a href="#server.listenFD">server.listenFD(fd)</a></li><li><a href="#server.close">server.close()</a></li><li><a href="#server.address">server.address()</a></li><li><a href="#server.maxConnections">server.maxConnections</a></li><li><a href="#server.connections">server.connections</a></li><li><a href="#connection_">connection'</a></li><li><a href="#close_">close'</a></li></ul></li><li><a href="#net.Socket">net.Socket</a><ul><li><a href="#socket.connect">socket.connect(port, [host])</a></li><li><a href="#socket.connect">socket.connect(path)</a></li><li><a href="#socket.setEncoding">socket.setEncoding(encoding=null)</a></li><li><a href="#socket.setSecure">socket.setSecure([credentials])</a></li><li><a href="#socket.write">socket.write(data, [encoding], [callback])</a></li><li><a href="#socket.write">socket.write(data, [encoding], [fileDescriptor], [callback])</a></li><li><a href="#socket.end">socket.end([data], [encoding])</a></li><li><a href="#socket.destroy">socket.destroy()</a></li><li><a href="#socket.pause">socket.pause()</a></li><li><a href="#socket.resume">socket.resume()</a></li><li><a href="#socket.setTimeout">socket.setTimeout(timeout)</a></li><li><a href="#socket.setNoDelay">socket.setNoDelay(noDelay=true)</a></li><li><a href="#socket.setKeepAlive">socket.setKeepAlive(enable=false, [initialDelay])</a></li><li><a href="#socket.remoteAddress">socket.remoteAddress</a></li><li><a href="#connect_">connect'</a></li><li><a href="#data_">data'</a></li><li><a href="#end_">end'</a></li><li><a href="#timeout_">timeout'</a></li><li><a href="#drain_">drain'</a></li><li><a href="#error_">error'</a></li><li><a href="#close_">close'</a></li></ul></li><li><a href="#net.isIP">net.isIP</a><ul><li><a href="#net.isIP">net.isIP(input)</a></li><li><a href="#net.isIPv4">net.isIPv4(input)</a></li><li><a href="#net.isIPv6">net.isIPv6(input)</a></li></ul></li></ul></li></ul><hr /></div>
-<h2 id="_">Сеть</h2>
+    <div id="toc"><h2>Содержание</h2><ul><li><a href="#_u0421_u0435_u0442_u044C">Сеть</a><ul><li><a href="#net.createServer">net.createServer(connectionListener)</a></li><li><a href="#net.createConnection">net.createConnection(arguments...)</a></li><li><a href="#net.Server">net.Server</a><ul><li><a href="#server.listen">server.listen(port, [host], [callback])</a></li><li><a href="#server.listen">server.listen(path, [callback])</a></li><li><a href="#server.listenFD">server.listenFD(fd)</a></li><li><a href="#server.close">server.close()</a></li><li><a href="#server.address">server.address()</a></li><li><a href="#server.maxConnections">server.maxConnections</a></li><li><a href="#server.connections">server.connections</a></li><li><a href="#_u0421_u043E_u0431_u044B_u0442_u0438_u0435_connection_">Событие: 'connection'</a></li><li><a href="#_u0421_u043E_u0431_u044B_u0442_u0438_u0435_close_">Событие: 'close'</a></li></ul></li><li><a href="#net.Socket">net.Socket</a><ul><li><a href="#socket.connect">socket.connect(port, [host])</a></li><li><a href="#socket.connect">socket.connect(path)</a></li><li><a href="#socket.setEncoding">socket.setEncoding(encoding=null)</a></li><li><a href="#socket.setSecure">socket.setSecure([credentials])</a></li><li><a href="#socket.write">socket.write(data, [encoding], [callback])</a></li><li><a href="#socket.write">socket.write(data, [encoding], [fileDescriptor], [callback])</a></li><li><a href="#socket.end">socket.end([data], [encoding])</a></li><li><a href="#socket.destroy">socket.destroy()</a></li><li><a href="#socket.pause">socket.pause()</a></li><li><a href="#socket.resume">socket.resume()</a></li><li><a href="#socket.setTimeout">socket.setTimeout(timeout)</a></li><li><a href="#socket.setNoDelay">socket.setNoDelay(noDelay=true)</a></li><li><a href="#socket.setKeepAlive">socket.setKeepAlive(enable=false, [initialDelay])</a></li><li><a href="#socket.remoteAddress">socket.remoteAddress</a></li><li><a href="#_u0421_u043E_u0431_u044B_u0442_u0438_u0435_connect_">Событие: 'connect'</a></li><li><a href="#_u0421_u043E_u0431_u044B_u0442_u0438_u0435_data_">Событие: 'data'</a></li><li><a href="#_u0421_u043E_u0431_u044B_u0442_u0438_u0435_end_">Событие: 'end'</a></li><li><a href="#_u0421_u043E_u0431_u044B_u0442_u0438_u0435_timeout_">Событие: 'timeout'</a></li><li><a href="#_u0421_u043E_u0431_u044B_u0442_u0438_u0435_drain_">Событие: 'drain'</a></li><li><a href="#_u0421_u043E_u0431_u044B_u0442_u0438_u0435_error_">Событие: 'error'</a></li><li><a href="#_u0421_u043E_u0431_u044B_u0442_u0438_u0435_close_">Событие: 'close'</a></li></ul></li><li><a href="#net.isIP">net.isIP</a><ul><li><a href="#net.isIP">net.isIP(input)</a></li><li><a href="#net.isIPv4">net.isIPv4(input)</a></li><li><a href="#net.isIPv6">net.isIPv6(input)</a></li></ul></li></ul></li></ul><hr /></div>
+<h2 id="_u0421_u0435_u0442_u044C">Сеть</h2>
 
 <p>Модуль <code>net</code> предоставляет асинхронные методы для работы с сетью. Он включает
 методы для создания как серверов, так и клиентов (называемых потоками).
@@ -124,13 +124,13 @@ server.listen(function() {
 
 <p><code>net.Server</code> — экземпляр <code>EventEmitter</code> со следующими событиями:</p>
 
-<h4 id="_connection_">Событие: 'connection'</h4>
+<h4 id="_u0421_u043E_u0431_u044B_u0442_u0438_u0435_connection_">Событие: 'connection'</h4>
 
 <p><code>function (socket) {}</code></p>
 
 <p>Генерируется при новом соединении. <code>socket</code> — экземпляр <code>net.Socket</code>.</p>
 
-<h4 id="_close_">Событие: 'close'</h4>
+<h4 id="_u0421_u043E_u0431_u044B_u0442_u0438_u0435_close_">Событие: 'close'</h4>
 
 <p><code>function () {}</code></p>
 
@@ -247,13 +247,13 @@ server.listen(function() {
 
 <p>Экземпляры <code>net.Stream</code> — экземпляры <code>EventEmitter</code> со следующими событиями:</p>
 
-<h4 id="_connect_">Событие: 'connect'</h4>
+<h4 id="_u0421_u043E_u0431_u044B_u0442_u0438_u0435_connect_">Событие: 'connect'</h4>
 
 <p><code>function () { }</code></p>
 
 <p>Генерируется после успешной установки соединения. См. <code>connect()</code>.</p>
 
-<h4 id="_data_">Событие: 'data'</h4>
+<h4 id="_u0421_u043E_u0431_u044B_u0442_u0438_u0435_data_">Событие: 'data'</h4>
 
 <p><code>function (data) { }</code></p>
 
@@ -262,7 +262,7 @@ server.listen(function() {
 <code>socket.setEncoding()</code>. (См. секцию о <code>потоках с возможностью чтения</code> для
 более подробной информации.)</p>
 
-<h4 id="_end_">Событие: 'end'</h4>
+<h4 id="_u0421_u043E_u0431_u044B_u0442_u0438_u0435_end_">Событие: 'end'</h4>
 
 <p><code>function () { }</code></p>
 
@@ -273,7 +273,7 @@ server.listen(function() {
 то поток не будет автоматически завершаться (<code>end()</code>), т.е. пользоввателю
 требуется вручную вызвать <code>end()</code>.</p>
 
-<h4 id="_timeout_">Событие: 'timeout'</h4>
+<h4 id="_u0421_u043E_u0431_u044B_u0442_u0438_u0435_timeout_">Событие: 'timeout'</h4>
 
 <p><code>function () { }</code></p>
 
@@ -282,21 +282,21 @@ server.listen(function() {
 
 <p>См. также: <code>socket.setTimeout()</code>.</p>
 
-<h4 id="_drain_">Событие: 'drain'</h4>
+<h4 id="_u0421_u043E_u0431_u044B_u0442_u0438_u0435_drain_">Событие: 'drain'</h4>
 
 <p><code>function () { }</code></p>
 
 <p>Генерируется когда буфер записи становится пустым (все данные, переданные в поток,
 были отправлены получателю). Может быть использоваться для отправки файлов.</p>
 
-<h4 id="_error_">Событие: 'error'</h4>
+<h4 id="_u0421_u043E_u0431_u044B_u0442_u0438_u0435_error_">Событие: 'error'</h4>
 
 <p><code>function (exception) { }</code></p>
 
 <p>Генерируется при возникновении ошибки. Сразу после этого будет сгенерировано
 событие <code>'close'</code>.</p>
 
-<h4 id="_close_">Событие: 'close'</h4>
+<h4 id="_u0421_u043E_u0431_u044B_u0442_u0438_u0435_close_">Событие: 'close'</h4>
 
 <p><code>function (had_error) { }</code></p>
 

@@ -15,8 +15,8 @@
       </div>
       <hr />
     </header>
-    <div id="toc"><h2>Содержание</h2><ul><li><a href="#web_Node">web сервера](http.html), написанного с помощью Node</a></li><li><a href="#global">global</a><ul><li><a href="#process">process</a></li><li><a href="#require">require()</a></li><li><a href="#require.resolve">require.resolve()</a></li><li><a href="#require.paths">require.paths</a></li><li><a href="#__filename">__filename</a></li><li><a href="#__dirname">__dirname</a></li><li><a href="#module">module</a></li></ul></li><li><a href="#setTimeout">setTimeout(callback, delay, [arg], [...])</a><ul><li><a href="#clearTimeout">clearTimeout(timeoutId)</a></li><li><a href="#setInterval">setInterval(callback, delay, [arg], [...])</a></li><li><a href="#clearInterval">clearInterval(intervalId)</a></li></ul></li><li><a href="#node_">Node поставляется несколько стандартных встроенных модулей,</a></li><li><a href="#node_CommonJS.">Node использует систему модулей CommonJS.</a><ul><li><a href="#require_._circle.js_">require()` модуля. Это означает, что в примере выше `circle.js`</a></li></ul></li><li><a href="#c_C_">C/C++ дополнения</a></li><li><a href="#process_.">process` — глобальный и может быть использован в любом месте кода.</a><ul><li><a href="#exit_">exit'</a></li><li><a href="#uncaughtException_">uncaughtException'</a></li><li><a href="#function_">function () {}`</a></li><li><a href="#process.stdout">process.stdout</a></li><li><a href="#process.stdin">process.stdin</a></li><li><a href="#process.argv">process.argv</a></li><li><a href="#process.execPath">process.execPath</a></li><li><a href="#process.chdir">process.chdir(directory)</a></li><li><a href="#process.cwd">process.cwd()</a></li><li><a href="#process.env">process.env</a></li><li><a href="#process.exit">process.exit(code=0)</a></li><li><a href="#process.getgid">process.getgid()</a></li><li><a href="#process.setgid">process.setgid(id)</a></li><li><a href="#process.getuid">process.getuid()</a></li><li><a href="#process.setuid">process.setuid(id)</a></li><li><a href="#process.version">process.version</a></li><li><a href="#process.installPrefix">process.installPrefix</a></li><li><a href="#process.kill">process.kill(pid, signal='SIGINT')</a></li><li><a href="#process.pid">process.pid</a></li><li><a href="#process.title">process.title</a></li><li><a href="#process.platform">process.platform</a></li><li><a href="#process.memoryUsage">process.memoryUsage()</a></li><li><a href="#process.nextTick">process.nextTick(callback)</a></li><li><a href="#process.umask">process.umask([mask])</a></li></ul></li><li><a href="#require_.">require('util')` для доступа к этим функциям.</a><ul><li><a href="#util.debug">util.debug(string)</a></li><li><a href="#util.log">util.log(string)</a></li><li><a href="#util.inspect">util.inspect(object, showHidden=false, depth=2)</a></li><li><a href="#util.pump">util.pump(readableStream, writableStream, [callback])</a></li><li><a href="#util.inherits">util.inherits(constructor, superConstructor)</a></li></ul></li><li><a href="#c_">Cобытия</a><ul><li><a href="#events.EventEmitter">events.EventEmitter</a><ul><li><a href="#emitter.addListener">emitter.addListener(event, listener)</a></li><li><a href="#emitter.on">emitter.on(event, listener)</a></li><li><a href="#emitter.once">emitter.once(event, listener)</a></li><li><a href="#emitter.removeListener">emitter.removeListener(event, listener)</a></li><li><a href="#emitter.removeAllListeners">emitter.removeAllListeners(event)</a></li><li><a href="#emitter.setMaxListeners">emitter.setMaxListeners(n)</a></li><li><a href="#emitter.listeners">emitter.listeners(event)</a></li><li><a href="#emitter.emit">emitter.emit(event, [arg1], [arg2], [...])</a></li><li><a href="#newListener_">newListener'</a></li></ul></li></ul></li><li><a href="#javaScript_Unicode_">JavaScript поддерживает Unicode, но в нём нет средств для работы</a><ul><li><a href="#new_Buffer">new Buffer(size)</a></li><li><a href="#new_Buffer">new Buffer(array)</a></li><li><a href="#new_Buffer">new Buffer(str, encoding='utf8')</a></li><li><a href="#buffer.write">buffer.write(string, offset=0, encoding='utf8')</a></li><li><a href="#buffer.toString">buffer.toString(encoding, start=0, end=buffer.length)</a></li><li><a href="#buffer_index_">buffer[index]</a></li><li><a href="#buffer.isBuffer">Buffer.isBuffer(obj)</a></li><li><a href="#buffer.byteLength">Buffer.byteLength(string, encoding='utf8')</a></li><li><a href="#buffer.length">buffer.length</a></li><li><a href="#buffer.copy">buffer.copy(targetBuffer, targetStart=0, sourceStart=0, sourceEnd=buffer.length)</a></li><li><a href="#buffer.slice">buffer.slice(start, end=buffer.length)</a></li></ul></li><li><a href="#node.">Node.</a></li><li><a href="#event_data_">Event: 'data'</a><ul><li><a href="#event_end_">Event: 'end'</a></li><li><a href="#event_error_">Event: 'error'</a></li><li><a href="#event_close_">Event: 'close'</a></li><li><a href="#event_fd_">Event: 'fd'</a></li><li><a href="#stream.readable">stream.readable</a></li><li><a href="#stream.setEncoding">stream.setEncoding(encoding)</a></li><li><a href="#stream.pause">stream.pause()</a></li><li><a href="#stream.resume">stream.resume()</a></li><li><a href="#stream.destroy">stream.destroy()</a></li><li><a href="#stream.pipe">stream.pipe(destination, [options])</a></li></ul></li><li><a href="#event_drain_">Event: 'drain'</a><ul><li><a href="#event_error_">Event: 'error'</a></li><li><a href="#event_close_">Event: 'close'</a></li><li><a href="#stream.writable">stream.writable</a></li><li><a href="#stream.write">stream.write(string, encoding='utf8', [fd])</a></li><li><a href="#stream.write">stream.write(buffer)</a></li><li><a href="#stream.end">stream.end()</a></li><li><a href="#stream.end">stream.end(string, encoding)</a></li><li><a href="#stream.end">stream.end(buffer)</a></li><li><a href="#stream.destroy">stream.destroy()</a></li><li><a href="#stream.destroySoon">stream.destroySoon()</a></li></ul></li><li><a href="#require_.">require('crypto')` чтобы получить доступ к функциям модуля.</a><ul><li><a href="#crypto.createCredentials">crypto.createCredentials(details)</a></li><li><a href="#crypto.createHash">crypto.createHash(algorithm)</a></li><li><a href="#hash.update">hash.update(data)</a></li><li><a href="#hash.digest">hash.digest(encoding='binary')</a></li><li><a href="#crypto.createHmac">crypto.createHmac(algorithm, key)</a></li><li><a href="#hmac.update">hmac.update(data)</a></li><li><a href="#hmac.digest">hmac.digest(encoding='binary')</a></li><li><a href="#crypto.createCipher">crypto.createCipher(algorithm, key)</a></li><li><a href="#cipher.update">cipher.update(data, input_encoding='binary', output_encoding='binary')</a></li><li><a href="#cipher.final">cipher.final(output_encoding='binary')</a></li><li><a href="#crypto.createDecipher">crypto.createDecipher(algorithm, key)</a></li><li><a href="#decipher.update">decipher.update(data, input_encoding='binary', output_encoding='binary')</a></li><li><a href="#decipher.final">decipher.final(output_encoding='binary')</a></li><li><a href="#crypto.createSign">crypto.createSign(algorithm)</a></li><li><a href="#signer.update">signer.update(data)</a></li><li><a href="#signer.sign">signer.sign(private_key, output_format='binary')</a></li><li><a href="#crypto.createVerify">crypto.createVerify(algorithm)</a></li><li><a href="#verifier.update">verifier.update(data)</a></li><li><a href="#verifier.verify">verifier.verify(public_key, signature, signature_format='binary')</a></li></ul></li><li><a href="#tLS_">TLS (SSL)</a><ul><li><a href="#s_tls.connect">s = tls.connect(port, [host], [options], callback)</a></li><li><a href="#tls.Server">tls.Server</a><ul><li><a href="#tls.createServer">tls.createServer(options, secureConnectionListener)</a></li><li><a href="#event_secureConnection_">Event: 'secureConnection'</a></li><li><a href="#server.listen">server.listen(port, [host], [callback])</a></li><li><a href="#server.close">server.close()</a></li><li><a href="#server.maxConnections">server.maxConnections</a></li><li><a href="#server.connections">server.connections</a></li></ul></li></ul></li><li><a href="#pOSIX._require_.">POSIX. Используйте `require('fs')` чтобы получить к ним доступ.</a><ul><li><a href="#fs.rename">fs.rename(path1, path2, [callback])</a></li><li><a href="#fs.renameSync">fs.renameSync(path1, path2)</a></li><li><a href="#fs.truncate">fs.truncate(fd, len, [callback])</a></li><li><a href="#fs.truncateSync">fs.truncateSync(fd, len)</a></li><li><a href="#fs.chmod">fs.chmod(path, mode, [callback])</a></li><li><a href="#fs.chmodSync">fs.chmodSync(path, mode)</a></li><li><a href="#fs.stat">fs.stat(path, [callback])</a></li><li><a href="#fs.lstat">fs.lstat(path, [callback])</a></li><li><a href="#fs.fstat">fs.fstat(fd, [callback])</a></li><li><a href="#fs.statSync">fs.statSync(path)</a></li><li><a href="#fs.lstatSync">fs.lstatSync(path)</a></li><li><a href="#fs.fstatSync">fs.fstatSync(fd)</a></li><li><a href="#fs.link">fs.link(srcpath, dstpath, [callback])</a></li><li><a href="#fs.linkSync">fs.linkSync(dstpath, srcpath)</a></li><li><a href="#fs.symlink">fs.symlink(linkdata, path, [callback])</a></li><li><a href="#fs.symlinkSync">fs.symlinkSync(linkdata, path)</a></li><li><a href="#fs.readlink">fs.readlink(path, [callback])</a></li><li><a href="#fs.readlinkSync">fs.readlinkSync(path)</a></li><li><a href="#fs.realpath">fs.realpath(path, [callback])</a></li><li><a href="#fs.realpathSync">fs.realpathSync(path)</a></li><li><a href="#fs.unlink">fs.unlink(path, [callback])</a></li><li><a href="#fs.unlinkSync">fs.unlinkSync(path)</a></li><li><a href="#fs.rmdir">fs.rmdir(path, [callback])</a></li><li><a href="#fs.rmdirSync">fs.rmdirSync(path)</a></li><li><a href="#fs.mkdir">fs.mkdir(path, mode, [callback])</a></li><li><a href="#fs.mkdirSync">fs.mkdirSync(path, mode)</a></li><li><a href="#fs.readdir">fs.readdir(path, [callback])</a></li><li><a href="#fs.readdirSync">fs.readdirSync(path)</a></li><li><a href="#fs.close">fs.close(fd, [callback])</a></li><li><a href="#fs.closeSync">fs.closeSync(fd)</a></li><li><a href="#fs.open">fs.open(path, flags, mode=0666, [callback])</a></li><li><a href="#fs.openSync">fs.openSync(path, flags, mode=0666)</a></li><li><a href="#fs.write">fs.write(fd, buffer, offset, length, position, [callback])</a></li><li><a href="#fs.writeSync">fs.writeSync(fd, buffer, offset, length, position)</a></li><li><a href="#fs.writeSync">fs.writeSync(fd, str, position, encoding='utf8')</a></li><li><a href="#fs.read">fs.read(fd, buffer, offset, length, position, [callback])</a></li><li><a href="#fs.readSync">fs.readSync(fd, buffer, offset, length, position)</a></li><li><a href="#fs.readSync">fs.readSync(fd, length, position, encoding)</a></li><li><a href="#fs.readFile">fs.readFile(filename, [encoding], [callback])</a></li><li><a href="#fs.readFileSync">fs.readFileSync(filename, [encoding])</a></li><li><a href="#fs.writeFile">fs.writeFile(filename, data, encoding='utf8', [callback])</a></li><li><a href="#fs.writeFileSync">fs.writeFileSync(filename, data, encoding='utf8')</a></li><li><a href="#fs.watchFile">fs.watchFile(filename, [options], listener)</a></li><li><a href="#fs.unwatchFile">fs.unwatchFile(filename)</a></li></ul></li><li><a href="#fs.Stats">fs.Stats</a></li><li><a href="#fs.ReadStream">fs.ReadStream</a><ul><li><a href="#fs.createReadStream">fs.createReadStream(path, [options])</a></li></ul></li><li><a href="#fs.WriteStream">fs.WriteStream</a><ul><li><a href="#open_">open'</a></li><li><a href="#fs.createWriteStream">fs.createWriteStream(path, [options])</a></li></ul></li><li><a href="#path">Path</a><ul><li><a href="#path.normalize">path.normalize(p)</a></li><li><a href="#path.join">path.join([path1], [path2], [...])</a></li><li><a href="#path.resolve">path.resolve([from ...], to)</a></li><li><a href="#path.dirname">path.dirname(p)</a></li><li><a href="#path.basename">path.basename(p, [ext])</a></li><li><a href="#path.extname">path.extname(p)</a></li><li><a href="#path.exists">path.exists(p, [callback])</a></li></ul></li><li><a href="#net_._">net` предоставляет асинхронные методы для работы с сетью. Он включает</a><ul><li><a href="#net.createServer">net.createServer(connectionListener)</a></li><li><a href="#net.createConnection">net.createConnection(arguments...)</a></li><li><a href="#net.Server">net.Server</a><ul><li><a href="#server.listen">server.listen(port, [host], [callback])</a></li><li><a href="#server.listen">server.listen(path, [callback])</a></li><li><a href="#server.listenFD">server.listenFD(fd)</a></li><li><a href="#server.close">server.close()</a></li><li><a href="#server.address">server.address()</a></li><li><a href="#server.maxConnections">server.maxConnections</a></li><li><a href="#server.connections">server.connections</a></li><li><a href="#connection_">connection'</a></li><li><a href="#close_">close'</a></li></ul></li><li><a href="#net.Socket">net.Socket</a><ul><li><a href="#socket.connect">socket.connect(port, [host])</a></li><li><a href="#socket.connect">socket.connect(path)</a></li><li><a href="#socket.setEncoding">socket.setEncoding(encoding=null)</a></li><li><a href="#socket.setSecure">socket.setSecure([credentials])</a></li><li><a href="#socket.write">socket.write(data, [encoding], [callback])</a></li><li><a href="#socket.write">socket.write(data, [encoding], [fileDescriptor], [callback])</a></li><li><a href="#socket.end">socket.end([data], [encoding])</a></li><li><a href="#socket.destroy">socket.destroy()</a></li><li><a href="#socket.pause">socket.pause()</a></li><li><a href="#socket.resume">socket.resume()</a></li><li><a href="#socket.setTimeout">socket.setTimeout(timeout)</a></li><li><a href="#socket.setNoDelay">socket.setNoDelay(noDelay=true)</a></li><li><a href="#socket.setKeepAlive">socket.setKeepAlive(enable=false, [initialDelay])</a></li><li><a href="#socket.remoteAddress">socket.remoteAddress</a></li><li><a href="#connect_">connect'</a></li><li><a href="#data_">data'</a></li><li><a href="#end_">end'</a></li><li><a href="#timeout_">timeout'</a></li><li><a href="#drain_">drain'</a></li><li><a href="#error_">error'</a></li><li><a href="#close_">close'</a></li></ul></li><li><a href="#net.isIP">net.isIP</a><ul><li><a href="#net.isIP">net.isIP(input)</a></li><li><a href="#net.isIPv4">net.isIPv4(input)</a></li><li><a href="#net.isIPv6">net.isIPv6(input)</a></li></ul></li></ul></li><li><a href="#dNS">DNS</a><ul><li><a href="#dns.lookup">dns.lookup(domain, family=null, callback)</a></li><li><a href="#dns.resolve">dns.resolve(domain, rrtype='A', callback)</a></li><li><a href="#dns.resolve4">dns.resolve4(domain, callback)</a></li><li><a href="#dns.resolve6">dns.resolve6(domain, callback)</a></li><li><a href="#dns.resolveMx">dns.resolveMx(domain, callback)</a></li><li><a href="#dns.resolveTxt">dns.resolveTxt(domain, callback)</a></li><li><a href="#dns.resolveSrv">dns.resolveSrv(domain, callback)</a></li><li><a href="#dns.reverse">dns.reverse(ip, callback)</a></li></ul></li><li><a href="#require_._">require('dgram')`. Датаграммы</a><ul><li><a href="#message_">message'</a></li><li><a href="#listening_">listening'</a></li><li><a href="#close_">close'</a></li><li><a href="#dgram.createSocket">dgram.createSocket(type, [callback])</a></li><li><a href="#dgram.send">dgram.send(buf, offset, length, path, [callback])</a></li><li><a href="#dgram.send">dgram.send(buf, offset, length, port, address, [callback])</a></li><li><a href="#dgram.bind">dgram.bind(path)</a></li><li><a href="#dgram.bind">dgram.bind(port, [address])</a></li><li><a href="#dgram.close">dgram.close()</a></li><li><a href="#dgram.address">dgram.address()</a></li><li><a href="#dgram.setBroadcast">dgram.setBroadcast(flag)</a></li><li><a href="#dgram.setTTL">dgram.setTTL(ttl)</a></li></ul></li><li><a href="#hTTP">HTTP</a></li><li><a href="#http.Server">http.Server</a><ul><li><a href="#request_">request'</a></li><li><a href="#connection_">connection'</a></li><li><a href="#close_">close'</a></li><li><a href="#checkContinue_">checkContinue'</a></li><li><a href="#upgrade_">upgrade'</a></li><li><a href="#clientError_">clientError'</a></li><li><a href="#http.createServer">http.createServer(requestListener)</a></li><li><a href="#server.listen">server.listen(port, [hostname], [callback])</a></li><li><a href="#server.listen">server.listen(path, [callback])</a></li><li><a href="#server.close">server.close()</a></li></ul></li><li><a href="#http.ServerRequest">http.ServerRequest</a><ul><li><a href="#data_">data'</a></li><li><a href="#end_">end'</a></li><li><a href="#request.method">request.method</a></li><li><a href="#request.url">request.url</a></li><li><a href="#request.headers">request.headers</a></li><li><a href="#request.trailers">request.trailers</a></li><li><a href="#request.httpVersion">request.httpVersion</a></li><li><a href="#request.setEncoding">request.setEncoding(encoding=null)</a></li><li><a href="#request.pause">request.pause()</a></li><li><a href="#request.resume">request.resume()</a></li><li><a href="#request.connection">request.connection</a></li></ul></li><li><a href="#http.ServerResponse">http.ServerResponse</a><ul><li><a href="#response.writeContinue">response.writeContinue()</a></li><li><a href="#response.writeHead">response.writeHead(statusCode, [reasonPhrase], [headers])</a></li><li><a href="#response.write">response.write(chunk, encoding='utf8')</a></li><li><a href="#response.addTrailers">response.addTrailers(headers)</a></li><li><a href="#response.end">response.end([data], [encoding])</a></li></ul></li><li><a href="#http.Client">http.Client</a><ul><li><a href="#upgrade_">upgrade'</a></li><li><a href="#continue_">continue'</a></li><li><a href="#http.createClient">http.createClient(port, host='localhost', secure=false, [credentials])</a></li><li><a href="#client.request">client.request(method='GET', path, [request_headers])</a></li><li><a href="#client.verifyPeer">client.verifyPeer()</a></li><li><a href="#client.getPeerCertificate">client.getPeerCertificate()</a></li></ul></li><li><a href="#http.ClientRequest">http.ClientRequest</a><ul><li><a href="#response_">response'</a></li><li><a href="#request.write">request.write(chunk, encoding='utf8')</a></li><li><a href="#request.end">request.end([data], [encoding])</a></li></ul></li><li><a href="#http.ClientResponse">http.ClientResponse</a><ul><li><a href="#data_">data'</a></li><li><a href="#end_">end'</a></li><li><a href="#response.statusCode">response.statusCode</a></li><li><a href="#response.httpVersion">response.httpVersion</a></li><li><a href="#response.headers">response.headers</a></li><li><a href="#response.trailers">response.trailers</a></li><li><a href="#response.setEncoding">response.setEncoding(encoding=null)</a></li><li><a href="#response.pause">response.pause()</a></li><li><a href="#response.resume">response.resume()</a></li><li><a href="#response.client">response.client</a></li></ul></li><li><a href="#uRL">URL</a><ul><li><a href="#url.parse">url.parse(urlStr, parseQueryString=false)</a></li><li><a href="#url.format">url.format(urlObj)</a></li><li><a href="#url.resolve">url.resolve(from, to)</a></li></ul></li><li><a href="#require_.">require('querystring')` чтобы получить доступ к функциям модуля.</a><ul><li><a href="#querystring.stringify">querystring.stringify(obj, sep='&', eq='=')</a></li><li><a href="#querystring.parse">querystring.parse(str, sep='&', eq='=')</a></li><li><a href="#querystring.escape">querystring.escape</a></li><li><a href="#querystring.unescape">querystring.unescape</a></li></ul></li><li><a href="#rEPL_">REPL)</a><ul><li><a href="#repl.start_">repl.start(prompt='> ', stream=process.openStdin())</a></li><li><a href="#rEPL">REPL</a></li></ul></li><li><a href="#node_tri_directional_popen_ChildProcess_.">Node предоставляет tri-directional popen(3) в классе `ChildProcess`.</a><ul><li><a href="#exit_">exit'</a></li><li><a href="#child.stdin">child.stdin</a></li><li><a href="#child.stdout">child.stdout</a></li><li><a href="#child.stderr">child.stderr</a></li><li><a href="#child.pid">child.pid</a></li><li><a href="#child_process.spawn">child_process.spawn(command, args=[], [options])</a></li><li><a href="#child_process.exec">child_process.exec(command, [options], callback)</a></li><li><a href="#child.kill">child.kill(signal='SIGTERM')</a></li></ul></li><li><a href="#asserts_">asserts)</a><ul><li><a href="#assert.fail">assert.fail(actual, expected, message, operator)</a></li><li><a href="#assert.ok">assert.ok(value, [message])</a></li><li><a href="#assert.equal">assert.equal(actual, expected, [message])</a></li><li><a href="#assert.notEqual">assert.notEqual(actual, expected, [message])</a></li><li><a href="#assert.deepEqual">assert.deepEqual(actual, expected, [message])</a></li><li><a href="#assert.notDeepEqual">assert.notDeepEqual(actual, expected, [message])</a></li><li><a href="#assert.strictEqual">assert.strictEqual(actual, expected, [message])</a></li><li><a href="#assert.notStrictEqual">assert.notStrictEqual(actual, expected, [message])</a></li><li><a href="#assert.throws">assert.throws(block, [error], [message])</a></li><li><a href="#assert.doesNotThrow">assert.doesNotThrow(block, [error], [message])</a></li><li><a href="#assert.ifError">assert.ifError(value)</a></li></ul></li><li><a href="#tTY">TTY</a><ul><li><a href="#tty.open">tty.open(path, args=[])</a></li><li><a href="#tty.isatty">tty.isatty(fd)</a></li><li><a href="#tty.setRawMode">tty.setRawMode(mode)</a></li><li><a href="#tty.getColumns">tty.getColumns()</a></li></ul></li><li><a href="#os_Module">os Module</a><ul><li><a href="#os.hostname">os.hostname()</a></li><li><a href="#os.type">os.type()</a></li><li><a href="#os.release">os.release()</a></li><li><a href="#os.uptime">os.uptime()</a></li><li><a href="#os.loadavg">os.loadavg()</a></li><li><a href="#os.totalmem">os.totalmem()</a></li><li><a href="#os.freemem">os.freemem()</a></li><li><a href="#os.cpus">os.cpus()</a></li></ul></li><li><a href="#debugger">Debugger</a><ul><li><a href="#advanced_Usage">Advanced Usage</a></li></ul></li></ul></li><li><a href="#1_">1 - Рекомендуемые сторонние модули</a><hr /></div>
-<h2 id="_">Краткий обзор</h2>
+    <div id="toc"><h2>Содержание</h2><ul><li><a href="#_u041A_u0440_u0430_u0442_u043A_u0438_u0439_u043E_u0431_u0437_u043E_u0440">Краткий обзор</a></li><li><a href="#_u0413_u043B_u043E_u0431_u0430_u043B_u044C_u043D_u044B_u0435_u043E_u0431_u044A_u0435_u043A_u0442_u044B">Глобальные объекты</a><ul><li><a href="#global">global</a></li><li><a href="#process">process</a></li><li><a href="#require">require()</a></li><li><a href="#require.resolve">require.resolve()</a></li><li><a href="#require.paths">require.paths</a></li><li><a href="#filename">filename</a></li><li><a href="#dirname">dirname</a></li><li><a href="#module">module</a></li></ul></li><li><a href="#_u0422_u0430_u0439_u043C_u0435_u0440_u044B">Таймеры</a><ul><li><a href="#setTimeout">setTimeout(callback, delay, [arg], [...])</a></li><li><a href="#clearTimeout">clearTimeout(timeoutId)</a></li><li><a href="#setInterval">setInterval(callback, delay, [arg], [...])</a></li><li><a href="#clearInterval">clearInterval(intervalId)</a></li></ul></li><li><a href="#_u0421_u0442_u0430_u043D_u0434_u0430_u0440_u0442_u043D_u044B_u0435_u043C_u043E_u0434_u0443_u043B_u0438">Стандартные модули</a></li><li><a href="#_u041C_u043E_u0434_u0443_u043B_u0438">Модули</a><ul><li><a href="#_u041F_u043E_u0438_u0441_u043A_u043C_u043E_u0434_u0443_u043B_u0435_u0439">Поиск модулей</a></li></ul></li><li><a href="#c_C_u0434_u043E_u043F_u043E_u043B_u043D_u0435_u043D_u0438_u044F">C/C++ дополнения</a></li><li><a href="#_u041F_u0440_u043E_u0446_u0435_u0441_u0441">Процесс</a><ul><li><a href="#_u0421_u043E_u0431_u044B_u0442_u0438_u0435_exit_">Событие: 'exit'</a></li><li><a href="#_u0421_u043E_u0431_u044B_u0442_u0438_u0435_uncaughtException_">Событие: 'uncaughtException'</a></li><li><a href="#_u0421_u0438_u0433_u043D_u0430_u043B_u044C_u043D_u044B_u0435_u0441_u043E_u0431_u044B_u0442_u0438_u044F">Сигнальные события</a></li><li><a href="#process.stdout">process.stdout</a></li><li><a href="#process.stdin">process.stdin</a></li><li><a href="#process.argv">process.argv</a></li><li><a href="#process.execPath">process.execPath</a></li><li><a href="#process.chdir">process.chdir(directory)</a></li><li><a href="#process.cwd">process.cwd()</a></li><li><a href="#process.env">process.env</a></li><li><a href="#process.exit">process.exit(code=0)</a></li><li><a href="#process.getgid">process.getgid()</a></li><li><a href="#process.setgid">process.setgid(id)</a></li><li><a href="#process.getuid">process.getuid()</a></li><li><a href="#process.setuid">process.setuid(id)</a></li><li><a href="#process.version">process.version</a></li><li><a href="#process.installPrefix">process.installPrefix</a></li><li><a href="#process.kill">process.kill(pid, signal='SIGINT')</a></li><li><a href="#process.pid">process.pid</a></li><li><a href="#process.title">process.title</a></li><li><a href="#process.platform">process.platform</a></li><li><a href="#process.memoryUsage">process.memoryUsage()</a></li><li><a href="#process.nextTick">process.nextTick(callback)</a></li><li><a href="#process.umask">process.umask([mask])</a></li></ul></li><li><a href="#_u0423_u0442_u0438_u043B_u0438_u0442_u044B">Утилиты</a><ul><li><a href="#util.debug">util.debug(string)</a></li><li><a href="#util.log">util.log(string)</a></li><li><a href="#util.inspect">util.inspect(object, showHidden=false, depth=2)</a></li><li><a href="#util.pump">util.pump(readableStream, writableStream, [callback])</a></li><li><a href="#util.inherits">util.inherits(constructor, superConstructor)</a></li></ul></li><li><a href="#c_u043E_u0431_u044B_u0442_u0438_u044F">Cобытия</a><ul><li><a href="#events.EventEmitter">events.EventEmitter</a><ul><li><a href="#emitter.addListener">emitter.addListener(event, listener)</a></li><li><a href="#emitter.on">emitter.on(event, listener)</a></li><li><a href="#emitter.once">emitter.once(event, listener)</a></li><li><a href="#emitter.removeListener">emitter.removeListener(event, listener)</a></li><li><a href="#emitter.removeAllListeners">emitter.removeAllListeners(event)</a></li><li><a href="#emitter.setMaxListeners">emitter.setMaxListeners(n)</a></li><li><a href="#emitter.listeners">emitter.listeners(event)</a></li><li><a href="#emitter.emit">emitter.emit(event, [arg1], [arg2], [...])</a></li><li><a href="#_u0421_u043E_u0431_u044B_u0442_u0438_u0435_newListener_">Событие: 'newListener'</a></li></ul></li></ul></li><li><a href="#_u0411_u0443_u0444_u0435_u0440_u044B">Буферы</a><ul><li><a href="#new_Buffer">new Buffer(size)</a></li><li><a href="#new_Buffer">new Buffer(array)</a></li><li><a href="#new_Buffer">new Buffer(str, encoding='utf8')</a></li><li><a href="#buffer.write">buffer.write(string, offset=0, encoding='utf8')</a></li><li><a href="#buffer.toString">buffer.toString(encoding, start=0, end=buffer.length)</a></li><li><a href="#buffer_index_">buffer[index]</a></li><li><a href="#buffer.isBuffer">Buffer.isBuffer(obj)</a></li><li><a href="#buffer.byteLength">Buffer.byteLength(string, encoding='utf8')</a></li><li><a href="#buffer.length">buffer.length</a></li><li><a href="#buffer.copy">buffer.copy(targetBuffer, targetStart=0, sourceStart=0, sourceEnd=buffer.length)</a></li><li><a href="#buffer.slice">buffer.slice(start, end=buffer.length)</a></li></ul></li><li><a href="#_u041F_u043E_u0442_u043E_u043A_u0438">Потоки</a></li><li><a href="#_u041F_u043E_u0442_u043E_u043A_u0441_u0432_u043E_u0437_u043C_u043E_u0436_u043D_u043E_u0441_u0442_u044C_u044E_u0447_u0442_u0435_u043D_u0438_u044F">Поток с возможностью чтения</a><ul><li><a href="#event_data_">Event: 'data'</a></li><li><a href="#event_end_">Event: 'end'</a></li><li><a href="#event_error_">Event: 'error'</a></li><li><a href="#event_close_">Event: 'close'</a></li><li><a href="#event_fd_">Event: 'fd'</a></li><li><a href="#stream.readable">stream.readable</a></li><li><a href="#stream.setEncoding">stream.setEncoding(encoding)</a></li><li><a href="#stream.pause">stream.pause()</a></li><li><a href="#stream.resume">stream.resume()</a></li><li><a href="#stream.destroy">stream.destroy()</a></li><li><a href="#stream.pipe">stream.pipe(destination, [options])</a></li></ul></li><li><a href="#_u041F_u043E_u0442_u043E_u043A_u0441_u0432_u043E_u0437_u043C_u043E_u0436_u043D_u043E_u0441_u0442_u044C_u044E_u0437_u0430_u043F_u0438_u0441_u0438">Поток с возможностью записи</a><ul><li><a href="#event_drain_">Event: 'drain'</a></li><li><a href="#event_error_">Event: 'error'</a></li><li><a href="#event_close_">Event: 'close'</a></li><li><a href="#stream.writable">stream.writable</a></li><li><a href="#stream.write">stream.write(string, encoding='utf8', [fd])</a></li><li><a href="#stream.write">stream.write(buffer)</a></li><li><a href="#stream.end">stream.end()</a></li><li><a href="#stream.end">stream.end(string, encoding)</a></li><li><a href="#stream.end">stream.end(buffer)</a></li><li><a href="#stream.destroy">stream.destroy()</a></li><li><a href="#stream.destroySoon">stream.destroySoon()</a></li></ul></li><li><a href="#_u041C_u043E_u0434_u0443_u043B_u044C_u043A_u0440_u0438_u043F_u0442_u043E_u0433_u0440_u0430_u0444_u0438_u0438">Модуль криптографии</a><ul><li><a href="#crypto.createCredentials">crypto.createCredentials(details)</a></li><li><a href="#crypto.createHash">crypto.createHash(algorithm)</a></li><li><a href="#hash.update">hash.update(data)</a></li><li><a href="#hash.digest">hash.digest(encoding='binary')</a></li><li><a href="#crypto.createHmac">crypto.createHmac(algorithm, key)</a></li><li><a href="#hmac.update">hmac.update(data)</a></li><li><a href="#hmac.digest">hmac.digest(encoding='binary')</a></li><li><a href="#crypto.createCipher">crypto.createCipher(algorithm, key)</a></li><li><a href="#cipher.update">cipher.update(data, input_encoding='binary', output_encoding='binary')</a></li><li><a href="#cipher.final">cipher.final(output_encoding='binary')</a></li><li><a href="#crypto.createDecipher">crypto.createDecipher(algorithm, key)</a></li><li><a href="#decipher.update">decipher.update(data, input_encoding='binary', output_encoding='binary')</a></li><li><a href="#decipher.final">decipher.final(output_encoding='binary')</a></li><li><a href="#crypto.createSign">crypto.createSign(algorithm)</a></li><li><a href="#signer.update">signer.update(data)</a></li><li><a href="#signer.sign">signer.sign(private_key, output_format='binary')</a></li><li><a href="#crypto.createVerify">crypto.createVerify(algorithm)</a></li><li><a href="#verifier.update">verifier.update(data)</a></li><li><a href="#verifier.verify">verifier.verify(public_key, signature, signature_format='binary')</a></li></ul></li><li><a href="#tLS_">TLS (SSL)</a><ul><li><a href="#s_tls.connect">s = tls.connect(port, [host], [options], callback)</a></li><li><a href="#tls.Server">tls.Server</a><ul><li><a href="#tls.createServer">tls.createServer(options, secureConnectionListener)</a></li><li><a href="#event_secureConnection_">Event: 'secureConnection'</a></li><li><a href="#server.listen">server.listen(port, [host], [callback])</a></li><li><a href="#server.close">server.close()</a></li><li><a href="#server.maxConnections">server.maxConnections</a></li><li><a href="#server.connections">server.connections</a></li></ul></li></ul></li><li><a href="#_u0424_u0430_u0439_u043B_u043E_u0432_u0430_u044F_u0441_u0438_u0441_u0442_u0435_u043C_u0430">Файловая система</a><ul><li><a href="#fs.rename">fs.rename(path1, path2, [callback])</a></li><li><a href="#fs.renameSync">fs.renameSync(path1, path2)</a></li><li><a href="#fs.truncate">fs.truncate(fd, len, [callback])</a></li><li><a href="#fs.truncateSync">fs.truncateSync(fd, len)</a></li><li><a href="#fs.chmod">fs.chmod(path, mode, [callback])</a></li><li><a href="#fs.chmodSync">fs.chmodSync(path, mode)</a></li><li><a href="#fs.stat">fs.stat(path, [callback])</a></li><li><a href="#fs.lstat">fs.lstat(path, [callback])</a></li><li><a href="#fs.fstat">fs.fstat(fd, [callback])</a></li><li><a href="#fs.statSync">fs.statSync(path)</a></li><li><a href="#fs.lstatSync">fs.lstatSync(path)</a></li><li><a href="#fs.fstatSync">fs.fstatSync(fd)</a></li><li><a href="#fs.link">fs.link(srcpath, dstpath, [callback])</a></li><li><a href="#fs.linkSync">fs.linkSync(dstpath, srcpath)</a></li><li><a href="#fs.symlink">fs.symlink(linkdata, path, [callback])</a></li><li><a href="#fs.symlinkSync">fs.symlinkSync(linkdata, path)</a></li><li><a href="#fs.readlink">fs.readlink(path, [callback])</a></li><li><a href="#fs.readlinkSync">fs.readlinkSync(path)</a></li><li><a href="#fs.realpath">fs.realpath(path, [callback])</a></li><li><a href="#fs.realpathSync">fs.realpathSync(path)</a></li><li><a href="#fs.unlink">fs.unlink(path, [callback])</a></li><li><a href="#fs.unlinkSync">fs.unlinkSync(path)</a></li><li><a href="#fs.rmdir">fs.rmdir(path, [callback])</a></li><li><a href="#fs.rmdirSync">fs.rmdirSync(path)</a></li><li><a href="#fs.mkdir">fs.mkdir(path, mode, [callback])</a></li><li><a href="#fs.mkdirSync">fs.mkdirSync(path, mode)</a></li><li><a href="#fs.readdir">fs.readdir(path, [callback])</a></li><li><a href="#fs.readdirSync">fs.readdirSync(path)</a></li><li><a href="#fs.close">fs.close(fd, [callback])</a></li><li><a href="#fs.closeSync">fs.closeSync(fd)</a></li><li><a href="#fs.open">fs.open(path, flags, mode=0666, [callback])</a></li><li><a href="#fs.openSync">fs.openSync(path, flags, mode=0666)</a></li><li><a href="#fs.write">fs.write(fd, buffer, offset, length, position, [callback])</a></li><li><a href="#fs.writeSync">fs.writeSync(fd, buffer, offset, length, position)</a></li><li><a href="#fs.writeSync">fs.writeSync(fd, str, position, encoding='utf8')</a></li><li><a href="#fs.read">fs.read(fd, buffer, offset, length, position, [callback])</a></li><li><a href="#fs.readSync">fs.readSync(fd, buffer, offset, length, position)</a></li><li><a href="#fs.readSync">fs.readSync(fd, length, position, encoding)</a></li><li><a href="#fs.readFile">fs.readFile(filename, [encoding], [callback])</a></li><li><a href="#fs.readFileSync">fs.readFileSync(filename, [encoding])</a></li><li><a href="#fs.writeFile">fs.writeFile(filename, data, encoding='utf8', [callback])</a></li><li><a href="#fs.writeFileSync">fs.writeFileSync(filename, data, encoding='utf8')</a></li><li><a href="#fs.watchFile">fs.watchFile(filename, [options], listener)</a></li><li><a href="#fs.unwatchFile">fs.unwatchFile(filename)</a></li></ul></li><li><a href="#fs.Stats">fs.Stats</a></li><li><a href="#fs.ReadStream">fs.ReadStream</a><ul><li><a href="#fs.createReadStream">fs.createReadStream(path, [options])</a></li></ul></li><li><a href="#fs.WriteStream">fs.WriteStream</a><ul><li><a href="#_u0421_u043E_u0431_u044B_u0442_u0438_u0435_open_">Событие: 'open'</a></li><li><a href="#fs.createWriteStream">fs.createWriteStream(path, [options])</a></li></ul></li><li><a href="#path">Path</a><ul><li><a href="#path.normalize">path.normalize(p)</a></li><li><a href="#path.join">path.join([path1], [path2], [...])</a></li><li><a href="#path.resolve">path.resolve([from ...], to)</a></li><li><a href="#path.dirname">path.dirname(p)</a></li><li><a href="#path.basename">path.basename(p, [ext])</a></li><li><a href="#path.extname">path.extname(p)</a></li><li><a href="#path.exists">path.exists(p, [callback])</a></li></ul></li><li><a href="#_u0421_u0435_u0442_u044C">Сеть</a><ul><li><a href="#net.createServer">net.createServer(connectionListener)</a></li><li><a href="#net.createConnection">net.createConnection(arguments...)</a></li><li><a href="#net.Server">net.Server</a><ul><li><a href="#server.listen">server.listen(port, [host], [callback])</a></li><li><a href="#server.listen">server.listen(path, [callback])</a></li><li><a href="#server.listenFD">server.listenFD(fd)</a></li><li><a href="#server.close">server.close()</a></li><li><a href="#server.address">server.address()</a></li><li><a href="#server.maxConnections">server.maxConnections</a></li><li><a href="#server.connections">server.connections</a></li><li><a href="#_u0421_u043E_u0431_u044B_u0442_u0438_u0435_connection_">Событие: 'connection'</a></li><li><a href="#_u0421_u043E_u0431_u044B_u0442_u0438_u0435_close_">Событие: 'close'</a></li></ul></li><li><a href="#net.Socket">net.Socket</a><ul><li><a href="#socket.connect">socket.connect(port, [host])</a></li><li><a href="#socket.connect">socket.connect(path)</a></li><li><a href="#socket.setEncoding">socket.setEncoding(encoding=null)</a></li><li><a href="#socket.setSecure">socket.setSecure([credentials])</a></li><li><a href="#socket.write">socket.write(data, [encoding], [callback])</a></li><li><a href="#socket.write">socket.write(data, [encoding], [fileDescriptor], [callback])</a></li><li><a href="#socket.end">socket.end([data], [encoding])</a></li><li><a href="#socket.destroy">socket.destroy()</a></li><li><a href="#socket.pause">socket.pause()</a></li><li><a href="#socket.resume">socket.resume()</a></li><li><a href="#socket.setTimeout">socket.setTimeout(timeout)</a></li><li><a href="#socket.setNoDelay">socket.setNoDelay(noDelay=true)</a></li><li><a href="#socket.setKeepAlive">socket.setKeepAlive(enable=false, [initialDelay])</a></li><li><a href="#socket.remoteAddress">socket.remoteAddress</a></li><li><a href="#_u0421_u043E_u0431_u044B_u0442_u0438_u0435_connect_">Событие: 'connect'</a></li><li><a href="#_u0421_u043E_u0431_u044B_u0442_u0438_u0435_data_">Событие: 'data'</a></li><li><a href="#_u0421_u043E_u0431_u044B_u0442_u0438_u0435_end_">Событие: 'end'</a></li><li><a href="#_u0421_u043E_u0431_u044B_u0442_u0438_u0435_timeout_">Событие: 'timeout'</a></li><li><a href="#_u0421_u043E_u0431_u044B_u0442_u0438_u0435_drain_">Событие: 'drain'</a></li><li><a href="#_u0421_u043E_u0431_u044B_u0442_u0438_u0435_error_">Событие: 'error'</a></li><li><a href="#_u0421_u043E_u0431_u044B_u0442_u0438_u0435_close_">Событие: 'close'</a></li></ul></li><li><a href="#net.isIP">net.isIP</a><ul><li><a href="#net.isIP">net.isIP(input)</a></li><li><a href="#net.isIPv4">net.isIPv4(input)</a></li><li><a href="#net.isIPv6">net.isIPv6(input)</a></li></ul></li></ul></li><li><a href="#dNS">DNS</a><ul><li><a href="#dns.lookup">dns.lookup(domain, family=null, callback)</a></li><li><a href="#dns.resolve">dns.resolve(domain, rrtype='A', callback)</a></li><li><a href="#dns.resolve4">dns.resolve4(domain, callback)</a></li><li><a href="#dns.resolve6">dns.resolve6(domain, callback)</a></li><li><a href="#dns.resolveMx">dns.resolveMx(domain, callback)</a></li><li><a href="#dns.resolveTxt">dns.resolveTxt(domain, callback)</a></li><li><a href="#dns.resolveSrv">dns.resolveSrv(domain, callback)</a></li><li><a href="#dns.reverse">dns.reverse(ip, callback)</a></li></ul></li><li><a href="#_u0414_u0430_u0442_u0430_u0433_u0440_u0430_u043C_u043C_u044B">Датаграммы</a><ul><li><a href="#_u0421_u043E_u0431_u044B_u0442_u0438_u0435_message_">Событие: 'message'</a></li><li><a href="#_u0421_u043E_u0431_u044B_u0442_u0438_u0435_listening_">Событие: 'listening'</a></li><li><a href="#_u0421_u043E_u0431_u044B_u0442_u0438_u0435_close_">Событие: 'close'</a></li><li><a href="#dgram.createSocket">dgram.createSocket(type, [callback])</a></li><li><a href="#dgram.send">dgram.send(buf, offset, length, path, [callback])</a></li><li><a href="#dgram.send">dgram.send(buf, offset, length, port, address, [callback])</a></li><li><a href="#dgram.bind">dgram.bind(path)</a></li><li><a href="#dgram.bind">dgram.bind(port, [address])</a></li><li><a href="#dgram.close">dgram.close()</a></li><li><a href="#dgram.address">dgram.address()</a></li><li><a href="#dgram.setBroadcast">dgram.setBroadcast(flag)</a></li><li><a href="#dgram.setTTL">dgram.setTTL(ttl)</a></li></ul></li><li><a href="#hTTP">HTTP</a></li><li><a href="#http.Server">http.Server</a><ul><li><a href="#_u0421_u043E_u0431_u044B_u0442_u0438_u0435_request_">Событие: 'request'</a></li><li><a href="#_u0421_u043E_u0431_u044B_u0442_u0438_u0435_connection_">Событие: 'connection'</a></li><li><a href="#_u0421_u043E_u0431_u044B_u0442_u0438_u0435_close_">Событие: 'close'</a></li><li><a href="#_u0421_u043E_u0431_u044B_u0442_u0438_u0435_checkContinue_">Событие: 'checkContinue'</a></li><li><a href="#_u0421_u043E_u0431_u044B_u0442_u0438_u0435_upgrade_">Событие: 'upgrade'</a></li><li><a href="#_u0421_u043E_u0431_u044B_u0442_u0438_u0435_clientError_">Событие: 'clientError'</a></li><li><a href="#http.createServer">http.createServer(requestListener)</a></li><li><a href="#server.listen">server.listen(port, [hostname], [callback])</a></li><li><a href="#server.listen">server.listen(path, [callback])</a></li><li><a href="#server.close">server.close()</a></li></ul></li><li><a href="#http.ServerRequest">http.ServerRequest</a><ul><li><a href="#_u0421_u043E_u0431_u044B_u0442_u0438_u0435_data_">Событие: 'data'</a></li><li><a href="#_u0421_u043E_u0431_u044B_u0442_u0438_u0435_end_">Событие: 'end'</a></li><li><a href="#request.method">request.method</a></li><li><a href="#request.url">request.url</a></li><li><a href="#request.headers">request.headers</a></li><li><a href="#request.trailers">request.trailers</a></li><li><a href="#request.httpVersion">request.httpVersion</a></li><li><a href="#request.setEncoding">request.setEncoding(encoding=null)</a></li><li><a href="#request.pause">request.pause()</a></li><li><a href="#request.resume">request.resume()</a></li><li><a href="#request.connection">request.connection</a></li></ul></li><li><a href="#http.ServerResponse">http.ServerResponse</a><ul><li><a href="#response.writeContinue">response.writeContinue()</a></li><li><a href="#response.writeHead">response.writeHead(statusCode, [reasonPhrase], [headers])</a></li><li><a href="#response.write">response.write(chunk, encoding='utf8')</a></li><li><a href="#response.addTrailers">response.addTrailers(headers)</a></li><li><a href="#response.end">response.end([data], [encoding])</a></li></ul></li><li><a href="#http.Client">http.Client</a><ul><li><a href="#_u0421_u043E_u0431_u044B_u0442_u0438_u0435_upgrade_">Событие: 'upgrade'</a></li><li><a href="#_u0421_u043E_u0431_u044B_u0442_u0438_u0435_continue_">Событие: 'continue'</a></li><li><a href="#http.createClient">http.createClient(port, host='localhost', secure=false, [credentials])</a></li><li><a href="#client.request">client.request(method='GET', path, [request_headers])</a></li><li><a href="#client.verifyPeer">client.verifyPeer()</a></li><li><a href="#client.getPeerCertificate">client.getPeerCertificate()</a></li></ul></li><li><a href="#http.ClientRequest">http.ClientRequest</a><ul><li><a href="#_u0421_u043E_u0431_u044B_u0442_u0438_u0435_response_">Событие: 'response'</a></li><li><a href="#request.write">request.write(chunk, encoding='utf8')</a></li><li><a href="#request.end">request.end([data], [encoding])</a></li></ul></li><li><a href="#http.ClientResponse">http.ClientResponse</a><ul><li><a href="#_u0421_u043E_u0431_u044B_u0442_u0438_u0435_data_">Событие: 'data'</a></li><li><a href="#_u0421_u043E_u0431_u044B_u0442_u0438_u0435_end_">Событие: 'end'</a></li><li><a href="#response.statusCode">response.statusCode</a></li><li><a href="#response.httpVersion">response.httpVersion</a></li><li><a href="#response.headers">response.headers</a></li><li><a href="#response.trailers">response.trailers</a></li><li><a href="#response.setEncoding">response.setEncoding(encoding=null)</a></li><li><a href="#response.pause">response.pause()</a></li><li><a href="#response.resume">response.resume()</a></li><li><a href="#response.client">response.client</a></li></ul></li><li><a href="#uRL">URL</a><ul><li><a href="#url.parse">url.parse(urlStr, parseQueryString=false)</a></li><li><a href="#url.format">url.format(urlObj)</a></li><li><a href="#url.resolve">url.resolve(from, to)</a></li></ul></li><li><a href="#_u0420_u0430_u0437_u0431_u043E_u0440_u0441_u0442_u0440_u043E_u043A_u0438_u0437_u0430_u043F_u0440_u043E_u0441_u0430">Разбор строки запроса</a><ul><li><a href="#querystring.stringify">querystring.stringify(obj, sep='&', eq='=')</a></li><li><a href="#querystring.parse">querystring.parse(str, sep='&', eq='=')</a></li><li><a href="#querystring.escape">querystring.escape</a></li><li><a href="#querystring.unescape">querystring.unescape</a></li></ul></li><li><a href="#_u0418_u043D_u0442_u0435_u0440_u0430_u043A_u0442_u0438_u0432_u043D_u0430_u044F_u043A_u043E_u043D_u0441_u043E_u043B_u044C_">Интерактивная консоль (REPL)</a><ul><li><a href="#repl.start_">repl.start(prompt='> ', stream=process.openStdin())</a></li><li><a href="#_u0412_u043E_u0437_u043C_u043E_u0436_u043D_u043E_u0441_u0442_u0438_REPL">Возможности REPL</a></li></ul></li><li><a href="#_u0414_u043E_u0447_u0435_u0440_u043D_u0438_u0435_u043F_u0440_u043E_u0446_u0435_u0441_u0441_u044B">Дочерние процессы</a><ul><li><a href="#_u0421_u043E_u0431_u044B_u0442_u0438_u0435_exit_">Событие: 'exit'</a></li><li><a href="#child.stdin">child.stdin</a></li><li><a href="#child.stdout">child.stdout</a></li><li><a href="#child.stderr">child.stderr</a></li><li><a href="#child.pid">child.pid</a></li><li><a href="#child_process.spawn">child_process.spawn(command, args=[], [options])</a></li><li><a href="#child_process.exec">child_process.exec(command, [options], callback)</a></li><li><a href="#child.kill">child.kill(signal='SIGTERM')</a></li></ul></li><li><a href="#_u0422_u0435_u0441_u0442_u0438_u0440_u043E_u0432_u0430_u043D_u0438_u0435_">Тестирование (asserts)</a><ul><li><a href="#assert.fail">assert.fail(actual, expected, message, operator)</a></li><li><a href="#assert.ok">assert.ok(value, [message])</a></li><li><a href="#assert.equal">assert.equal(actual, expected, [message])</a></li><li><a href="#assert.notEqual">assert.notEqual(actual, expected, [message])</a></li><li><a href="#assert.deepEqual">assert.deepEqual(actual, expected, [message])</a></li><li><a href="#assert.notDeepEqual">assert.notDeepEqual(actual, expected, [message])</a></li><li><a href="#assert.strictEqual">assert.strictEqual(actual, expected, [message])</a></li><li><a href="#assert.notStrictEqual">assert.notStrictEqual(actual, expected, [message])</a></li><li><a href="#assert.throws">assert.throws(block, [error], [message])</a></li><li><a href="#assert.doesNotThrow">assert.doesNotThrow(block, [error], [message])</a></li><li><a href="#assert.ifError">assert.ifError(value)</a></li></ul></li><li><a href="#tTY">TTY</a><ul><li><a href="#tty.open">tty.open(path, args=[])</a></li><li><a href="#tty.isatty">tty.isatty(fd)</a></li><li><a href="#tty.setRawMode">tty.setRawMode(mode)</a></li><li><a href="#tty.getColumns">tty.getColumns()</a></li></ul></li><li><a href="#os_Module">os Module</a><ul><li><a href="#os.hostname">os.hostname()</a></li><li><a href="#os.type">os.type()</a></li><li><a href="#os.release">os.release()</a></li><li><a href="#os.uptime">os.uptime()</a></li><li><a href="#os.loadavg">os.loadavg()</a></li><li><a href="#os.totalmem">os.totalmem()</a></li><li><a href="#os.freemem">os.freemem()</a></li><li><a href="#os.cpus">os.cpus()</a></li></ul></li><li><a href="#debugger">Debugger</a><ul><li><a href="#advanced_Usage">Advanced Usage</a></li></ul></li></ul></li><li><a href="#_u041F_u0440_u0438_u043B_u043E_u0436_u0435_u043D_u0438_u044F">Приложения</a><ul><li><a href="#_u041F_u0440_u0438_u043B_u043E_u0436_u0435_u043D_u0438_u0435_1_u0420_u0435_u043A_u043E_u043C_u0435_u043D_u0434_u0443_u0435_u043C_u044B_u0435_u0441_u0442_u043E_u0440_u043E_u043D_u043D_u0438_u0435_u043C_u043E_u0434_u0443_u043B_u0438">Приложение 1 - Рекомендуемые сторонние модули</a></li></ul><hr /></div>
+<h2 id="_u041A_u0440_u0430_u0442_u043A_u0438_u0439_u043E_u0431_u0437_u043E_u0440">Краткий обзор</h2>
 
 <p>Пример <a href="http.html">web сервера</a>, написанного с помощью Node
 и отвечающего строкой 'Hello World':</p>
@@ -38,7 +38,7 @@ Server running at http://127.0.0.1:8124/</code></pre>
 
 <p>Все примеры в этом руководстве можно запустить таким же образом.</p>
 
-<h2 id="_">Глобальные объекты</h2>
+<h2 id="_u0413_u043B_u043E_u0431_u0430_u043B_u044C_u043D_u044B_u0435_u043E_u0431_u044A_u0435_u043A_u0442_u044B">Глобальные объекты</h2>
 
 <p>Эти объекты доступны в глобальной области видимости
 и могут быть использованы в любом месте кода.</p>
@@ -93,7 +93,7 @@ Server running at http://127.0.0.1:8124/</code></pre>
 <p>Ссылка на текущий модуль (типа <code>process.Module</code>). В частности, <code>module.exports</code> —
 то же самое, что и объект <code>exports</code>. См. <code>src/node.js</code> для подробной информации.</p>
 
-<h2 id="_">Таймеры</h2>
+<h2 id="_u0422_u0430_u0439_u043C_u0435_u0440_u044B">Таймеры</h2>
 
 <h3 id="setTimeout">setTimeout(callback, delay, [arg], [...])</h3>
 
@@ -114,7 +114,7 @@ Server running at http://127.0.0.1:8124/</code></pre>
 
 <p>Прекращает действие интервального таймера.</p>
 
-<h2 id="_">Стандартные модули</h2>
+<h2 id="_u0421_u0442_u0430_u043D_u0434_u0430_u0440_u0442_u043D_u044B_u0435_u043C_u043E_u0434_u0443_u043B_u0438">Стандартные модули</h2>
 
 <p>Вместе с Node поставляется несколько стандартных встроенных модулей,
 большинство из которых описано ниже. Стандартный способ использования этих
@@ -127,7 +127,7 @@ Server running at http://127.0.0.1:8124/</code></pre>
 
 <p>Также возможно расширение Node другими модулями. См. <code>'Модули'</code>.</p>
 
-<h2 id="_">Модули</h2>
+<h2 id="_u041C_u043E_u0434_u0443_u043B_u0438">Модули</h2>
 
 <p>Node использует систему модулей CommonJS.</p>
 
@@ -160,7 +160,7 @@ exports.circumference = function (r) {
 только внутри модуля <code>circle.js</code>. Модули, имена которых не начинаются с <code>'./'</code>
 являются стандартными модулями Node, о них будет рассказано позже.</p>
 
-<h3 id="_">Поиск модулей</h3>
+<h3 id="_u041F_u043E_u0438_u0441_u043A_u043C_u043E_u0434_u0443_u043B_u0435_u0439">Поиск модулей</h3>
 
 <p>модули, имена которых начинаются на <code>'./'</code> считаются относительными для
 вызывающего <code>require()</code> модуля. Это означает, что в примере выше <code>circle.js</code>
@@ -197,7 +197,7 @@ exports.circumference = function (r) {
 <p>Для того, чтобы определить, какой модуль был загружен при вызове <code>require()</code>,
 можно воспользоваться функцией <code>require.resolve()</code>.</p>
 
-<h2 id="c_C_">C/C++ дополнения</h2>
+<h2 id="c_C_u0434_u043E_u043F_u043E_u043B_u043D_u0435_u043D_u0438_u044F">C/C++ дополнения</h2>
 
 <p>Дополнения — это динамически подключаемые объекты. Они могут предоставлять
 связь с библиотеками на языках C/C++. На данный момент API для дополнений
@@ -273,12 +273,12 @@ def build(bld):
 <p>На данный момент это вся документация по созданию дополнений. В качестве примера
 вы можете просмотреть код <a href="http://github.com/ry/node_postgres">node_postgres</a>.</p>
 
-<h2 id="_">Процесс</h2>
+<h2 id="_u041F_u0440_u043E_u0446_u0435_u0441_u0441">Процесс</h2>
 
 <p>Объект <code>process</code> — глобальный и может быть использован в любом месте кода.
 Является экземпляром <code>EventEmitter</code>.</p>
 
-<h3 id="_exit_">Событие: 'exit'</h3>
+<h3 id="_u0421_u043E_u0431_u044B_u0442_u0438_u0435_exit_">Событие: 'exit'</h3>
 
 <p><code>function () {}</code></p>
 
@@ -295,7 +295,7 @@ def build(bld):
   console.log('About to exit.');
 });</code></pre>
 
-<h3 id="_uncaughtException_">Событие: 'uncaughtException'</h3>
+<h3 id="_u0421_u043E_u0431_u044B_u0442_u0438_u0435_uncaughtException_">Событие: 'uncaughtException'</h3>
 
 <p><code>function (err) { }</code></p>
 
@@ -322,7 +322,7 @@ console.log('This will not run.');</code></pre>
 Но для программ, предназначенных для постоянной работы,
 <code>'uncaughtException'</code> может быть очень полезным механизмом безопасности.</p>
 
-<h3 id="_">Сигнальные события</h3>
+<h3 id="_u0421_u0438_u0433_u043D_u0430_u043B_u044C_u043D_u044B_u0435_u0441_u043E_u0431_u044B_u0442_u0438_u044F">Сигнальные события</h3>
 
 <p><code>function () {}</code></p>
 
@@ -567,7 +567,7 @@ oldmask = process.umask(newmask);
 console.log('Changed umask from: ' + oldmask.toString(8) +
             ' to ' + newmask.toString(8));</code></pre>
 
-<h2 id="_">Утилиты</h2>
+<h2 id="_u0423_u0442_u0438_u043B_u0438_u0442_u044B">Утилиты</h2>
 
 <p>Используйте <code>require('util')</code> для доступа к этим функциям.</p>
 
@@ -642,7 +642,7 @@ stream.on("data", function(data) {
 })
 stream.write("It works!"); // Received data: "It works!"</code></pre>
 
-<h2 id="c_">Cобытия</h2>
+<h2 id="c_u043E_u0431_u044B_u0442_u0438_u044F">Cобытия</h2>
 
 <p>Множество объектов в Node генерируют события: <code>net.Server</code> вызывает событие
 при каждом поступающем запросе, <code>fs.readStream</code> вызывает событие при открытии файла.
@@ -724,13 +724,13 @@ console.log(util.inspect(server.listeners('connection')); // [ [Function] ]</cod
 
 <p>Выполнит все обработчики события по порядку с указанными аргументами.</p>
 
-<h4 id="_newListener_">Событие: 'newListener'</h4>
+<h4 id="_u0421_u043E_u0431_u044B_u0442_u0438_u0435_newListener_">Событие: 'newListener'</h4>
 
 <p><code>function (event, listener) { }</code></p>
 
 <p>Это событие вызывается каждый раз при добавлении обработчика события.</p>
 
-<h2 id="_">Буферы</h2>
+<h2 id="_u0411_u0443_u0444_u0435_u0440_u044B">Буферы</h2>
 
 <p>Чистый JavaScript поддерживает Unicode, но в нём нет средств для работы
 с двоичными данными. При работе с TCP или файловой системой часто необходимо
@@ -881,14 +881,14 @@ console.log(buf2.toString('ascii', 0, buf2.length));
 // abc
 // !bc</code></pre>
 
-<h2 id="_">Потоки</h2>
+<h2 id="_u041F_u043E_u0442_u043E_u043A_u0438">Потоки</h2>
 
 <p>Поток — это абстрактный интерфейс, реализуемый многими объектами в Node.
 Например, запрос к HTTP-серверу является потоком, также как stdout. Потоки
 могут быть с возможностью чтения, записи или и того и другого. Все потоки
 являются экземплярами <code>EventEmitter</code>.</p>
 
-<h2 id="_">Поток с возможностью чтения</h2>
+<h2 id="_u041F_u043E_u0442_u043E_u043A_u0441_u0432_u043E_u0437_u043C_u043E_u0436_u043D_u043E_u0441_u0442_u044C_u044E_u0447_u0442_u0435_u043D_u0438_u044F">Поток с возможностью чтения</h2>
 
 <p><code>Поток с возможностью чтения</code> имеет следующие методы, свойства и события.</p>
 
@@ -978,7 +978,7 @@ process.stdin.on("end", function() {
 одобалвяет в объект простую реализацию этих функцйи, вызывающую события
 <code>'pause'</code> и <code>'resume'</code>, соответственно.</p>
 
-<h2 id="_">Поток с возможностью записи</h2>
+<h2 id="_u041F_u043E_u0442_u043E_u043A_u0441_u0432_u043E_u0437_u043C_u043E_u0436_u043D_u043E_u0441_u0442_u044C_u044E_u0437_u0430_u043F_u0438_u0441_u0438">Поток с возможностью записи</h2>
 
 <p>У <code>потока с возможностью записи</code> есть следующие методы, свойства и события.</p>
 
@@ -1045,7 +1045,7 @@ process.stdin.on("end", function() {
 
 <p>Закрывает соответствующий потоку файловый дескриптор после того, как очередь записи окажется пустой.</p>
 
-<h2 id="_">Модуль криптографии</h2>
+<h2 id="_u041C_u043E_u0434_u0443_u043B_u044C_u043A_u0440_u0438_u043F_u0442_u043E_u0433_u0440_u0430_u0444_u0438_u0438">Модуль криптографии</h2>
 
 <p>Используйте <code>require('crypto')</code> чтобы получить доступ к функциям модуля.</p>
 
@@ -1297,7 +1297,7 @@ event.</p>
 
 <p>The number of concurrent connections on the server.</p>
 
-<h2 id="_">Файловая система</h2>
+<h2 id="_u0424_u0430_u0439_u043B_u043E_u0432_u0430_u044F_u0441_u0438_u0441_u0442_u0435_u043C_u0430">Файловая система</h2>
 
 <p>Файловый ввод/вывод обеспечивается с помощью простой обертки вокруг стандартных
 функций POSIX. Используйте <code>require('fs')</code> чтобы получить к ним доступ.
@@ -1649,7 +1649,7 @@ fs.stat('/tmp/world', function (err, stats) {
 
 <p><code>WriteStream</code> является <code>потоком с возможностью записи</code>.</p>
 
-<h3 id="_open_">Событие: 'open'</h3>
+<h3 id="_u0421_u043E_u0431_u044B_u0442_u0438_u0435_open_">Событие: 'open'</h3>
 
 <p><code>function (fd) { }</code></p>
 
@@ -1779,7 +1779,7 @@ path.extname('index')
   util.debug(exists ? "it's there" : "no passwd!");
 });</code></pre>
 
-<h2 id="_">Сеть</h2>
+<h2 id="_u0421_u0435_u0442_u044C">Сеть</h2>
 
 <p>Модуль <code>net</code> предоставляет асинхронные методы для работы с сетью. Он включает
 методы для создания как серверов, так и клиентов (называемых потоками).
@@ -1887,13 +1887,13 @@ server.listen(function() {
 
 <p><code>net.Server</code> — экземпляр <code>EventEmitter</code> со следующими событиями:</p>
 
-<h4 id="_connection_">Событие: 'connection'</h4>
+<h4 id="_u0421_u043E_u0431_u044B_u0442_u0438_u0435_connection_">Событие: 'connection'</h4>
 
 <p><code>function (socket) {}</code></p>
 
 <p>Генерируется при новом соединении. <code>socket</code> — экземпляр <code>net.Socket</code>.</p>
 
-<h4 id="_close_">Событие: 'close'</h4>
+<h4 id="_u0421_u043E_u0431_u044B_u0442_u0438_u0435_close_">Событие: 'close'</h4>
 
 <p><code>function () {}</code></p>
 
@@ -2010,13 +2010,13 @@ server.listen(function() {
 
 <p>Экземпляры <code>net.Stream</code> — экземпляры <code>EventEmitter</code> со следующими событиями:</p>
 
-<h4 id="_connect_">Событие: 'connect'</h4>
+<h4 id="_u0421_u043E_u0431_u044B_u0442_u0438_u0435_connect_">Событие: 'connect'</h4>
 
 <p><code>function () { }</code></p>
 
 <p>Генерируется после успешной установки соединения. См. <code>connect()</code>.</p>
 
-<h4 id="_data_">Событие: 'data'</h4>
+<h4 id="_u0421_u043E_u0431_u044B_u0442_u0438_u0435_data_">Событие: 'data'</h4>
 
 <p><code>function (data) { }</code></p>
 
@@ -2025,7 +2025,7 @@ server.listen(function() {
 <code>socket.setEncoding()</code>. (См. секцию о <code>потоках с возможностью чтения</code> для
 более подробной информации.)</p>
 
-<h4 id="_end_">Событие: 'end'</h4>
+<h4 id="_u0421_u043E_u0431_u044B_u0442_u0438_u0435_end_">Событие: 'end'</h4>
 
 <p><code>function () { }</code></p>
 
@@ -2036,7 +2036,7 @@ server.listen(function() {
 то поток не будет автоматически завершаться (<code>end()</code>), т.е. пользоввателю
 требуется вручную вызвать <code>end()</code>.</p>
 
-<h4 id="_timeout_">Событие: 'timeout'</h4>
+<h4 id="_u0421_u043E_u0431_u044B_u0442_u0438_u0435_timeout_">Событие: 'timeout'</h4>
 
 <p><code>function () { }</code></p>
 
@@ -2045,21 +2045,21 @@ server.listen(function() {
 
 <p>См. также: <code>socket.setTimeout()</code>.</p>
 
-<h4 id="_drain_">Событие: 'drain'</h4>
+<h4 id="_u0421_u043E_u0431_u044B_u0442_u0438_u0435_drain_">Событие: 'drain'</h4>
 
 <p><code>function () { }</code></p>
 
 <p>Генерируется когда буфер записи становится пустым (все данные, переданные в поток,
 были отправлены получателю). Может быть использоваться для отправки файлов.</p>
 
-<h4 id="_error_">Событие: 'error'</h4>
+<h4 id="_u0421_u043E_u0431_u044B_u0442_u0438_u0435_error_">Событие: 'error'</h4>
 
 <p><code>function (exception) { }</code></p>
 
 <p>Генерируется при возникновении ошибки. Сразу после этого будет сгенерировано
 событие <code>'close'</code>.</p>
 
-<h4 id="_close_">Событие: 'close'</h4>
+<h4 id="_u0421_u043E_u0431_u044B_u0442_u0438_u0435_close_">Событие: 'close'</h4>
 
 <p><code>function (had_error) { }</code></p>
 
@@ -2174,27 +2174,27 @@ neccessarily the value initially passed to <code>lookup</code>).</p>
 
 <ul><li><code>dns.TEMPFAIL</code>: таймаут, SERVFAIL или что-то подобное.</li><li><code>dns.PROTOCOL</code>: получен повреждённый ответ.</li><li><code>dns.NXDOMAIN</code>: домен не существует.</li><li><code>dns.NODATA</code>: домен существует, но нет данных требуемого типа.</li><li><code>dns.NOMEM</code>: при обработке закончилась память.</li><li><code>dns.BADQUERY</code>: запрос неверно сформирован.</li></ul>
 
-<h2 id="_">Датаграммы</h2>
+<h2 id="_u0414_u0430_u0442_u0430_u0433_u0440_u0430_u043C_u043C_u044B">Датаграммы</h2>
 
 <p>Сокеты для датаграмм доступны при включении <code>require('dgram')</code>. Датаграммы
 чаще всего обрабатываются как сообщения IP/UDP, но они могут быть использованы
 и с доменными сокетами Unix.</p>
 
-<h3 id="_message_">Событие: 'message'</h3>
+<h3 id="_u0421_u043E_u0431_u044B_u0442_u0438_u0435_message_">Событие: 'message'</h3>
 
 <p><code>function (msg, rinfo) { }</code></p>
 
 <p>Генерируется когда новая датаграмма доступна на сокете. <code>msg</code> это <code>Buffer</code>,
 а <code>rinfo</code> это объект с информацией об адресе отправителя и количестве байт в датаграмме.</p>
 
-<h3 id="_listening_">Событие: 'listening'</h3>
+<h3 id="_u0421_u043E_u0431_u044B_u0442_u0438_u0435_listening_">Событие: 'listening'</h3>
 
 <p><code>function () { }</code></p>
 
 <p>Генеритуется когда сокет начинает приём датаграмм. Для UDP-сокета это происходит
 при создании. Сокеты Unix не начинают приём до вызова для них <code>bind()</code>.</p>
 
-<h3 id="_close_">Событие: 'close'</h3>
+<h3 id="_u0421_u043E_u0431_u044B_u0442_u0438_u0435_close_">Событие: 'close'</h3>
 
 <p><code>function () { }</code></p>
 
@@ -2372,7 +2372,7 @@ Node разбирает HTTP-сообщение на заголовки и те�
 
 <p>Это <code>EventEmitter</code> со следующими событиями:</p>
 
-<h3 id="_request_">Событие: 'request'</h3>
+<h3 id="_u0421_u043E_u0431_u044B_u0442_u0438_u0435_request_">Событие: 'request'</h3>
 
 <p><code>function (request, response) { }</code></p>
 
@@ -2381,7 +2381,7 @@ Node разбирает HTTP-сообщение на заголовки и те�
 Объект <code>request</code> — экземпляр <code>http.ServerRequest</code>,
 объект <code>response</code> — экземпляр <code>http.ServerResponse</code>.</p>
 
-<h3 id="_connection_">Событие: 'connection'</h3>
+<h3 id="_u0421_u043E_u0431_u044B_u0442_u0438_u0435_connection_">Событие: 'connection'</h3>
 
 <p><code>function (stream) { }</code></p>
 
@@ -2389,13 +2389,13 @@ Node разбирает HTTP-сообщение на заголовки и те�
 Обычно пользователи не используют это событие. Объект потока <code>stream</code> также можно
 найти в свойстве объекта запроса <code>request.connection</code>.</p>
 
-<h3 id="_close_">Событие: 'close'</h3>
+<h3 id="_u0421_u043E_u0431_u044B_u0442_u0438_u0435_close_">Событие: 'close'</h3>
 
 <p><code>function (errno) { }</code></p>
 
 <p>Генерируется при завершении работы сервера.</p>
 
-<h3 id="_checkContinue_">Событие: 'checkContinue'</h3>
+<h3 id="_u0421_u043E_u0431_u044B_u0442_u0438_u0435_checkContinue_">Событие: 'checkContinue'</h3>
 
 <p><code>function (request, response) {}</code></p>
 
@@ -2410,7 +2410,7 @@ Node разбирает HTTP-сообщение на заголовки и те�
 <p>Имейте в виду, что если это событие наступило и было обработано, то событие
 <code>request</code> не наступает.</p>
 
-<h3 id="_upgrade_">Событие: 'upgrade'</h3>
+<h3 id="_u0421_u043E_u0431_u044B_u0442_u0438_u0435_upgrade_">Событие: 'upgrade'</h3>
 
 <p><code>function (request, socket, head)</code></p>
 
@@ -2424,7 +2424,7 @@ Node разбирает HTTP-сообщение на заголовки и те�
 <code>data</code>, и программисту нужно назначить его заново чтобы обрабатывать данные,
 получаемые этим соединением.</p>
 
-<h3 id="_clientError_">Событие: 'clientError'</h3>
+<h3 id="_u0421_u043E_u0431_u044B_u0442_u0438_u0435_clientError_">Событие: 'clientError'</h3>
 
 <p><code>function (exception) {}</code></p>
 
@@ -2464,7 +2464,7 @@ Node разбирает HTTP-сообщение на заголовки и те�
 
 <p>Это <code>EventEmitter</code> со следующими событиями:</p>
 
-<h3 id="_data_">Событие: 'data'</h3>
+<h3 id="_u0421_u043E_u0431_u044B_u0442_u0438_u0435_data_">Событие: 'data'</h3>
 
 <p><code>function (chunk) { }</code></p>
 
@@ -2474,7 +2474,7 @@ Node разбирает HTTP-сообщение на заголовки и те�
 уже раскодировано из transfer-encoding. Часть тела представлена в виде строки.
 Кодировка тела сообщения задаётся <code>request.setBodyEncoding()</code>.</p>
 
-<h3 id="_end_">Событие: 'end'</h3>
+<h3 id="_u0421_u043E_u0431_u044B_u0442_u0438_u0435_end_">Событие: 'end'</h3>
 
 <p><code>function () { }</code></p>
 
@@ -2655,7 +2655,7 @@ request.on('response', function (response) {
 См. <a href="http://tools.ietf.org/html/rfc2616#section-8.2.3">RFC2616 Section 8.2.3</a>
 для дополнительной информации.</p></li></ul>
 
-<h3 id="_upgrade_">Событие: 'upgrade'</h3>
+<h3 id="_u0421_u043E_u0431_u044B_u0442_u0438_u0435_upgrade_">Событие: 'upgrade'</h3>
 
 <p><code>function (request, socket, head)</code></p>
 
@@ -2665,7 +2665,7 @@ request.on('response', function (response) {
 
 <p>См. описание события <code>upgrade</code> для <code>http.Server</code>.</p>
 
-<h3 id="_continue_">Событие: 'continue'</h3>
+<h3 id="_u0421_u043E_u0431_u044B_u0442_u0438_u0435_continue_">Событие: 'continue'</h3>
 
 <p><code>function ()</code></p>
 
@@ -2751,7 +2751,7 @@ request.on('response', function (response) {
 
 <p>Это экземпляр <code>EventEmitter</code> со следующими событиями:</p>
 
-<h3 id="_response_">Событие: 'response'</h3>
+<h3 id="_u0421_u043E_u0431_u044B_u0442_u0438_u0435_response_">Событие: 'response'</h3>
 
 <p><code>function (response) { }</code></p>
 
@@ -2785,7 +2785,7 @@ request.on('response', function (response) {
 
 <p>Объект ответа — <code>поток с возможностью чтения</code>.</p>
 
-<h3 id="_data_">Событие: 'data'</h3>
+<h3 id="_u0421_u043E_u0431_u044B_u0442_u0438_u0435_data_">Событие: 'data'</h3>
 
 <p><code>function (chunk) {}</code></p>
 
@@ -2794,7 +2794,7 @@ request.on('response', function (response) {
 Часть тела сообщения передаётся обработчику в виде строки. Кодировка тела
 сообщения задаётся <code>response.setBodyEncoding()</code>.</p>
 
-<h3 id="_end_">Событие: 'end'</h3>
+<h3 id="_u0421_u043E_u0431_u044B_u0442_u0438_u0435_end_">Событие: 'end'</h3>
 
 <p><code>function () {}</code></p>
 
@@ -2866,7 +2866,7 @@ request.on('response', function (response) {
 
 <p>Получает базовый URL и относительный URL, и разрешает их как это сделал бы браузер для гиперссылки.</p>
 
-<h2 id="_">Разбор строки запроса</h2>
+<h2 id="_u0420_u0430_u0437_u0431_u043E_u0440_u0441_u0442_u0440_u043E_u043A_u0438_u0437_u0430_u043F_u0440_u043E_u0441_u0430">Разбор строки запроса</h2>
 
 <p>Этот модуль предоставляет инструменты для работы со строкой запроса.
 Используйте <code>require('querystring')</code> чтобы получить доступ к функциям модуля.</p>
@@ -2905,7 +2905,7 @@ querystring.stringify({foo: 'bar', baz: 'bob'}, ';', ':')
 <p>Функция декодирования, используемая <code>querystring.parse</code>,
 предоставляется для того чтобы проще было заменить её собственной.</p>
 
-<h2 id="_">Интерактивная консоль (REPL)</h2>
+<h2 id="_u0418_u043D_u0442_u0435_u0440_u0430_u043A_u0442_u0438_u0432_u043D_u0430_u044F_u043A_u043E_u043D_u0441_u043E_u043B_u044C_">Интерактивная консоль (REPL)</h2>
 
 <p>Интерактивная консоль (Read-Eval-Print-Loop, REPL) доступна как самостоятельная
 программа и может включаться в другие скрипты. REPL предоставляет возможность
@@ -2971,7 +2971,7 @@ net.createServer(function (socket) {
 <p>Запуская REPL на сокете вместо стандартного ввода-вывода Вы можете подключаться
 к работающему процессу node не перезапуская его.</p>
 
-<h3 id="_REPL">Возможности REPL</h3>
+<h3 id="_u0412_u043E_u0437_u043C_u043E_u0436_u043D_u043E_u0441_u0442_u0438_REPL">Возможности REPL</h3>
 
 <p>Внутри REPL Control+D завершает его работу. Можно вводить многострочные выражения.</p>
 
@@ -3005,7 +3005,7 @@ repl.start().context.m = msg;</code></pre>
 <ul><li><code>.break</code> - При вводе многострочного выражения иногда можно ошибиться,
 либо совсем отказаться от его ввода. <code>.break</code> начнёт ввод заново.</li><li><code>.clear</code> - Сбрасывает объект <code>context</code> в пустой и очищает введённое многострочное выражение.</li><li><code>.exit</code> - Закрывает потоки ввода-вывода, принуждая REPL завершиться.</li><li><code>.help</code> - Показывает список специальных команд.</li></ul>
 
-<h2 id="_">Дочерние процессы</h2>
+<h2 id="_u0414_u043E_u0447_u0435_u0440_u043D_u0438_u0435_u043F_u0440_u043E_u0446_u0435_u0441_u0441_u044B">Дочерние процессы</h2>
 
 <p>Node предоставляет tri-directional popen(3) в классе <code>ChildProcess</code>.</p>
 
@@ -3019,7 +3019,7 @@ repl.start().context.m = msg;</code></pre>
 
 <p><code>ChildProcess</code> — экземпляр <code>EventEmitter</code>.</p>
 
-<h3 id="_exit_">Событие: 'exit'</h3>
+<h3 id="_u0421_u043E_u0431_u044B_u0442_u0438_u0435_exit_">Событие: 'exit'</h3>
 
 <p><code>function (code, signal) {}</code></p>
 
@@ -3201,7 +3201,7 @@ grep.kill('SIGHUP');</code></pre>
 
 <p>См. также: <code>kill(2)</code>.</p>
 
-<h2 id="_">Тестирование (asserts)</h2>
+<h2 id="_u0422_u0435_u0441_u0442_u0438_u0440_u043E_u0432_u0430_u043D_u0438_u0435_">Тестирование (asserts)</h2>
 
 <p>Этот модуль используется для написания юнит-тестов для ваших приложений,
 вы можете использовать его вызвав <code>require('assert')</code>.</p>
@@ -3499,7 +3499,7 @@ with <code>SIGUSR1</code>.</p>
 
 <h1>Приложения</h1>
 
-<h2 id="_1_">Приложение 1 - Рекомендуемые сторонние модули</h2>
+<h2 id="_u041F_u0440_u0438_u043B_u043E_u0436_u0435_u043D_u0438_u0435_1_u0420_u0435_u043A_u043E_u043C_u0435_u043D_u0434_u0443_u0435_u043C_u044B_u0435_u0441_u0442_u043E_u0440_u043E_u043D_u043D_u0438_u0435_u043C_u043E_u0434_u0443_u043B_u0438">Приложение 1 - Рекомендуемые сторонние модули</h2>
 
 <p>Для Node есть множество модулей.
 Их список можно найти в <a href="https://github.com/ry/node/wiki/modules">вики на GitHub</a>.</p>

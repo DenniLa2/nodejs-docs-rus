@@ -15,7 +15,7 @@
       </div>
       <hr />
     </header>
-    <div id="toc"><h2>Содержание</h2><ul><li><a href="#hTTP">HTTP</a></li><li><a href="#http.Server">http.Server</a><ul><li><a href="#request_">request'</a></li><li><a href="#connection_">connection'</a></li><li><a href="#close_">close'</a></li><li><a href="#checkContinue_">checkContinue'</a></li><li><a href="#upgrade_">upgrade'</a></li><li><a href="#clientError_">clientError'</a></li><li><a href="#http.createServer">http.createServer(requestListener)</a></li><li><a href="#server.listen">server.listen(port, [hostname], [callback])</a></li><li><a href="#server.listen">server.listen(path, [callback])</a></li><li><a href="#server.close">server.close()</a></li></ul></li><li><a href="#http.ServerRequest">http.ServerRequest</a><ul><li><a href="#data_">data'</a></li><li><a href="#end_">end'</a></li><li><a href="#request.method">request.method</a></li><li><a href="#request.url">request.url</a></li><li><a href="#request.headers">request.headers</a></li><li><a href="#request.trailers">request.trailers</a></li><li><a href="#request.httpVersion">request.httpVersion</a></li><li><a href="#request.setEncoding">request.setEncoding(encoding=null)</a></li><li><a href="#request.pause">request.pause()</a></li><li><a href="#request.resume">request.resume()</a></li><li><a href="#request.connection">request.connection</a></li></ul></li><li><a href="#http.ServerResponse">http.ServerResponse</a><ul><li><a href="#response.writeContinue">response.writeContinue()</a></li><li><a href="#response.writeHead">response.writeHead(statusCode, [reasonPhrase], [headers])</a></li><li><a href="#response.write">response.write(chunk, encoding='utf8')</a></li><li><a href="#response.addTrailers">response.addTrailers(headers)</a></li><li><a href="#response.end">response.end([data], [encoding])</a></li></ul></li><li><a href="#http.Client">http.Client</a><ul><li><a href="#upgrade_">upgrade'</a></li><li><a href="#continue_">continue'</a></li><li><a href="#http.createClient">http.createClient(port, host='localhost', secure=false, [credentials])</a></li><li><a href="#client.request">client.request(method='GET', path, [request_headers])</a></li><li><a href="#client.verifyPeer">client.verifyPeer()</a></li><li><a href="#client.getPeerCertificate">client.getPeerCertificate()</a></li></ul></li><li><a href="#http.ClientRequest">http.ClientRequest</a><ul><li><a href="#response_">response'</a></li><li><a href="#request.write">request.write(chunk, encoding='utf8')</a></li><li><a href="#request.end">request.end([data], [encoding])</a></li></ul></li><li><a href="#http.ClientResponse">http.ClientResponse</a><ul><li><a href="#data_">data'</a></li><li><a href="#end_">end'</a></li><li><a href="#response.statusCode">response.statusCode</a></li><li><a href="#response.httpVersion">response.httpVersion</a></li><li><a href="#response.headers">response.headers</a></li><li><a href="#response.trailers">response.trailers</a></li><li><a href="#response.setEncoding">response.setEncoding(encoding=null)</a></li><li><a href="#response.pause">response.pause()</a></li><li><a href="#response.resume">response.resume()</a></li><li><a href="#response.client">response.client</a></li></ul></li></ul><hr /></div>
+    <div id="toc"><h2>Содержание</h2><ul><li><a href="#hTTP">HTTP</a></li><li><a href="#http.Server">http.Server</a><ul><li><a href="#_u0421_u043E_u0431_u044B_u0442_u0438_u0435_request_">Событие: 'request'</a></li><li><a href="#_u0421_u043E_u0431_u044B_u0442_u0438_u0435_connection_">Событие: 'connection'</a></li><li><a href="#_u0421_u043E_u0431_u044B_u0442_u0438_u0435_close_">Событие: 'close'</a></li><li><a href="#_u0421_u043E_u0431_u044B_u0442_u0438_u0435_checkContinue_">Событие: 'checkContinue'</a></li><li><a href="#_u0421_u043E_u0431_u044B_u0442_u0438_u0435_upgrade_">Событие: 'upgrade'</a></li><li><a href="#_u0421_u043E_u0431_u044B_u0442_u0438_u0435_clientError_">Событие: 'clientError'</a></li><li><a href="#http.createServer">http.createServer(requestListener)</a></li><li><a href="#server.listen">server.listen(port, [hostname], [callback])</a></li><li><a href="#server.listen">server.listen(path, [callback])</a></li><li><a href="#server.close">server.close()</a></li></ul></li><li><a href="#http.ServerRequest">http.ServerRequest</a><ul><li><a href="#_u0421_u043E_u0431_u044B_u0442_u0438_u0435_data_">Событие: 'data'</a></li><li><a href="#_u0421_u043E_u0431_u044B_u0442_u0438_u0435_end_">Событие: 'end'</a></li><li><a href="#request.method">request.method</a></li><li><a href="#request.url">request.url</a></li><li><a href="#request.headers">request.headers</a></li><li><a href="#request.trailers">request.trailers</a></li><li><a href="#request.httpVersion">request.httpVersion</a></li><li><a href="#request.setEncoding">request.setEncoding(encoding=null)</a></li><li><a href="#request.pause">request.pause()</a></li><li><a href="#request.resume">request.resume()</a></li><li><a href="#request.connection">request.connection</a></li></ul></li><li><a href="#http.ServerResponse">http.ServerResponse</a><ul><li><a href="#response.writeContinue">response.writeContinue()</a></li><li><a href="#response.writeHead">response.writeHead(statusCode, [reasonPhrase], [headers])</a></li><li><a href="#response.write">response.write(chunk, encoding='utf8')</a></li><li><a href="#response.addTrailers">response.addTrailers(headers)</a></li><li><a href="#response.end">response.end([data], [encoding])</a></li></ul></li><li><a href="#http.Client">http.Client</a><ul><li><a href="#_u0421_u043E_u0431_u044B_u0442_u0438_u0435_upgrade_">Событие: 'upgrade'</a></li><li><a href="#_u0421_u043E_u0431_u044B_u0442_u0438_u0435_continue_">Событие: 'continue'</a></li><li><a href="#http.createClient">http.createClient(port, host='localhost', secure=false, [credentials])</a></li><li><a href="#client.request">client.request(method='GET', path, [request_headers])</a></li><li><a href="#client.verifyPeer">client.verifyPeer()</a></li><li><a href="#client.getPeerCertificate">client.getPeerCertificate()</a></li></ul></li><li><a href="#http.ClientRequest">http.ClientRequest</a><ul><li><a href="#_u0421_u043E_u0431_u044B_u0442_u0438_u0435_response_">Событие: 'response'</a></li><li><a href="#request.write">request.write(chunk, encoding='utf8')</a></li><li><a href="#request.end">request.end([data], [encoding])</a></li></ul></li><li><a href="#http.ClientResponse">http.ClientResponse</a><ul><li><a href="#_u0421_u043E_u0431_u044B_u0442_u0438_u0435_data_">Событие: 'data'</a></li><li><a href="#_u0421_u043E_u0431_u044B_u0442_u0438_u0435_end_">Событие: 'end'</a></li><li><a href="#response.statusCode">response.statusCode</a></li><li><a href="#response.httpVersion">response.httpVersion</a></li><li><a href="#response.headers">response.headers</a></li><li><a href="#response.trailers">response.trailers</a></li><li><a href="#response.setEncoding">response.setEncoding(encoding=null)</a></li><li><a href="#response.pause">response.pause()</a></li><li><a href="#response.resume">response.resume()</a></li><li><a href="#response.client">response.client</a></li></ul></li></ul><hr /></div>
 <h2 id="hTTP">HTTP</h2>
 
 <p>Для использования клиента и сервера HTTP необходимо подключить
@@ -47,7 +47,7 @@ Node разбирает HTTP-сообщение на заголовки и те�
 
 <p>Это <code>EventEmitter</code> со следующими событиями:</p>
 
-<h3 id="_request_">Событие: 'request'</h3>
+<h3 id="_u0421_u043E_u0431_u044B_u0442_u0438_u0435_request_">Событие: 'request'</h3>
 
 <p><code>function (request, response) { }</code></p>
 
@@ -56,7 +56,7 @@ Node разбирает HTTP-сообщение на заголовки и те�
 Объект <code>request</code> — экземпляр <code>http.ServerRequest</code>,
 объект <code>response</code> — экземпляр <code>http.ServerResponse</code>.</p>
 
-<h3 id="_connection_">Событие: 'connection'</h3>
+<h3 id="_u0421_u043E_u0431_u044B_u0442_u0438_u0435_connection_">Событие: 'connection'</h3>
 
 <p><code>function (stream) { }</code></p>
 
@@ -64,13 +64,13 @@ Node разбирает HTTP-сообщение на заголовки и те�
 Обычно пользователи не используют это событие. Объект потока <code>stream</code> также можно
 найти в свойстве объекта запроса <code>request.connection</code>.</p>
 
-<h3 id="_close_">Событие: 'close'</h3>
+<h3 id="_u0421_u043E_u0431_u044B_u0442_u0438_u0435_close_">Событие: 'close'</h3>
 
 <p><code>function (errno) { }</code></p>
 
 <p>Генерируется при завершении работы сервера.</p>
 
-<h3 id="_checkContinue_">Событие: 'checkContinue'</h3>
+<h3 id="_u0421_u043E_u0431_u044B_u0442_u0438_u0435_checkContinue_">Событие: 'checkContinue'</h3>
 
 <p><code>function (request, response) {}</code></p>
 
@@ -85,7 +85,7 @@ Node разбирает HTTP-сообщение на заголовки и те�
 <p>Имейте в виду, что если это событие наступило и было обработано, то событие
 <code>request</code> не наступает.</p>
 
-<h3 id="_upgrade_">Событие: 'upgrade'</h3>
+<h3 id="_u0421_u043E_u0431_u044B_u0442_u0438_u0435_upgrade_">Событие: 'upgrade'</h3>
 
 <p><code>function (request, socket, head)</code></p>
 
@@ -99,7 +99,7 @@ Node разбирает HTTP-сообщение на заголовки и те�
 <code>data</code>, и программисту нужно назначить его заново чтобы обрабатывать данные,
 получаемые этим соединением.</p>
 
-<h3 id="_clientError_">Событие: 'clientError'</h3>
+<h3 id="_u0421_u043E_u0431_u044B_u0442_u0438_u0435_clientError_">Событие: 'clientError'</h3>
 
 <p><code>function (exception) {}</code></p>
 
@@ -139,7 +139,7 @@ Node разбирает HTTP-сообщение на заголовки и те�
 
 <p>Это <code>EventEmitter</code> со следующими событиями:</p>
 
-<h3 id="_data_">Событие: 'data'</h3>
+<h3 id="_u0421_u043E_u0431_u044B_u0442_u0438_u0435_data_">Событие: 'data'</h3>
 
 <p><code>function (chunk) { }</code></p>
 
@@ -149,7 +149,7 @@ Node разбирает HTTP-сообщение на заголовки и те�
 уже раскодировано из transfer-encoding. Часть тела представлена в виде строки.
 Кодировка тела сообщения задаётся <code>request.setBodyEncoding()</code>.</p>
 
-<h3 id="_end_">Событие: 'end'</h3>
+<h3 id="_u0421_u043E_u0431_u044B_u0442_u0438_u0435_end_">Событие: 'end'</h3>
 
 <p><code>function () { }</code></p>
 
@@ -330,7 +330,7 @@ request.on('response', function (response) {
 См. <a href="http://tools.ietf.org/html/rfc2616#section-8.2.3">RFC2616 Section 8.2.3</a>
 для дополнительной информации.</p></li></ul>
 
-<h3 id="_upgrade_">Событие: 'upgrade'</h3>
+<h3 id="_u0421_u043E_u0431_u044B_u0442_u0438_u0435_upgrade_">Событие: 'upgrade'</h3>
 
 <p><code>function (request, socket, head)</code></p>
 
@@ -340,7 +340,7 @@ request.on('response', function (response) {
 
 <p>См. описание события <code>upgrade</code> для <code>http.Server</code>.</p>
 
-<h3 id="_continue_">Событие: 'continue'</h3>
+<h3 id="_u0421_u043E_u0431_u044B_u0442_u0438_u0435_continue_">Событие: 'continue'</h3>
 
 <p><code>function ()</code></p>
 
@@ -426,7 +426,7 @@ request.on('response', function (response) {
 
 <p>Это экземпляр <code>EventEmitter</code> со следующими событиями:</p>
 
-<h3 id="_response_">Событие: 'response'</h3>
+<h3 id="_u0421_u043E_u0431_u044B_u0442_u0438_u0435_response_">Событие: 'response'</h3>
 
 <p><code>function (response) { }</code></p>
 
@@ -460,7 +460,7 @@ request.on('response', function (response) {
 
 <p>Объект ответа — <code>поток с возможностью чтения</code>.</p>
 
-<h3 id="_data_">Событие: 'data'</h3>
+<h3 id="_u0421_u043E_u0431_u044B_u0442_u0438_u0435_data_">Событие: 'data'</h3>
 
 <p><code>function (chunk) {}</code></p>
 
@@ -469,7 +469,7 @@ request.on('response', function (response) {
 Часть тела сообщения передаётся обработчику в виде строки. Кодировка тела
 сообщения задаётся <code>response.setBodyEncoding()</code>.</p>
 
-<h3 id="_end_">Событие: 'end'</h3>
+<h3 id="_u0421_u043E_u0431_u044B_u0442_u0438_u0435_end_">Событие: 'end'</h3>
 
 <p><code>function () {}</code></p>
 

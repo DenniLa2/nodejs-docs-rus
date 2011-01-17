@@ -15,13 +15,13 @@
       </div>
       <hr />
     </header>
-    <div id="toc"><h2>Содержание</h2><ul><li><a href="#process_.">process` — глобальный и может быть использован в любом месте кода.</a><ul><li><a href="#exit_">exit'</a></li><li><a href="#uncaughtException_">uncaughtException'</a></li><li><a href="#function_">function () {}`</a></li><li><a href="#process.stdout">process.stdout</a></li><li><a href="#process.stdin">process.stdin</a></li><li><a href="#process.argv">process.argv</a></li><li><a href="#process.execPath">process.execPath</a></li><li><a href="#process.chdir">process.chdir(directory)</a></li><li><a href="#process.cwd">process.cwd()</a></li><li><a href="#process.env">process.env</a></li><li><a href="#process.exit">process.exit(code=0)</a></li><li><a href="#process.getgid">process.getgid()</a></li><li><a href="#process.setgid">process.setgid(id)</a></li><li><a href="#process.getuid">process.getuid()</a></li><li><a href="#process.setuid">process.setuid(id)</a></li><li><a href="#process.version">process.version</a></li><li><a href="#process.installPrefix">process.installPrefix</a></li><li><a href="#process.kill">process.kill(pid, signal='SIGINT')</a></li><li><a href="#process.pid">process.pid</a></li><li><a href="#process.title">process.title</a></li><li><a href="#process.platform">process.platform</a></li><li><a href="#process.memoryUsage">process.memoryUsage()</a></li><li><a href="#process.nextTick">process.nextTick(callback)</a></li><li><a href="#process.umask">process.umask([mask])</a></li></ul></li></ul><hr /></div>
-<h2 id="_">Процесс</h2>
+    <div id="toc"><h2>Содержание</h2><ul><li><a href="#_u041F_u0440_u043E_u0446_u0435_u0441_u0441">Процесс</a><ul><li><a href="#_u0421_u043E_u0431_u044B_u0442_u0438_u0435_exit_">Событие: 'exit'</a></li><li><a href="#_u0421_u043E_u0431_u044B_u0442_u0438_u0435_uncaughtException_">Событие: 'uncaughtException'</a></li><li><a href="#_u0421_u0438_u0433_u043D_u0430_u043B_u044C_u043D_u044B_u0435_u0441_u043E_u0431_u044B_u0442_u0438_u044F">Сигнальные события</a></li><li><a href="#process.stdout">process.stdout</a></li><li><a href="#process.stdin">process.stdin</a></li><li><a href="#process.argv">process.argv</a></li><li><a href="#process.execPath">process.execPath</a></li><li><a href="#process.chdir">process.chdir(directory)</a></li><li><a href="#process.cwd">process.cwd()</a></li><li><a href="#process.env">process.env</a></li><li><a href="#process.exit">process.exit(code=0)</a></li><li><a href="#process.getgid">process.getgid()</a></li><li><a href="#process.setgid">process.setgid(id)</a></li><li><a href="#process.getuid">process.getuid()</a></li><li><a href="#process.setuid">process.setuid(id)</a></li><li><a href="#process.version">process.version</a></li><li><a href="#process.installPrefix">process.installPrefix</a></li><li><a href="#process.kill">process.kill(pid, signal='SIGINT')</a></li><li><a href="#process.pid">process.pid</a></li><li><a href="#process.title">process.title</a></li><li><a href="#process.platform">process.platform</a></li><li><a href="#process.memoryUsage">process.memoryUsage()</a></li><li><a href="#process.nextTick">process.nextTick(callback)</a></li><li><a href="#process.umask">process.umask([mask])</a></li></ul></li></ul><hr /></div>
+<h2 id="_u041F_u0440_u043E_u0446_u0435_u0441_u0441">Процесс</h2>
 
 <p>Объект <code>process</code> — глобальный и может быть использован в любом месте кода.
 Является экземпляром <code>EventEmitter</code>.</p>
 
-<h3 id="_exit_">Событие: 'exit'</h3>
+<h3 id="_u0421_u043E_u0431_u044B_u0442_u0438_u0435_exit_">Событие: 'exit'</h3>
 
 <p><code>function () {}</code></p>
 
@@ -38,7 +38,7 @@
   console.log('About to exit.');
 });</code></pre>
 
-<h3 id="_uncaughtException_">Событие: 'uncaughtException'</h3>
+<h3 id="_u0421_u043E_u0431_u044B_u0442_u0438_u0435_uncaughtException_">Событие: 'uncaughtException'</h3>
 
 <p><code>function (err) { }</code></p>
 
@@ -65,7 +65,7 @@ console.log('This will not run.');</code></pre>
 Но для программ, предназначенных для постоянной работы,
 <code>'uncaughtException'</code> может быть очень полезным механизмом безопасности.</p>
 
-<h3 id="_">Сигнальные события</h3>
+<h3 id="_u0421_u0438_u0433_u043D_u0430_u043B_u044C_u043D_u044B_u0435_u0441_u043E_u0431_u044B_u0442_u0438_u044F">Сигнальные события</h3>
 
 <p><code>function () {}</code></p>
 

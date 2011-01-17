@@ -15,15 +15,15 @@
       </div>
       <hr />
     </header>
-    <div id="toc"><h2>Содержание</h2><ul><li><a href="#node.">Node.</a></li><li><a href="#event_data_">Event: 'data'</a><ul><li><a href="#event_end_">Event: 'end'</a></li><li><a href="#event_error_">Event: 'error'</a></li><li><a href="#event_close_">Event: 'close'</a></li><li><a href="#event_fd_">Event: 'fd'</a></li><li><a href="#stream.readable">stream.readable</a></li><li><a href="#stream.setEncoding">stream.setEncoding(encoding)</a></li><li><a href="#stream.pause">stream.pause()</a></li><li><a href="#stream.resume">stream.resume()</a></li><li><a href="#stream.destroy">stream.destroy()</a></li><li><a href="#stream.pipe">stream.pipe(destination, [options])</a></li></ul></li><li><a href="#event_drain_">Event: 'drain'</a><ul><li><a href="#event_error_">Event: 'error'</a></li><li><a href="#event_close_">Event: 'close'</a></li><li><a href="#stream.writable">stream.writable</a></li><li><a href="#stream.write">stream.write(string, encoding='utf8', [fd])</a></li><li><a href="#stream.write">stream.write(buffer)</a></li><li><a href="#stream.end">stream.end()</a></li><li><a href="#stream.end">stream.end(string, encoding)</a></li><li><a href="#stream.end">stream.end(buffer)</a></li><li><a href="#stream.destroy">stream.destroy()</a></li><li><a href="#stream.destroySoon">stream.destroySoon()</a></li></ul></li></ul><hr /></div>
-<h2 id="_">Потоки</h2>
+    <div id="toc"><h2>Содержание</h2><ul><li><a href="#_u041F_u043E_u0442_u043E_u043A_u0438">Потоки</a></li><li><a href="#_u041F_u043E_u0442_u043E_u043A_u0441_u0432_u043E_u0437_u043C_u043E_u0436_u043D_u043E_u0441_u0442_u044C_u044E_u0447_u0442_u0435_u043D_u0438_u044F">Поток с возможностью чтения</a><ul><li><a href="#event_data_">Event: 'data'</a></li><li><a href="#event_end_">Event: 'end'</a></li><li><a href="#event_error_">Event: 'error'</a></li><li><a href="#event_close_">Event: 'close'</a></li><li><a href="#event_fd_">Event: 'fd'</a></li><li><a href="#stream.readable">stream.readable</a></li><li><a href="#stream.setEncoding">stream.setEncoding(encoding)</a></li><li><a href="#stream.pause">stream.pause()</a></li><li><a href="#stream.resume">stream.resume()</a></li><li><a href="#stream.destroy">stream.destroy()</a></li><li><a href="#stream.pipe">stream.pipe(destination, [options])</a></li></ul></li><li><a href="#_u041F_u043E_u0442_u043E_u043A_u0441_u0432_u043E_u0437_u043C_u043E_u0436_u043D_u043E_u0441_u0442_u044C_u044E_u0437_u0430_u043F_u0438_u0441_u0438">Поток с возможностью записи</a><ul><li><a href="#event_drain_">Event: 'drain'</a></li><li><a href="#event_error_">Event: 'error'</a></li><li><a href="#event_close_">Event: 'close'</a></li><li><a href="#stream.writable">stream.writable</a></li><li><a href="#stream.write">stream.write(string, encoding='utf8', [fd])</a></li><li><a href="#stream.write">stream.write(buffer)</a></li><li><a href="#stream.end">stream.end()</a></li><li><a href="#stream.end">stream.end(string, encoding)</a></li><li><a href="#stream.end">stream.end(buffer)</a></li><li><a href="#stream.destroy">stream.destroy()</a></li><li><a href="#stream.destroySoon">stream.destroySoon()</a></li></ul></li></ul><hr /></div>
+<h2 id="_u041F_u043E_u0442_u043E_u043A_u0438">Потоки</h2>
 
 <p>Поток — это абстрактный интерфейс, реализуемый многими объектами в Node.
 Например, запрос к HTTP-серверу является потоком, также как stdout. Потоки
 могут быть с возможностью чтения, записи или и того и другого. Все потоки
 являются экземплярами <code>EventEmitter</code>.</p>
 
-<h2 id="_">Поток с возможностью чтения</h2>
+<h2 id="_u041F_u043E_u0442_u043E_u043A_u0441_u0432_u043E_u0437_u043C_u043E_u0436_u043D_u043E_u0441_u0442_u044C_u044E_u0447_u0442_u0435_u043D_u0438_u044F">Поток с возможностью чтения</h2>
 
 <p><code>Поток с возможностью чтения</code> имеет следующие методы, свойства и события.</p>
 
@@ -113,7 +113,7 @@ process.stdin.on("end", function() {
 одобалвяет в объект простую реализацию этих функцйи, вызывающую события
 <code>'pause'</code> и <code>'resume'</code>, соответственно.</p>
 
-<h2 id="_">Поток с возможностью записи</h2>
+<h2 id="_u041F_u043E_u0442_u043E_u043A_u0441_u0432_u043E_u0437_u043C_u043E_u0436_u043D_u043E_u0441_u0442_u044C_u044E_u0437_u0430_u043F_u0438_u0441_u0438">Поток с возможностью записи</h2>
 
 <p>У <code>потока с возможностью записи</code> есть следующие методы, свойства и события.</p>
 
