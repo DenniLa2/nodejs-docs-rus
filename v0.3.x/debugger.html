@@ -15,31 +15,25 @@
       </div>
       <hr />
     </header>
-    <div id="toc"><h2>Содержание</h2><ul><li><a href="#debugger">Debugger</a><ul><li><a href="#advanced_Usage">Advanced Usage</a></li></ul></li></ul><hr /></div>
-<h2 id="debugger">Debugger</h2>
+    <div id="toc"><h2>Содержание</h2><ul><li><a href="#_u0412_u0441_u0442_u0440_u043E_u0435_u043D_u043D_u044B_u0439_u043E_u0442_u043B_u0430_u0434_u0447_u0438_u043A">Встроенный отладчик</a><ul><li><a href="#_u041F_u0440_u043E_u0434_u0432_u0438_u043D_u0443_u0442_u043E_u0435_u0438_u0441_u043F_u043E_u043B_u044C_u0437_u043E_u0432_u0430_u043D_u0438_u0435">Продвинутое использование</a></li></ul></li></ul><hr /></div>
+<h2 id="_u0412_u0441_u0442_u0440_u043E_u0435_u043D_u043D_u044B_u0439_u043E_u0442_u043B_u0430_u0434_u0447_u0438_u043A">Встроенный отладчик</h2>
 
-<p>V8 comes with an extensive debugger which is accessable out-of-process via a
-simple <a href="http://code.google.com/p/v8/wiki/DebuggerProtocol">TCP protocol</a>.
-Node has a built-in client for this debugger. To use this, start Node with the
-<code>debug</code> argument; a prompt will appear:</p>
+<p>Вместе с V8 идет мощный отладчик, доступный прямо в процессе выполнения через простой <a href="http://code.google.com/p/v8/wiki/DebuggerProtocol">TCP протокол</a>.
+В Node есть встроенный клиент для этого отладчика. Чтобы его использовать, запустите Node с ключом <code>debug</code>; появится следующее приглашение:</p>
 
 <pre><code>% node debug myscript.js
 debug&gt;</code></pre>
 
-<p>At this point <code>myscript.js</code> is not yet running. To start the script, enter
-the command <code>run</code>. If everything works okay, the output should look like
-this:</p>
+<p>Пока <code>myscript.js</code> ещё не запущен. Чтобы запустить скрипт, введите команду <code>run</code>. Если всё в порядке, вывод будет выглядеть примерно так:</p>
 
 <pre><code>% node debug myscript.js
 debug&gt; run
 debugger listening on port 5858
 connecting...ok</code></pre>
 
-<p>Node's debugger client doesn't support the full range of commands, but
-simple step and inspection is possible. By putting the statement <code>debugger;</code>
-into the source code of your script, you will enable a breakpoint.</p>
+<p>Отладчик Node не поддерживает полный набор команд но выполнение и просмотр окружения вполне возможны. Добавив строку <code>debugger;</code> в исходный код, вы добавляете точку остановки.</p>
 
-<p>For example, suppose <code>myscript.js</code> looked like this:</p>
+<p>Например, предположим что <code>myscript.js</code> выглядит так:</p>
 
 <pre><code>// myscript.js
 x = 5;
@@ -49,7 +43,7 @@ setTimeout(function () {
 }, 1000);
 console.log("hello");</code></pre>
 
-<p>Then once the debugger is run, it will break on line 4.</p>
+<p>При запуске в режиме отладки остановка произойдёт на четвёртой строке.</p>
 
 <pre><code>% ./node debug myscript.js
 debug&gt; run
@@ -76,15 +70,11 @@ debug&gt; quit
 A debugging session is active. Quit anyway? (y or n) y
 %</code></pre>
 
-<p>The <code>print</code> command allows you to evaluate variables. The <code>next</code> command steps
-over to the next line. There are a few other commands available and more to
-come type <code>help</code> to see others.</p>
+<p>Команда <code>print</code> позволяет просматривать переменные. Команда <code>next</code> выполняет следующую строку скрипта. Кроме этого доступно ещё несколько команд, и ещё больше будут добавлены. Введите <code>help</code> чтобы увидеть остальные.</p>
 
-<h3 id="advanced_Usage">Advanced Usage</h3>
+<h3 id="_u041F_u0440_u043E_u0434_u0432_u0438_u043D_u0443_u0442_u043E_u0435_u0438_u0441_u043F_u043E_u043B_u044C_u0437_u043E_u0432_u0430_u043D_u0438_u0435">Продвинутое использование</h3>
 
-<p>The V8 debugger can be enabled and accessed either by starting Node with
-the <code>--debug</code> command-line flag or by signaling an existing Node process
-with <code>SIGUSR1</code>.</p>
+<p>Отладчик V8 может быть включен и использован либо при запуске Node с ключом <code>--debug</code> или при передаче существующему процессу Node сигнала <code>SIGUSR1</code>.</p>
   </div>
   <script type="text/javascript" src="assets/sh_main.js"></script>
   <script type="text/javascript" src="assets/sh_javascript.min.js"></script>
