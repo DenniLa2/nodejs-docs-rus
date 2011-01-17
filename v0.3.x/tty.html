@@ -18,33 +18,27 @@
     <div id="toc"><h2>Содержание</h2><ul><li><a href="#tTY">TTY</a><ul><li><a href="#tty.open">tty.open(path, args=[])</a></li><li><a href="#tty.isatty">tty.isatty(fd)</a></li><li><a href="#tty.setRawMode">tty.setRawMode(mode)</a></li><li><a href="#tty.getColumns">tty.getColumns()</a></li></ul></li></ul><hr /></div>
 <h2 id="tTY">TTY</h2>
 
-<p>Use <code>require('tty')</code> to access this module.</p>
+<p>Используйте <code>require('tty')</code> чтобы получить доступ к этому модулю.</p>
 
 <h3 id="tty.open">tty.open(path, args=[])</h3>
 
-<p>Spawns a new process with the executable pointed to by <code>path</code> as the session
-leader to a new pseudo terminal.</p>
+<p>Запускает новый процесс с исполняемымы файлом указанным в переменной path в новом псевдо-терминале.</p>
 
-<p>Returns an array <code>[slaveFD, childProcess]</code>. <code>slaveFD</code> is the file descriptor
-of the slave end of the pseudo terminal. <code>childProcess</code> is a child process
-object.</p>
+<p>Возвращает массив <code>[slaveFD, childProcess]</code>. <code>slaveFD</code> это файловый дескриптор конца псевдотерминала, принадлежащего потомку. <code>childProcess</code> это объект дочернего процесса.</p>
 
 <h3 id="tty.isatty">tty.isatty(fd)</h3>
 
-<p>Returns <code>true</code> or <code>false</code> depending on if the <code>fd</code> is associated with a
-terminal.</p>
+<p>Возвращает <code>true</code> или <code>false</code> в зависимости от того принадлежит ли файловый дескриптор <code>fd</code> терминалу.</p>
 
 <h3 id="tty.setRawMode">tty.setRawMode(mode)</h3>
 
-<p><code>mode</code> should be <code>true</code> or <code>false</code>. This sets the properies of the current
-process's stdin fd to act either as a raw device or default.</p>
+<p>Переменная <code>mode</code> должна принимать значение <code>true</code> или <code>false</code>. Это задает режим работы потоков ввода-вывода текущего процесса: raw device или default.</p>
 
 <h3 id="tty.getColumns">tty.getColumns()</h3>
 
-<p>Returns the number of columns associated with the current process's TTY.</p>
+<p>Возвращает число столбцов в терминале текущего процесса.</p>
 
-<p>Note that each time this number is changed the process receives a <code>SIGWINCH</code>
-signal. So you can keep a cache of it like this:</p>
+<p>Заметьте что каждый раз когда это число меняется процесс получает сигнал <code>SIGWINCH</code>. Поэтому можно организовать такой кеш:</p>
 
 <pre><code>var columns = tty.getColumns();
 process.on('SIGWINCH', function() {
