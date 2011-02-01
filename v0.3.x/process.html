@@ -15,7 +15,7 @@
       </div>
       <hr />
     </header>
-    <div id="toc"><h2>Содержание</h2><ul><li><a href="#_u041F_u0440_u043E_u0446_u0435_u0441_u0441">Процесс</a><ul><li><a href="#_u0421_u043E_u0431_u044B_u0442_u0438_u0435_exit_">Событие: 'exit'</a></li><li><a href="#_u0421_u043E_u0431_u044B_u0442_u0438_u0435_uncaughtException_">Событие: 'uncaughtException'</a></li><li><a href="#_u0421_u0438_u0433_u043D_u0430_u043B_u044C_u043D_u044B_u0435_u0441_u043E_u0431_u044B_u0442_u0438_u044F">Сигнальные события</a></li><li><a href="#process.stdout">process.stdout</a></li><li><a href="#process.stdin">process.stdin</a></li><li><a href="#process.argv">process.argv</a></li><li><a href="#process.execPath">process.execPath</a></li><li><a href="#process.chdir">process.chdir(directory)</a></li><li><a href="#process.cwd">process.cwd()</a></li><li><a href="#process.env">process.env</a></li><li><a href="#process.exit">process.exit(code=0)</a></li><li><a href="#process.getgid">process.getgid()</a></li><li><a href="#process.setgid">process.setgid(id)</a></li><li><a href="#process.getuid">process.getuid()</a></li><li><a href="#process.setuid">process.setuid(id)</a></li><li><a href="#process.version">process.version</a></li><li><a href="#process.installPrefix">process.installPrefix</a></li><li><a href="#process.kill">process.kill(pid, signal='SIGINT')</a></li><li><a href="#process.pid">process.pid</a></li><li><a href="#process.title">process.title</a></li><li><a href="#process.platform">process.platform</a></li><li><a href="#process.memoryUsage">process.memoryUsage()</a></li><li><a href="#process.nextTick">process.nextTick(callback)</a></li><li><a href="#process.umask">process.umask([mask])</a></li></ul></li></ul><hr /></div>
+    <div id="toc"><h2>Содержание</h2><ul><li><a href="#_u041F_u0440_u043E_u0446_u0435_u0441_u0441">Процесс</a><ul><li><a href="#_u0421_u043E_u0431_u044B_u0442_u0438_u0435_exit_">Событие: 'exit'</a></li><li><a href="#_u0421_u043E_u0431_u044B_u0442_u0438_u0435_uncaughtException_">Событие: 'uncaughtException'</a></li><li><a href="#_u0421_u0438_u0433_u043D_u0430_u043B_u044C_u043D_u044B_u0435_u0441_u043E_u0431_u044B_u0442_u0438_u044F">Сигнальные события</a></li><li><a href="#process.stdout">process.stdout</a></li><li><a href="#process.stdin">process.stdin</a></li><li><a href="#process.argv">process.argv</a></li><li><a href="#process.execPath">process.execPath</a></li><li><a href="#process.chdir">process.chdir(directory)</a></li><li><a href="#process.cwd">process.cwd()</a></li><li><a href="#process.env">process.env</a></li><li><a href="#process.exit">process.exit(code=0)</a></li><li><a href="#process.getgid">process.getgid()</a></li><li><a href="#process.setgid">process.setgid(id)</a></li><li><a href="#process.getuid">process.getuid()</a></li><li><a href="#process.setuid">process.setuid(id)</a></li><li><a href="#process.version">process.version</a></li><li><a href="#process.installPrefix">process.installPrefix</a></li><li><a href="#process.kill">process.kill(pid, signal='SIGTERM')</a></li><li><a href="#process.pid">process.pid</a></li><li><a href="#process.title">process.title</a></li><li><a href="#process.platform">process.platform</a></li><li><a href="#process.memoryUsage">process.memoryUsage()</a></li><li><a href="#process.nextTick">process.nextTick(callback)</a></li><li><a href="#process.umask">process.umask([mask])</a></li></ul></li></ul><hr /></div>
 <h2 id="_u041F_u0440_u043E_u0446_u0435_u0441_u0441">Процесс</h2>
 
 <p>Объект <code>process</code> — глобальный и может быть использован в любом месте кода.
@@ -232,11 +232,11 @@ catch (err) {
 
 <pre><code>console.log('Prefix: ' + process.installPrefix);</code></pre>
 
-<h3 id="process.kill">process.kill(pid, signal='SIGINT')</h3>
+<h3 id="process.kill">process.kill(pid, signal='SIGTERM')</h3>
 
 <p>Отправляет сигнал процессу. <code>pid</code> это идентификатор процесса, <code>signal</code> — строка,
 обозначающая отправляемый сигнал. Имена сигналов это строки вроде <code>'SIGINT'</code> или <code>'SIGUSR1'</code>.
-Если имя сигнала пропущено, отправлен будет сигнал <code>'SIGINT'</code>.
+Если имя сигнала пропущено, отправлен будет сигнал <code>'SIGTERM'</code>.
 См. kill(2) для более подробной информации.</p>
 
 <p>Заметьте, что хотя функция и называется <code>process.kill</code>,
