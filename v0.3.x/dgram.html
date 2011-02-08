@@ -7,6 +7,7 @@
   <link rel="stylesheet" href="assets/sh.css" type="text/css" media="all" />
 </head>
 <body>
+<a href="http://github.com/kurokikaze/nodejs-docs-rus"><img style="position: absolute; top: 0; left: 0; border: 0;" src="https://assets0.github.com/img/ce742187c818c67d98af16f96ed21c00160c234a?repo=&url=http%3A%2F%2Fs3.amazonaws.com%2Fgithub%2Fribbons%2Fforkme_left_gray_6d6d6d.png&path=" alt="Fork me on GitHub"></a>
   <div id="container">
     <header>
       <h1>Node.js &mdash; Документация</h1>
@@ -15,8 +16,8 @@
       </div>
       <hr />
     </header>
-    <div id="toc"><h2>Содержание</h2><ul><li><a href="#_u0414_u0430_u0442_u0430_u0433_u0440_u0430_u043C_u043C_u044B">Датаграммы</a><ul><li><a href="#_u0421_u043E_u0431_u044B_u0442_u0438_u0435_message_">Событие: 'message'</a></li><li><a href="#_u0421_u043E_u0431_u044B_u0442_u0438_u0435_listening_">Событие: 'listening'</a></li><li><a href="#_u0421_u043E_u0431_u044B_u0442_u0438_u0435_close_">Событие: 'close'</a></li><li><a href="#dgram.createSocket">dgram.createSocket(type, [callback])</a></li><li><a href="#dgram.send">dgram.send(buf, offset, length, path, [callback])</a></li><li><a href="#dgram.send">dgram.send(buf, offset, length, port, address, [callback])</a></li><li><a href="#dgram.bind">dgram.bind(path)</a></li><li><a href="#dgram.bind">dgram.bind(port, [address])</a></li><li><a href="#dgram.close">dgram.close()</a></li><li><a href="#dgram.address">dgram.address()</a></li><li><a href="#dgram.setBroadcast">dgram.setBroadcast(flag)</a></li><li><a href="#dgram.setTTL">dgram.setTTL(ttl)</a></li></ul></li></ul><hr /></div>
-<h2 id="_u0414_u0430_u0442_u0430_u0433_u0440_u0430_u043C_u043C_u044B">Датаграммы</h2>
+    <div id="toc"><h2>Содержание</h2><ul><li><a href="#uDP_u0414_u0430_u0442_u0430_u0433_u0440_u0430_u043C_u043C_u044B">UDP / Датаграммы</a><ul><li><a href="#_u0421_u043E_u0431_u044B_u0442_u0438_u0435_message_">Событие: 'message'</a></li><li><a href="#_u0421_u043E_u0431_u044B_u0442_u0438_u0435_listening_">Событие: 'listening'</a></li><li><a href="#_u0421_u043E_u0431_u044B_u0442_u0438_u0435_close_">Событие: 'close'</a></li><li><a href="#dgram.createSocket">dgram.createSocket(type, [callback])</a></li><li><a href="#dgram.send">dgram.send(buf, offset, length, path, [callback])</a></li><li><a href="#dgram.send">dgram.send(buf, offset, length, port, address, [callback])</a></li><li><a href="#dgram.bind">dgram.bind(path)</a></li><li><a href="#dgram.bind">dgram.bind(port, [address])</a></li><li><a href="#dgram.close">dgram.close()</a></li><li><a href="#dgram.address">dgram.address()</a></li><li><a href="#dgram.setBroadcast">dgram.setBroadcast(flag)</a></li><li><a href="#dgram.setTTL">dgram.setTTL(ttl)</a></li><li><a href="#dgram.setMulticastTTL">dgram.setMulticastTTL(ttl)</a></li><li><a href="#dgram.setMulticastLoopback">dgram.setMulticastLoopback(flag)</a></li><li><a href="#dgram.addMembership">dgram.addMembership(multicastAddress, [multicastInterface])</a></li><li><a href="#dgram.dropMembership">dgram.dropMembership(multicastAddress, [multicastInterface])</a></li></ul></li></ul><hr /></div>
+<h2 id="uDP_u0414_u0430_u0442_u0430_u0433_u0440_u0430_u043C_u043C_u044B">UDP / Датаграммы</h2>
 
 <p>Сокеты для датаграмм доступны при включении <code>require('dgram')</code>. Датаграммы
 чаще всего обрабатываются как сообщения IP/UDP, но они могут быть использованы
@@ -182,6 +183,38 @@ server.bind(41234);
 
 <p>Аргументом <code>setTTL()</code> является число от 1 до 255. По умолчанию на большинстве
 систем ипользуется 64.</p>
+
+<h3 id="dgram.setMulticastTTL">dgram.setMulticastTTL(ttl)</h3>
+
+<p>Устанавливает опцию <code>IP_MULTICAST_TTL</code> сокета.  TTL означает "время жизни",
+и его значение определяет количество IP, сквозь которые может быть передан пакет,
+в данном случае при широковещательной рассылке. Каждый роутер или шлюз на пути пакета
+уменьшают TTL. Как только он станет равным нуля, пакет уничтожится.</p>
+
+<p>Аргументом <code>setMulticastTTL()</code> является число от 0 до 255. По умолчанию на большинстве
+систем ипользуется 64.</p>
+
+<h3 id="dgram.setMulticastLoopback">dgram.setMulticastLoopback(flag)</h3>
+
+<p>Устанавливает или очищает опцию <code>IP_MULTICAST_LOOP</code> сокета. Если эта опция установлена,
+то широковещательные пакеты также будут получены на локальных сетевых интерфейсах.</p>
+
+<h3 id="dgram.addMembership">dgram.addMembership(multicastAddress, [multicastInterface])</h3>
+
+<p>Указывает ядру вступить в широковещательную группу используя опцию <code>IP_ADD_MEMBERSHIP</code> сокета.</p>
+
+<p>Если <code>multicastInterface</code> не указан, то ОС будет пытаться вступить в группу,
+используя каждый доступный сетевой интерфейс.</p>
+
+<h3 id="dgram.dropMembership">dgram.dropMembership(multicastAddress, [multicastInterface])</h3>
+
+<p>Противоположность <code>dropMembership</code> &amp;mdash; указывает ядру покинуть широковещательную
+группу используя опцию <code>IP_DROP_MEMBERSHIP</code> сокета. В большинстве приложений
+не обязательно вызывать эту функцию, так как ОС сделает это автоматически
+при закрытии сокета.</p>
+
+<p>Если <code>multicastInterface</code> не указан, то ОС будет пытаться покинуть группу,
+используя каждый доступный сетевой интерфейс.</p>
   </div>
   <script type="text/javascript" src="assets/sh_main.js"></script>
   <script type="text/javascript" src="assets/sh_javascript.min.js"></script>
