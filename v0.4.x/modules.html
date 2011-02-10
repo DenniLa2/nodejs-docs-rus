@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>modules - Node.js &mdash; Документация</title>
+  <link rel="stylesheet" href="assets/style.css" type="text/css" media="all" />
+  <link rel="stylesheet" href="assets/sh.css" type="text/css" media="all" />
+</head>
+<body>
+<a href="http://github.com/kurokikaze/nodejs-docs-rus"><img style="position: absolute; top: 0; left: 0; border: 0;" src="https://assets0.github.com/img/ce742187c818c67d98af16f96ed21c00160c234a?repo=&url=http%3A%2F%2Fs3.amazonaws.com%2Fgithub%2Fribbons%2Fforkme_left_gray_6d6d6d.png&path=" alt="Fork me on GitHub"></a>
+  <div id="container">
+    <header>
+      <h1>Node.js &mdash; Документация</h1>
+      <div id="gtoc">
+        <p><a href="index.html">Содержание</a> | <a href="all.html">Просмотреть на одной странице</a></p>
+      </div>
+      <hr />
+    </header>
+    <div id="toc"><h2>Содержание</h2><ul><li><a href="#_u041C_u043E_u0434_u0443_u043B_u0438">Модули</a></li><li><a href="#_u0421_u0442_u0430_u043D_u0434_u0430_u0440_u0442_u043D_u044B_u0435_u043C_u043E_u0434_u0443_u043B_u0438">Стандартные модули</a><ul><li><a href="#_u041F_u043E_u0438_u0441_u043A_u043C_u043E_u0434_u0443_u043B_u0435_u0439">Поиск модулей</a></li><li><a href="#_u0417_u0430_u0433_u0440_u0443_u0437_u043A_u0430_u0438_u0437_u043F_u0430_u043F_u043E_u043A_node_modules_">Загрузка из папок `node_modules`</a><ul><li><a href="#_u041E_u043F_u0442_u0438_u043C_u0438_u0437_u0430_u0446_u0438_u044F_u043F_u0440_u043E_u0446_u0435_u0441_u0441_u0430_u043F_u043E_u0438_u0441_u043A_u0430_u043F_u043E_u043F_u0430_u043F_u043A_u0430_u043C_node_modules_">Оптимизация процесса поиска по папкам `node_modules`</a></li></ul></li><li><a href="#_u041F_u0430_u043F_u043A_u0438_u043A_u0430_u043A_u043C_u043E_u0434_u0443_u043B_u0438">Папки как модули</a></li><li><a href="#_u041A_u0435_u0448_u0438_u0440_u043E_u0432_u0430_u043D_u0438_u0435">Кеширование</a></li><li><a href="#_u0421_u043E_u0431_u0438_u0440_u0430_u044F_u0432_u0441_u0451_u0432_u043C_u0435_u0441_u0442_u0435...">Собирая всё вместе...</a></li><li><a href="#_u0417_u0430_u0433_u0440_u0443_u0437_u043A_u0430_u0438_u0437_u043F_u0430_u043F_u043E_u043A_require.paths_">Загрузка из папок `require.paths`</a><ul><li><a href="#_u041F_u0440_u0438_u043C_u0435_u0447_u0430_u043D_u0438_u0435_u041F_u043E_u0436_u0430_u043B_u0443_u0439_u0441_u0442_u0430_u0438_u0437_u0431_u0435_u0433_u0430_u0439_u0442_u0435_u0438_u0437_u043C_u0435_u043D_u0435_u043D_u0438_u044F_require.paths_">Примечание:** Пожалуйста, избегайте изменения `require.paths`</a><ul><li><a href="#_u041F_u0440_u0438_u0441_u0432_u043E_u0435_u043D_u0438_u0435_require.paths_u0434_u0440_u0443_u0433_u043E_u0439_u043F_u0435_u0440_u0435_u043C_u0435_u043D_u043D_u043E_u0439_u043D_u0438_u0447_u0435_u0433_u043E_u043D_u0435_u0438_u0437_u043C_u0435_u043D_u044F_u0435_u0442.">Присвоение `require.paths` другой переменной ничего не изменяет.</a></li><li><a href="#_u0414_u043E_u0431_u0430_u0432_u043B_u0435_u043D_u0438_u0435_u043E_u0442_u043D_u043E_u0441_u0438_u0442_u0435_u043B_u044C_u043D_u044B_u0445_u043F_u0443_u0442_u0435_u0439_u0432_require.paths_u0447_u0440_u0435_u0432_u0430_u0442_u043E_..._u0441_u0442_u0440_u0430_u043D_u043D_u043E_u0441_u0442_u044F_u043C_u0438">Добавление относительных путей в `require.paths` чревато ... странностями</a></li><li><a href="#_u041E_u0442_u0441_u0443_u0442_u0441_u0442_u0432_u0438_u0435_u0438_u0437_u043E_u043B_u044F_u0446_u0438_u0438">Отсутствие изоляции</a></li></ul></li></ul></li></ul></li><li><a href="#_u0414_u043E_u043F_u043E_u043B_u043D_u0435_u043D_u0438_u0435_u0421_u043E_u0432_u0435_u0442_u044B_u0434_u043B_u044F_u043F_u0430_u043A_u0435_u0442_u043D_u044B_u0445_u043C_u0435_u043D_u0435_u0434_u0436_u0435_u0440_u043E_u0432">Дополнение: Советы для пакетных менеджеров</a></li></ul><hr /></div>
+<h2 id="_u041C_u043E_u0434_u0443_u043B_u0438">Модули</h2>
+
+<p>Node использует систему модулей CommonJS.</p>
+
+<p>Node имеет простую систему загрузки модулей, файлы и модули в которой являются,
+в каком-то смысле, синонимами. В примере <code>foo.js</code> загружает модуль <code>circle.js</code>,
+находящийся в той же директории.</p>
+
+<p>Содержимое <code>foo.js</code>:</p>
+
+<pre><code>var circle = require('./circle.js');
+console.log( 'The area of a circle of radius 4 is '
+           + circle.area(4));</code></pre>
+
+<p>Содержимое <code>circle.js</code>:</p>
+
+<pre><code>var PI = Math.PI;
+
+exports.area = function (r) {
+  return PI * r * r;
+};
+
+exports.circumference = function (r) {
+  return 2 * PI * r;
+};</code></pre>
+
+<p>Модуль <code>circle.js</code> экспортирует функции <code>area()</code> и <code>circumference()</code>. Для этого
+достаточно добавить экспортируемые функции/объекты к специальному объекты <code>exports</code>.
+(В качетве альтернативы можно использовать <code>this</code> вместо <code>exports</code>.) Переменные,
+локальные для модуля, не будут видны извне. В этом примере переменная <code>PI</code> видна
+только внутри модуля <code>circle.js</code>.</p>
+
+<h2 id="_u0421_u0442_u0430_u043D_u0434_u0430_u0440_u0442_u043D_u044B_u0435_u043C_u043E_u0434_u0443_u043B_u0438">Стандартные модули</h2>
+
+<p>Вместе с Node поставляется несколько стандартных встроенных модулей,
+большинство из которых описано ниже.</p>
+
+<p>Стандартные модули можно найти в папке <code>lib/</code> исходного кода node.</p>
+
+<p>Стандартные модули всегда имеют приоритет при загрузке с помощью <code>require()</code>.
+Например, <code>require('http')</code> всегда возвратит стандартный модуль HTTP, даже если
+существует другой файл с таким именем.</p>
+
+<h3 id="_u041F_u043E_u0438_u0441_u043A_u043C_u043E_u0434_u0443_u043B_u0435_u0439">Поиск модулей</h3>
+
+<p>Если файла с именем, переданным в <code>require()</code>, не существует, то node сначала
+пытается загрузить файлы с этим именем и дополнительным расширением <code>.js</code> потом <code>.node</code>.</p>
+
+<p><code>.js</code> файлы трактуются как текстовые файлы с JavaScript-кодом, а <code>.node</code> файлы
+трактуются как скомпилированные дополнения и загружаются с помощью <code>dlopen</code>.</p>
+
+<p>Имена, начинающиеся на <code>'/'</code>, считаются абсолютными путями. Например,
+<code>require('/home/marco/foo.js')</code> будет загружать файл <code>/home/marco/foo.js</code>.</p>
+
+<p>Модули, имена которых начинаются на <code>'./'</code> считаются относительными для
+вызывающего <code>require()</code> модуля. Это означает, что в примере выше <code>circle.js</code>
+должен находиться в той же папке, что и <code>foo.js</code>, тогда <code>require('./circle')</code>
+будет работать.</p>
+
+<p>В случае отсутствия <code>'/'</code> или <code>'./'</code>, которые указывают на необходимость поиска файла,
+модуль является илбо стандартным модулем, либо загружается из папки <code>node_modules</code>.</p>
+
+<h3 id="_u0417_u0430_u0433_u0440_u0443_u0437_u043A_u0430_u0438_u0437_u043F_u0430_u043F_u043E_u043A_node_modules_">Загрузка из папок `node_modules`</h3>
+
+<p>Если идентификатор модуля, переданный в <code>require()</code> не представляет стандартный модуль
+и не начинается на <code>'/'</code>, <code>'../'</code> или <code>'./'</code>, то node берёт папку текущего модуля,
+добалвет к ней <code>'/node_modules'</code> и пытается загрузить модуль из этой папки.</p>
+
+<p>Если по этому пути модуль не будет найден, то node переходит к родительской папке
+и так далее, пока не будет найден модуль или не будет достигнут корень файловой системы.</p>
+
+<p>Напрмиер, если файл <code>'/home/ry/projects/foo.js'</code> вызывает <code>require('bar.js')</code>,
+то node будет искать в следующей последовательности:</p>
+
+<ul><li><code>/home/ry/projects/node_modules/bar.js</code></li><li><code>/home/ry/node_modules/bar.js</code></li><li><code>/home/node_modules/bar.js</code></li><li><code>/node_modules/bar.js</code></li></ul>
+
+<p>Это позволяет программам локализовывать их зависимости, чтобы они не конфликтовали.</p>
+
+<h4 id="_u041E_u043F_u0442_u0438_u043C_u0438_u0437_u0430_u0446_u0438_u044F_u043F_u0440_u043E_u0446_u0435_u0441_u0441_u0430_u043F_u043E_u0438_u0441_u043A_u0430_u043F_u043E_u043F_u0430_u043F_u043A_u0430_u043C_node_modules_">Оптимизация процесса поиска по папкам `node_modules`</h4>
+
+<p>Если есть много уровней вложенных зависимостей, то возможно существование длинных
+деревьев файлов, которые нужно проверить. Для ускорения этого процесса применяются
+несколько оптимизаций.</p>
+
+<p>Во-первых, <code>'/node_modules'</code> никогда не добавляется к папке, уже заканчивающейся
+на <code>'/node_modules'</code>.</p>
+
+<p>Во-вторых, если файл, вызывающий <code>require()</code>, находится в подпапке <code>'node_modules'</code>,
+то эта папка трактуется как корень дерева папок.</p>
+
+<p>Например, если файл <code>'/home/ry/projects/foo/node_modules/bar/node_modules/baz/quux.js'</code>
+вызывает <code>require('asdf.js')</code>, то node будет искать в следующей последовательности:</p>
+
+<ul><li><code>/home/ry/projects/foo/node_modules/bar/node_modules/baz/node_modules/asdf.js</code></li><li><code>/home/ry/projects/foo/node_modules/bar/node_modules/asdf.js</code></li><li><code>/home/ry/projects/foo/node_modules/asdf.js</code></li></ul>
+
+<h3 id="_u041F_u0430_u043F_u043A_u0438_u043A_u0430_u043A_u043C_u043E_u0434_u0443_u043B_u0438">Папки как модули</h3>
+
+<p>Довольно удобно организовывать программы в виде вложеннных папок, предоставляя
+единственную точку входа для библиотеки. Есть три способа, которыми папки могут
+быть переданы в качестве аргумента <code>require()</code>.</p>
+
+<p>Первым является создание в папке файла <code>package.json</code>, который определяет
+<code>главный</code> модуль. Например, package.json может быть таким:</p>
+
+<pre><code>{ "name" : "some-library",
+  "main" : "./lib/some-library.js" }</code></pre>
+
+<p>Если он находится в папке <code>./some-library</code>, то <code>require('./some-library')</code> будет
+пытаться загрузить файл <code>./some-library/lib/some-library.js</code>.</p>
+
+<p>Этим ограничивается осведомлённость node о файлах package.json.</p>
+
+<p>Если файла package.json в папке нет, то node будет пытаться загрузить <code>index.js</code>
+или <code>index.node</code> в этой папке. При этом <code>require('./some-library')</code> попробует
+загрузить:</p>
+
+<ul><li><code>./some-library/index.js</code></li><li><code>./some-library/index.node</code></li></ul>
+
+<h3 id="_u041A_u0435_u0448_u0438_u0440_u043E_u0432_u0430_u043D_u0438_u0435">Кеширование</h3>
+
+<p>Модули кешируются при первой загрузке. Это, кроме остального, означает, что
+каждый вызов <code>require('foo')</code> возвращает точно тотже объект, если модуль
+разрешается в тоже самое имя файла.</p>
+
+<h3 id="_u0421_u043E_u0431_u0438_u0440_u0430_u044F_u0432_u0441_u0451_u0432_u043C_u0435_u0441_u0442_u0435...">Собирая всё вместе...</h3>
+
+<p>Для того, чтобы определить, какой модуль был загружен при вызове <code>require()</code>,
+можно воспользоваться функцией <code>require.resolve()</code>.</p>
+
+<p>Учитывая всё вышесказанное, можно составить следующий высокоуровневый псевдокод
+для <code>require()</code>:</p>
+
+<pre><code>require(X)
+1. If X is a core module,
+   a. return the core module
+   b. STOP
+2. If X begins with `./` or `/`,
+   a. LOAD_AS_FILE(Y + X)
+   b. LOAD_AS_DIRECTORY(Y + X)
+3. LOAD_NODE_MODULES(X, dirname(Y))
+4. THROW "not found"
+
+LOAD_AS_FILE(X)
+1. If X is a file, load X as JavaScript text.  STOP
+2. If X.js is a file, load X.js as JavaScript text.  STOP
+3. If X.node is a file, load X.node as binary addon.  STOP
+
+LOAD_AS_DIRECTORY(X)
+1. If X/package.json is a file,
+   a. Parse X/package.json, and look for "main" field.
+   b. let M = X + (json main field)
+   c. LOAD_AS_FILE(M)
+2. LOAD_AS_FILE(X/index)
+
+LOAD_NODE_MODULES(X, START)
+1. let DIRS=NODE_MODULES_PATHS(START)
+2. for each DIR in DIRS:
+   a. LOAD_AS_FILE(DIR/X)
+   b. LOAD_AS_DIRECTORY(DIR/X)
+
+NODE_MODULES_PATHS(START)
+1. let PARTS = path split(START)
+2. let ROOT = index of first instance of "node_modules" in PARTS, or 0
+3. let I = count of PARTS - 1
+4. let DIRS = []
+5. while I &gt; ROOT,
+   a. if PARTS[I] = "node_modules" CONTINUE
+   c. DIR = path join(PARTS[0 .. I] + "node_modules")
+   b. DIRS = DIRS + DIR
+6. return DIRS</code></pre>
+
+<h3 id="_u0417_u0430_u0433_u0440_u0443_u0437_u043A_u0430_u0438_u0437_u043F_u0430_u043F_u043E_u043A_require.paths_">Загрузка из папок `require.paths`</h3>
+
+<p>В node также есть массив <code>require.paths</code> строк, представляющих папки, где также
+будет производится поиск модулей, идентификаторы которых не начинаются на <code>'/'</code>,
+<code>'./'</code> или <code>'../'</code>. Например, пусть <code>require.paths</code> содержит:</p>
+
+<pre><code>[ '/home/micheil/.node_modules',
+  '/usr/local/lib/node_modules' ]</code></pre>
+
+<p>Тогда вызов <code>require('bar/baz.js')</code> будет проверять следующие файлы:</p>
+
+<ul><li>1: <code>'/home/micheil/.node_modules/bar/baz.js'</code></li><li>2: <code>'/usr/local/lib/node_modules/bar/baz.js'</code></li></ul>
+
+<p>Массив <code>require.paths</code> может быть изменён во время выполнения программы.</p>
+
+<p>Изначально содержимое берётся из переменной окружения <code>NODE_PATH</code>, которая
+содержит разделённые с помощью двоеточия пути. В предыдуще случае <code>NODE_PATH</code>
+должна быть установлена таким образом:</p>
+
+<pre><code>/home/micheil/.node_modules:/usr/local/lib/node_modules</code></pre>
+
+<h4 id="_u041F_u0440_u0438_u043C_u0435_u0447_u0430_u043D_u0438_u0435_u041F_u043E_u0436_u0430_u043B_u0443_u0439_u0441_u0442_u0430_u0438_u0437_u0431_u0435_u0433_u0430_u0439_u0442_u0435_u0438_u0437_u043C_u0435_u043D_u0435_u043D_u0438_u044F_require.paths_">**Примечание:** Пожалуйста, избегайте изменения `require.paths`</h4>
+
+<p>Из-за обеспечения совместимости, <code>require.paths</code> имеет приоритет в процессе
+поиска модулей. Однако, это может быть изменено в будущих релизах.</p>
+
+<p>На данный момент это выглядит разумно и представляет простор для экспериментов.
+Но на практике изменение <code>require.paths</code> часто язвяется причиной проблем и головной боли.</p>
+
+<h5 id="_u041F_u0440_u0438_u0441_u0432_u043E_u0435_u043D_u0438_u0435_require.paths_u0434_u0440_u0443_u0433_u043E_u0439_u043F_u0435_u0440_u0435_u043C_u0435_u043D_u043D_u043E_u0439_u043D_u0438_u0447_u0435_u0433_u043E_u043D_u0435_u0438_u0437_u043C_u0435_u043D_u044F_u0435_u0442.">Присвоение `require.paths` другой переменной ничего не изменяет.</h5>
+
+<p>Этот код делает не то, что ожидается:</p>
+
+<pre><code>require.paths = [ '/usr/lib/node' ];</code></pre>
+
+<p>Всё, чего вы добьётесь, так это потеря ссылки на <em>реальный</em> массив <code>require.paths</code>.</p>
+
+<h5 id="_u0414_u043E_u0431_u0430_u0432_u043B_u0435_u043D_u0438_u0435_u043E_u0442_u043D_u043E_u0441_u0438_u0442_u0435_u043B_u044C_u043D_u044B_u0445_u043F_u0443_u0442_u0435_u0439_u0432_require.paths_u0447_u0440_u0435_u0432_u0430_u0442_u043E_..._u0441_u0442_u0440_u0430_u043D_u043D_u043E_u0441_u0442_u044F_u043C_u0438">Добавление относительных путей в `require.paths` чревато ... странностями</h5>
+
+<p>Если вы сделаете:</p>
+
+<pre><code>require.paths.push('./lib');</code></pre>
+
+<p>то в массив будет добавлен не реальный путь, соответствующий <code>./lib</code>
+в файловой системе. Напротив, в массив будет добавлена строка <code>'./lib'</code>.
+Соответственно, если вы вызовете <code>require('y.js')</code> в модуле <code>/a/b/x.js</code>,
+то будет подключен модуль <code>/a/b/lib/y.js</code>, а если вы вызовете <code>require('y.js')</code>
+в модуле <code>/l/m/n/o/p.js</code>, то будет подключен модуль <code>/l/m/n/o/p/lib/y.js</code>.</p>
+
+<p>На практике некоторые используют это при включении зависимостей в модуль,
+но это хрупкая техника.</p>
+
+<h5 id="_u041E_u0442_u0441_u0443_u0442_u0441_u0442_u0432_u0438_u0435_u0438_u0437_u043E_u043B_u044F_u0446_u0438_u0438">Отсутствие изоляции</h5>
+
+<p>К сожалению, есть только один массив <code>require.paths</code>, используемый всеми модулями.</p>
+
+<p>В результате, если один модуль полагается на это поведение, оно может быть
+изменено другими модулями, загруженными в этом процессе node. Как только приложение
+становится большим, труднопредсказуемое поведение может стать большой проблемой.</p>
+
+<h2 id="_u0414_u043E_u043F_u043E_u043B_u043D_u0435_u043D_u0438_u0435_u0421_u043E_u0432_u0435_u0442_u044B_u0434_u043B_u044F_u043F_u0430_u043A_u0435_u0442_u043D_u044B_u0445_u043C_u0435_u043D_u0435_u0434_u0436_u0435_u0440_u043E_u0432">Дополнение: Советы для пакетных менеджеров</h2>
+
+<p><em>Прим. пер.: Эффективные менеджеры могут не читать этот раздел.</em></p>
+
+<p>Семантика работы <code>require()</code> была разработана так, чтобы поддерживать различные
+структуры папок. Пакетные менеджеры, такие как <code>dpkg</code>, <code>rpm</code> и <code>npm</code>, скорее
+всего позволят собирать пакеты из Node.js модулей без модификаций.</p>
+
+<p>Ниже мы приводим предлагаемую структуру каталогов, которая должна быть.</p>
+
+<p>Предположим, мы хотим иметь папку <code>/usr/lib/node/&lt;some-package&gt;/&lt;some-version&gt;</code>,
+содержащую определёную версию пакета.</p>
+
+<p>Пакет может зависеть от какого-то другого пакета. Соответственно, перед установкой
+пакета <code>foo</code> вы должны установить пакет определёную версию пакета <code>bar</code>.  Пакет
+<code>bar</code> может иметь свои зависимости, и ,возможно, эти зависимости будут формировать циклы.</p>
+
+<p>Так как node определяет <code>realpath</code> каждого загружаемого модуля (т.е. разрешает
+символические ссылки), и потом ищет их зависимости в папках <code>node_modules</code>,
+как описано выше, эту ситуацию легко решить с помощью следующей архитектуры:</p>
+
+<ul><li><code>/usr/lib/node/foo/1.2.3/</code> - Содержимое модуля <code>foo</code> версии 1.2.3.</li><li><code>/usr/lib/node/bar/4.3.2/</code> - Содержимое модуля <code>bar</code>, от которого зависит <code>foo</code>.</li><li><code>/usr/lib/node/foo/1.2.3/node_modules/bar</code> - Символическая ссылка на
+<code>/usr/lib/node/bar/4.3.2/</code>.</li><li><code>/usr/lib/node/bar/4.3.2/node_modules/*</code> - Символические ссылки на модули,
+от которых зависит <code>bar</code>.</li></ul>
+
+<p>Таким образом, даже если встретится цикл или другой конфликт зависимостей,
+каждый модуль сможет получить ту пакета, от которой он зависит.</p>
+
+<p>Когда код из пакета  <code>foo</code> вызывает <code>require('bar')</code>, он получит версию,
+связанную с <code>/usr/lib/node/foo/1.2.3/node_modules/bar</code>.
+Когда код из пакета <code>bar</code> вызывает <code>require('quux')</code>, он получит версию,
+связанную с <code>/usr/lib/node/bar/4.3.2/node_modules/quux</code>.</p>
+
+<p>Кроме того, чтобы сделать процесс поиска модулей более оптимальным, мы можем
+поместить модули не в папку <code>/usr/lib/node</code>, а в <code>/usr/lib/node_modules/&lt;name&gt;/&lt;version&gt;</code>.
+Тогда node не будет пытаться искать отсутствующие зависимости в <code>/usr/node_modules</code>
+и <code>/node_modules</code>.</p>
+
+<p>Чтобы сделать модули доступными и в REPL, может быть полезно добавить путь
+<code>/usr/lib/node_modules</code> в переменную окружения <code>$NODE_PATH</code>. Так как поиск модулей
+с помощью папок <code>node_modules</code> однован на реальных путях в файловой системе,
+разрешаемых во время вызова <code>require()</code>, то пакеты могут располагаться где угодно.</p>
+  </div>
+  <script type="text/javascript" src="assets/sh_main.js"></script>
+  <script type="text/javascript" src="assets/sh_javascript.min.js"></script>
+  <script type="text/javascript">highlight(undefined, undefined, 'pre');</script>
+  <!-- Yandex.Metrika --> 
+  <script src="//mc.yandex.ru/metrika/watch.js" type="text/javascript"></script> 
+  <script type="text/javascript"> 
+  try { var yaCounter612423 = new Ya.Metrika(612423); } catch(e){}
+  </script> 
+  <noscript><div style="position: absolute;"><img src="//mc.yandex.ru/watch/612423" alt="" /></div></noscript> 
+  <!-- /Yandex.Metrika -->   
+</body>
+</html>

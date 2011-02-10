@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>https - Node.js &mdash; Документация</title>
+  <link rel="stylesheet" href="assets/style.css" type="text/css" media="all" />
+  <link rel="stylesheet" href="assets/sh.css" type="text/css" media="all" />
+</head>
+<body>
+<a href="http://github.com/kurokikaze/nodejs-docs-rus"><img style="position: absolute; top: 0; left: 0; border: 0;" src="https://assets0.github.com/img/ce742187c818c67d98af16f96ed21c00160c234a?repo=&url=http%3A%2F%2Fs3.amazonaws.com%2Fgithub%2Fribbons%2Fforkme_left_gray_6d6d6d.png&path=" alt="Fork me on GitHub"></a>
+  <div id="container">
+    <header>
+      <h1>Node.js &mdash; Документация</h1>
+      <div id="gtoc">
+        <p><a href="index.html">Содержание</a> | <a href="all.html">Просмотреть на одной странице</a></p>
+      </div>
+      <hr />
+    </header>
+    <div id="toc"><h2>Содержание</h2><ul><li><a href="#hTTPS">HTTPS</a></li><li><a href="#https.Server">https.Server</a></li><li><a href="#https.createServer">https.createServer</a></li><li><a href="#https.request">https.request(options, callback)</a></li><li><a href="#https.get">https.get(options, callback)</a></li></ul><hr /></div>
+<h2 id="hTTPS">HTTPS</h2>
+
+<p>HTTPS представляет из себя HTTP протокол с использованием TLS/SSL канала
+для передачи данных. Node включает отдельный модуль для HTTP.</p>
+
+<h2 id="https.Server">https.Server</h2>
+
+<h2 id="https.createServer">https.createServer</h2>
+
+<p>Пример:</p>
+
+<pre><code>// curl -k https://localhost:8000/
+var https = require('https');
+var fs = require('fs');
+
+var options = {
+  key: fs.readFileSync('test/fixtures/keys/agent2-key.pem'),
+  cert: fs.readFileSync('test/fixtures/keys/agent2-cert.pem')
+};
+
+https.createServer(options, function (req, res) {
+  res.writeHead(200);
+  res.end("hello world\n");
+}).listen(8000);</code></pre>
+
+<h2 id="https.request">https.request(options, callback)</h2>
+
+<p>Создаёт запрос к защищённому серверу.
+Параметры аналогичны параметрам <code>http.request()</code>.</p>
+
+<p>Пример:</p>
+
+<pre><code>var https = require('https');
+
+var options = {
+  host: 'encrypted.google.com',
+  port: 443,
+  path: '/',
+  method: 'GET'
+};
+
+var req = https.request(options, function(res) {
+  console.log("statusCode: ", res.statusCode);
+  console.log("headers: ", res.headers);
+
+  res.on('data', function(d) {
+    process.stdout.write(d);
+  });
+});
+req.end();
+
+req.on('error', function(e) {
+  console.error(e);
+});</code></pre>
+
+<h2 id="https.get">https.get(options, callback)</h2>
+
+<p>Аналог <code>http.get()</code> для HTTPS.</p>
+
+<p>Пример:</p>
+
+<pre><code>var https = require('https');
+
+https.get({ host: 'encrypted.google.com', path: '/' }, function(res) {
+  console.log("statusCode: ", res.statusCode);
+  console.log("headers: ", res.headers);
+
+  res.on('data', function(d) {
+    process.stdout.write(d);
+  });
+
+}).on('error', function(e) {
+  console.error(e);
+});</code></pre>
+  </div>
+  <script type="text/javascript" src="assets/sh_main.js"></script>
+  <script type="text/javascript" src="assets/sh_javascript.min.js"></script>
+  <script type="text/javascript">highlight(undefined, undefined, 'pre');</script>
+  <!-- Yandex.Metrika --> 
+  <script src="//mc.yandex.ru/metrika/watch.js" type="text/javascript"></script> 
+  <script type="text/javascript"> 
+  try { var yaCounter612423 = new Ya.Metrika(612423); } catch(e){}
+  </script> 
+  <noscript><div style="position: absolute;"><img src="//mc.yandex.ru/watch/612423" alt="" /></div></noscript> 
+  <!-- /Yandex.Metrika -->   
+</body>
+</html>

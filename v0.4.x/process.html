@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>process - Node.js &mdash; Документация</title>
+  <link rel="stylesheet" href="assets/style.css" type="text/css" media="all" />
+  <link rel="stylesheet" href="assets/sh.css" type="text/css" media="all" />
+</head>
+<body>
+<a href="http://github.com/kurokikaze/nodejs-docs-rus"><img style="position: absolute; top: 0; left: 0; border: 0;" src="https://assets0.github.com/img/ce742187c818c67d98af16f96ed21c00160c234a?repo=&url=http%3A%2F%2Fs3.amazonaws.com%2Fgithub%2Fribbons%2Fforkme_left_gray_6d6d6d.png&path=" alt="Fork me on GitHub"></a>
+  <div id="container">
+    <header>
+      <h1>Node.js &mdash; Документация</h1>
+      <div id="gtoc">
+        <p><a href="index.html">Содержание</a> | <a href="all.html">Просмотреть на одной странице</a></p>
+      </div>
+      <hr />
+    </header>
+    <div id="toc"><h2>Содержание</h2><ul><li><a href="#_u041F_u0440_u043E_u0446_u0435_u0441_u0441">Процесс</a><ul><li><a href="#_u0421_u043E_u0431_u044B_u0442_u0438_u0435_exit_">Событие: 'exit'</a></li><li><a href="#_u0421_u043E_u0431_u044B_u0442_u0438_u0435_uncaughtException_">Событие: 'uncaughtException'</a></li><li><a href="#_u0421_u0438_u0433_u043D_u0430_u043B_u044C_u043D_u044B_u0435_u0441_u043E_u0431_u044B_u0442_u0438_u044F">Сигнальные события</a></li><li><a href="#process.stdout">process.stdout</a></li><li><a href="#process.stderr">process.stderr</a></li><li><a href="#process.stdin">process.stdin</a></li><li><a href="#process.argv">process.argv</a></li><li><a href="#process.execPath">process.execPath</a></li><li><a href="#process.chdir">process.chdir(directory)</a></li><li><a href="#process.cwd">process.cwd()</a></li><li><a href="#process.env">process.env</a></li><li><a href="#process.exit">process.exit(code=0)</a></li><li><a href="#process.getgid">process.getgid()</a></li><li><a href="#process.setgid">process.setgid(id)</a></li><li><a href="#process.getuid">process.getuid()</a></li><li><a href="#process.setuid">process.setuid(id)</a></li><li><a href="#process.version">process.version</a></li><li><a href="#process.installPrefix">process.installPrefix</a></li><li><a href="#process.kill">process.kill(pid, signal='SIGTERM')</a></li><li><a href="#process.pid">process.pid</a></li><li><a href="#process.title">process.title</a></li><li><a href="#process.platform">process.platform</a></li><li><a href="#process.memoryUsage">process.memoryUsage()</a></li><li><a href="#process.nextTick">process.nextTick(callback)</a></li><li><a href="#process.umask">process.umask([mask])</a></li></ul></li></ul><hr /></div>
+<h2 id="_u041F_u0440_u043E_u0446_u0435_u0441_u0441">Процесс</h2>
+
+<p>Объект <code>process</code> — глобальный и может быть использован в любом месте кода.
+Является экземпляром <code>EventEmitter</code>.</p>
+
+<h3 id="_u0421_u043E_u0431_u044B_u0442_u0438_u0435_exit_">Событие: 'exit'</h3>
+
+<p><code>function () {}</code></p>
+
+<p>Генерируется перед тем как процесс завершится. Это хорошее место для проверок
+состояния модуля (например, юнит-тестов). Event loop не будет действовать
+после завершения обработчика <code>'exit'</code>, так что таймеры использовать нельзя.</p>
+
+<p>Пример обработки события <code>'exit'</code>:</p>
+
+<pre><code>process.on('exit', function () {
+  process.nextTick(function () {
+   console.log('This will not run');
+  });
+  console.log('About to exit.');
+});</code></pre>
+
+<h3 id="_u0421_u043E_u0431_u044B_u0442_u0438_u0435_uncaughtException_">Событие: 'uncaughtException'</h3>
+
+<p><code>function (err) { }</code></p>
+
+<p>Генерируется, когда неперехваченное исключение достигает цикла обработки событий.
+Если этому событию назначен обработчик,
+стандартное действие (печать стека и выход) производиться не будет.</p>
+
+<p>Пример обработки события <code>'uncaughtException'</code>:</p>
+
+<pre><code>process.on('uncaughtException', function (err) {
+  console.log('Caught exception: ' + err);
+});
+
+setTimeout(function () {
+  console.log('This will still run.');
+}, 500);
+
+// Intentionally cause an exception, but don't catch it.
+nonexistentFunc();
+console.log('This will not run.');</code></pre>
+
+<p>Заметьте, что событие <code>'uncaughtException'</code> — это очень грубый механизм для управления исключениями.
+Использование try/catch даст вам больший контроль над выполнением вашего кода.
+Но для программ, предназначенных для постоянной работы,
+<code>'uncaughtException'</code> может быть очень полезным механизмом безопасности.</p>
+
+<h3 id="_u0421_u0438_u0433_u043D_u0430_u043B_u044C_u043D_u044B_u0435_u0441_u043E_u0431_u044B_u0442_u0438_u044F">Сигнальные события</h3>
+
+<p><code>function () {}</code></p>
+
+<p>Генерируются когда процесс получает сигнал.
+См. sigaction(2) для списка стандартных имён сигналов в POSIX,
+таких как <code>SIGINT</code>, <code>SIGUSR1</code> и т.д.</p>
+
+<p>Пример обработки сигнала <code>SIGINT</code>:</p>
+
+<pre><code>// Start reading from stdin so we don't exit.
+process.stdin.resume();
+
+process.on('SIGINT', function () {
+  console.log('Got SIGINT.  Press Control-D to exit.');
+});</code></pre>
+
+<p>Простой способ отправки сигнала <code>SIGINT</code>: <code>Control-C</code> в большинстве терминальных программ.</p>
+
+<h3 id="process.stdout">process.stdout</h3>
+
+<p>Поток с возможностью записи, представляющий стандартный поток вывода <code>stdout</code>.</p>
+
+<p>Пример (определение <code>console.log</code>):</p>
+
+<pre><code>console.log = function (d) {
+  process.stdout.write(d + '\n');
+};</code></pre>
+
+<h3 id="process.stderr">process.stderr</h3>
+
+<p>Поток с возможностью записи, представляющий стандартный поток ошибок <code>stderr</code>.
+Запись в этот поток всегда является блокирующей.</p>
+
+<h3 id="process.stdin">process.stdin</h3>
+
+<p>Стандартный поток ввода stdin. Этот поток по умолчанию не реагирует на события,
+для чтения из него нужно предварительно вызвать <code>process.stdin.resume()</code>.</p>
+
+<p>Пример открытия стандартного потока ввода и обработки обоих событий:</p>
+
+<pre><code>process.stdin.resume();
+process.stdin.setEncoding('utf8');
+
+process.stdin.on('data', function (chunk) {
+  process.stdout.write('data: ' + chunk);
+});
+
+process.stdin.on('end', function () {
+  process.stdout.write('end');
+});</code></pre>
+
+<h3 id="process.argv">process.argv</h3>
+
+<p>Массив, содержащий аргументы командной строки.
+Первым элементом будет 'node', вторым — имя JavaScript файла.
+Следующие элементы будут дополнительными аргументами скрипта.</p>
+
+<pre><code>// print process.argv
+process.argv.forEach(function (val, index, array) {
+  console.log(index + ': ' + val);
+});</code></pre>
+
+<p>В результате получим:</p>
+
+<pre><code>$ node process-2.js one two=three four
+0: node
+1: /Users/mjr/work/node/process-2.js
+2: one
+3: two=three
+4: four</code></pre>
+
+<h3 id="process.execPath">process.execPath</h3>
+
+<p>Абсолютный путь к приложению, запустившему процесс.</p>
+
+<p>Пример:</p>
+
+<pre><code>/usr/local/bin/node</code></pre>
+
+<h3 id="process.chdir">process.chdir(directory)</h3>
+
+<p>Изменяет текущий рабочий каталог приложения либо генерирует исключение,
+если изменить каталог не удаётся.</p>
+
+<pre><code>console.log('Starting directory: ' + process.cwd());
+try {
+  process.chdir('/tmp');
+  console.log('New directory: ' + process.cwd());
+}
+catch (err) {
+  console.log('chdir: ' + err);
+}</code></pre>
+
+<h3 id="process.cwd">process.cwd()</h3>
+
+<p>Возвращает текущую рабочую директорию процесса.</p>
+
+<pre><code>console.log('Current directory: ' + process.cwd());</code></pre>
+
+<h3 id="process.env">process.env</h3>
+
+<p>Объект, хранящий окружение пользователя. См. environ(7).</p>
+
+<h3 id="process.exit">process.exit(code=0)</h3>
+
+<p>Завершает процесс с указанным кодом <code>code</code>.
+Если код пропущен, завершает процесс со стандартным успешным кодом <code>0</code>.</p>
+
+<p>Чтобы выйти с ощибочным кодом, нужно вызвать:</p>
+
+<pre><code>process.exit(1);</code></pre>
+
+<p>Оболочка, с помощью которой был запущен скрипт в node, должна получить код <code>1</code>.</p>
+
+<h3 id="process.getgid">process.getgid()</h3>
+
+<p>Возвращает групповой индикатор процесса (см. setgid(2)). Это числовое значение id группы, а не её имя.</p>
+
+<pre><code>console.log('Current gid: ' + process.getgid());</code></pre>
+
+<h3 id="process.setgid">process.setgid(id)</h3>
+
+<p>Устанавливает групповой индикатор процесса (см. setgid(2)).
+Функция принимает как числовое значение, так и его текстовый эквивалент.
+Если функции передано имя группы, то функция блокирует выполнение кода
+пока не разрешит имя в числовой идентификатор.</p>
+
+<pre><code>console.log('Current gid: ' + process.getgid());
+try {
+  process.setgid(501);
+  console.log('New gid: ' + process.getgid());
+}
+catch (err) {
+  console.log('Failed to set gid: ' + err);
+}</code></pre>
+
+<h3 id="process.getuid">process.getuid()</h3>
+
+<p>Возвращает индикатор пользователя-владельца процесса (см. setuid(2)). Это числовой идентификатор, а не имя пользователя.</p>
+
+<pre><code>console.log('Current uid: ' + process.getuid());</code></pre>
+
+<h3 id="process.setuid">process.setuid(id)</h3>
+
+<p>Устанавливает индикатор пользователя-владельца процесса (см. setuid(2)).
+Функция принимает как числовое значение, так и его текстовый эквивалент.
+Если функции передано имя пользователя, то функция блокирует выполнение кода
+пока не разрешит имя в числовой идентификатор.</p>
+
+<pre><code>console.log('Current uid: ' + process.getuid());
+try {
+  process.setuid(501);
+  console.log('New uid: ' + process.getuid());
+}
+catch (err) {
+  console.log('Failed to set uid: ' + err);
+}</code></pre>
+
+<h3 id="process.version">process.version</h3>
+
+<p>Заданное при компиляции свойство, возвращающее версию Node (<code>NODE_VERSION</code>).</p>
+
+<pre><code>console.log('Version: ' + process.version);</code></pre>
+
+<h3 id="process.installPrefix">process.installPrefix</h3>
+
+<p>Заданное при компиляции свойство, хранящее директорию,
+в которую устанавливали Node (<code>NODE_PREFIX</code>).</p>
+
+<pre><code>console.log('Prefix: ' + process.installPrefix);</code></pre>
+
+<h3 id="process.kill">process.kill(pid, signal='SIGTERM')</h3>
+
+<p>Отправляет сигнал процессу. <code>pid</code> это идентификатор процесса, <code>signal</code> — строка,
+обозначающая отправляемый сигнал. Имена сигналов это строки вроде <code>'SIGINT'</code> или <code>'SIGUSR1'</code>.
+Если имя сигнала пропущено, отправлен будет сигнал <code>'SIGTERM'</code>.
+См. kill(2) для более подробной информации.</p>
+
+<p>Заметьте, что хотя функция и называется <code>process.kill</code>,
+на самом деле она просто отправляет сигнал, как и системная команда <code>kill</code>.
+Отправляемый сигнал может не только завершать целевой процесс.</p>
+
+<p>Пример процесса, отправляющего сигнал самому себе:</p>
+
+<pre><code>process.on('SIGHUP', function () {
+  console.log('Got SIGHUP signal.');
+});
+
+setTimeout(function () {
+  console.log('Exiting.');
+  process.exit(0);
+}, 100);
+
+process.kill(process.pid, 'SIGHUP');</code></pre>
+
+<h3 id="process.pid">process.pid</h3>
+
+<p>Идентификатор процесса (PID).</p>
+
+<pre><code>console.log('This process is pid ' + process.pid);</code></pre>
+
+<h3 id="process.title">process.title</h3>
+
+<p>свойство для определение/задания заголовка, отобращаемого в списке процессов.</p>
+
+<h3 id="process.platform">process.platform</h3>
+
+<p>Платформа, на которой выполняется node. <code>'linux2'</code>, <code>'darwin'</code> и т.д.</p>
+
+<pre><code>console.log('This platform is ' + process.platform);</code></pre>
+
+<h3 id="process.memoryUsage">process.memoryUsage()</h3>
+
+<p>Возвращает объект, описывающий потребление памяти процессом Node.</p>
+
+<pre><code>var util = require('util');
+
+console.log(util.inspect(process.memoryUsage()));</code></pre>
+
+<p>В результате получим:</p>
+
+<pre><code>{ rss: 4935680,
+  vsize: 41893888,
+  heapTotal: 1826816,
+  heapUsed: 650472 }</code></pre>
+
+<p><code>heapTotal</code> и <code>heapUsed</code>     относятся к потреблению памяти движком V8.</p>
+
+<h3 id="process.nextTick">process.nextTick(callback)</h3>
+
+<p>На следующей итерации цикла обработки событий запустить указанный обработчик.
+Это <em>не</em> простой alias для <code>setTimeout(fn, 0)</code>, это намного более эффективный метод.</p>
+
+<pre><code>process.nextTick(function () {
+  console.log('nextTick callback');
+});</code></pre>
+
+<h3 id="process.umask">process.umask([mask])</h3>
+
+<p>Задаёт и возвращает маску создания файлов процессом.
+Дочерние процессы наследуют эту маску от процесса-родителя.
+Если задан аргумент mask возвращает старую маску, иначе — возвращает текущую.</p>
+
+<pre><code>var oldmask, newmask = 0644;
+
+oldmask = process.umask(newmask);
+console.log('Changed umask from: ' + oldmask.toString(8) +
+            ' to ' + newmask.toString(8));</code></pre>
+  </div>
+  <script type="text/javascript" src="assets/sh_main.js"></script>
+  <script type="text/javascript" src="assets/sh_javascript.min.js"></script>
+  <script type="text/javascript">highlight(undefined, undefined, 'pre');</script>
+  <!-- Yandex.Metrika --> 
+  <script src="//mc.yandex.ru/metrika/watch.js" type="text/javascript"></script> 
+  <script type="text/javascript"> 
+  try { var yaCounter612423 = new Ya.Metrika(612423); } catch(e){}
+  </script> 
+  <noscript><div style="position: absolute;"><img src="//mc.yandex.ru/watch/612423" alt="" /></div></noscript> 
+  <!-- /Yandex.Metrika -->   
+</body>
+</html>

@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>streams - Node.js &mdash; Документация</title>
+  <link rel="stylesheet" href="assets/style.css" type="text/css" media="all" />
+  <link rel="stylesheet" href="assets/sh.css" type="text/css" media="all" />
+</head>
+<body>
+<a href="http://github.com/kurokikaze/nodejs-docs-rus"><img style="position: absolute; top: 0; left: 0; border: 0;" src="https://assets0.github.com/img/ce742187c818c67d98af16f96ed21c00160c234a?repo=&url=http%3A%2F%2Fs3.amazonaws.com%2Fgithub%2Fribbons%2Fforkme_left_gray_6d6d6d.png&path=" alt="Fork me on GitHub"></a>
+  <div id="container">
+    <header>
+      <h1>Node.js &mdash; Документация</h1>
+      <div id="gtoc">
+        <p><a href="index.html">Содержание</a> | <a href="all.html">Просмотреть на одной странице</a></p>
+      </div>
+      <hr />
+    </header>
+    <div id="toc"><h2>Содержание</h2><ul><li><a href="#_u041F_u043E_u0442_u043E_u043A_u0438">Потоки</a></li><li><a href="#_u041F_u043E_u0442_u043E_u043A_u0441_u0432_u043E_u0437_u043C_u043E_u0436_u043D_u043E_u0441_u0442_u044C_u044E_u0447_u0442_u0435_u043D_u0438_u044F">Поток с возможностью чтения</a><ul><li><a href="#_u0421_u043E_u0431_u044B_u0442_u0438_u0435_data_">Событие: 'data'</a></li><li><a href="#_u0421_u043E_u0431_u044B_u0442_u0438_u0435_end_">Событие: 'end'</a></li><li><a href="#event_error_">Event: 'error'</a></li><li><a href="#_u0421_u043E_u0431_u044B_u0442_u0438_u0435_close_">Событие: 'close'</a></li><li><a href="#_u0421_u043E_u0431_u044B_u0442_u0438_u0435_fd_">Событие: 'fd'</a></li><li><a href="#stream.readable">stream.readable</a></li><li><a href="#stream.setEncoding">stream.setEncoding(encoding)</a></li><li><a href="#stream.pause">stream.pause()</a></li><li><a href="#stream.resume">stream.resume()</a></li><li><a href="#stream.destroy">stream.destroy()</a></li><li><a href="#stream.pipe">stream.pipe(destination, [options])</a></li></ul></li><li><a href="#_u041F_u043E_u0442_u043E_u043A_u0441_u0432_u043E_u0437_u043C_u043E_u0436_u043D_u043E_u0441_u0442_u044C_u044E_u0437_u0430_u043F_u0438_u0441_u0438">Поток с возможностью записи</a><ul><li><a href="#_u0421_u043E_u0431_u044B_u0442_u0438_u0435_drain_">Событие: 'drain'</a></li><li><a href="#_u0421_u043E_u0431_u044B_u0442_u0438_u0435_error_">Событие: 'error'</a></li><li><a href="#_u0421_u043E_u0431_u044B_u0442_u0438_u0435_close_">Событие: 'close'</a></li><li><a href="#_u0421_u043E_u0431_u044B_u0442_u0438_u0435_pipe_">Событие: 'pipe'</a></li><li><a href="#stream.writable">stream.writable</a></li><li><a href="#stream.write">stream.write(string, encoding='utf8', [fd])</a></li><li><a href="#stream.write">stream.write(buffer)</a></li><li><a href="#stream.end">stream.end()</a></li><li><a href="#stream.end">stream.end(string, encoding)</a></li><li><a href="#stream.end">stream.end(buffer)</a></li><li><a href="#stream.destroy">stream.destroy()</a></li><li><a href="#stream.destroySoon">stream.destroySoon()</a></li></ul></li></ul><hr /></div>
+<h2 id="_u041F_u043E_u0442_u043E_u043A_u0438">Потоки</h2>
+
+<p>Поток — это абстрактный интерфейс, реализуемый многими объектами в Node.
+Например, запрос к HTTP-серверу является потоком, также как stdout. Потоки
+могут быть с возможностью чтения, записи или и того и другого. Все потоки
+являются экземплярами <code>EventEmitter</code>.</p>
+
+<h2 id="_u041F_u043E_u0442_u043E_u043A_u0441_u0432_u043E_u0437_u043C_u043E_u0436_u043D_u043E_u0441_u0442_u044C_u044E_u0447_u0442_u0435_u043D_u0438_u044F">Поток с возможностью чтения</h2>
+
+<p><code>Поток с возможностью чтения</code> имеет следующие методы, свойства и события.</p>
+
+<h3 id="_u0421_u043E_u0431_u044B_u0442_u0438_u0435_data_">Событие: 'data'</h3>
+
+<p><code>function (data) { }</code></p>
+
+<p>Событие <code>'data'</code> передаёт обработчику либо <code>Buffer</code> (по умолчанию),
+либо строку, если предварительно был вызван <code>setEncoding()</code>.</p>
+
+<h3 id="_u0421_u043E_u0431_u044B_u0442_u0438_u0435_end_">Событие: 'end'</h3>
+
+<p><code>function () { }</code></p>
+
+<p>Генерируется когда поток получает символ конца файла EOF (FIN в терминологии TCP).
+Означает что событий <code>'data'</code> больше не предвидится. Если поток также имеет
+возможность записи, писать данные можно и дальше.</p>
+
+<h3 id="event_error_">Event: 'error'</h3>
+
+<p><code>function (exception) { }</code></p>
+
+<p>Генерируется если при приёме данных произошла ошибка.</p>
+
+<h3 id="_u0421_u043E_u0431_u044B_u0442_u0438_u0435_close_">Событие: 'close'</h3>
+
+<p><code>function () { }</code></p>
+
+<p>Генерируется когда соответствующий потоку файловый дескриптор закрывается.
+Не все потоки генерируют это событие. Например, входящий HTTP запрос
+не генерирует <code>'close'</code>.</p>
+
+<h3 id="_u0421_u043E_u0431_u044B_u0442_u0438_u0435_fd_">Событие: 'fd'</h3>
+
+<p><code>function (fd) { }</code></p>
+
+<p>Генерируется когда поток получает файловый дескриптор. Только UNIX потоки
+поддерживают этот функционал; остальные никогда не генерируют это событие.</p>
+
+<h3 id="stream.readable">stream.readable</h3>
+
+<p>A boolean that is <code>true</code> by default, but turns <code>false</code> after an <code>'error'</code>
+occured, the stream came to an <code>'end'</code>, or <code>destroy()</code> was called.</p>
+
+<h3 id="stream.setEncoding">stream.setEncoding(encoding)</h3>
+
+<p>Заставляет событие <code>'data'</code> передавать обработчику строку вместо буфера.
+<code>encoding</code> может быть <code>'utf8'</code>, <code>'ascii'</code> или <code>'base64'</code>.</p>
+
+<h3 id="stream.pause">stream.pause()</h3>
+
+<p>Прекращает поступление событий <code>'data'</code>.</p>
+
+<h3 id="stream.resume">stream.resume()</h3>
+
+<p>Возобновляет поступление событий <code>'data'</code> после <code>pause()</code>.</p>
+
+<h3 id="stream.destroy">stream.destroy()</h3>
+
+<p>Закрывает соответствующий потоку файловый дескриптор.
+Поток больше не будет генерировать событий.</p>
+
+<h3 id="stream.pipe">stream.pipe(destination, [options])</h3>
+
+<p>Соединяет поток с возможностью чтения с потоком <code>destination</code>, доступным для записи.
+Все читаемые этим поток данные будут записаны в <code>destination</code>. Для синхронизации
+вшуюсяпотоков можно использовать <code>stream.pause()</code> и <code>stream.resume()</code>.</p>
+
+<p>Пример эмуляции UNIX-команды <code>cat</code>:</p>
+
+<pre><code>process.stdin.resume();
+process.stdin.pipe(process.stdout);</code></pre>
+
+<p>По умолчанию при поступлдении события <code>end</code> у источника будет вызван метод <code>end()</code>
+у приёмника <code>destination</code> is no longer writable. Если в качестве <code>options</code>
+передать <code>{ end: false }</code>, то поток-приёмник останется открытым после закрытия потока-источника:</p>
+
+<pre><code>process.stdin.resume();
+
+process.stdin.pipe(process.stdout, { end: false });
+
+process.stdin.on("end", function() {
+  process.stdout.write("Goodbye\n");
+});</code></pre>
+
+<p>ПРИМЕЧАНИЕ: Если поток-источник не поддерживает <code>pause()</code> и <code>resume()</code>, эта функция
+одобалвяет в объект простую реализацию этих функцйи, вызывающую события
+<code>'pause'</code> и <code>'resume'</code>, соответственно.</p>
+
+<h2 id="_u041F_u043E_u0442_u043E_u043A_u0441_u0432_u043E_u0437_u043C_u043E_u0436_u043D_u043E_u0441_u0442_u044C_u044E_u0437_u0430_u043F_u0438_u0441_u0438">Поток с возможностью записи</h2>
+
+<p>У <code>потока с возможностью записи</code> есть следующие методы, свойства и события.</p>
+
+<h3 id="_u0421_u043E_u0431_u044B_u0442_u0438_u0435_drain_">Событие: 'drain'</h3>
+
+<p><code>function () { }</code></p>
+
+<p>Генерируется после вызова метода <code>write()</code> вернувшего <code>false</code> — сигнал о том,
+что можно писать дальше.</p>
+
+<h3 id="_u0421_u043E_u0431_u044B_u0442_u0438_u0435_error_">Событие: 'error'</h3>
+
+<p><code>function (exception) { }</code></p>
+
+<p>Генерируется при ошибке с исключением <code>exception</code>.</p>
+
+<h3 id="_u0421_u043E_u0431_u044B_u0442_u0438_u0435_close_">Событие: 'close'</h3>
+
+<p><code>function () { }</code></p>
+
+<p>Генерируется когда закрывается соответствующий потоку дескриптор.</p>
+
+<h3 id="_u0421_u043E_u0431_u044B_u0442_u0438_u0435_pipe_">Событие: 'pipe'</h3>
+
+<p><code>function (src) { }</code></p>
+
+<p>Генерируется когда поток передаётся в метод <code>pipe()</code> потока с возможностью записи.</p>
+
+<h3 id="stream.writable">stream.writable</h3>
+
+<p>Булево свойство, по умолчанию <code>true</code>, но становящиеся <code>false</code> после наступления
+события <code>'error'</code> или вызова <code>end()</code> / <code>destroy()</code>.</p>
+
+<h3 id="stream.write">stream.write(string, encoding='utf8', [fd])</h3>
+
+<p>Записывает строку <code>string</code> в указанной кодировке <code>encoding</code> в поток. Возвращает
+<code>true</code> если строка попала в буфер ядра. Возвращает <code>false</code> если буфер ядра полон
+и данные будут отправлены позже. Когда данные будут отправлены и буфер ядра опустеет,
+будет сгенерировано событие <code>'drain'</code>. Кодировка по умолчанию — <code>'utf8'</code>.</p>
+
+<p>Если указан необязательный параметр <code>fd</code>, он интерпретируется как файловый
+дескриптор для отправки в поток. Это поддерживается только в UNIX потоках,
+и просто игнорируется в другом окружении. Когда дескриптор пересылается таким
+образом, если он будет закрыт до события 'drain' потока, может быть отправлен
+повреждённый (закрытый) дескриптор.</p>
+
+<h3 id="stream.write">stream.write(buffer)</h3>
+
+<p>То же что и выше, но с использованием буфера.</p>
+
+<h3 id="stream.end">stream.end()</h3>
+
+<p>Закрывает поток отправкой EOF или FIN.</p>
+
+<h3 id="stream.end">stream.end(string, encoding)</h3>
+
+<p>Посылает строку <code>string</code> в указанной кодировке <code>encoding</code> и закрывает поток
+отправкой EOF или FIN. Так можно уменьшить общее число отправленных пакетов.</p>
+
+<h3 id="stream.end">stream.end(buffer)</h3>
+
+<p>То же что выше но с использованием буфера.</p>
+
+<h3 id="stream.destroy">stream.destroy()</h3>
+
+<p>Закрывает соответствующий потоку файловый дескриптор.
+Поток больше не будет генерировать событий.</p>
+
+<h3 id="stream.destroySoon">stream.destroySoon()</h3>
+
+<p>Закрывает соответствующий потоку файловый дескриптор после того, как очередь записи окажется пустой.</p>
+  </div>
+  <script type="text/javascript" src="assets/sh_main.js"></script>
+  <script type="text/javascript" src="assets/sh_javascript.min.js"></script>
+  <script type="text/javascript">highlight(undefined, undefined, 'pre');</script>
+  <!-- Yandex.Metrika --> 
+  <script src="//mc.yandex.ru/metrika/watch.js" type="text/javascript"></script> 
+  <script type="text/javascript"> 
+  try { var yaCounter612423 = new Ya.Metrika(612423); } catch(e){}
+  </script> 
+  <noscript><div style="position: absolute;"><img src="//mc.yandex.ru/watch/612423" alt="" /></div></noscript> 
+  <!-- /Yandex.Metrika -->   
+</body>
+</html>

@@ -1,0 +1,3905 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>all - Node.js &mdash; Документация</title>
+  <link rel="stylesheet" href="assets/style.css" type="text/css" media="all" />
+  <link rel="stylesheet" href="assets/sh.css" type="text/css" media="all" />
+</head>
+<body>
+<a href="http://github.com/kurokikaze/nodejs-docs-rus"><img style="position: absolute; top: 0; left: 0; border: 0;" src="https://assets0.github.com/img/ce742187c818c67d98af16f96ed21c00160c234a?repo=&url=http%3A%2F%2Fs3.amazonaws.com%2Fgithub%2Fribbons%2Fforkme_left_gray_6d6d6d.png&path=" alt="Fork me on GitHub"></a>
+  <div id="container">
+    <header>
+      <h1>Node.js &mdash; Документация</h1>
+      <div id="gtoc">
+        <p><a href="index.html">Содержание</a> | <a href="all.html">Просмотреть на одной странице</a></p>
+      </div>
+      <hr />
+    </header>
+    <div id="toc"><h2>Содержание</h2><ul><li><a href="#_u041A_u0440_u0430_u0442_u043A_u0438_u0439_u043E_u0431_u0437_u043E_u0440">Краткий обзор</a></li><li><a href="#_u0413_u043B_u043E_u0431_u0430_u043B_u044C_u043D_u044B_u0435_u043E_u0431_u044A_u0435_u043A_u0442_u044B">Глобальные объекты</a><ul><li><a href="#global">global</a></li><li><a href="#process">process</a></li><li><a href="#require">require()</a></li><li><a href="#require.resolve">require.resolve()</a></li><li><a href="#require.paths">require.paths</a></li><li><a href="#filename">filename</a></li><li><a href="#dirname">dirname</a></li><li><a href="#module">module</a></li></ul></li><li><a href="#_u0422_u0430_u0439_u043C_u0435_u0440_u044B">Таймеры</a><ul><li><a href="#setTimeout">setTimeout(callback, delay, [arg], [...])</a></li><li><a href="#clearTimeout">clearTimeout(timeoutId)</a></li><li><a href="#setInterval">setInterval(callback, delay, [arg], [...])</a></li><li><a href="#clearInterval">clearInterval(intervalId)</a></li></ul></li><li><a href="#_u041C_u043E_u0434_u0443_u043B_u0438">Модули</a></li><li><a href="#_u0421_u0442_u0430_u043D_u0434_u0430_u0440_u0442_u043D_u044B_u0435_u043C_u043E_u0434_u0443_u043B_u0438">Стандартные модули</a><ul><li><a href="#_u041F_u043E_u0438_u0441_u043A_u043C_u043E_u0434_u0443_u043B_u0435_u0439">Поиск модулей</a></li><li><a href="#_u0417_u0430_u0433_u0440_u0443_u0437_u043A_u0430_u0438_u0437_u043F_u0430_u043F_u043E_u043A_node_modules_">Загрузка из папок `node_modules`</a><ul><li><a href="#_u041E_u043F_u0442_u0438_u043C_u0438_u0437_u0430_u0446_u0438_u044F_u043F_u0440_u043E_u0446_u0435_u0441_u0441_u0430_u043F_u043E_u0438_u0441_u043A_u0430_u043F_u043E_u043F_u0430_u043F_u043A_u0430_u043C_node_modules_">Оптимизация процесса поиска по папкам `node_modules`</a></li></ul></li><li><a href="#_u041F_u0430_u043F_u043A_u0438_u043A_u0430_u043A_u043C_u043E_u0434_u0443_u043B_u0438">Папки как модули</a></li><li><a href="#_u041A_u0435_u0448_u0438_u0440_u043E_u0432_u0430_u043D_u0438_u0435">Кеширование</a></li><li><a href="#_u0421_u043E_u0431_u0438_u0440_u0430_u044F_u0432_u0441_u0451_u0432_u043C_u0435_u0441_u0442_u0435...">Собирая всё вместе...</a></li><li><a href="#_u0417_u0430_u0433_u0440_u0443_u0437_u043A_u0430_u0438_u0437_u043F_u0430_u043F_u043E_u043A_require.paths_">Загрузка из папок `require.paths`</a><ul><li><a href="#_u041F_u0440_u0438_u043C_u0435_u0447_u0430_u043D_u0438_u0435_u041F_u043E_u0436_u0430_u043B_u0443_u0439_u0441_u0442_u0430_u0438_u0437_u0431_u0435_u0433_u0430_u0439_u0442_u0435_u0438_u0437_u043C_u0435_u043D_u0435_u043D_u0438_u044F_require.paths_">Примечание:** Пожалуйста, избегайте изменения `require.paths`</a><ul><li><a href="#_u041F_u0440_u0438_u0441_u0432_u043E_u0435_u043D_u0438_u0435_require.paths_u0434_u0440_u0443_u0433_u043E_u0439_u043F_u0435_u0440_u0435_u043C_u0435_u043D_u043D_u043E_u0439_u043D_u0438_u0447_u0435_u0433_u043E_u043D_u0435_u0438_u0437_u043C_u0435_u043D_u044F_u0435_u0442.">Присвоение `require.paths` другой переменной ничего не изменяет.</a></li><li><a href="#_u0414_u043E_u0431_u0430_u0432_u043B_u0435_u043D_u0438_u0435_u043E_u0442_u043D_u043E_u0441_u0438_u0442_u0435_u043B_u044C_u043D_u044B_u0445_u043F_u0443_u0442_u0435_u0439_u0432_require.paths_u0447_u0440_u0435_u0432_u0430_u0442_u043E_..._u0441_u0442_u0440_u0430_u043D_u043D_u043E_u0441_u0442_u044F_u043C_u0438">Добавление относительных путей в `require.paths` чревато ... странностями</a></li><li><a href="#_u041E_u0442_u0441_u0443_u0442_u0441_u0442_u0432_u0438_u0435_u0438_u0437_u043E_u043B_u044F_u0446_u0438_u0438">Отсутствие изоляции</a></li></ul></li></ul></li></ul></li><li><a href="#_u0414_u043E_u043F_u043E_u043B_u043D_u0435_u043D_u0438_u0435_u0421_u043E_u0432_u0435_u0442_u044B_u0434_u043B_u044F_u043F_u0430_u043A_u0435_u0442_u043D_u044B_u0445_u043C_u0435_u043D_u0435_u0434_u0436_u0435_u0440_u043E_u0432">Дополнение: Советы для пакетных менеджеров</a></li><li><a href="#c_C_u0434_u043E_u043F_u043E_u043B_u043D_u0435_u043D_u0438_u044F">C/C++ дополнения</a></li><li><a href="#_u041F_u0440_u043E_u0446_u0435_u0441_u0441">Процесс</a><ul><li><a href="#_u0421_u043E_u0431_u044B_u0442_u0438_u0435_exit_">Событие: 'exit'</a></li><li><a href="#_u0421_u043E_u0431_u044B_u0442_u0438_u0435_uncaughtException_">Событие: 'uncaughtException'</a></li><li><a href="#_u0421_u0438_u0433_u043D_u0430_u043B_u044C_u043D_u044B_u0435_u0441_u043E_u0431_u044B_u0442_u0438_u044F">Сигнальные события</a></li><li><a href="#process.stdout">process.stdout</a></li><li><a href="#process.stderr">process.stderr</a></li><li><a href="#process.stdin">process.stdin</a></li><li><a href="#process.argv">process.argv</a></li><li><a href="#process.execPath">process.execPath</a></li><li><a href="#process.chdir">process.chdir(directory)</a></li><li><a href="#process.cwd">process.cwd()</a></li><li><a href="#process.env">process.env</a></li><li><a href="#process.exit">process.exit(code=0)</a></li><li><a href="#process.getgid">process.getgid()</a></li><li><a href="#process.setgid">process.setgid(id)</a></li><li><a href="#process.getuid">process.getuid()</a></li><li><a href="#process.setuid">process.setuid(id)</a></li><li><a href="#process.version">process.version</a></li><li><a href="#process.installPrefix">process.installPrefix</a></li><li><a href="#process.kill">process.kill(pid, signal='SIGTERM')</a></li><li><a href="#process.pid">process.pid</a></li><li><a href="#process.title">process.title</a></li><li><a href="#process.platform">process.platform</a></li><li><a href="#process.memoryUsage">process.memoryUsage()</a></li><li><a href="#process.nextTick">process.nextTick(callback)</a></li><li><a href="#process.umask">process.umask([mask])</a></li></ul></li><li><a href="#_u0423_u0442_u0438_u043B_u0438_u0442_u044B">Утилиты</a><ul><li><a href="#util.debug">util.debug(string)</a></li><li><a href="#util.log">util.log(string)</a></li><li><a href="#util.inspect">util.inspect(object, showHidden=false, depth=2)</a></li><li><a href="#util.pump">util.pump(readableStream, writableStream, [callback])</a></li><li><a href="#util.inherits">util.inherits(constructor, superConstructor)</a></li></ul></li><li><a href="#c_u043E_u0431_u044B_u0442_u0438_u044F">Cобытия</a><ul><li><a href="#events.EventEmitter">events.EventEmitter</a><ul><li><a href="#emitter.addListener">emitter.addListener(event, listener)</a></li><li><a href="#emitter.on">emitter.on(event, listener)</a></li><li><a href="#emitter.once">emitter.once(event, listener)</a></li><li><a href="#emitter.removeListener">emitter.removeListener(event, listener)</a></li><li><a href="#emitter.removeAllListeners">emitter.removeAllListeners(event)</a></li><li><a href="#emitter.setMaxListeners">emitter.setMaxListeners(n)</a></li><li><a href="#emitter.listeners">emitter.listeners(event)</a></li><li><a href="#emitter.emit">emitter.emit(event, [arg1], [arg2], [...])</a></li><li><a href="#_u0421_u043E_u0431_u044B_u0442_u0438_u0435_newListener_">Событие: 'newListener'</a></li></ul></li></ul></li><li><a href="#_u0411_u0443_u0444_u0435_u0440_u044B">Буферы</a><ul><li><a href="#new_Buffer">new Buffer(size)</a></li><li><a href="#new_Buffer">new Buffer(array)</a></li><li><a href="#new_Buffer">new Buffer(str, encoding='utf8')</a></li><li><a href="#buffer.write">buffer.write(string, offset=0, encoding='utf8')</a></li><li><a href="#buffer.toString">buffer.toString(encoding, start=0, end=buffer.length)</a></li><li><a href="#buffer_index_">buffer[index]</a></li><li><a href="#buffer.isBuffer">Buffer.isBuffer(obj)</a></li><li><a href="#buffer.byteLength">Buffer.byteLength(string, encoding='utf8')</a></li><li><a href="#buffer.length">buffer.length</a></li><li><a href="#buffer.copy">buffer.copy(targetBuffer, targetStart=0, sourceStart=0, sourceEnd=buffer.length)</a></li><li><a href="#buffer.slice">buffer.slice(start, end=buffer.length)</a></li></ul></li><li><a href="#_u041F_u043E_u0442_u043E_u043A_u0438">Потоки</a></li><li><a href="#_u041F_u043E_u0442_u043E_u043A_u0441_u0432_u043E_u0437_u043C_u043E_u0436_u043D_u043E_u0441_u0442_u044C_u044E_u0447_u0442_u0435_u043D_u0438_u044F">Поток с возможностью чтения</a><ul><li><a href="#_u0421_u043E_u0431_u044B_u0442_u0438_u0435_data_">Событие: 'data'</a></li><li><a href="#_u0421_u043E_u0431_u044B_u0442_u0438_u0435_end_">Событие: 'end'</a></li><li><a href="#event_error_">Event: 'error'</a></li><li><a href="#_u0421_u043E_u0431_u044B_u0442_u0438_u0435_close_">Событие: 'close'</a></li><li><a href="#_u0421_u043E_u0431_u044B_u0442_u0438_u0435_fd_">Событие: 'fd'</a></li><li><a href="#stream.readable">stream.readable</a></li><li><a href="#stream.setEncoding">stream.setEncoding(encoding)</a></li><li><a href="#stream.pause">stream.pause()</a></li><li><a href="#stream.resume">stream.resume()</a></li><li><a href="#stream.destroy">stream.destroy()</a></li><li><a href="#stream.pipe">stream.pipe(destination, [options])</a></li></ul></li><li><a href="#_u041F_u043E_u0442_u043E_u043A_u0441_u0432_u043E_u0437_u043C_u043E_u0436_u043D_u043E_u0441_u0442_u044C_u044E_u0437_u0430_u043F_u0438_u0441_u0438">Поток с возможностью записи</a><ul><li><a href="#_u0421_u043E_u0431_u044B_u0442_u0438_u0435_drain_">Событие: 'drain'</a></li><li><a href="#_u0421_u043E_u0431_u044B_u0442_u0438_u0435_error_">Событие: 'error'</a></li><li><a href="#_u0421_u043E_u0431_u044B_u0442_u0438_u0435_close_">Событие: 'close'</a></li><li><a href="#_u0421_u043E_u0431_u044B_u0442_u0438_u0435_pipe_">Событие: 'pipe'</a></li><li><a href="#stream.writable">stream.writable</a></li><li><a href="#stream.write">stream.write(string, encoding='utf8', [fd])</a></li><li><a href="#stream.write">stream.write(buffer)</a></li><li><a href="#stream.end">stream.end()</a></li><li><a href="#stream.end">stream.end(string, encoding)</a></li><li><a href="#stream.end">stream.end(buffer)</a></li><li><a href="#stream.destroy">stream.destroy()</a></li><li><a href="#stream.destroySoon">stream.destroySoon()</a></li></ul></li><li><a href="#_u041C_u043E_u0434_u0443_u043B_u044C_u043A_u0440_u0438_u043F_u0442_u043E_u0433_u0440_u0430_u0444_u0438_u0438">Модуль криптографии</a><ul><li><a href="#crypto.createCredentials">crypto.createCredentials(details)</a></li><li><a href="#crypto.createHash">crypto.createHash(algorithm)</a></li><li><a href="#hash.update">hash.update(data)</a></li><li><a href="#hash.digest">hash.digest(encoding='binary')</a></li><li><a href="#crypto.createHmac">crypto.createHmac(algorithm, key)</a></li><li><a href="#hmac.update">hmac.update(data)</a></li><li><a href="#hmac.digest">hmac.digest(encoding='binary')</a></li><li><a href="#crypto.createCipher">crypto.createCipher(algorithm, key)</a></li><li><a href="#cipher.update">cipher.update(data, input_encoding='binary', output_encoding='binary')</a></li><li><a href="#cipher.final">cipher.final(output_encoding='binary')</a></li><li><a href="#crypto.createDecipher">crypto.createDecipher(algorithm, key)</a></li><li><a href="#decipher.update">decipher.update(data, input_encoding='binary', output_encoding='binary')</a></li><li><a href="#decipher.final">decipher.final(output_encoding='binary')</a></li><li><a href="#crypto.createSign">crypto.createSign(algorithm)</a></li><li><a href="#signer.update">signer.update(data)</a></li><li><a href="#signer.sign">signer.sign(private_key, output_format='binary')</a></li><li><a href="#crypto.createVerify">crypto.createVerify(algorithm)</a></li><li><a href="#verifier.update">verifier.update(data)</a></li><li><a href="#verifier.verify">verifier.verify(cert, signature, signature_format='binary')</a></li></ul></li><li><a href="#tLS_">TLS (SSL)</a><ul><li><a href="#s_tls.connect">s = tls.connect(port, [host], [options], callback)</a></li><li><a href="#tls.Server">tls.Server</a><ul><li><a href="#tls.createServer">tls.createServer(options, secureConnectionListener)</a></li><li><a href="#_u0421_u043E_u0431_u044B_u0442_u0438_u0435_secureConnection_">Событие: 'secureConnection'</a></li><li><a href="#server.listen">server.listen(port, [host], [callback])</a></li><li><a href="#server.close">server.close()</a></li><li><a href="#server.maxConnections">server.maxConnections</a></li><li><a href="#server.connections">server.connections</a></li></ul></li></ul></li><li><a href="#_u0424_u0430_u0439_u043B_u043E_u0432_u0430_u044F_u0441_u0438_u0441_u0442_u0435_u043C_u0430">Файловая система</a><ul><li><a href="#fs.rename">fs.rename(path1, path2, [callback])</a></li><li><a href="#fs.renameSync">fs.renameSync(path1, path2)</a></li><li><a href="#fs.truncate">fs.truncate(fd, len, [callback])</a></li><li><a href="#fs.truncateSync">fs.truncateSync(fd, len)</a></li><li><a href="#fs.chmod">fs.chmod(path, mode, [callback])</a></li><li><a href="#fs.chmodSync">fs.chmodSync(path, mode)</a></li><li><a href="#fs.stat">fs.stat(path, [callback])</a></li><li><a href="#fs.lstat">fs.lstat(path, [callback])</a></li><li><a href="#fs.fstat">fs.fstat(fd, [callback])</a></li><li><a href="#fs.statSync">fs.statSync(path)</a></li><li><a href="#fs.lstatSync">fs.lstatSync(path)</a></li><li><a href="#fs.fstatSync">fs.fstatSync(fd)</a></li><li><a href="#fs.link">fs.link(srcpath, dstpath, [callback])</a></li><li><a href="#fs.linkSync">fs.linkSync(srcpath, dstpath)</a></li><li><a href="#fs.symlink">fs.symlink(linkdata, path, [callback])</a></li><li><a href="#fs.symlinkSync">fs.symlinkSync(linkdata, path)</a></li><li><a href="#fs.readlink">fs.readlink(path, [callback])</a></li><li><a href="#fs.readlinkSync">fs.readlinkSync(path)</a></li><li><a href="#fs.realpath">fs.realpath(path, [callback])</a></li><li><a href="#fs.realpathSync">fs.realpathSync(path)</a></li><li><a href="#fs.unlink">fs.unlink(path, [callback])</a></li><li><a href="#fs.unlinkSync">fs.unlinkSync(path)</a></li><li><a href="#fs.rmdir">fs.rmdir(path, [callback])</a></li><li><a href="#fs.rmdirSync">fs.rmdirSync(path)</a></li><li><a href="#fs.mkdir">fs.mkdir(path, mode, [callback])</a></li><li><a href="#fs.mkdirSync">fs.mkdirSync(path, mode)</a></li><li><a href="#fs.readdir">fs.readdir(path, [callback])</a></li><li><a href="#fs.readdirSync">fs.readdirSync(path)</a></li><li><a href="#fs.close">fs.close(fd, [callback])</a></li><li><a href="#fs.closeSync">fs.closeSync(fd)</a></li><li><a href="#fs.open">fs.open(path, flags, mode=0666, [callback])</a></li><li><a href="#fs.openSync">fs.openSync(path, flags, mode=0666)</a></li><li><a href="#fs.write">fs.write(fd, buffer, offset, length, position, [callback])</a></li><li><a href="#fs.writeSync">fs.writeSync(fd, buffer, offset, length, position)</a></li><li><a href="#fs.writeSync">fs.writeSync(fd, str, position, encoding='utf8')</a></li><li><a href="#fs.read">fs.read(fd, buffer, offset, length, position, [callback])</a></li><li><a href="#fs.readSync">fs.readSync(fd, buffer, offset, length, position)</a></li><li><a href="#fs.readSync">fs.readSync(fd, length, position, encoding)</a></li><li><a href="#fs.readFile">fs.readFile(filename, [encoding], [callback])</a></li><li><a href="#fs.readFileSync">fs.readFileSync(filename, [encoding])</a></li><li><a href="#fs.writeFile">fs.writeFile(filename, data, encoding='utf8', [callback])</a></li><li><a href="#fs.writeFileSync">fs.writeFileSync(filename, data, encoding='utf8')</a></li><li><a href="#fs.watchFile">fs.watchFile(filename, [options], listener)</a></li><li><a href="#fs.unwatchFile">fs.unwatchFile(filename)</a></li></ul></li><li><a href="#fs.Stats">fs.Stats</a></li><li><a href="#fs.ReadStream">fs.ReadStream</a><ul><li><a href="#fs.createReadStream">fs.createReadStream(path, [options])</a></li></ul></li><li><a href="#fs.WriteStream">fs.WriteStream</a><ul><li><a href="#_u0421_u043E_u0431_u044B_u0442_u0438_u0435_open_">Событие: 'open'</a></li><li><a href="#fs.createWriteStream">fs.createWriteStream(path, [options])</a></li></ul></li><li><a href="#path">Path</a><ul><li><a href="#path.normalize">path.normalize(p)</a></li><li><a href="#path.join">path.join([path1], [path2], [...])</a></li><li><a href="#path.resolve">path.resolve([from ...], to)</a></li><li><a href="#path.dirname">path.dirname(p)</a></li><li><a href="#path.basename">path.basename(p, [ext])</a></li><li><a href="#path.extname">path.extname(p)</a></li><li><a href="#path.exists">path.exists(p, [callback])</a></li></ul></li><li><a href="#tCP_u0421_u0435_u0442_u044C">TCP / Сеть</a><ul><li><a href="#net.createServer">net.createServer(connectionListener)</a></li><li><a href="#net.createConnection">net.createConnection(arguments...)</a></li><li><a href="#net.Server">net.Server</a><ul><li><a href="#server.listen">server.listen(port, [host], [callback])</a></li><li><a href="#server.listen">server.listen(path, [callback])</a></li><li><a href="#server.listenFD">server.listenFD(fd)</a></li><li><a href="#server.close">server.close()</a></li><li><a href="#server.address">server.address()</a></li><li><a href="#server.maxConnections">server.maxConnections</a></li><li><a href="#server.connections">server.connections</a></li><li><a href="#_u0421_u043E_u0431_u044B_u0442_u0438_u0435_connection_">Событие: 'connection'</a></li><li><a href="#_u0421_u043E_u0431_u044B_u0442_u0438_u0435_close_">Событие: 'close'</a></li></ul></li><li><a href="#net.Socket">net.Socket</a><ul><li><a href="#socket.connect">socket.connect(port, [host])</a></li><li><a href="#socket.connect">socket.connect(path)</a></li><li><a href="#socket.bufferSize">socket.bufferSize</a></li><li><a href="#socket.setEncoding">socket.setEncoding(encoding=null)</a></li><li><a href="#socket.setSecure">socket.setSecure([credentials])</a></li><li><a href="#socket.write">socket.write(data, [encoding], [callback])</a></li><li><a href="#socket.write">socket.write(data, [encoding], [fileDescriptor], [callback])</a></li><li><a href="#socket.end">socket.end([data], [encoding])</a></li><li><a href="#socket.destroy">socket.destroy()</a></li><li><a href="#socket.pause">socket.pause()</a></li><li><a href="#socket.resume">socket.resume()</a></li><li><a href="#socket.setTimeout">socket.setTimeout(timeout, [callback])</a></li><li><a href="#socket.setNoDelay">socket.setNoDelay(noDelay=true)</a></li><li><a href="#socket.setKeepAlive">socket.setKeepAlive(enable=false, [initialDelay])</a></li><li><a href="#socket.remoteAddress">socket.remoteAddress</a></li><li><a href="#_u0421_u043E_u0431_u044B_u0442_u0438_u0435_connect_">Событие: 'connect'</a></li><li><a href="#_u0421_u043E_u0431_u044B_u0442_u0438_u0435_data_">Событие: 'data'</a></li><li><a href="#_u0421_u043E_u0431_u044B_u0442_u0438_u0435_end_">Событие: 'end'</a></li><li><a href="#_u0421_u043E_u0431_u044B_u0442_u0438_u0435_timeout_">Событие: 'timeout'</a></li><li><a href="#_u0421_u043E_u0431_u044B_u0442_u0438_u0435_drain_">Событие: 'drain'</a></li><li><a href="#_u0421_u043E_u0431_u044B_u0442_u0438_u0435_error_">Событие: 'error'</a></li><li><a href="#_u0421_u043E_u0431_u044B_u0442_u0438_u0435_close_">Событие: 'close'</a></li></ul></li><li><a href="#net.isIP">net.isIP</a><ul><li><a href="#net.isIP">net.isIP(input)</a></li><li><a href="#net.isIPv4">net.isIPv4(input)</a></li><li><a href="#net.isIPv6">net.isIPv6(input)</a></li></ul></li></ul></li><li><a href="#dNS">DNS</a><ul><li><a href="#dns.lookup">dns.lookup(domain, family=null, callback)</a></li><li><a href="#dns.resolve">dns.resolve(domain, rrtype='A', callback)</a></li><li><a href="#dns.resolve4">dns.resolve4(domain, callback)</a></li><li><a href="#dns.resolve6">dns.resolve6(domain, callback)</a></li><li><a href="#dns.resolveMx">dns.resolveMx(domain, callback)</a></li><li><a href="#dns.resolveTxt">dns.resolveTxt(domain, callback)</a></li><li><a href="#dns.resolveSrv">dns.resolveSrv(domain, callback)</a></li><li><a href="#dns.reverse">dns.reverse(ip, callback)</a></li></ul></li><li><a href="#uDP_u0414_u0430_u0442_u0430_u0433_u0440_u0430_u043C_u043C_u044B">UDP / Датаграммы</a><ul><li><a href="#_u0421_u043E_u0431_u044B_u0442_u0438_u0435_message_">Событие: 'message'</a></li><li><a href="#_u0421_u043E_u0431_u044B_u0442_u0438_u0435_listening_">Событие: 'listening'</a></li><li><a href="#_u0421_u043E_u0431_u044B_u0442_u0438_u0435_close_">Событие: 'close'</a></li><li><a href="#dgram.createSocket">dgram.createSocket(type, [callback])</a></li><li><a href="#dgram.send">dgram.send(buf, offset, length, path, [callback])</a></li><li><a href="#dgram.send">dgram.send(buf, offset, length, port, address, [callback])</a></li><li><a href="#dgram.bind">dgram.bind(path)</a></li><li><a href="#dgram.bind">dgram.bind(port, [address])</a></li><li><a href="#dgram.close">dgram.close()</a></li><li><a href="#dgram.address">dgram.address()</a></li><li><a href="#dgram.setBroadcast">dgram.setBroadcast(flag)</a></li><li><a href="#dgram.setTTL">dgram.setTTL(ttl)</a></li><li><a href="#dgram.setMulticastTTL">dgram.setMulticastTTL(ttl)</a></li><li><a href="#dgram.setMulticastLoopback">dgram.setMulticastLoopback(flag)</a></li><li><a href="#dgram.addMembership">dgram.addMembership(multicastAddress, [multicastInterface])</a></li><li><a href="#dgram.dropMembership">dgram.dropMembership(multicastAddress, [multicastInterface])</a></li></ul></li><li><a href="#hTTP">HTTP</a></li><li><a href="#http.Server">http.Server</a><ul><li><a href="#_u0421_u043E_u0431_u044B_u0442_u0438_u0435_request_">Событие: 'request'</a></li><li><a href="#_u0421_u043E_u0431_u044B_u0442_u0438_u0435_connection_">Событие: 'connection'</a></li><li><a href="#_u0421_u043E_u0431_u044B_u0442_u0438_u0435_close_">Событие: 'close'</a></li><li><a href="#_u0421_u043E_u0431_u044B_u0442_u0438_u0435_checkContinue_">Событие: 'checkContinue'</a></li><li><a href="#_u0421_u043E_u0431_u044B_u0442_u0438_u0435_upgrade_">Событие: 'upgrade'</a></li><li><a href="#_u0421_u043E_u0431_u044B_u0442_u0438_u0435_clientError_">Событие: 'clientError'</a></li><li><a href="#http.createServer">http.createServer(requestListener)</a></li><li><a href="#server.listen">server.listen(port, [hostname], [callback])</a></li><li><a href="#server.listen">server.listen(path, [callback])</a></li><li><a href="#server.close">server.close()</a></li></ul></li><li><a href="#http.ServerRequest">http.ServerRequest</a><ul><li><a href="#_u0421_u043E_u0431_u044B_u0442_u0438_u0435_data_">Событие: 'data'</a></li><li><a href="#_u0421_u043E_u0431_u044B_u0442_u0438_u0435_end_">Событие: 'end'</a></li><li><a href="#request.method">request.method</a></li><li><a href="#request.url">request.url</a></li><li><a href="#request.headers">request.headers</a></li><li><a href="#request.trailers">request.trailers</a></li><li><a href="#request.httpVersion">request.httpVersion</a></li><li><a href="#request.setEncoding">request.setEncoding(encoding=null)</a></li><li><a href="#request.pause">request.pause()</a></li><li><a href="#request.resume">request.resume()</a></li><li><a href="#request.connection">request.connection</a></li></ul></li><li><a href="#http.ServerResponse">http.ServerResponse</a><ul><li><a href="#response.writeContinue">response.writeContinue()</a></li><li><a href="#response.writeHead">response.writeHead(statusCode, [reasonPhrase], [headers])</a></li><li><a href="#response.statusCode">response.statusCode</a></li><li><a href="#response.setHeader">response.setHeader(name, value)</a></li><li><a href="#response.getHeader">response.getHeader(name)</a></li><li><a href="#response.removeHeader">response.removeHeader(name)</a></li><li><a href="#response.write">response.write(chunk, encoding='utf8')</a></li><li><a href="#response.addTrailers">response.addTrailers(headers)</a></li><li><a href="#response.end">response.end([data], [encoding])</a></li></ul></li><li><a href="#http.request">http.request(options, callback)</a></li><li><a href="#http.get">http.get(options, callback)</a><ul><li><a href="#_u0421_u043E_u0431_u044B_u0442_u0438_u0435_upgrade_">Событие: 'upgrade'</a></li><li><a href="#_u0421_u043E_u0431_u044B_u0442_u0438_u0435_continue_">Событие: 'continue'</a></li></ul></li><li><a href="#http.Agent">http.Agent</a></li><li><a href="#http.getAgent">http.getAgent(host, port)</a><ul><li><a href="#agent.maxSockets">agent.maxSockets</a></li><li><a href="#agent.sockets">agent.sockets</a></li><li><a href="#agent.queue">agent.queue</a></li></ul></li><li><a href="#http.ClientRequest">http.ClientRequest</a><ul><li><a href="#_u0421_u043E_u0431_u044B_u0442_u0438_u0435_response_">Событие: 'response'</a></li><li><a href="#request.write">request.write(chunk, encoding='utf8')</a></li><li><a href="#request.end">request.end([data], [encoding])</a></li><li><a href="#request.abort">request.abort()</a></li></ul></li><li><a href="#http.ClientResponse">http.ClientResponse</a><ul><li><a href="#_u0421_u043E_u0431_u044B_u0442_u0438_u0435_data_">Событие: 'data'</a></li><li><a href="#_u0421_u043E_u0431_u044B_u0442_u0438_u0435_end_">Событие: 'end'</a></li><li><a href="#response.statusCode">response.statusCode</a></li><li><a href="#response.httpVersion">response.httpVersion</a></li><li><a href="#response.headers">response.headers</a></li><li><a href="#response.trailers">response.trailers</a></li><li><a href="#response.setEncoding">response.setEncoding(encoding=null)</a></li><li><a href="#response.pause">response.pause()</a></li><li><a href="#response.resume">response.resume()</a></li></ul></li><li><a href="#hTTPS">HTTPS</a></li><li><a href="#https.Server">https.Server</a></li><li><a href="#https.createServer">https.createServer</a></li><li><a href="#https.request">https.request(options, callback)</a></li><li><a href="#https.get">https.get(options, callback)</a></li><li><a href="#uRL">URL</a><ul><li><a href="#url.parse">url.parse(urlStr, parseQueryString=false)</a></li><li><a href="#url.format">url.format(urlObj)</a></li><li><a href="#url.resolve">url.resolve(from, to)</a></li></ul></li><li><a href="#_u0420_u0430_u0437_u0431_u043E_u0440_u0441_u0442_u0440_u043E_u043A_u0438_u0437_u0430_u043F_u0440_u043E_u0441_u0430">Разбор строки запроса</a><ul><li><a href="#querystring.stringify">querystring.stringify(obj, sep='&', eq='=')</a></li><li><a href="#querystring.parse">querystring.parse(str, sep='&', eq='=')</a></li><li><a href="#querystring.escape">querystring.escape</a></li><li><a href="#querystring.unescape">querystring.unescape</a></li></ul></li><li><a href="#_u0418_u043D_u0442_u0435_u0440_u0430_u043A_u0442_u0438_u0432_u043D_u0430_u044F_u043A_u043E_u043D_u0441_u043E_u043B_u044C_">Интерактивная консоль (REPL)</a><ul><li><a href="#repl.start_">repl.start(prompt='> ', stream=process.openStdin())</a></li><li><a href="#_u0412_u043E_u0437_u043C_u043E_u0436_u043D_u043E_u0441_u0442_u0438_REPL">Возможности REPL</a></li></ul></li><li><a href="#_u0414_u043E_u0447_u0435_u0440_u043D_u0438_u0435_u043F_u0440_u043E_u0446_u0435_u0441_u0441_u044B">Дочерние процессы</a><ul><li><a href="#_u0421_u043E_u0431_u044B_u0442_u0438_u0435_exit_">Событие: 'exit'</a></li><li><a href="#child.stdin">child.stdin</a></li><li><a href="#child.stdout">child.stdout</a></li><li><a href="#child.stderr">child.stderr</a></li><li><a href="#child.pid">child.pid</a></li><li><a href="#child_process.spawn">child_process.spawn(command, args=[], [options])</a></li><li><a href="#child_process.exec">child_process.exec(command, [options], callback)</a></li><li><a href="#child.kill">child.kill(signal='SIGTERM')</a></li></ul></li><li><a href="#_u0422_u0435_u0441_u0442_u0438_u0440_u043E_u0432_u0430_u043D_u0438_u0435_">Тестирование (asserts)</a><ul><li><a href="#assert.fail">assert.fail(actual, expected, message, operator)</a></li><li><a href="#assert.ok">assert.ok(value, [message])</a></li><li><a href="#assert.equal">assert.equal(actual, expected, [message])</a></li><li><a href="#assert.notEqual">assert.notEqual(actual, expected, [message])</a></li><li><a href="#assert.deepEqual">assert.deepEqual(actual, expected, [message])</a></li><li><a href="#assert.notDeepEqual">assert.notDeepEqual(actual, expected, [message])</a></li><li><a href="#assert.strictEqual">assert.strictEqual(actual, expected, [message])</a></li><li><a href="#assert.notStrictEqual">assert.notStrictEqual(actual, expected, [message])</a></li><li><a href="#assert.throws">assert.throws(block, [error], [message])</a></li><li><a href="#assert.doesNotThrow">assert.doesNotThrow(block, [error], [message])</a></li><li><a href="#assert.ifError">assert.ifError(value)</a></li></ul></li><li><a href="#tTY">TTY</a><ul><li><a href="#tty.open">tty.open(path, args=[])</a></li><li><a href="#tty.isatty">tty.isatty(fd)</a></li><li><a href="#tty.setRawMode">tty.setRawMode(mode)</a></li><li><a href="#tty.setWindowSize">tty.setWindowSize(fd, row, col)</a></li><li><a href="#tty.getWindowSize">tty.getWindowSize(fd)</a></li></ul></li><li><a href="#os_Module">os Module</a><ul><li><a href="#os.hostname">os.hostname()</a></li><li><a href="#os.type">os.type()</a></li><li><a href="#os.release">os.release()</a></li><li><a href="#os.uptime">os.uptime()</a></li><li><a href="#os.loadavg">os.loadavg()</a></li><li><a href="#os.totalmem">os.totalmem()</a></li><li><a href="#os.freemem">os.freemem()</a></li><li><a href="#os.cpus">os.cpus()</a></li></ul></li><li><a href="#_u0412_u0441_u0442_u0440_u043E_u0435_u043D_u043D_u044B_u0439_u043E_u0442_u043B_u0430_u0434_u0447_u0438_u043A">Встроенный отладчик</a><ul><li><a href="#_u041F_u0440_u043E_u0434_u0432_u0438_u043D_u0443_u0442_u043E_u0435_u0438_u0441_u043F_u043E_u043B_u044C_u0437_u043E_u0432_u0430_u043D_u0438_u0435">Продвинутое использование</a></li></ul></li></ul></li><li><a href="#_u041F_u0440_u0438_u043B_u043E_u0436_u0435_u043D_u0438_u044F">Приложения</a><ul><li><a href="#_u041F_u0440_u0438_u043B_u043E_u0436_u0435_u043D_u0438_u0435_1_u0420_u0435_u043A_u043E_u043C_u0435_u043D_u0434_u0443_u0435_u043C_u044B_u0435_u0441_u0442_u043E_u0440_u043E_u043D_u043D_u0438_u0435_u043C_u043E_u0434_u0443_u043B_u0438">Приложение 1 - Рекомендуемые сторонние модули</a></li></ul><hr /></div>
+<h2 id="_u041A_u0440_u0430_u0442_u043A_u0438_u0439_u043E_u0431_u0437_u043E_u0440">Краткий обзор</h2>
+
+<p>Пример <a href="http.html">web сервера</a>, написанного с помощью Node
+и отвечающего строкой 'Hello World':</p>
+
+<pre><code>var http = require('http');
+
+http.createServer(function (request, response) {
+  response.writeHead(200, {'Content-Type': 'text/plain'});
+  response.end('Hello World\n');
+}).listen(8124);
+
+console.log('Server running at http://127.0.0.1:8124/');</code></pre>
+
+<p>Чтобы запустить сервер, поместите код в файл с названием <code>example.js</code>
+и выполните его программой <code>node</code>:</p>
+
+<pre><code>&gt; node example.js
+Server running at http://127.0.0.1:8124/</code></pre>
+
+<p>Все примеры в этом руководстве можно запустить таким же образом.</p>
+
+<h2 id="_u0413_u043B_u043E_u0431_u0430_u043B_u044C_u043D_u044B_u0435_u043E_u0431_u044A_u0435_u043A_u0442_u044B">Глобальные объекты</h2>
+
+<p>Эти объекты доступны в глобальной области видимости
+и могут быть использованы в любом месте кода.</p>
+
+<h3 id="global">global</h3>
+
+<p>Глобальный объект.</p>
+
+<p>В браузерах глобальной областью видимости одна и включает все остальные.
+Т.е. в браузерах конструкция <code>var something</code> в начале скрипта создаст глобальную переменную.
+В Node это поведение другое, а именно у каждого модуля есть своё пространство имён.
+Чтобы создать переменную, видимую из всех модулей, её нужно создать как свойство объекта <code>global</code>.</p>
+
+<h3 id="process">process</h3>
+
+<p>Объект процесса. Большая часть данных процесса находится именно здесь.
+См. секцию 'Процесс' ниже.</p>
+
+<h3 id="require">require()</h3>
+
+<p>Подключает модули. См. секцию 'Модули'.</p>
+
+<h3 id="require.resolve">require.resolve()</h3>
+
+<p>Использует внутреннюю логику <code>require()</code> для определение местоположения модуля,
+но не загружает его, а возвращает имя файла, содержащего модуль.</p>
+
+<h3 id="require.paths">require.paths</h3>
+
+<p>Массив путей поиска для <code>require()</code>. Этот массив может быть изменён
+для добавления пользовательских путей.</p>
+
+<p>Пример: добавить новый путь в начало массива.</p>
+
+<pre><code>require.paths.unshift('/usr/local/node');</code></pre>
+
+<h3 id="__filename">__filename</h3>
+
+<p>Имя исполняемого скрипта. Это абсолютный путь, и не всегда это будет то же имя, которое было передано в аргументе командной строки.</p>
+
+<p>Пример: запускаем <code>node example.js</code> из папки <code>/Users/mjr</code>.</p>
+
+<pre><code>console.log(__filename);
+// /Users/mjr/example.js</code></pre>
+
+<h3 id="__dirname">__dirname</h3>
+
+<p>Имя директории исполняемого скрипта.</p>
+
+<p>Пример: запускаем <code>node example.js</code> из папки <code>/Users/mjr</code>.</p>
+
+<pre><code>console.log(__dirname);
+// /Users/mjr</code></pre>
+
+<h3 id="module">module</h3>
+
+<p>Ссылка на текущий модуль (типа <code>process.Module</code>). В частности, <code>module.exports</code> —
+то же самое, что и объект <code>exports</code>. См. <code>src/node.js</code> для подробной информации.</p>
+
+<h2 id="_u0422_u0430_u0439_u043C_u0435_u0440_u044B">Таймеры</h2>
+
+<h3 id="setTimeout">setTimeout(callback, delay, [arg], [...])</h3>
+
+<p>Позволяет выполнить переданный <code>callback</code> через <code>delay</code> миллисекунд.
+Возвращает ID таймаута — <code>timeoutId</code> для последующего использования с <code>clearTimeout()</code>.</p>
+
+<h3 id="clearTimeout">clearTimeout(timeoutId)</h3>
+
+<p>Отменяет установленный таймаут.</p>
+
+<h3 id="setInterval">setInterval(callback, delay, [arg], [...])</h3>
+
+<p>Позволяет выполнять переданный <code>callback</code> каждые <code>delay</code> миллисекунд.
+Возвращает ID интервала — <code>intervalId</code> для использования с <code>clearInterval()</code>.
+Кроме того, можно передавать аргументы callback'у.</p>
+
+<h3 id="clearInterval">clearInterval(intervalId)</h3>
+
+<p>Прекращает действие интервального таймера.</p>
+
+<h2 id="_u041C_u043E_u0434_u0443_u043B_u0438">Модули</h2>
+
+<p>Node использует систему модулей CommonJS.</p>
+
+<p>Node имеет простую систему загрузки модулей, файлы и модули в которой являются,
+в каком-то смысле, синонимами. В примере <code>foo.js</code> загружает модуль <code>circle.js</code>,
+находящийся в той же директории.</p>
+
+<p>Содержимое <code>foo.js</code>:</p>
+
+<pre><code>var circle = require('./circle.js');
+console.log( 'The area of a circle of radius 4 is '
+           + circle.area(4));</code></pre>
+
+<p>Содержимое <code>circle.js</code>:</p>
+
+<pre><code>var PI = Math.PI;
+
+exports.area = function (r) {
+  return PI * r * r;
+};
+
+exports.circumference = function (r) {
+  return 2 * PI * r;
+};</code></pre>
+
+<p>Модуль <code>circle.js</code> экспортирует функции <code>area()</code> и <code>circumference()</code>. Для этого
+достаточно добавить экспортируемые функции/объекты к специальному объекты <code>exports</code>.
+(В качетве альтернативы можно использовать <code>this</code> вместо <code>exports</code>.) Переменные,
+локальные для модуля, не будут видны извне. В этом примере переменная <code>PI</code> видна
+только внутри модуля <code>circle.js</code>.</p>
+
+<h2 id="_u0421_u0442_u0430_u043D_u0434_u0430_u0440_u0442_u043D_u044B_u0435_u043C_u043E_u0434_u0443_u043B_u0438">Стандартные модули</h2>
+
+<p>Вместе с Node поставляется несколько стандартных встроенных модулей,
+большинство из которых описано ниже.</p>
+
+<p>Стандартные модули можно найти в папке <code>lib/</code> исходного кода node.</p>
+
+<p>Стандартные модули всегда имеют приоритет при загрузке с помощью <code>require()</code>.
+Например, <code>require('http')</code> всегда возвратит стандартный модуль HTTP, даже если
+существует другой файл с таким именем.</p>
+
+<h3 id="_u041F_u043E_u0438_u0441_u043A_u043C_u043E_u0434_u0443_u043B_u0435_u0439">Поиск модулей</h3>
+
+<p>Если файла с именем, переданным в <code>require()</code>, не существует, то node сначала
+пытается загрузить файлы с этим именем и дополнительным расширением <code>.js</code> потом <code>.node</code>.</p>
+
+<p><code>.js</code> файлы трактуются как текстовые файлы с JavaScript-кодом, а <code>.node</code> файлы
+трактуются как скомпилированные дополнения и загружаются с помощью <code>dlopen</code>.</p>
+
+<p>Имена, начинающиеся на <code>'/'</code>, считаются абсолютными путями. Например,
+<code>require('/home/marco/foo.js')</code> будет загружать файл <code>/home/marco/foo.js</code>.</p>
+
+<p>Модули, имена которых начинаются на <code>'./'</code> считаются относительными для
+вызывающего <code>require()</code> модуля. Это означает, что в примере выше <code>circle.js</code>
+должен находиться в той же папке, что и <code>foo.js</code>, тогда <code>require('./circle')</code>
+будет работать.</p>
+
+<p>В случае отсутствия <code>'/'</code> или <code>'./'</code>, которые указывают на необходимость поиска файла,
+модуль является илбо стандартным модулем, либо загружается из папки <code>node_modules</code>.</p>
+
+<h3 id="_u0417_u0430_u0433_u0440_u0443_u0437_u043A_u0430_u0438_u0437_u043F_u0430_u043F_u043E_u043A_node_modules_">Загрузка из папок `node_modules`</h3>
+
+<p>Если идентификатор модуля, переданный в <code>require()</code> не представляет стандартный модуль
+и не начинается на <code>'/'</code>, <code>'../'</code> или <code>'./'</code>, то node берёт папку текущего модуля,
+добалвет к ней <code>'/node_modules'</code> и пытается загрузить модуль из этой папки.</p>
+
+<p>Если по этому пути модуль не будет найден, то node переходит к родительской папке
+и так далее, пока не будет найден модуль или не будет достигнут корень файловой системы.</p>
+
+<p>Напрмиер, если файл <code>'/home/ry/projects/foo.js'</code> вызывает <code>require('bar.js')</code>,
+то node будет искать в следующей последовательности:</p>
+
+<ul><li><code>/home/ry/projects/node_modules/bar.js</code></li><li><code>/home/ry/node_modules/bar.js</code></li><li><code>/home/node_modules/bar.js</code></li><li><code>/node_modules/bar.js</code></li></ul>
+
+<p>Это позволяет программам локализовывать их зависимости, чтобы они не конфликтовали.</p>
+
+<h4 id="_u041E_u043F_u0442_u0438_u043C_u0438_u0437_u0430_u0446_u0438_u044F_u043F_u0440_u043E_u0446_u0435_u0441_u0441_u0430_u043F_u043E_u0438_u0441_u043A_u0430_u043F_u043E_u043F_u0430_u043F_u043A_u0430_u043C_node_modules_">Оптимизация процесса поиска по папкам `node_modules`</h4>
+
+<p>Если есть много уровней вложенных зависимостей, то возможно существование длинных
+деревьев файлов, которые нужно проверить. Для ускорения этого процесса применяются
+несколько оптимизаций.</p>
+
+<p>Во-первых, <code>'/node_modules'</code> никогда не добавляется к папке, уже заканчивающейся
+на <code>'/node_modules'</code>.</p>
+
+<p>Во-вторых, если файл, вызывающий <code>require()</code>, находится в подпапке <code>'node_modules'</code>,
+то эта папка трактуется как корень дерева папок.</p>
+
+<p>Например, если файл <code>'/home/ry/projects/foo/node_modules/bar/node_modules/baz/quux.js'</code>
+вызывает <code>require('asdf.js')</code>, то node будет искать в следующей последовательности:</p>
+
+<ul><li><code>/home/ry/projects/foo/node_modules/bar/node_modules/baz/node_modules/asdf.js</code></li><li><code>/home/ry/projects/foo/node_modules/bar/node_modules/asdf.js</code></li><li><code>/home/ry/projects/foo/node_modules/asdf.js</code></li></ul>
+
+<h3 id="_u041F_u0430_u043F_u043A_u0438_u043A_u0430_u043A_u043C_u043E_u0434_u0443_u043B_u0438">Папки как модули</h3>
+
+<p>Довольно удобно организовывать программы в виде вложеннных папок, предоставляя
+единственную точку входа для библиотеки. Есть три способа, которыми папки могут
+быть переданы в качестве аргумента <code>require()</code>.</p>
+
+<p>Первым является создание в папке файла <code>package.json</code>, который определяет
+<code>главный</code> модуль. Например, package.json может быть таким:</p>
+
+<pre><code>{ "name" : "some-library",
+  "main" : "./lib/some-library.js" }</code></pre>
+
+<p>Если он находится в папке <code>./some-library</code>, то <code>require('./some-library')</code> будет
+пытаться загрузить файл <code>./some-library/lib/some-library.js</code>.</p>
+
+<p>Этим ограничивается осведомлённость node о файлах package.json.</p>
+
+<p>Если файла package.json в папке нет, то node будет пытаться загрузить <code>index.js</code>
+или <code>index.node</code> в этой папке. При этом <code>require('./some-library')</code> попробует
+загрузить:</p>
+
+<ul><li><code>./some-library/index.js</code></li><li><code>./some-library/index.node</code></li></ul>
+
+<h3 id="_u041A_u0435_u0448_u0438_u0440_u043E_u0432_u0430_u043D_u0438_u0435">Кеширование</h3>
+
+<p>Модули кешируются при первой загрузке. Это, кроме остального, означает, что
+каждый вызов <code>require('foo')</code> возвращает точно тотже объект, если модуль
+разрешается в тоже самое имя файла.</p>
+
+<h3 id="_u0421_u043E_u0431_u0438_u0440_u0430_u044F_u0432_u0441_u0451_u0432_u043C_u0435_u0441_u0442_u0435...">Собирая всё вместе...</h3>
+
+<p>Для того, чтобы определить, какой модуль был загружен при вызове <code>require()</code>,
+можно воспользоваться функцией <code>require.resolve()</code>.</p>
+
+<p>Учитывая всё вышесказанное, можно составить следующий высокоуровневый псевдокод
+для <code>require()</code>:</p>
+
+<pre><code>require(X)
+1. If X is a core module,
+   a. return the core module
+   b. STOP
+2. If X begins with `./` or `/`,
+   a. LOAD_AS_FILE(Y + X)
+   b. LOAD_AS_DIRECTORY(Y + X)
+3. LOAD_NODE_MODULES(X, dirname(Y))
+4. THROW "not found"
+
+LOAD_AS_FILE(X)
+1. If X is a file, load X as JavaScript text.  STOP
+2. If X.js is a file, load X.js as JavaScript text.  STOP
+3. If X.node is a file, load X.node as binary addon.  STOP
+
+LOAD_AS_DIRECTORY(X)
+1. If X/package.json is a file,
+   a. Parse X/package.json, and look for "main" field.
+   b. let M = X + (json main field)
+   c. LOAD_AS_FILE(M)
+2. LOAD_AS_FILE(X/index)
+
+LOAD_NODE_MODULES(X, START)
+1. let DIRS=NODE_MODULES_PATHS(START)
+2. for each DIR in DIRS:
+   a. LOAD_AS_FILE(DIR/X)
+   b. LOAD_AS_DIRECTORY(DIR/X)
+
+NODE_MODULES_PATHS(START)
+1. let PARTS = path split(START)
+2. let ROOT = index of first instance of "node_modules" in PARTS, or 0
+3. let I = count of PARTS - 1
+4. let DIRS = []
+5. while I &gt; ROOT,
+   a. if PARTS[I] = "node_modules" CONTINUE
+   c. DIR = path join(PARTS[0 .. I] + "node_modules")
+   b. DIRS = DIRS + DIR
+6. return DIRS</code></pre>
+
+<h3 id="_u0417_u0430_u0433_u0440_u0443_u0437_u043A_u0430_u0438_u0437_u043F_u0430_u043F_u043E_u043A_require.paths_">Загрузка из папок `require.paths`</h3>
+
+<p>В node также есть массив <code>require.paths</code> строк, представляющих папки, где также
+будет производится поиск модулей, идентификаторы которых не начинаются на <code>'/'</code>,
+<code>'./'</code> или <code>'../'</code>. Например, пусть <code>require.paths</code> содержит:</p>
+
+<pre><code>[ '/home/micheil/.node_modules',
+  '/usr/local/lib/node_modules' ]</code></pre>
+
+<p>Тогда вызов <code>require('bar/baz.js')</code> будет проверять следующие файлы:</p>
+
+<ul><li>1: <code>'/home/micheil/.node_modules/bar/baz.js'</code></li><li>2: <code>'/usr/local/lib/node_modules/bar/baz.js'</code></li></ul>
+
+<p>Массив <code>require.paths</code> может быть изменён во время выполнения программы.</p>
+
+<p>Изначально содержимое берётся из переменной окружения <code>NODE_PATH</code>, которая
+содержит разделённые с помощью двоеточия пути. В предыдуще случае <code>NODE_PATH</code>
+должна быть установлена таким образом:</p>
+
+<pre><code>/home/micheil/.node_modules:/usr/local/lib/node_modules</code></pre>
+
+<h4 id="_u041F_u0440_u0438_u043C_u0435_u0447_u0430_u043D_u0438_u0435_u041F_u043E_u0436_u0430_u043B_u0443_u0439_u0441_u0442_u0430_u0438_u0437_u0431_u0435_u0433_u0430_u0439_u0442_u0435_u0438_u0437_u043C_u0435_u043D_u0435_u043D_u0438_u044F_require.paths_">**Примечание:** Пожалуйста, избегайте изменения `require.paths`</h4>
+
+<p>Из-за обеспечения совместимости, <code>require.paths</code> имеет приоритет в процессе
+поиска модулей. Однако, это может быть изменено в будущих релизах.</p>
+
+<p>На данный момент это выглядит разумно и представляет простор для экспериментов.
+Но на практике изменение <code>require.paths</code> часто язвяется причиной проблем и головной боли.</p>
+
+<h5 id="_u041F_u0440_u0438_u0441_u0432_u043E_u0435_u043D_u0438_u0435_require.paths_u0434_u0440_u0443_u0433_u043E_u0439_u043F_u0435_u0440_u0435_u043C_u0435_u043D_u043D_u043E_u0439_u043D_u0438_u0447_u0435_u0433_u043E_u043D_u0435_u0438_u0437_u043C_u0435_u043D_u044F_u0435_u0442.">Присвоение `require.paths` другой переменной ничего не изменяет.</h5>
+
+<p>Этот код делает не то, что ожидается:</p>
+
+<pre><code>require.paths = [ '/usr/lib/node' ];</code></pre>
+
+<p>Всё, чего вы добьётесь, так это потеря ссылки на <em>реальный</em> массив <code>require.paths</code>.</p>
+
+<h5 id="_u0414_u043E_u0431_u0430_u0432_u043B_u0435_u043D_u0438_u0435_u043E_u0442_u043D_u043E_u0441_u0438_u0442_u0435_u043B_u044C_u043D_u044B_u0445_u043F_u0443_u0442_u0435_u0439_u0432_require.paths_u0447_u0440_u0435_u0432_u0430_u0442_u043E_..._u0441_u0442_u0440_u0430_u043D_u043D_u043E_u0441_u0442_u044F_u043C_u0438">Добавление относительных путей в `require.paths` чревато ... странностями</h5>
+
+<p>Если вы сделаете:</p>
+
+<pre><code>require.paths.push('./lib');</code></pre>
+
+<p>то в массив будет добавлен не реальный путь, соответствующий <code>./lib</code>
+в файловой системе. Напротив, в массив будет добавлена строка <code>'./lib'</code>.
+Соответственно, если вы вызовете <code>require('y.js')</code> в модуле <code>/a/b/x.js</code>,
+то будет подключен модуль <code>/a/b/lib/y.js</code>, а если вы вызовете <code>require('y.js')</code>
+в модуле <code>/l/m/n/o/p.js</code>, то будет подключен модуль <code>/l/m/n/o/p/lib/y.js</code>.</p>
+
+<p>На практике некоторые используют это при включении зависимостей в модуль,
+но это хрупкая техника.</p>
+
+<h5 id="_u041E_u0442_u0441_u0443_u0442_u0441_u0442_u0432_u0438_u0435_u0438_u0437_u043E_u043B_u044F_u0446_u0438_u0438">Отсутствие изоляции</h5>
+
+<p>К сожалению, есть только один массив <code>require.paths</code>, используемый всеми модулями.</p>
+
+<p>В результате, если один модуль полагается на это поведение, оно может быть
+изменено другими модулями, загруженными в этом процессе node. Как только приложение
+становится большим, труднопредсказуемое поведение может стать большой проблемой.</p>
+
+<h2 id="_u0414_u043E_u043F_u043E_u043B_u043D_u0435_u043D_u0438_u0435_u0421_u043E_u0432_u0435_u0442_u044B_u0434_u043B_u044F_u043F_u0430_u043A_u0435_u0442_u043D_u044B_u0445_u043C_u0435_u043D_u0435_u0434_u0436_u0435_u0440_u043E_u0432">Дополнение: Советы для пакетных менеджеров</h2>
+
+<p><em>Прим. пер.: Эффективные менеджеры могут не читать этот раздел.</em></p>
+
+<p>Семантика работы <code>require()</code> была разработана так, чтобы поддерживать различные
+структуры папок. Пакетные менеджеры, такие как <code>dpkg</code>, <code>rpm</code> и <code>npm</code>, скорее
+всего позволят собирать пакеты из Node.js модулей без модификаций.</p>
+
+<p>Ниже мы приводим предлагаемую структуру каталогов, которая должна быть.</p>
+
+<p>Предположим, мы хотим иметь папку <code>/usr/lib/node/&lt;some-package&gt;/&lt;some-version&gt;</code>,
+содержащую определёную версию пакета.</p>
+
+<p>Пакет может зависеть от какого-то другого пакета. Соответственно, перед установкой
+пакета <code>foo</code> вы должны установить пакет определёную версию пакета <code>bar</code>.  Пакет
+<code>bar</code> может иметь свои зависимости, и ,возможно, эти зависимости будут формировать циклы.</p>
+
+<p>Так как node определяет <code>realpath</code> каждого загружаемого модуля (т.е. разрешает
+символические ссылки), и потом ищет их зависимости в папках <code>node_modules</code>,
+как описано выше, эту ситуацию легко решить с помощью следующей архитектуры:</p>
+
+<ul><li><code>/usr/lib/node/foo/1.2.3/</code> - Содержимое модуля <code>foo</code> версии 1.2.3.</li><li><code>/usr/lib/node/bar/4.3.2/</code> - Содержимое модуля <code>bar</code>, от которого зависит <code>foo</code>.</li><li><code>/usr/lib/node/foo/1.2.3/node_modules/bar</code> - Символическая ссылка на
+<code>/usr/lib/node/bar/4.3.2/</code>.</li><li><code>/usr/lib/node/bar/4.3.2/node_modules/*</code> - Символические ссылки на модули,
+от которых зависит <code>bar</code>.</li></ul>
+
+<p>Таким образом, даже если встретится цикл или другой конфликт зависимостей,
+каждый модуль сможет получить ту пакета, от которой он зависит.</p>
+
+<p>Когда код из пакета  <code>foo</code> вызывает <code>require('bar')</code>, он получит версию,
+связанную с <code>/usr/lib/node/foo/1.2.3/node_modules/bar</code>.
+Когда код из пакета <code>bar</code> вызывает <code>require('quux')</code>, он получит версию,
+связанную с <code>/usr/lib/node/bar/4.3.2/node_modules/quux</code>.</p>
+
+<p>Кроме того, чтобы сделать процесс поиска модулей более оптимальным, мы можем
+поместить модули не в папку <code>/usr/lib/node</code>, а в <code>/usr/lib/node_modules/&lt;name&gt;/&lt;version&gt;</code>.
+Тогда node не будет пытаться искать отсутствующие зависимости в <code>/usr/node_modules</code>
+и <code>/node_modules</code>.</p>
+
+<p>Чтобы сделать модули доступными и в REPL, может быть полезно добавить путь
+<code>/usr/lib/node_modules</code> в переменную окружения <code>$NODE_PATH</code>. Так как поиск модулей
+с помощью папок <code>node_modules</code> однован на реальных путях в файловой системе,
+разрешаемых во время вызова <code>require()</code>, то пакеты могут располагаться где угодно.</p>
+
+<h2 id="c_C_u0434_u043E_u043F_u043E_u043B_u043D_u0435_u043D_u0438_u044F">C/C++ дополнения</h2>
+
+<p>Дополнения — это динамически подключаемые объекты. Они могут предоставлять
+связь с библиотеками на языках C/C++. На данный момент API для дополнений
+довольно сложное и использует следующие библиотеки:</p>
+
+<ul><li><p>Движок V8 JavaScript, написан на C++. Используется для обращения к JavaScript
+из дополнения: создания объектов, вызова функций и т.д. Документация по нему
+крайне скудна, в основном стоит полагаться на заголовочный файл <code>v8.h</code>
+(<code>deps/v8/include/v8.h</code> в дистрибутиве Node).</p></li><li><p>libev, библиотеку обработки цикла событий на C. Каждый раз, когда вам
+потребуется подождать пока файловый дескриптор станет доступен для чтения,
+подождать вызова таймера или поступления сигнала, вы будете испльзовать
+вызовы из libev. Соответственно, вам придётся использовать libev для любых
+операций ввода/вывода. Node использует цикл событий <code>EV_DEFAULT</code>.
+Документация доступна на <a href="http://cvs.schmorp.de/libev/ev.html">сайте автора</a>.</p></li><li><p>libeio, библиотеку пула потоков на C. Она используется для выполнения
+блокирующих вызовов POSIX асинхронно, в отдельных потоках. Для большинства
+вызовов существуют стандартные обёртки, которые вы можете найти
+в заголовочном файле <code>src/file.cc</code>, так что скорее всего вам не понадобится
+использовать эту библиотеку. Внутренние функции libeio можно посмотреть
+в файле <code>deps/libeio/eio.h</code> дистрибутива Node.</p></li><li><p>Внутренние библиотеки Node. Наиболее важная из них — класс <code>node::ObjectWrap</code>,
+от которого будут наследоваться большинство ваших классов.</p></li><li><p>Остальные доступные библиотеки вы можете найти впапке <code>deps</code> дистрибутива Node.</p></li></ul>
+
+<p>При сборке Node все её зависимости статически компилируются в исполняемый файл.
+При сборке своего модуля вы не должны задумываться об описанных выше библиотеках.</p>
+
+<p>В качестве простого примера сделаем дополнение для Node на C++, которое будет
+делать тоже самое, что и JavaScript код:</p>
+
+<pre><code>exports.hello = 'world';</code></pre>
+
+<p>Создадим файл <code>hello.cc</code>:</p>
+
+<pre><code>#include &lt;v8.h&gt;
+
+using namespace v8;
+
+extern "C" void
+init (Handle&lt;Object&gt; target)
+{
+  HandleScope scope;
+  target-&gt;Set(String::New("hello"), String::New("world"));
+}</code></pre>
+
+<p>Этот код нужно собрать в файл <code>hello.node</code>, файл бинарного дополнения.
+Для этого создадим файл <code>wscript</code>, содержащий код на Python (аналог Makefile):</p>
+
+<pre><code>srcdir = '.'
+blddir = 'build'
+VERSION = '0.0.1'
+
+def set_options(opt):
+  opt.tool_options('compiler_cxx')
+
+def configure(conf):
+  conf.check_tool('compiler_cxx')
+  conf.check_tool('node_addon')
+
+def build(bld):
+  obj = bld.new_task_gen('cxx', 'shlib', 'node_addon')
+  obj.target = 'hello'
+  obj.source = 'hello.cc'</code></pre>
+
+<p>Теперь можно запустить команду <code>node-waf configure build</code>, которая создаст файл
+<code>build/default/hello.node</code>, содержащий бинарную версию дополнения.</p>
+
+<p><code>node-waf</code> — расширение <a href="http://code.google.com/p/waf/">WAF</a>, системы сборки
+на языке Python. <code>node-waf</code> включён в состав Node для упрощения процесса
+сборки дополнений.</p>
+
+<p>Каждое дополнение должно содержать функцию <code>init</code> со следующим интерфейсом:</p>
+
+<pre><code>extern 'C' void init (Handle&lt;Object&gt; target)</code></pre>
+
+<p>На данный момент это вся документация по созданию дополнений. В качестве примера
+вы можете просмотреть код <a href="http://github.com/ry/node_postgres">node_postgres</a>.</p>
+
+<h2 id="_u041F_u0440_u043E_u0446_u0435_u0441_u0441">Процесс</h2>
+
+<p>Объект <code>process</code> — глобальный и может быть использован в любом месте кода.
+Является экземпляром <code>EventEmitter</code>.</p>
+
+<h3 id="_u0421_u043E_u0431_u044B_u0442_u0438_u0435_exit_">Событие: 'exit'</h3>
+
+<p><code>function () {}</code></p>
+
+<p>Генерируется перед тем как процесс завершится. Это хорошее место для проверок
+состояния модуля (например, юнит-тестов). Event loop не будет действовать
+после завершения обработчика <code>'exit'</code>, так что таймеры использовать нельзя.</p>
+
+<p>Пример обработки события <code>'exit'</code>:</p>
+
+<pre><code>process.on('exit', function () {
+  process.nextTick(function () {
+   console.log('This will not run');
+  });
+  console.log('About to exit.');
+});</code></pre>
+
+<h3 id="_u0421_u043E_u0431_u044B_u0442_u0438_u0435_uncaughtException_">Событие: 'uncaughtException'</h3>
+
+<p><code>function (err) { }</code></p>
+
+<p>Генерируется, когда неперехваченное исключение достигает цикла обработки событий.
+Если этому событию назначен обработчик,
+стандартное действие (печать стека и выход) производиться не будет.</p>
+
+<p>Пример обработки события <code>'uncaughtException'</code>:</p>
+
+<pre><code>process.on('uncaughtException', function (err) {
+  console.log('Caught exception: ' + err);
+});
+
+setTimeout(function () {
+  console.log('This will still run.');
+}, 500);
+
+// Intentionally cause an exception, but don't catch it.
+nonexistentFunc();
+console.log('This will not run.');</code></pre>
+
+<p>Заметьте, что событие <code>'uncaughtException'</code> — это очень грубый механизм для управления исключениями.
+Использование try/catch даст вам больший контроль над выполнением вашего кода.
+Но для программ, предназначенных для постоянной работы,
+<code>'uncaughtException'</code> может быть очень полезным механизмом безопасности.</p>
+
+<h3 id="_u0421_u0438_u0433_u043D_u0430_u043B_u044C_u043D_u044B_u0435_u0441_u043E_u0431_u044B_u0442_u0438_u044F">Сигнальные события</h3>
+
+<p><code>function () {}</code></p>
+
+<p>Генерируются когда процесс получает сигнал.
+См. sigaction(2) для списка стандартных имён сигналов в POSIX,
+таких как <code>SIGINT</code>, <code>SIGUSR1</code> и т.д.</p>
+
+<p>Пример обработки сигнала <code>SIGINT</code>:</p>
+
+<pre><code>// Start reading from stdin so we don't exit.
+process.stdin.resume();
+
+process.on('SIGINT', function () {
+  console.log('Got SIGINT.  Press Control-D to exit.');
+});</code></pre>
+
+<p>Простой способ отправки сигнала <code>SIGINT</code>: <code>Control-C</code> в большинстве терминальных программ.</p>
+
+<h3 id="process.stdout">process.stdout</h3>
+
+<p>Поток с возможностью записи, представляющий стандартный поток вывода <code>stdout</code>.</p>
+
+<p>Пример (определение <code>console.log</code>):</p>
+
+<pre><code>console.log = function (d) {
+  process.stdout.write(d + '\n');
+};</code></pre>
+
+<h3 id="process.stderr">process.stderr</h3>
+
+<p>Поток с возможностью записи, представляющий стандартный поток ошибок <code>stderr</code>.
+Запись в этот поток всегда является блокирующей.</p>
+
+<h3 id="process.stdin">process.stdin</h3>
+
+<p>Стандартный поток ввода stdin. Этот поток по умолчанию не реагирует на события,
+для чтения из него нужно предварительно вызвать <code>process.stdin.resume()</code>.</p>
+
+<p>Пример открытия стандартного потока ввода и обработки обоих событий:</p>
+
+<pre><code>process.stdin.resume();
+process.stdin.setEncoding('utf8');
+
+process.stdin.on('data', function (chunk) {
+  process.stdout.write('data: ' + chunk);
+});
+
+process.stdin.on('end', function () {
+  process.stdout.write('end');
+});</code></pre>
+
+<h3 id="process.argv">process.argv</h3>
+
+<p>Массив, содержащий аргументы командной строки.
+Первым элементом будет 'node', вторым — имя JavaScript файла.
+Следующие элементы будут дополнительными аргументами скрипта.</p>
+
+<pre><code>// print process.argv
+process.argv.forEach(function (val, index, array) {
+  console.log(index + ': ' + val);
+});</code></pre>
+
+<p>В результате получим:</p>
+
+<pre><code>$ node process-2.js one two=three four
+0: node
+1: /Users/mjr/work/node/process-2.js
+2: one
+3: two=three
+4: four</code></pre>
+
+<h3 id="process.execPath">process.execPath</h3>
+
+<p>Абсолютный путь к приложению, запустившему процесс.</p>
+
+<p>Пример:</p>
+
+<pre><code>/usr/local/bin/node</code></pre>
+
+<h3 id="process.chdir">process.chdir(directory)</h3>
+
+<p>Изменяет текущий рабочий каталог приложения либо генерирует исключение,
+если изменить каталог не удаётся.</p>
+
+<pre><code>console.log('Starting directory: ' + process.cwd());
+try {
+  process.chdir('/tmp');
+  console.log('New directory: ' + process.cwd());
+}
+catch (err) {
+  console.log('chdir: ' + err);
+}</code></pre>
+
+<h3 id="process.cwd">process.cwd()</h3>
+
+<p>Возвращает текущую рабочую директорию процесса.</p>
+
+<pre><code>console.log('Current directory: ' + process.cwd());</code></pre>
+
+<h3 id="process.env">process.env</h3>
+
+<p>Объект, хранящий окружение пользователя. См. environ(7).</p>
+
+<h3 id="process.exit">process.exit(code=0)</h3>
+
+<p>Завершает процесс с указанным кодом <code>code</code>.
+Если код пропущен, завершает процесс со стандартным успешным кодом <code>0</code>.</p>
+
+<p>Чтобы выйти с ощибочным кодом, нужно вызвать:</p>
+
+<pre><code>process.exit(1);</code></pre>
+
+<p>Оболочка, с помощью которой был запущен скрипт в node, должна получить код <code>1</code>.</p>
+
+<h3 id="process.getgid">process.getgid()</h3>
+
+<p>Возвращает групповой индикатор процесса (см. setgid(2)). Это числовое значение id группы, а не её имя.</p>
+
+<pre><code>console.log('Current gid: ' + process.getgid());</code></pre>
+
+<h3 id="process.setgid">process.setgid(id)</h3>
+
+<p>Устанавливает групповой индикатор процесса (см. setgid(2)).
+Функция принимает как числовое значение, так и его текстовый эквивалент.
+Если функции передано имя группы, то функция блокирует выполнение кода
+пока не разрешит имя в числовой идентификатор.</p>
+
+<pre><code>console.log('Current gid: ' + process.getgid());
+try {
+  process.setgid(501);
+  console.log('New gid: ' + process.getgid());
+}
+catch (err) {
+  console.log('Failed to set gid: ' + err);
+}</code></pre>
+
+<h3 id="process.getuid">process.getuid()</h3>
+
+<p>Возвращает индикатор пользователя-владельца процесса (см. setuid(2)). Это числовой идентификатор, а не имя пользователя.</p>
+
+<pre><code>console.log('Current uid: ' + process.getuid());</code></pre>
+
+<h3 id="process.setuid">process.setuid(id)</h3>
+
+<p>Устанавливает индикатор пользователя-владельца процесса (см. setuid(2)).
+Функция принимает как числовое значение, так и его текстовый эквивалент.
+Если функции передано имя пользователя, то функция блокирует выполнение кода
+пока не разрешит имя в числовой идентификатор.</p>
+
+<pre><code>console.log('Current uid: ' + process.getuid());
+try {
+  process.setuid(501);
+  console.log('New uid: ' + process.getuid());
+}
+catch (err) {
+  console.log('Failed to set uid: ' + err);
+}</code></pre>
+
+<h3 id="process.version">process.version</h3>
+
+<p>Заданное при компиляции свойство, возвращающее версию Node (<code>NODE_VERSION</code>).</p>
+
+<pre><code>console.log('Version: ' + process.version);</code></pre>
+
+<h3 id="process.installPrefix">process.installPrefix</h3>
+
+<p>Заданное при компиляции свойство, хранящее директорию,
+в которую устанавливали Node (<code>NODE_PREFIX</code>).</p>
+
+<pre><code>console.log('Prefix: ' + process.installPrefix);</code></pre>
+
+<h3 id="process.kill">process.kill(pid, signal='SIGTERM')</h3>
+
+<p>Отправляет сигнал процессу. <code>pid</code> это идентификатор процесса, <code>signal</code> — строка,
+обозначающая отправляемый сигнал. Имена сигналов это строки вроде <code>'SIGINT'</code> или <code>'SIGUSR1'</code>.
+Если имя сигнала пропущено, отправлен будет сигнал <code>'SIGTERM'</code>.
+См. kill(2) для более подробной информации.</p>
+
+<p>Заметьте, что хотя функция и называется <code>process.kill</code>,
+на самом деле она просто отправляет сигнал, как и системная команда <code>kill</code>.
+Отправляемый сигнал может не только завершать целевой процесс.</p>
+
+<p>Пример процесса, отправляющего сигнал самому себе:</p>
+
+<pre><code>process.on('SIGHUP', function () {
+  console.log('Got SIGHUP signal.');
+});
+
+setTimeout(function () {
+  console.log('Exiting.');
+  process.exit(0);
+}, 100);
+
+process.kill(process.pid, 'SIGHUP');</code></pre>
+
+<h3 id="process.pid">process.pid</h3>
+
+<p>Идентификатор процесса (PID).</p>
+
+<pre><code>console.log('This process is pid ' + process.pid);</code></pre>
+
+<h3 id="process.title">process.title</h3>
+
+<p>свойство для определение/задания заголовка, отобращаемого в списке процессов.</p>
+
+<h3 id="process.platform">process.platform</h3>
+
+<p>Платформа, на которой выполняется node. <code>'linux2'</code>, <code>'darwin'</code> и т.д.</p>
+
+<pre><code>console.log('This platform is ' + process.platform);</code></pre>
+
+<h3 id="process.memoryUsage">process.memoryUsage()</h3>
+
+<p>Возвращает объект, описывающий потребление памяти процессом Node.</p>
+
+<pre><code>var util = require('util');
+
+console.log(util.inspect(process.memoryUsage()));</code></pre>
+
+<p>В результате получим:</p>
+
+<pre><code>{ rss: 4935680,
+  vsize: 41893888,
+  heapTotal: 1826816,
+  heapUsed: 650472 }</code></pre>
+
+<p><code>heapTotal</code> и <code>heapUsed</code>     относятся к потреблению памяти движком V8.</p>
+
+<h3 id="process.nextTick">process.nextTick(callback)</h3>
+
+<p>На следующей итерации цикла обработки событий запустить указанный обработчик.
+Это <em>не</em> простой alias для <code>setTimeout(fn, 0)</code>, это намного более эффективный метод.</p>
+
+<pre><code>process.nextTick(function () {
+  console.log('nextTick callback');
+});</code></pre>
+
+<h3 id="process.umask">process.umask([mask])</h3>
+
+<p>Задаёт и возвращает маску создания файлов процессом.
+Дочерние процессы наследуют эту маску от процесса-родителя.
+Если задан аргумент mask возвращает старую маску, иначе — возвращает текущую.</p>
+
+<pre><code>var oldmask, newmask = 0644;
+
+oldmask = process.umask(newmask);
+console.log('Changed umask from: ' + oldmask.toString(8) +
+            ' to ' + newmask.toString(8));</code></pre>
+
+<h2 id="_u0423_u0442_u0438_u043B_u0438_u0442_u044B">Утилиты</h2>
+
+<p>Используйте <code>require('util')</code> для доступа к этим функциям.</p>
+
+<h3 id="util.debug">util.debug(string)</h3>
+
+<p>Синхронный вывод. Заблокирует процесс и выведет строку <code>string</code>
+в поток <code>stderr</code> немедленно.</p>
+
+<pre><code>require('util').debug('message on stderr');</code></pre>
+
+<h3 id="util.log">util.log(string)</h3>
+
+<p>Выводит строку с меткой времени в <code>stdout</code>.</p>
+
+<pre><code>require('util').log('Timestmaped message.');</code></pre>
+
+<h3 id="util.inspect">util.inspect(object, showHidden=false, depth=2)</h3>
+
+<p>Возвращает объект <code>object</code> в виде строки, очень удобно для отладки.</p>
+
+<p>Если <code>showHidden</code> имеет значение true, неперечисляемые свойства тоже будут показаны.</p>
+
+<p>Параметр <code>depth</code> он сообщает <code>inspect</code> на какую глубину просмотреть объект,
+прежде чем выдавать результат. Это полезно для больших сложных объектов.</p>
+
+<p>По умолчанию принята глубина просмотра 2. Чтобы просмотреть объект
+на неограниченную глубину, передайте <code>null</code> в качестве значения <code>depth</code>.</p>
+
+<p>Пример просмотра всех свойств объекта <code>util</code>:</p>
+
+<pre><code>var util = require('util');
+
+console.log(util.inspect(util, true, null));</code></pre>
+
+<h3 id="util.pump">util.pump(readableStream, writableStream, [callback])</h3>
+
+<p>Экспериментальный метод.</p>
+
+<p>Читает данные из потока <code>readableStream</code> и посылает потоку <code>writableStream</code>.
+Когда <code>writableStream.write(data)</code> возвращает <code>false</code> <code>readableStream</code>
+приостанавливается пока не произойдёт событие <code>drain</code> во <code>writableStream</code>.
+<code>callback</code> вызывается после закрытия <code>writableStream</code>. <code>callback</code> принимает
+ошибку в случае если <code>writableStream</code> был закрыт или возникла ошибка.</p>
+
+<h3 id="util.inherits">util.inherits(constructor, superConstructor)</h3>
+
+<p>Расширяет <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object/constructor">конструктор</a>
+прототипа методами из другого прототипа. Прототип <code>constructor</code> будет новым объектом, созданным с помощью <code>superConstructor</code>.</p>
+
+<p>Также <code>superConstructor</code> будет доступен через свойство <code>constructor.super_</code>.</p>
+
+<pre><code>var util = require("util");
+var events = require("events");
+
+function MyStream() {
+    events.EventEmitter.call(this);
+}
+
+util.inherits(MyStream, events.EventEmitter);
+
+MyStream.prototype.write = function(data) {
+    this.emit("data", data);
+}
+
+var stream = new MyStream();
+
+console.log(stream instanceof events.EventEmitter); // true
+console.log(MyStream.super_ === events.EventEmitter); // true
+
+stream.on("data", function(data) {
+    console.log('Received data: "' + data + '"');
+})
+stream.write("It works!"); // Received data: "It works!"</code></pre>
+
+<h2 id="c_u043E_u0431_u044B_u0442_u0438_u044F">Cобытия</h2>
+
+<p>Множество объектов в Node генерируют события: <code>net.Server</code> вызывает событие
+при каждом поступающем запросе, <code>fs.readStream</code> вызывает событие при открытии файла.
+Все объекты, генерирующие события, являются экземплярами <code>events.EventEmitter</code>.
+Используйте <code>require('events')</code> чтобы получить доступ к модулю.</p>
+
+<p>Обычно события представлены строками в стиле camelCase. Вот несколько примеров:
+<code>'stream'</code>, <code>'data'</code>, <code>'messageBegin'</code>. Однако, это только пожелание и никаких
+жёстких ограничений на имена событий не накладывается.</p>
+
+<p>К объектам могут быть присоединены функции, которые будут выполняться
+при генерации события. Эти функции называются <em>обработчиками</em> (<em>listeners</em>).</p>
+
+<h3 id="events.EventEmitter">events.EventEmitter</h3>
+
+<p>Класс <code>EventEmitter</code> находится в модуле <code>'events'</code>: <code>require(events').EventEmitter</code>.</p>
+
+<p>Когда источник событий сталкивается с ошибкой, типичное поведение — сгенерировать
+событие ошибки <code>'error'</code>. События ошибки особенные — если им не назначен
+обработчик, то они выводят на экран стек вызовов (stack trace) и завершают программу.</p>
+
+<p>Все источники событий генерируют событие <code>'newListener'</code>,
+когда к ним добавляются новые обработчики.</p>
+
+<h4 id="emitter.addListener">emitter.addListener(event, listener)</h4>
+
+<h4 id="emitter.on">emitter.on(event, listener)</h4>
+
+<p>Добавляет обработчик в конец массива обработчиков указанного события.</p>
+
+<pre><code>server.on('connection', function (stream) {
+  console.log('someone connected!');
+});</code></pre>
+
+<h4 id="emitter.once">emitter.once(event, listener)</h4>
+
+<p>Добавляет <strong>однократный</strong> обработчик указанного события. Обработчик вызываетя
+один раз при первом наступлении события, после чего удаляется.</p>
+
+<pre><code>server.once('connection', function (stream) {
+  console.log('Ah, we have our first user!');
+});</code></pre>
+
+<h4 id="emitter.removeListener">emitter.removeListener(event, listener)</h4>
+
+<p>Удаляет обработчик из массива обработчиков указанного события.
+<strong>Внимание:</strong> изменяет индексы в массиве обработчиков после указанного обработчика.</p>
+
+<pre><code>var callback = function(stream) {
+  console.log('someone connected!');
+};
+server.on('connection', callback);
+// ...
+server.removeListener('connection', callback);</code></pre>
+
+<h4 id="emitter.removeAllListeners">emitter.removeAllListeners(event)</h4>
+
+<p>Удаляет все обработчики из массива обработчиков для указанного события.</p>
+
+<h4 id="emitter.setMaxListeners">emitter.setMaxListeners(n)</h4>
+
+<p>По умолчаню <code>EventEmitter</code> выводит предупреждение, если к нему подключено
+больше 10-ти обработчиков. Это полезно для поиска утечек памяти.
+Но не всегда такое ограничение полезно и возможно. Эта функция позволяет изменить
+пороговое значение. Если функции передать значение <code>0</code>,
+то предупреждение не будет выводиться при любом числе обработчиков.</p>
+
+<h4 id="emitter.listeners">emitter.listeners(event)</h4>
+
+<p>Возвращает массив обработчиков для указанного события. Этот массив может быть
+использован, например, для удаления обработчиков.</p>
+
+<pre><code>server.on('connection', function (stream) {
+  console.log('someone connected!');
+});
+console.log(util.inspect(server.listeners('connection')); // [ [Function] ]</code></pre>
+
+<h4 id="emitter.emit">emitter.emit(event, [arg1], [arg2], [...])</h4>
+
+<p>Выполнит все обработчики события по порядку с указанными аргументами.</p>
+
+<h4 id="_u0421_u043E_u0431_u044B_u0442_u0438_u0435_newListener_">Событие: 'newListener'</h4>
+
+<p><code>function (event, listener) { }</code></p>
+
+<p>Это событие вызывается каждый раз при добавлении обработчика события.</p>
+
+<h2 id="_u0411_u0443_u0444_u0435_u0440_u044B">Буферы</h2>
+
+<p>Чистый JavaScript поддерживает Unicode, но в нём нет средств для работы
+с двоичными данными. При работе с TCP или файловой системой часто необходимо
+работать именно с потоками двоичных данных. В Node предусмотрено несколько
+средств управления, создания и приёма двоичных потоков.</p>
+
+<p>Бинарные данные хранятся в экземплярах класса Buffer. Buffer похож на массив
+целых чисел, но ему соответствует область памяти, выделенная вне стандартной
+кучи V8. Размер Buffer невозможно изменить после создания. </p>
+
+<p>Объект <code>Buffer</code> существует в глобальном пространстве имён.</p>
+
+<p>При преобразовании между буферами и строками JavaScript требуется явно
+указывать метод кодирования символов. Node поддерживает 3 кодировки для строк:</p>
+
+<ul><li><p><code>'ascii'</code> — только для 7-битных ASCII-строк. Этот метод кодирования очень
+быстрый, и будет сбрасывать старший бит символа, если тот установлен.</p></li><li><p><code>'utf8'</code> — Unicode-символы. Многие веб-страницы и документы используют UTF-8.</p></li><li><p><code>'binary'</code> — устаревший способ. Хранит двоичные данные в строке используя
+младшие 8 бит каждого символа. Не используйте эту кодировку.</p></li></ul>
+
+<h3 id="new_Buffer">new Buffer(size)</h3>
+
+<p>Создаёт новый буфер размера <code>size</code> байт.</p>
+
+<h3 id="new_Buffer">new Buffer(array)</h3>
+
+<p>Создаёт новый буфер из массива <code>array</code> 8-битных символов.</p>
+
+<h3 id="new_Buffer">new Buffer(str, encoding='utf8')</h3>
+
+<p>Создаёт новый буфер, содержащий строку <code>str</code> в кодировке <code>encoding</code>.</p>
+
+<h3 id="buffer.write">buffer.write(string, offset=0, encoding='utf8')</h3>
+
+<p>Записывает строку <code>string</code> в буфер по смещению <code>offset</code> от его начала
+с использованием указанной кодировки. Возвращает количество записанных байт.
+Если <code>buffer</code> не имеет достаточно места для сохранения всей строки,
+то метод запишет только её часть. В случае если кодировка строки — <code>'utf8'</code>,
+то метод не будет записывать частичные символы.</p>
+
+<p>Пример: записать UTF-8 строку в буфер, потом напечатать его.</p>
+
+<pre><code>buf = new Buffer(256);
+len = buf.write('\u00bd + \u00bc = \u00be', 0);
+console.log(len + " bytes: " + buf.toString('utf8', 0, len));
+
+// 12 bytes: ½ + ¼ = ¾</code></pre>
+
+<h3 id="buffer.toString">buffer.toString(encoding, start=0, end=buffer.length)</h3>
+
+<p>Декодирует и возвращает строку из данных буфера, закодированных в кодировке
+<code>encoding</code> начиная с позиции <code>start</code> и заканчивая позицией <code>end</code>.</p>
+
+<p>См. пример <code>buffer.write()</code> выше.</p>
+
+<h3 id="buffer_index_">buffer[index]</h3>
+
+<p>Получает или устанавливает байт на позиции <code>index</code>. Значения соответствуют индивидуальным
+байтам и могут лежать в пределах от <code>0x00</code> до <code>0xFF</code> в шестнадцатиричной записи
+и от <code>0</code> до <code>255</code> в десятичной. </p>
+
+<p>Пример: скопировать ASCII строку в буфер, байт за байтом.</p>
+
+<pre><code>str = "node.js";
+buf = new Buffer(str.length);
+
+for (var i = 0; i &lt; str.length ; i++) {
+  buf[i] = str.charCodeAt(i);
+}
+
+console.log(buf);
+
+// node.js</code></pre>
+
+<h3 id="buffer.isBuffer">Buffer.isBuffer(obj)</h3>
+
+<p>Проверяет, является ли <code>obj</code> буфером.</p>
+
+<h3 id="buffer.byteLength">Buffer.byteLength(string, encoding='utf8')</h3>
+
+<p>Возвращает количество байт в строке. Это не то же самое что <code>String.prototype.length</code>,
+так как этот метод возвращает число <em>символов</em> в строке.</p>
+
+<p>Пример:</p>
+
+<pre><code>str = '\u00bd + \u00bc = \u00be';
+
+console.log(str + ": " + str.length + " characters, " +
+  Buffer.byteLength(str, 'utf8') + " bytes");
+
+// ½ + ¼ = ¾: 9 characters, 12 bytes</code></pre>
+
+<h3 id="buffer.length">buffer.length</h3>
+
+<p>Размер буфера в байтах. Заметьте, что это значение не всегда соответствует размеру
+содержимого. <code>length</code> возвращает объем памяти, зарезервированный для объекта буфера.
+Это значение не изменяется при изменении содержимого буфера.</p>
+
+<pre><code>buf = new Buffer(1234);
+
+console.log(buf.length);
+buf.write("some string", "ascii", 0);
+console.log(buf.length);
+
+// 1234
+// 1234</code></pre>
+
+<h3 id="buffer.copy">buffer.copy(targetBuffer, targetStart=0, sourceStart=0, sourceEnd=buffer.length)</h3>
+
+<p>Копирует данные между буферами с помощью memcpy().</p>
+
+<p>Пример: создадим два буфера, потом скопировать <code>buf1</code>
+с байта 16 по байт 19 в <code>buf2</code>, начиная с 8-го байта в <code>buf2</code>.</p>
+
+<pre><code>buf1 = new Buffer(26);
+buf2 = new Buffer(26);
+
+for (var i = 0 ; i &lt; 26 ; i++) {
+  buf1[i] = i + 97; // 97 is ASCII a
+  buf2[i] = 33; // ASCII !
+}
+
+buf1.copy(buf2, 8, 16, 20);
+console.log(buf2.toString('ascii', 0, 25));
+
+// !!!!!!!!qrst!!!!!!!!!!!!!</code></pre>
+
+<h3 id="buffer.slice">buffer.slice(start, end=buffer.length)</h3>
+
+<p>Возвращает новый буфер, указывающий на ту же область памяти что предыдущий,
+но начиная со <code>start</code> и заканчивая <code>end</code> байтами.</p>
+
+<p><strong>Изменение содержимого нового буфера затронет содержимое старого!</strong></p>
+
+<p>Пример: построить буфер с ASCII-алфавитом, вырезать часть в новый буфер, затем
+изменить 1 часть в оригинальном буфере.</p>
+
+<pre><code>var buf1 = new Buffer(26);
+
+for (var i = 0 ; i &lt; 26 ; i++) {
+  buf1[i] = i + 97; // 97 is ASCII a
+}
+
+var buf2 = buf1.slice(0, 3);
+console.log(buf2.toString('ascii', 0, buf2.length));
+buf1[0] = 33;
+console.log(buf2.toString('ascii', 0, buf2.length));
+
+// abc
+// !bc</code></pre>
+
+<h2 id="_u041F_u043E_u0442_u043E_u043A_u0438">Потоки</h2>
+
+<p>Поток — это абстрактный интерфейс, реализуемый многими объектами в Node.
+Например, запрос к HTTP-серверу является потоком, также как stdout. Потоки
+могут быть с возможностью чтения, записи или и того и другого. Все потоки
+являются экземплярами <code>EventEmitter</code>.</p>
+
+<h2 id="_u041F_u043E_u0442_u043E_u043A_u0441_u0432_u043E_u0437_u043C_u043E_u0436_u043D_u043E_u0441_u0442_u044C_u044E_u0447_u0442_u0435_u043D_u0438_u044F">Поток с возможностью чтения</h2>
+
+<p><code>Поток с возможностью чтения</code> имеет следующие методы, свойства и события.</p>
+
+<h3 id="_u0421_u043E_u0431_u044B_u0442_u0438_u0435_data_">Событие: 'data'</h3>
+
+<p><code>function (data) { }</code></p>
+
+<p>Событие <code>'data'</code> передаёт обработчику либо <code>Buffer</code> (по умолчанию),
+либо строку, если предварительно был вызван <code>setEncoding()</code>.</p>
+
+<h3 id="_u0421_u043E_u0431_u044B_u0442_u0438_u0435_end_">Событие: 'end'</h3>
+
+<p><code>function () { }</code></p>
+
+<p>Генерируется когда поток получает символ конца файла EOF (FIN в терминологии TCP).
+Означает что событий <code>'data'</code> больше не предвидится. Если поток также имеет
+возможность записи, писать данные можно и дальше.</p>
+
+<h3 id="event_error_">Event: 'error'</h3>
+
+<p><code>function (exception) { }</code></p>
+
+<p>Генерируется если при приёме данных произошла ошибка.</p>
+
+<h3 id="_u0421_u043E_u0431_u044B_u0442_u0438_u0435_close_">Событие: 'close'</h3>
+
+<p><code>function () { }</code></p>
+
+<p>Генерируется когда соответствующий потоку файловый дескриптор закрывается.
+Не все потоки генерируют это событие. Например, входящий HTTP запрос
+не генерирует <code>'close'</code>.</p>
+
+<h3 id="_u0421_u043E_u0431_u044B_u0442_u0438_u0435_fd_">Событие: 'fd'</h3>
+
+<p><code>function (fd) { }</code></p>
+
+<p>Генерируется когда поток получает файловый дескриптор. Только UNIX потоки
+поддерживают этот функционал; остальные никогда не генерируют это событие.</p>
+
+<h3 id="stream.readable">stream.readable</h3>
+
+<p>A boolean that is <code>true</code> by default, but turns <code>false</code> after an <code>'error'</code>
+occured, the stream came to an <code>'end'</code>, or <code>destroy()</code> was called.</p>
+
+<h3 id="stream.setEncoding">stream.setEncoding(encoding)</h3>
+
+<p>Заставляет событие <code>'data'</code> передавать обработчику строку вместо буфера.
+<code>encoding</code> может быть <code>'utf8'</code>, <code>'ascii'</code> или <code>'base64'</code>.</p>
+
+<h3 id="stream.pause">stream.pause()</h3>
+
+<p>Прекращает поступление событий <code>'data'</code>.</p>
+
+<h3 id="stream.resume">stream.resume()</h3>
+
+<p>Возобновляет поступление событий <code>'data'</code> после <code>pause()</code>.</p>
+
+<h3 id="stream.destroy">stream.destroy()</h3>
+
+<p>Закрывает соответствующий потоку файловый дескриптор.
+Поток больше не будет генерировать событий.</p>
+
+<h3 id="stream.pipe">stream.pipe(destination, [options])</h3>
+
+<p>Соединяет поток с возможностью чтения с потоком <code>destination</code>, доступным для записи.
+Все читаемые этим поток данные будут записаны в <code>destination</code>. Для синхронизации
+вшуюсяпотоков можно использовать <code>stream.pause()</code> и <code>stream.resume()</code>.</p>
+
+<p>Пример эмуляции UNIX-команды <code>cat</code>:</p>
+
+<pre><code>process.stdin.resume();
+process.stdin.pipe(process.stdout);</code></pre>
+
+<p>По умолчанию при поступлдении события <code>end</code> у источника будет вызван метод <code>end()</code>
+у приёмника <code>destination</code> is no longer writable. Если в качестве <code>options</code>
+передать <code>{ end: false }</code>, то поток-приёмник останется открытым после закрытия потока-источника:</p>
+
+<pre><code>process.stdin.resume();
+
+process.stdin.pipe(process.stdout, { end: false });
+
+process.stdin.on("end", function() {
+  process.stdout.write("Goodbye\n");
+});</code></pre>
+
+<p>ПРИМЕЧАНИЕ: Если поток-источник не поддерживает <code>pause()</code> и <code>resume()</code>, эта функция
+одобалвяет в объект простую реализацию этих функцйи, вызывающую события
+<code>'pause'</code> и <code>'resume'</code>, соответственно.</p>
+
+<h2 id="_u041F_u043E_u0442_u043E_u043A_u0441_u0432_u043E_u0437_u043C_u043E_u0436_u043D_u043E_u0441_u0442_u044C_u044E_u0437_u0430_u043F_u0438_u0441_u0438">Поток с возможностью записи</h2>
+
+<p>У <code>потока с возможностью записи</code> есть следующие методы, свойства и события.</p>
+
+<h3 id="_u0421_u043E_u0431_u044B_u0442_u0438_u0435_drain_">Событие: 'drain'</h3>
+
+<p><code>function () { }</code></p>
+
+<p>Генерируется после вызова метода <code>write()</code> вернувшего <code>false</code> — сигнал о том,
+что можно писать дальше.</p>
+
+<h3 id="_u0421_u043E_u0431_u044B_u0442_u0438_u0435_error_">Событие: 'error'</h3>
+
+<p><code>function (exception) { }</code></p>
+
+<p>Генерируется при ошибке с исключением <code>exception</code>.</p>
+
+<h3 id="_u0421_u043E_u0431_u044B_u0442_u0438_u0435_close_">Событие: 'close'</h3>
+
+<p><code>function () { }</code></p>
+
+<p>Генерируется когда закрывается соответствующий потоку дескриптор.</p>
+
+<h3 id="_u0421_u043E_u0431_u044B_u0442_u0438_u0435_pipe_">Событие: 'pipe'</h3>
+
+<p><code>function (src) { }</code></p>
+
+<p>Генерируется когда поток передаётся в метод <code>pipe()</code> потока с возможностью записи.</p>
+
+<h3 id="stream.writable">stream.writable</h3>
+
+<p>Булево свойство, по умолчанию <code>true</code>, но становящиеся <code>false</code> после наступления
+события <code>'error'</code> или вызова <code>end()</code> / <code>destroy()</code>.</p>
+
+<h3 id="stream.write">stream.write(string, encoding='utf8', [fd])</h3>
+
+<p>Записывает строку <code>string</code> в указанной кодировке <code>encoding</code> в поток. Возвращает
+<code>true</code> если строка попала в буфер ядра. Возвращает <code>false</code> если буфер ядра полон
+и данные будут отправлены позже. Когда данные будут отправлены и буфер ядра опустеет,
+будет сгенерировано событие <code>'drain'</code>. Кодировка по умолчанию — <code>'utf8'</code>.</p>
+
+<p>Если указан необязательный параметр <code>fd</code>, он интерпретируется как файловый
+дескриптор для отправки в поток. Это поддерживается только в UNIX потоках,
+и просто игнорируется в другом окружении. Когда дескриптор пересылается таким
+образом, если он будет закрыт до события 'drain' потока, может быть отправлен
+повреждённый (закрытый) дескриптор.</p>
+
+<h3 id="stream.write">stream.write(buffer)</h3>
+
+<p>То же что и выше, но с использованием буфера.</p>
+
+<h3 id="stream.end">stream.end()</h3>
+
+<p>Закрывает поток отправкой EOF или FIN.</p>
+
+<h3 id="stream.end">stream.end(string, encoding)</h3>
+
+<p>Посылает строку <code>string</code> в указанной кодировке <code>encoding</code> и закрывает поток
+отправкой EOF или FIN. Так можно уменьшить общее число отправленных пакетов.</p>
+
+<h3 id="stream.end">stream.end(buffer)</h3>
+
+<p>То же что выше но с использованием буфера.</p>
+
+<h3 id="stream.destroy">stream.destroy()</h3>
+
+<p>Закрывает соответствующий потоку файловый дескриптор.
+Поток больше не будет генерировать событий.</p>
+
+<h3 id="stream.destroySoon">stream.destroySoon()</h3>
+
+<p>Закрывает соответствующий потоку файловый дескриптор после того, как очередь записи окажется пустой.</p>
+
+<h2 id="_u041C_u043E_u0434_u0443_u043B_u044C_u043A_u0440_u0438_u043F_u0442_u043E_u0433_u0440_u0430_u0444_u0438_u0438">Модуль криптографии</h2>
+
+<p>Используйте <code>require('crypto')</code> чтобы получить доступ к функциям модуля.</p>
+
+<p>Криптографический модуль требует для своей работы наличия OpenSSL.
+Он предоставляет возможность использовать аутентификацию в HTTPS и HTTP-соединениях.</p>
+
+<p>Модуль также предоставляет набор обёрток для некоторых методов OpenSSL:
+hash, hmac, cipher, decipher, sign и verify.</p>
+
+<h3 id="crypto.createCredentials">crypto.createCredentials(details)</h3>
+
+<p>Создаёт объект данных аутентификации, может принимать параметром объект со следующими свойствами:</p>
+
+<ul><li><code>key</code> : строка с PEM-закодированным приватным ключом,</li><li><code>cert</code> : строка с PEM-закодированным сертификатом,</li><li><code>ca</code> : строка или список строк PEM-закодированных доверенных корневых сертификатов.</li></ul>
+
+<p>Если корневые сертификаты не указаны, node.js будет использовать список доверенных сертификатов,
+расположенный по адресу <a href="http://mxr.mozilla.org/mozilla/source/security/nss/lib/ckfw/builtins/certdata.txt">http://mxr.mozilla.org/mozilla/source/security/nss/lib/ckfw/builtins/certdata.txt</a>.</p>
+
+<h3 id="crypto.createHash">crypto.createHash(algorithm)</h3>
+
+<p>Создает и возвращает объект <code>hash</code>, который может быть использован
+для создания криптографических хэшей по заданному алгоритму.</p>
+
+<p>Возможные значения для <code>algorithm</code> зависят от доступных алгоритмах в той версии OpenSSL,
+которая у вас установлена. Например, это может быть <code>'sha1'</code>, <code>'md5'</code> и т.д.
+В последней версии OpenSSL список поддерживаемых алгоритмов можно было узнать
+с помощью команды <code>openssl list-message-digest-algorithms</code>.</p>
+
+<h3 id="hash.update">hash.update(data)</h3>
+
+<p>Обновляет содержимое на <code>data</code>. Этот метод может быть вызван несколько раз.</p>
+
+<h3 id="hash.digest">hash.digest(encoding='binary')</h3>
+
+<p>Вычисляет хеш от всех поступивших данных.
+Параметр <code>encoding</code> может равняться <code>'hex'</code>, <code>'binary'</code> или <code>'base64'</code>.</p>
+
+<h3 id="crypto.createHmac">crypto.createHmac(algorithm, key)</h3>
+
+<p>Создает и возвращает объект <code>hmac</code>, который может быть использован
+для создания хеш-кода идентификации сообщений (HMAC) по заданному алгоритму и ключу.</p>
+
+<p>Возможные значения для <code>algorithm</code> зависят от доступных алгоритмах в OpenSSL,
+см. описание для <code>crypto.createHash()</code> выше. <code>key</code> определяет используемый ключ.</p>
+
+<h3 id="hmac.update">hmac.update(data)</h3>
+
+<p>Обновляет содержимое на <code>data</code>. Этот метод может быть вызван несколько раз.</p>
+
+<h3 id="hmac.digest">hmac.digest(encoding='binary')</h3>
+
+<p>Вычисляет хеш от всех поступивших данных.
+Параметр encoding может равняться <code>'hex'</code>, <code>'binary'</code> или <code>'base64'</code>.</p>
+
+<h3 id="crypto.createCipher">crypto.createCipher(algorithm, key)</h3>
+
+<p>Создает и возвращает объект <code>cipher</code>, который может быть использован
+для шифрования по заданному алгоритму и ключу.</p>
+
+<p>Возможные значения для <code>algorithm</code> зависят от доступных алгоритмах в той версии OpenSSL,
+которая у вас установлена. Например, это может быть <code>'aes192'</code>, <code>'blowfish'</code> и т.д.
+В последней версии OpenSSL список поддерживаемых алгоритмов можно было узнать
+с помощью команды <code>openssl list-cipher-algorithms</code>.</p>
+
+<h3 id="cipher.update">cipher.update(data, input_encoding='binary', output_encoding='binary')</h3>
+
+<p>Обновляет содержимое на <code>data</code>, кодировку которых задаёт аргумент <code>input_encoding</code>
+(может равняться <code>'utf8'</code>, <code>'ascii'</code> или <code>'binary'</code>). Аргумент <code>output_encoding</code>
+определяет выходной формат и может равняться <code>'binary'</code>, <code>'base64'</code> или <code>'hex'</code>.</p>
+
+<p>Возвращает зашифрованного содержимого и может быть названо много раз с новыми данными.</p>
+
+<h3 id="cipher.final">cipher.final(output_encoding='binary')</h3>
+
+<p>Возвращает все оставшиеся зашифрованного содержимого в кодировке <code>output_encoding</code>,
+которая может равняться <code>'binary'</code>, <code>'ascii'</code> или <code>'utf8'</code>.</p>
+
+<h3 id="crypto.createDecipher">crypto.createDecipher(algorithm, key)</h3>
+
+<p>Создает и возвращает объект <code>decipher</code>, который может быть использован
+для дешифрования по заданному алгоритму и ключу. Это объект-близнец для объекта <code>cipher</code>.</p>
+
+<h3 id="decipher.update">decipher.update(data, input_encoding='binary', output_encoding='binary')</h3>
+
+<p>Обновляет содержимое на <code>data</code>, формат которых задаёт аргумент <code>input_encoding</code>
+(может равняться <code>'binary'</code>, <code>'base64'</code> или <code>'hex'</code>). Аргумент <code>output_encoding</code>
+определяет выходную кодировку и может равняться <code>'utf8'</code>, <code>'ascii'</code> или <code>'binary'</code>.</p>
+
+<h3 id="decipher.final">decipher.final(output_encoding='binary')</h3>
+
+<p>Возвращает все оставшиеся разшифрованного содержимого в виде простого текста.
+Значение аргументо output_encoding объяснено выше.</p>
+
+<h3 id="crypto.createSign">crypto.createSign(algorithm)</h3>
+
+<p>Создает и возвращает объект <code>signer</code>, который может быть использован
+для создания электронной подписи по заданному алгоритму.</p>
+
+<h3 id="signer.update">signer.update(data)</h3>
+
+<p>Обновляет содержимое на <code>data</code>. Этот метод может быть вызван несколько раз.</p>
+
+<h3 id="signer.sign">signer.sign(private_key, output_format='binary')</h3>
+
+<p>Вычисляет подпись для всех данных. <code>private_key</code> задаёт закрытый ключ в формате PEM.</p>
+
+<p>Возвращает подпись в формате <code>output_format</code>, который может равняться <code>'binary'</code>, <code>'hex'</code> или <code>'base64'</code>.</p>
+
+<h3 id="crypto.createVerify">crypto.createVerify(algorithm)</h3>
+
+<p>Создает и возвращает объект <code>verifier</code>, который может быть использован
+для проверки электронной подписи. Это объект-близнец для объекта <code>signer</code>.</p>
+
+<h3 id="verifier.update">verifier.update(data)</h3>
+
+<p>Обновляет содержимое на <code>data</code>. Этот метод может быть вызван несколько раз.</p>
+
+<h3 id="verifier.verify">verifier.verify(cert, signature, signature_format='binary')</h3>
+
+<p>Проверяет данные с помощью открытого ключа <code>cert</code> в формате PEM и подписи
+<code>signature</code> формата <code>signature_format</code> (может равняться <code>'binary'</code>, <code>'hex'</code> или <code>'base64'</code>.</p>
+
+<p>Возвращает <code>true</code> или <code>false</code> в зависимости от действительности подписи и публичного ключа.</p>
+
+<h2 id="tLS_">TLS (SSL)</h2>
+
+<p>Используйте <code>require('tls')</code> чтобы получить доступ к функциям этого модуля.</p>
+
+<p>Модуль <code>tls</code> использует OpenSSL чтобы предоставить Transport Layer Security и/или
+Secure Socket Layer (SSL): зашифрованные соединения.</p>
+
+<p>TLS/SSL это инфраструктура с публичными ключами. Каждый клиент и каждый сервер должны иметь собственный приватный ключ. Приватный ключ создаётся таким образом:</p>
+
+<pre><code>openssl genrsa -out ryans-key.pem 1024</code></pre>
+
+<p>Все серверы и некоторые клиенты должны иметь сертификат. Сертификаты это публичные ключи подписанные Центром Сертификации или самим создателем сертификата. Первый шаг в получени сертификата: создание файла запроса на подпись сертификата (CSR, Certificate Signing Request). Это делается следующим образом:</p>
+
+<pre><code>openssl req -new -key ryans-key.pem -out ryans-csr.pem</code></pre>
+
+<p>Чтобы создать самостоятельно подписанный сертификат CSR, сделайте:</p>
+
+<pre><code>openssl x509 -req -in ryans-csr.pem -signkey ryans-key.pem -out ryans-cert.pem</code></pre>
+
+<p>Либо Вы можете отправить CSR в Центр Сертификации для подписи.</p>
+
+<p>(TODO: docs on creating a CA, for now interested users should just look at
+<code>test/fixtures/keys/Makefile</code> in the Node source code)</p>
+
+<h3 id="s_tls.connect">s = tls.connect(port, [host], [options], callback)</h3>
+
+<p>Создаёт новое соединение на выбранный порт и хост (хост по умолчанию - <code>localhost</code>). Опции <code>options</code> должны быть объектом, содержащим</p>
+
+<ul><li><p><code>key</code>: Строка или буфер содержащие приватный ключ сервера в формате PEM (обязательно)</p></li><li><p><code>cert</code>: Строка или буфер содержащие ключ сертификата сервера в формате PEM.</p></li><li><p><code>ca</code>: Массив строк или буферов с доверенными сертификатами. Если этот массив пропущен, будут использованы "корневые" Центры Сертификации, например VeriSign. Они будут использованы для авторизации соединения.</p></li></ul>
+
+<p><code>tls.connect()</code> возвращает текстовый объект <code>CryptoStream</code>.</p>
+
+<p>После рукопожатия TLS/SSL вызывается переданная функция. Вызов произойдёт независимо от того был ли авторизрван сертификат. Пользователь сам должен проверить значение <code>s.authorized</code> чтобы увидеть был ли сертификат подписан одним из указанных центров. Если <code>s.authorized === false</code> то в переменной <code>s.authorizationError</code> будет содержаться объект соответствующей ошибки.</p>
+
+<h3 id="tls.Server">tls.Server</h3>
+
+<p>Этот класс - подкласс <code>net.Server</code> и имеет те же методы. Вместо приёма простых TCP соединений он принимает защищённые соединения с использованием TLS или SSL.</p>
+
+<p>Простой пример эхо-сервера (возвращает полученные данные):</p>
+
+<pre><code>var tls = require('tls');
+var fs = require('fs');
+
+var options = {
+  key: fs.readFileSync('server-key.pem'),
+  cert: fs.readFileSync('server-cert.pem')
+};
+
+tls.createServer(options, function (s) {
+  s.write("welcome!\n");
+  s.pipe(s);
+}).listen(8000);</code></pre>
+
+<p>Вы можете проверить сервер, присоединившись к нему с помощью <code>openssl s_client</code>:</p>
+
+<pre><code>openssl s_client -connect 127.0.0.1:8000</code></pre>
+
+<h4 id="tls.createServer">tls.createServer(options, secureConnectionListener)</h4>
+
+<p>Это конструктор для класса <code>tls.Server</code>. Объект опций может содержать следующие значения:</p>
+
+<ul><li><p><code>key</code>:  Строка или буфер содержащие приватный ключ сервера в формате PEM (обязательно)</p></li><li><p><code>cert</code>: Строка или буфер содержащие ключ сертификата сервера в формате PEM.</p></li><li><p><code>ca</code>: Массив строк или буферов с доверенными сертификатами. Если этот массив пропущен, будут использованы "корневые" Центры Сертификации, например VeriSign. Они будут использованы для авторизации соединения.</p></li><li><p><code>requestCert</code>: Если принимает значение <code>true</code> сервер будет запрашивать у клиентов сертификаты и пытаться проверять их подлинность. По умолчанию принимает значение <code>false</code>.</p></li><li><p><code>rejectUnauthorized</code>: Если равно <code>true</code> сервер будет сбрасывать соединения сертификаты которых не подтверждены списком доверенных Центров Сертификации. Эта опция действует только если <code>requestCert</code> равен <code>true</code>. Значение по умолчанию: <code>false</code>.</p></li></ul>
+
+<h4 id="_u0421_u043E_u0431_u044B_u0442_u0438_u0435_secureConnection_">Событие: 'secureConnection'</h4>
+
+<p><code>function (cleartextStream) {}</code></p>
+
+<p>Это событие генерируется при приёме нового соединения после успешного прохождения рукопожатия. Аргумент - экземпляр <code>stream.Stream</code> открытый на чтение и запись. Он имеет все методы и события обычного потока.</p>
+
+<p><code>cleartextStream.authorized</code> - двоичное значение, сообщающее что клиент был проверен одним из заданных для сервера доверенных Центров Сертификации. Если это свойство принимает значение <code>false</code>, в <code>cleartextStream.authorizationError</code> будет храниться ошибка авторизации. Стоит заметить что в зависимости от настроек TLS-сервера неавторизованные соединения могут приниматься либо сбрасываться.</p>
+
+<h4 id="server.listen">server.listen(port, [host], [callback])</h4>
+
+<p>Начинает приём соединений на указанном порту и адресе. Если адрес не указан, сервер принимает соединения на любой адрес IPv4 (<code>INADDR_ANY</code>).</p>
+
+<p>Эта функция асинхронна. Коллбек, переданный последним параметром, будет вызван когда сервер будет готов к приёму соединений.</p>
+
+<p>См. <code>net.Server</code> для дальнейшей информации.</p>
+
+<h4 id="server.close">server.close()</h4>
+
+<p>Прекращает приём новых соединений сервером. Эта функция асинхронна, сервер окончательно закрывается когда генерируется событие <code>'close'</code>.</p>
+
+<h4 id="server.maxConnections">server.maxConnections</h4>
+
+<p>Задайте это свойство чтобы сбрасывать новые соединения как только количество одновременных соединений достигнет указанного значения.</p>
+
+<h4 id="server.connections">server.connections</h4>
+
+<p>Число одновременных соединений с сервером.</p>
+
+<h2 id="_u0424_u0430_u0439_u043B_u043E_u0432_u0430_u044F_u0441_u0438_u0441_u0442_u0435_u043C_u0430">Файловая система</h2>
+
+<p>Файловый ввод/вывод обеспечивается с помощью простой обертки вокруг стандартных
+функций POSIX. Используйте <code>require('fs')</code> чтобы получить к ним доступ.
+Все эти методы имеют асинхронную и синхронную версии.</p>
+
+<p>Асинхронные версии всегда принимают функцию обратного вызова в качестве
+последнего аргумента. Аргументы, передаваемые в функцию обратного вызова зависят
+от вызываемой функции, но первый из них всегда зарезервирован для исключения.
+Если операция завершается без ошибок, то в качется первого аргумента
+передаётся <code>null</code> или <code>undefined</code>.</p>
+
+<p>Пример использования асинхронной версии:</p>
+
+<pre><code>var fs = require('fs');
+
+fs.unlink('/tmp/hello', function (err) {
+  if (err) throw err;
+  console.log('successfully deleted /tmp/hello');
+});</code></pre>
+
+<p>Пример использования асинхронной версии:</p>
+
+<pre><code>var fs = require('fs');
+
+fs.unlinkSync('/tmp/hello')
+console.log('successfully deleted /tmp/hello');</code></pre>
+
+<p>Асинхронные методы не гарантируют порядок выполнения операций.
+Следующий код может сработать неправильно:</p>
+
+<pre><code>fs.rename('/tmp/hello', '/tmp/world', function (err) {
+  if (err) throw err;
+  console.log('renamed complete');
+});
+fs.stat('/tmp/world', function (err, stats) {
+  if (err) throw err;
+  console.log('stats: ' + JSON.stringify(stats));
+});</code></pre>
+
+<p>Вполне возможно что fs.stat выполнится до fs.rename. Правильный способ сделать
+то же самое — выполнение этих методов по цепочке.</p>
+
+<pre><code>fs.rename('/tmp/hello', '/tmp/world', function (err) {
+  if (err) throw err;
+  fs.stat('/tmp/world', function (err, stats) {
+    if (err) throw err;
+    console.log('stats: ' + JSON.stringify(stats));
+  });
+});</code></pre>
+
+<p>В нагруженных процессах программисту <em>строго рекомендуется</em> использовать
+асинхронные версии вызовов. Синхронные версии будут блокировать весь процесс
+до своего завершения — предотвращая любые новые соединения.</p>
+
+<h3 id="fs.rename">fs.rename(path1, path2, [callback])</h3>
+
+<p>Асинхронное переименование (rename(2)).
+Обработчику не передаётся аргументов кроме возможного исключения.</p>
+
+<h3 id="fs.renameSync">fs.renameSync(path1, path2)</h3>
+
+<p>Синхронный rename(2).</p>
+
+<h3 id="fs.truncate">fs.truncate(fd, len, [callback])</h3>
+
+<p>Асинхронный ftruncate(2).
+Обработчику не передаётся аргументов кроме возможного исключения.</p>
+
+<h3 id="fs.truncateSync">fs.truncateSync(fd, len)</h3>
+
+<p>Синхронный ftruncate(2).</p>
+
+<h3 id="fs.chmod">fs.chmod(path, mode, [callback])</h3>
+
+<p>Асинхронное изменение прав доступа (chmod(2)).
+Обработчику не передаётся аргументов кроме возможного исключения.</p>
+
+<h3 id="fs.chmodSync">fs.chmodSync(path, mode)</h3>
+
+<p>Синхронный chmod(2).</p>
+
+<h3 id="fs.stat">fs.stat(path, [callback])</h3>
+
+<p>Асинхронный stat(2). Обработчик получает два аргумента <code>(err, stats)</code>,
+где <code>stats</code> это экземпляр <code>fs.Stats</code>. Он выглядит примерно так:</p>
+
+<pre><code>{ dev: 2049,
+  ino: 305352,
+  mode: 16877,
+  nlink: 12,
+  uid: 1000,
+  gid: 1000,
+  rdev: 0,
+  size: 4096,
+  blksize: 4096,
+  blocks: 8,
+  atime: '2009-06-29T11:11:55Z',
+  mtime: '2009-06-29T11:11:40Z',
+  ctime: '2009-06-29T11:11:40Z' }</code></pre>
+
+<p>См. <code>fs.Stats</code> ниже для дополнительной информации.</p>
+
+<h3 id="fs.lstat">fs.lstat(path, [callback])</h3>
+
+<p>Асинхронный lstat(2). Обработчик получает два аргумента <code>(err, stats)</code>,
+где <code>stats</code> это экземпляр <code>fs.Stats</code>.</p>
+
+<h3 id="fs.fstat">fs.fstat(fd, [callback])</h3>
+
+<p>Асинхронный fstat(2). Обработчик получает два аргумента <code>(err, stats)</code>,
+где <code>stats</code> это экземпляр <code>fs.Stats</code>.</p>
+
+<h3 id="fs.statSync">fs.statSync(path)</h3>
+
+<p>Синхронный stat(2). Возвращает экземпляр <code>fs.Stats</code>.</p>
+
+<h3 id="fs.lstatSync">fs.lstatSync(path)</h3>
+
+<p>Синхронный lstat(2). Возвращает экземпляр <code>fs.Stats</code>.</p>
+
+<h3 id="fs.fstatSync">fs.fstatSync(fd)</h3>
+
+<p>Синхронный fstat(2). Возвращает экземпляр <code>fs.Stats</code>.</p>
+
+<h3 id="fs.link">fs.link(srcpath, dstpath, [callback])</h3>
+
+<p>Асинхронное создание ссылки (link(2)).
+Передаваемой функции не передаётся ничего кроме возможного исключения.</p>
+
+<h3 id="fs.linkSync">fs.linkSync(srcpath, dstpath)</h3>
+
+<p>Синхронный link(2).</p>
+
+<h3 id="fs.symlink">fs.symlink(linkdata, path, [callback])</h3>
+
+<p>Асинхронное создание символической ссылки (symlink(2)).
+Передаваемой функции не передаётся ничего кроме возможного исключения.</p>
+
+<h3 id="fs.symlinkSync">fs.symlinkSync(linkdata, path)</h3>
+
+<p>Синхронный symlink(2).</p>
+
+<h3 id="fs.readlink">fs.readlink(path, [callback])</h3>
+
+<p>Асинхронное разрешение ссылки (readlink(2)).
+Обработчик принимает два аргумента <code>(err, resolvedPath)</code>.</p>
+
+<h3 id="fs.readlinkSync">fs.readlinkSync(path)</h3>
+
+<p>Синхронный readlink(2). Возвращает полученный путь.</p>
+
+<h3 id="fs.realpath">fs.realpath(path, [callback])</h3>
+
+<p>Асинхронный realpath(2).
+Обработчик принимает два аргумента <code>(err, resolvedPath)</code>.</p>
+
+<h3 id="fs.realpathSync">fs.realpathSync(path)</h3>
+
+<p>Синхронный realpath(2). Возвращает полученный путь.</p>
+
+<h3 id="fs.unlink">fs.unlink(path, [callback])</h3>
+
+<p>Асинхронный unlink(2).
+Передаваемой функции не передаётся ничего кроме возможного исключения.</p>
+
+<h3 id="fs.unlinkSync">fs.unlinkSync(path)</h3>
+
+<p>Синхронный unlink(2).</p>
+
+<h3 id="fs.rmdir">fs.rmdir(path, [callback])</h3>
+
+<p>Асинхронный rmdir(2).
+Передаваемой функции не передаётся ничего кроме возможного исключения.</p>
+
+<h3 id="fs.rmdirSync">fs.rmdirSync(path)</h3>
+
+<p>Синхронный rmdir(2).</p>
+
+<h3 id="fs.mkdir">fs.mkdir(path, mode, [callback])</h3>
+
+<p>Асинхронный mkdir(2).
+Передаваемой функции не передаётся ничего кроме возможного исключения.</p>
+
+<h3 id="fs.mkdirSync">fs.mkdirSync(path, mode)</h3>
+
+<p>Синхронный mkdir(2).</p>
+
+<h3 id="fs.readdir">fs.readdir(path, [callback])</h3>
+
+<p>Асинхронное чтение содержимого директории (readdir(3)).
+Обработчик принимает два аргумента <code>(err, files)</code>,
+где <code>files</code> это массив имён файлов в директории исключая <code>'.'</code> и <code>'..'</code>.</p>
+
+<h3 id="fs.readdirSync">fs.readdirSync(path)</h3>
+
+<p>Синхронный readdir(3). Возвращает массив имён файлов исключая <code>'.'</code> и <code>'..'</code>.</p>
+
+<h3 id="fs.close">fs.close(fd, [callback])</h3>
+
+<p>Асинхронный close(2).
+Передаваемой функции не передаётся ничего кроме возможного исключения.</p>
+
+<h3 id="fs.closeSync">fs.closeSync(fd)</h3>
+
+<p>Синхронный close(2).</p>
+
+<h3 id="fs.open">fs.open(path, flags, mode=0666, [callback])</h3>
+
+<p>Асинхронное открытие файла. См. open(2).
+Флаги могут быть <code>'r'</code>, <code>'r+'</code>, <code>'w'</code>, <code>'w+'</code>, <code>'a'</code> или <code>'a+'</code>.
+Обработчик принимает два аргумента <code>(err, fd)</code>.</p>
+
+<h3 id="fs.openSync">fs.openSync(path, flags, mode=0666)</h3>
+
+<p>Синхронный open(2).</p>
+
+<h3 id="fs.write">fs.write(fd, buffer, offset, length, position, [callback])</h3>
+
+<p>Записывает буфер <code>buffer</code> в файл указанный дескриптором <code>fd</code>.</p>
+
+<p>Сдвиг <code>offset</code> и длина <code>length</code> определяют часть буфера, которая будет записана.</p>
+
+<p>Позиция <code>position</code> задаёт смещение от начала файла куда должны быть записаны данные.
+Если <code>position</code> равна <code>null</code>, данные записываются с текущей позиции. См. pwrite(2).</p>
+
+<p>Обработчик принимает два аргумента <code>(err, written)</code>,
+где <code>written</code> указывает сколько <em>байт</em> было записано в файлn.</p>
+
+<h3 id="fs.writeSync">fs.writeSync(fd, buffer, offset, length, position)</h3>
+
+<p>Синхронная версия <code>fs.write()</code>. Возвращает число записанных <em>байт</em>.</p>
+
+<h3 id="fs.writeSync">fs.writeSync(fd, str, position, encoding='utf8')</h3>
+
+<p>Синхронная версия <code>fs.write()</code>, записывающая в файл строку, а не буфер.
+Возвращает число записанных <em>байт</em>.</p>
+
+<h3 id="fs.read">fs.read(fd, buffer, offset, length, position, [callback])</h3>
+
+<p>Читает данные из файла, указанного дескриптором <code>fd</code>.</p>
+
+<p><code>buffer</code> — буфер, в который будут помещены прочитанные данные.</p>
+
+<p><code>offset</code> — смещение внутри буфера с которого начнётся запись.</p>
+
+<p><code>length</code> — число байт для чтения.</p>
+
+<p><code>position</code> — число означающее позицию, с которой начнётся чтение файла.
+Если <code>position</code> принимает значение <code>null</code>, данные будут прочитаны с текущей позиции.</p>
+
+<p>Функция-обработчик принимает два аргумента, <code>(err, bytesRead)</code>.</p>
+
+<h3 id="fs.readSync">fs.readSync(fd, buffer, offset, length, position)</h3>
+
+<p>Синхронная версия <code>fs.read</code>. Возвращает количество прочитанных <em>байт</em>.</p>
+
+<h3 id="fs.readSync">fs.readSync(fd, length, position, encoding)</h3>
+
+<p>Синхронная версия <code>fs.read</code>, читающая из файл строку, а не буфер.
+Возвращает количество прочитанных <em>байт</em>.</p>
+
+<h3 id="fs.readFile">fs.readFile(filename, [encoding], [callback])</h3>
+
+<p>Асинхронно загружает в память содержимое файла. Пример:</p>
+
+<pre><code>fs.readFile('/etc/passwd', function (err, data) {
+  if (err) throw err;
+  console.log(data);
+});</code></pre>
+
+<p>Обработчику передаются два аргумента: <code>(err, data)</code>, где <code>data</code> — содержимое файла.</p>
+
+<p>Если кодировка не указана, возвращается буфер.</p>
+
+<h3 id="fs.readFileSync">fs.readFileSync(filename, [encoding])</h3>
+
+<p>Синхронная версия <code>fs.readFile</code>. Возвращает содержимое файла <code>filename</code>.</p>
+
+<p>Если указана кодировка <code>encoding</code>, то функция возвращает строку. Иначе — возвращает буфер.</p>
+
+<h3 id="fs.writeFile">fs.writeFile(filename, data, encoding='utf8', [callback])</h3>
+
+<p>Асинхронно записывает данные в файл. <code>data</code> может быть строкой или буфером.</p>
+
+<p>Пример:</p>
+
+<pre><code>fs.writeFile('message.txt', 'Hello Node', function (err) {
+  if (err) throw err;
+  console.log('It\'s saved!');
+});</code></pre>
+
+<h3 id="fs.writeFileSync">fs.writeFileSync(filename, data, encoding='utf8')</h3>
+
+<p>Синхронная версия <code>fs.writeFile</code>.</p>
+
+<h3 id="fs.watchFile">fs.watchFile(filename, [options], listener)</h3>
+
+<p>Наблюдает за файлом <code>filename</code>. Обработчик <code>listener</code> вызывается каждый раз
+при обращении к файлу.</p>
+
+<p>Второй аргумент необязателен. Объект <code>options</code>, если он передан, должен содержать
+два свойства: булево <code>persistent</code> и <code>interval</code>, задержку между проверками
+файла в миллисекундах. Значение по умолчанию: <code>{ persistent: true, interval: 0 }</code>.</p>
+
+<p>Обработчик <code>listener</code> принимает два аргумента: текущий объект stat и предыдущий объект stat.</p>
+
+<pre><code>fs.watchFile(f, function (curr, prev) {
+  console.log('the current mtime is: ' + curr.mtime);
+  console.log('the previous mtime was: ' + prev.mtime);
+});</code></pre>
+
+<p>Эти объекты — экземпляры <code>fs.Stat</code>.</p>
+
+<p>Если вы хотите обрабатывать только события изменения файла, вам следует сравнивать
+<code>curr.mtime</code> и `prev.mtime.</p>
+
+<h3 id="fs.unwatchFile">fs.unwatchFile(filename)</h3>
+
+<p>Прекращает следить за файлом <code>filename</code>.</p>
+
+<h2 id="fs.Stats">fs.Stats</h2>
+
+<p>Объекты, возвращаемые <code>fs.stat()</code>, <code>fs.lstat()</code> и <code>fs.fstat()</code> являются
+экземплярами этого класса.</p>
+
+<ul><li><code>stats.isFile()</code></li><li><code>stats.isDirectory()</code></li><li><code>stats.isBlockDevice()</code></li><li><code>stats.isCharacterDevice()</code></li><li><code>stats.isSymbolicLink()</code> (доступно только после <code>fs.lstat()</code>)</li><li><code>stats.isFIFO()</code></li><li><code>stats.isSocket()</code></li></ul>
+
+<h2 id="fs.ReadStream">fs.ReadStream</h2>
+
+<p><code>ReadStream</code> является <code>потоком с возможностью чтения</code>.</p>
+
+<h3 id="fs.createReadStream">fs.createReadStream(path, [options])</h3>
+
+<p>Возвращает новый объект ReadStream.</p>
+
+<p><code>options</code> это объект со следующими полями по умолчанию:</p>
+
+<pre><code>{ flags: 'r',
+  encoding: null,
+  mode: 0666,
+  bufferSize: 4096 }</code></pre>
+
+<p>Объект <code>options</code> может содержать поля <code>start</code> и <code>end</code> для чтения фрагмента файла
+вместо всего файла. И <code>start</code>, и <code>end</code> являются границами с включением
+и начинаюся с 0. При использовании необходимо задавать обе границы</p>
+
+<p>Пример чтения последних 10 байт файла размером 100 байт:</p>
+
+<pre><code>fs.createReadStream('sample.txt', {start: 90, end: 99});</code></pre>
+
+<h2 id="fs.WriteStream">fs.WriteStream</h2>
+
+<p><code>WriteStream</code> является <code>потоком с возможностью записи</code>.</p>
+
+<h3 id="_u0421_u043E_u0431_u044B_u0442_u0438_u0435_open_">Событие: 'open'</h3>
+
+<p><code>function (fd) { }</code></p>
+
+<p><code>fd</code> содержит файловый дескриптов, используемый WriteStream.</p>
+
+<h3 id="fs.createWriteStream">fs.createWriteStream(path, [options])</h3>
+
+<p>Возвращает новый объект WriteStream.</p>
+
+<p><code>options</code> это объект со следующими свойствами по умолчанию:</p>
+
+<pre><code>{ flags: 'w',
+  encoding: null,
+  mode: 0666 }</code></pre>
+
+<h2 id="path">Path</h2>
+
+<p>Этот модуль содержит средства для работы с путями.
+Используйте <code>require('path')</code> чтобы получить к нему доступ.</p>
+
+<h3 id="path.normalize">path.normalize(p)</h3>
+
+<p>Нормализует строку пути, обрабатывая <code>'..'</code> и <code>'.'</code>.</p>
+
+<p>Пример:</p>
+
+<pre><code>path.normalize('/foo/bar/baz/asdf/quux/..')
+// returns
+'/foo/bar/baz/asdf'</code></pre>
+
+<h3 id="path.join">path.join([path1], [path2], [...])</h3>
+
+<p>Соединяет все аргументы и нормализует получившийся путь.</p>
+
+<p>Пример:</p>
+
+<pre><code>node&gt; require('path').join(
+...   '/foo', 'bar', 'baz/asdf', 'quux', '..')
+'/foo/bar/baz/asdf'</code></pre>
+
+<h3 id="path.resolve">path.resolve([from ...], to)</h3>
+
+<p>Разрешает путь <code>to</code> в абсолютный.</p>
+
+<p>Если <code>to</code> не является абсолютным, то к нему добавляют пути, справа налево,
+из аргументов <code>from</code> до тех пор, пока полученный путь не будет абсолютным.
+Если в итоге путь останется относительным, он будет разрешён относительно
+рабочей директории. полученный путь нормализуется и у него удаляется
+завершающий слеш, если конечно это не корневая директория.</p>
+
+<p>Возможно, вам будет проще понять механизм работы этого метода,
+если считать что он последовательно выполняет команду <code>cd</code> и возвращает конечный путь, т.е.</p>
+
+<pre><code>path.resolve('foo/bar', '/tmp/file/', '..', 'a/../subfile')</code></pre>
+
+<p>возвращает тоже самое, что и:</p>
+
+<pre><code>cd foo/bar
+cd /tmp/file/
+cd ..
+cd a/../subfile
+pwd</code></pre>
+
+<p>Разница в том, что промежуточные пути могут не существовать или быть файлами.</p>
+
+<p>Примеры:</p>
+
+<pre><code>path.resolve('/foo/bar', './baz')
+// returns
+'/foo/bar/baz'
+
+path.resolve('/foo/bar', '/tmp/file/')
+// returns
+'/tmp/file'
+
+path.resolve('wwwroot', 'static_files/png/', '../gif/image.gif')
+// if currently in /home/myself/node, it returns
+'/home/myself/node/wwwroot/static_files/gif/image.gif'</code></pre>
+
+<h3 id="path.dirname">path.dirname(p)</h3>
+
+<p>Возвращает имя директории для пути. Действует как Unix-команда <code>dirname</code>.</p>
+
+<p>Пример:</p>
+
+<pre><code>path.dirname('/foo/bar/baz/asdf/quux')
+// returns
+'/foo/bar/baz/asdf'</code></pre>
+
+<h3 id="path.basename">path.basename(p, [ext])</h3>
+
+<p>Возвращает последнюю часть пути. Действует как Unix-команда <code>basename</code>.</p>
+
+<p>Пример:</p>
+
+<pre><code>path.basename('/foo/bar/baz/asdf/quux.html')
+// returns
+'quux.html'
+
+path.basename('/foo/bar/baz/asdf/quux.html', '.html')
+// returns
+'quux'</code></pre>
+
+<h3 id="path.extname">path.extname(p)</h3>
+
+<p>Возвращает расширение пути. Учитывается всё после последней '.' в последней части пути.
+Если в последней части нет '.' или '.' единственный символ, возвращает пустую строку.</p>
+
+<p>Пример:</p>
+
+<pre><code>path.extname('index.html')
+// returns 
+'.html'
+
+path.extname('index')
+// returns
+''</code></pre>
+
+<h3 id="path.exists">path.exists(p, [callback])</h3>
+
+<p>Проверяет, существует ли данный путь. Вызывает переданный обработчик
+с аргументом <code>true</code> или <code>false</code>.</p>
+
+<p>Пример:</p>
+
+<pre><code>path.exists('/etc/passwd', function (exists) {
+  util.debug(exists ? "it's there" : "no passwd!");
+});</code></pre>
+
+<h2 id="tCP_u0421_u0435_u0442_u044C">TCP / Сеть</h2>
+
+<p>Модуль <code>net</code> предоставляет асинхронные методы для работы с сетью. Он включает
+методы для создания как серверов, так и клиентов (называемых потоками).
+Вы может использовать этот модуль вызвав <code>require("net")</code>.</p>
+
+<h3 id="net.createServer">net.createServer(connectionListener)</h3>
+
+<p>Создаёт новый TCP сервер. Аргумент <code>connection_listener</code> автоматически
+становится обработчиком события <code>'connection'</code>.</p>
+
+<h3 id="net.createConnection">net.createConnection(arguments...)</h3>
+
+<p>Создаёт новый сокет. Когда соединение установлено, будет сгенерировано
+событие <code>'connect'</code>.</p>
+
+<p>Аргументы для этого метода определяются тепим соединения:</p>
+
+<ul><li><p><code>net.createConnection(port, [host])</code></p><p>Открывает TCP-соединение с указанным портом <code>port</code> и адресом <code>host</code>.
+Если второй параметр не задан, предполагается значение <code>localhost</code>.</p></li><li><p><code>net.createConnection(path)</code></p><p>Создаёт соединение с Unix-сокетом <code>path</code>.</p></li></ul>
+
+<hr />
+
+<h3 id="net.Server">net.Server</h3>
+
+<p>Этот класс используется для создания TCP или UNIX сервера.</p>
+
+<p>Вот простой пример сервера, который возвращает полученный запрос
+и слушает на порту 8124:</p>
+
+<pre><code>var net = require('net');
+var server = net.createServer(function (stream) {
+var server = net.createServer(function (c) {
+  c.write('hello\r\n');
+  c.pipe(c);
+});
+server.listen(8124, 'localhost');</code></pre>
+
+<p>Проверить работу сервера можно с помощью <code>telnet</code>:</p>
+
+<pre><code>telnet localhost 8124</code></pre>
+
+<p>Чтобы слушать сокет <code>'/tmp/echo.sock'</code>, последнюю строку скрипта надо заменить на</p>
+
+<pre><code>server.listen('/tmp/echo.sock');</code></pre>
+
+<p>Для подключения к UNIX-сокеты используйте <code>nc</code>:</p>
+
+<pre><code>nc -U /tmp/echo.sock</code></pre>
+
+<h4 id="server.listen">server.listen(port, [host], [callback])</h4>
+
+<p>Начинает принимать соединения на указанном порту <code>port</code> и имени хоста <code>host</code>.
+Если <code>host</code> пропущен, сервер будет принимать соединения
+на каждом IPv4-адресе (INADDR_ANY).</p>
+
+<p>Эта функция асинхронна. Последний параметр <code>callback</code> будет вызван когда сервер
+начнёт принимать соединения.</p>
+
+<h4 id="server.listen">server.listen(path, [callback])</h4>
+
+<p>Запускает сервер слушающий UNIX-сокет по указанному адресу <code>path</code>.</p>
+
+<p>Эта функция асинхронна. Последний параметр <code>callback</code> будет вызван когда сервер
+начнёт принимать соединения.</p>
+
+<p>Часто пользователи сообщают об ошибке <code>EADDRINUSE</code>. Она означает, что на этом порту
+уже запущен другой сервер. Одним из способов обработки ошибки <code>EADDRINUSE</code> является
+ожидание в течении, напрмиер, одной секунды и повторная попытка вызова <code>server.listen</code>.
+Это можно сделать с помощью следующего кода:</p>
+
+<pre><code>server.on('error', function (e) {
+  if (e.code == 'EADDRINUSE') {
+    console.log('Address in use, retrying...');
+    setTimeout(function () {
+      server.close();
+      server.listen(PORT, HOST);
+    }, 1000);
+  }
+});</code></pre>
+
+<p>ПРИМЕЧАНИЕ: Все сокеты в Node имеют установленную опцию SO_REUSEADDR.</p>
+
+<h4 id="server.listenFD">server.listenFD(fd)</h4>
+
+<p>Запускает сервер, слушающий указанный файловый дескриптор.</p>
+
+<p>Для указанного файлового дескриптора должны быть уже выполнены
+системные вызовы <code>bind(2)</code> и <code>listen(2)</code>.</p>
+
+<h4 id="server.close">server.close()</h4>
+
+<p>Прекращает приём соединений сервером. Эта функция асинхронна,
+сервер полностью закрывается только после генерации события <code>'close'</code>.</p>
+
+<h4 id="server.address">server.address()</h4>
+
+<p>Возвращает адрес, к которому привязан сервер. Удобно использовать, если выбор
+адреса предоставляется системе.</p>
+
+<p>Пример:</p>
+
+<pre><code>var server = net.createServer(function (socket) {
+  socket.end("goodbye\n");
+});
+
+// grab a random port.
+server.listen(function() {
+  address = server.address();
+  console.log("opened server on %j", address);
+});</code></pre>
+
+<h4 id="server.maxConnections">server.maxConnections</h4>
+
+<p>Установите это свойство, если хотите запретить серверу принимать
+больше определённого числа соединений единовременно.</p>
+
+<h4 id="server.connections">server.connections</h4>
+
+<p>Текущее число соединений с сервером.</p>
+
+<hr />
+
+<p><code>net.Server</code> — экземпляр <code>EventEmitter</code> со следующими событиями:</p>
+
+<h4 id="_u0421_u043E_u0431_u044B_u0442_u0438_u0435_connection_">Событие: 'connection'</h4>
+
+<p><code>function (socket) {}</code></p>
+
+<p>Генерируется при новом соединении. <code>socket</code> — экземпляр <code>net.Socket</code>.</p>
+
+<h4 id="_u0421_u043E_u0431_u044B_u0442_u0438_u0435_close_">Событие: 'close'</h4>
+
+<p><code>function () {}</code></p>
+
+<p>Генерируется при завершении работы сервера.</p>
+
+<hr />
+
+<h3 id="net.Socket">net.Socket</h3>
+
+<p>Этот объект — абстракция TCP порта или UNIX сокета. Экземпляр <code>net.Socket</code>
+имеет возможность как чтения, так и записи. Он может быть создан и использован
+как клиентом (с помощью <code>connect()</code>) либо создан внутри Node и передан
+пользователю через обработчик события <code>'connection'</code>.</p>
+
+<h4 id="socket.connect">socket.connect(port, [host])</h4>
+
+<h4 id="socket.connect">socket.connect(path)</h4>
+
+<p>Открывает TCP-соединение с указанным портом <code>port</code> и адресом <code>host</code>. Если второй
+параметр не задан, предполагается значение <code>localhost</code>. Если указан параметр
+<code>path</code>, то создаёт соединение с Unix-сокетом <code>path</code>.</p>
+
+<p>Обычно этот метод не нужен. Используйте его только если поток закрыт и вы хотите
+повторно использовать тот же объект для соединения с другим сервером.</p>
+
+<p>Эта функция асинхронна. Когда генерируется событие <code>'connect'</code>, соединение
+установлено. Если при соединении возникли проблемы, событие <code>'connect'</code>
+не будет сгенерировано, вместо него будет сгенерировано событие <code>'error'</code>
+с аргументом исключения.</p>
+
+<p>Функция <code>callback</code> будет добавлена как обработчик события <code>'connect'</code>.</p>
+
+<h4 id="socket.bufferSize">socket.bufferSize</h4>
+
+<p><code>net.Socket</code> имеет свойство, которое постоянно используется в <code>socket.write()</code>.
+Это нужно для быстрой работы Node. Компьютер не может самостоятельно определить,
+сколько данных реально записано в сокет, так как сетевые соединения могут быть
+очень медленными. Node содержит очередь записи для сокетов и производит её
+при первой же возможности. (Внутри это представялет из себя polling файлового
+дескриптора сокета на предмет возможности записи).</p>
+
+<p>ЕСледствием этой внутренней буферизации является возможное увеличение затрат памяти.
+Это совйство (<code>bufferSize</code>) показывает количество символов, которые содержатся
+на данный момент в очереди на запись. (Количество символов примерно равно количеству
+байтов, однако в буфере могут находиться строки и тогда это не совсем верно).</p>
+
+<p>Если вы наблюдаете большую величину <code>bufferSize</code> или её быстрое увеличение, то вы
+можете попробовать посылать данные порциями ("throttle"), используя методы <code>pause()</code> и resume()`.</p>
+
+<h4 id="socket.setEncoding">socket.setEncoding(encoding=null)</h4>
+
+<p>Задаёт кодировку (<code>'ascii'</code>, <code>'utf8'</code> или <code>'base64'</code>) для принимаемых данных.</p>
+
+<h4 id="socket.setSecure">socket.setSecure([credentials])</h4>
+
+<p>Эта функция удалена в v0.3. Она использовалась для установки защищённого соединения.
+См. модуль TLS с описанием нового API.</p>
+
+<h4 id="socket.write">socket.write(data, [encoding], [callback])</h4>
+
+<p>Отправляет данные в поток. Второй параметр означает кодировку, если первым
+параметром передана строка. По умолчанию используется UTF-8.</p>
+
+<p>Возвращает <code>true</code> если все данные были успешно переданы в буфер ядра. Возвращает
+<code>false</code> если все данные или их часть были помещены в очередь в памяти. Событие
+<code>'drain'</code> будет сгенерировано когда буфер ядра снова будет пуст.</p>
+
+<p>Необязательый параметр-функци <code>callback</code> будет вызвана после завершения записи данных.</p>
+
+<h4 id="socket.write">socket.write(data, [encoding], [fileDescriptor], [callback])</h4>
+
+<p>UNIX-сокеты позволяют передавать через них файловые дескрипторы между приложениями.
+Для этого достаточно передать параметр <code>fileDescriptor</code> и ожидать события <code>'fd'</code>
+во втором приложении.</p>
+
+<h4 id="socket.end">socket.end([data], [encoding])</h4>
+
+<p>Наполовину закрывает соединение, т.е. отправляет пакет FIN. Возможно сервер ещё
+получит какие-то данные.</p>
+
+<p>Если определён аргумент <code>data</code>, то этот вызов эквивалентен последовательному вызову
+<code>socket.write(data, encoding)</code> и <code>socket.end()</code>.</p>
+
+<h4 id="socket.destroy">socket.destroy()</h4>
+
+<p>Закрывает сокет таким образом чтобы в нём больше не происходило ввода-вывода.
+Необходимо только для закрытия соединения в случае серьёзных ошибок.</p>
+
+<h4 id="socket.pause">socket.pause()</h4>
+
+<p>Приостанавливает чтение данных. Т.е. события 'data' не будут генерироваться.
+Используется при приёме файлов.</p>
+
+<h4 id="socket.resume">socket.resume()</h4>
+
+<p>Возобновляет чтение данных после вызова pause().</p>
+
+<h4 id="socket.setTimeout">socket.setTimeout(timeout, [callback])</h4>
+
+<p>Устанавливает таймаут в <code>timeout</code> миллисекунд бездействия сокета. По умолчанию
+<code>net.Stream</code> не имеет таймаута.</p>
+
+<p>Если сокет не будет проявлять активности указанное количество миллисекунд будет
+сгенерировано событие <code>'timeout'</code>, но само соединение не будет затронуто.
+Пользователь должен самостоятельно вызвать <code>end()</code> или <code>destroy()</code> для закрытия сокета.</p>
+
+<p>Если в качестве <code>timeout</code> передан 0, существующий таймаут перестаёт действовать.</p>
+
+<p>Необязательный аргумент <code>callback</code> будет добавлен в качестве обработчика события <code>'timeout'</code>.</p>
+
+<h4 id="socket.setNoDelay">socket.setNoDelay(noDelay=true)</h4>
+
+<p>Выключает алгоритм Нагла. По умолчанию TCP-соединения используют алгоритм Нагла,
+собирая данные в буфер перед отправкой. Установка noDelay приведёт к немедленной
+отправке всех данных, передаваемых в <code>stream.write()</code>.</p>
+
+<h4 id="socket.setKeepAlive">socket.setKeepAlive(enable=false, [initialDelay])</h4>
+
+<p>Включает/выключает функционал keep-alive, и дополнительно позволяет установить
+начальную задержку после которой будет отправлен первый пакет проверки соединения
+при неактивности. Значение <code>initialDelay</code> (в миллисекундах) означает интервал
+между последним отправленным пакетом и первой проверкой соединения. Установка
+<code>initialDelay</code> в 0 оставит в силе предыдущее значение.</p>
+
+<h4 id="socket.remoteAddress">socket.remoteAddress</h4>
+
+<p>Строковое представление удалённого IP адреса. Например, <code>'74.125.127.100'</code> или
+<code>'2001:4860:a005::68'</code>.</p>
+
+<p>Это свойство доступно только для соединений сервер-сервер.</p>
+
+<hr />
+
+<p>Экземпляры <code>net.Stream</code> — экземпляры <code>EventEmitter</code> со следующими событиями:</p>
+
+<h4 id="_u0421_u043E_u0431_u044B_u0442_u0438_u0435_connect_">Событие: 'connect'</h4>
+
+<p><code>function () { }</code></p>
+
+<p>Генерируется после успешной установки соединения. См. <code>connect()</code>.</p>
+
+<h4 id="_u0421_u043E_u0431_u044B_u0442_u0438_u0435_data_">Событие: 'data'</h4>
+
+<p><code>function (data) { }</code></p>
+
+<p>Генерируется при приёме данных. Аргумент <code>data</code> будет экземпляром <code>Buffer</code>
+или <code>String</code>. Кодировка передаваемых данных устанавливается методом
+<code>socket.setEncoding()</code>. (См. секцию о <code>потоках с возможностью чтения</code> для
+более подробной информации.)</p>
+
+<h4 id="_u0421_u043E_u0431_u044B_u0442_u0438_u0435_end_">Событие: 'end'</h4>
+
+<p><code>function () { }</code></p>
+
+<p>Генерируется когда другой участник соединения посылает пакет FIN.</p>
+
+<p>По умолчанию (<code>allowHalfOpen == false</code>) сокет уничтожает свой файловый дескриптор
+после завершения обработки очереди записи. Но если установить <code>allowHalfOpen == true</code>,
+то поток не будет автоматически завершаться (<code>end()</code>), т.е. пользоввателю
+требуется вручную вызвать <code>end()</code>.</p>
+
+<h4 id="_u0421_u043E_u0431_u044B_u0442_u0438_u0435_timeout_">Событие: 'timeout'</h4>
+
+<p><code>function () { }</code></p>
+
+<p>Генерируется если сокет долгое время не используется. Это просто уведомление
+о длительной неактивности сокета. Пользователь должен сам закрыть соединение.</p>
+
+<p>См. также: <code>socket.setTimeout()</code>.</p>
+
+<h4 id="_u0421_u043E_u0431_u044B_u0442_u0438_u0435_drain_">Событие: 'drain'</h4>
+
+<p><code>function () { }</code></p>
+
+<p>Генерируется когда буфер записи становится пустым (все данные, переданные в поток,
+были отправлены получателю). Может быть использоваться для отправки файлов.</p>
+
+<h4 id="_u0421_u043E_u0431_u044B_u0442_u0438_u0435_error_">Событие: 'error'</h4>
+
+<p><code>function (exception) { }</code></p>
+
+<p>Генерируется при возникновении ошибки. Сразу после этого будет сгенерировано
+событие <code>'close'</code>.</p>
+
+<h4 id="_u0421_u043E_u0431_u044B_u0442_u0438_u0435_close_">Событие: 'close'</h4>
+
+<p><code>function (had_error) { }</code></p>
+
+<p>Генерируется один раз когда поток полностью закрывается. Аргумент had_error —
+двоичное значение, устанавливаемое в true если поток был закрыт из за ошибки передачи.</p>
+
+<hr />
+
+<h3 id="net.isIP">net.isIP</h3>
+
+<h4 id="net.isIP">net.isIP(input)</h4>
+
+<p>Проверяет. является ли <code>input</code> валидным IP адресом. Возвращает 0 для неверных строк,
+4 для IPv4 адресов и 6 для IPv6 адресов.</p>
+
+<h4 id="net.isIPv4">net.isIPv4(input)</h4>
+
+<p>Возвращает <code>true</code> если <code>input</code> является IPv4 адресов, в осатльных случаях <code>false</code>.</p>
+
+<h4 id="net.isIPv6">net.isIPv6(input)</h4>
+
+<p>Возвращает <code>true</code> если <code>input</code> является IPv6 адресов, в осатльных случаях <code>false</code>.</p>
+
+<h2 id="dNS">DNS</h2>
+
+<p>Используйте <code>require('dns')</code> чтобы получить доступ к модулю.</p>
+
+<p>Пример, преобразующий в IP-адрес хост <code>'www.google.com'</code>
+и преобразовывающий обратно полученные адреса.</p>
+
+<pre><code>var dns = require('dns');
+
+dns.resolve4('www.google.com', function (err, addresses) {
+  if (err) throw err;
+
+  console.log('addresses: ' + JSON.stringify(addresses));
+
+  addresses.forEach(function (a) {
+    dns.reverse(a, function (err, domains) {
+      if (err) {
+        console.log('reverse for ' + a + ' failed: ' +
+          err.message);
+      } else {
+        console.log('reverse for ' + a + ': ' +
+          JSON.stringify(domains));
+      }
+    });
+  });
+});</code></pre>
+
+<h3 id="dns.lookup">dns.lookup(domain, family=null, callback)</h3>
+
+<p>Resolves a domain (e.g. <code>'google.com'</code>) into the first found A (IPv4) or
+AAAA (IPv6) record.</p>
+
+<p>The callback has arguments <code>(err, address, family)</code>.  The <code>address</code> argument
+is a string representation of a IP v4 or v6 address. The <code>family</code> argument
+is either the integer 4 or 6 and denotes the family of <code>address</code> (not
+neccessarily the value initially passed to <code>lookup</code>).</p>
+
+<h3 id="dns.resolve">dns.resolve(domain, rrtype='A', callback)</h3>
+
+<p>Разрешает домен (например <code>'google.com'</code>) в массив записей типа, указанного в <code>rrtype</code>.
+Допустимые значения rrtypes: <code>'A'</code> (адреса IPV4), <code>'AAAA'</code> (адреса IPV6),
+<code>'MX'</code> (записи mail exchange), <code>'TXT'</code> (текстовые записи), <code>'SRV'</code> (записи SRV)
+и <code>'PTR'</code> (используются для запросов домена по IP).</p>
+
+<p>Обработчик принимает аргументы <code>(err, addresses)</code>. Тип каждого элемента <code>addresses</code>
+определяется типом записи и описан в документации по соответствующим методам запроса ниже.</p>
+
+<p>При ошибке <code>err</code> будет экземпляром объекта <code>Error</code>, где <code>err.errno</code> — один из кодов ошибки,
+перечисленных ниже, а <code>err.message</code> — строка, содержащая описание ошибки на английском.</p>
+
+<h3 id="dns.resolve4">dns.resolve4(domain, callback)</h3>
+
+<p>То же что <code>dns.resolve()</code>, но только для IPv4 адресов (записи типа A).
+<code>addresses</code> это массив IPv4 адресов (например<br></br><code>['74.125.79.104', '74.125.79.105', '74.125.79.106']</code>).</p>
+
+<h3 id="dns.resolve6">dns.resolve6(domain, callback)</h3>
+
+<p>То же что <code>dns.resolve4()</code> но только для IPv6 адресов (записи типа AAAA).</p>
+
+<h3 id="dns.resolveMx">dns.resolveMx(domain, callback)</h3>
+
+<p>То же что <code>dns.resolve()</code>, но только для MX-записей.</p>
+
+<p><code>addresses</code> это массив MX записей, каждая с атрибутами <code>priority</code> и <code>exchange</code>
+(например <code>[{'priority': 10, 'exchange': 'mx.example.com'},...]</code>).</p>
+
+<h3 id="dns.resolveTxt">dns.resolveTxt(domain, callback)</h3>
+
+<p>То же что <code>dns.resolve()</code>, но только для текстовых записей (тип записи TXT).
+<code>addresses</code> это массив текстовых записей, доступных для домена <code>domain</code>
+(например <code>['v=spf1 ip4:0.0.0.0 ~all']</code>).</p>
+
+<h3 id="dns.resolveSrv">dns.resolveSrv(domain, callback)</h3>
+
+<p>То же, что <code>dns.resolve()</code>, но только для service records (записей SRV).
+<code>addresses</code> это массив SRV записей, доступных для домена <code>domain</code>.
+Свойства SRV записей: <code>priority</code>, <code>weight</code>, <code>port</code>, и <code>name</code>
+(например, <code>[{'priority': 10, {'weight': 5, 'port': 21223, 'name': 'service.example.com'}, ...]</code>).</p>
+
+<h3 id="dns.reverse">dns.reverse(ip, callback)</h3>
+
+<p>Обратно разрешает IP-адрес в массив доменных имён.</p>
+
+<p>Аргументы обработчика: <code>(err, domains)</code>.</p>
+
+<p>Если произошла ошибка, err будет ненулевым экземпляром объекта <code>Error</code>.</p>
+
+<p>Каждый запрос к DNS может вернуть код ошибки.</p>
+
+<ul><li><code>dns.TEMPFAIL</code>: таймаут, SERVFAIL или что-то подобное.</li><li><code>dns.PROTOCOL</code>: получен повреждённый ответ.</li><li><code>dns.NXDOMAIN</code>: домен не существует.</li><li><code>dns.NODATA</code>: домен существует, но нет данных требуемого типа.</li><li><code>dns.NOMEM</code>: при обработке закончилась память.</li><li><code>dns.BADQUERY</code>: запрос неверно сформирован.</li></ul>
+
+<h2 id="uDP_u0414_u0430_u0442_u0430_u0433_u0440_u0430_u043C_u043C_u044B">UDP / Датаграммы</h2>
+
+<p>Сокеты для датаграмм доступны при включении <code>require('dgram')</code>. Датаграммы
+чаще всего обрабатываются как сообщения IP/UDP, но они могут быть использованы
+и с доменными сокетами Unix.</p>
+
+<h3 id="_u0421_u043E_u0431_u044B_u0442_u0438_u0435_message_">Событие: 'message'</h3>
+
+<p><code>function (msg, rinfo) { }</code></p>
+
+<p>Генерируется когда новая датаграмма доступна на сокете. <code>msg</code> это <code>Buffer</code>,
+а <code>rinfo</code> это объект с информацией об адресе отправителя и количестве байт в датаграмме.</p>
+
+<h3 id="_u0421_u043E_u0431_u044B_u0442_u0438_u0435_listening_">Событие: 'listening'</h3>
+
+<p><code>function () { }</code></p>
+
+<p>Генеритуется когда сокет начинает приём датаграмм. Для UDP-сокета это происходит
+при создании. Сокеты Unix не начинают приём до вызова для них <code>bind()</code>.</p>
+
+<h3 id="_u0421_u043E_u0431_u044B_u0442_u0438_u0435_close_">Событие: 'close'</h3>
+
+<p><code>function () { }</code></p>
+
+<p>Генерируется когда сокет закрывается с помощью <code>close()</code>.
+События <code>message</code> на этом сокете больше не будут генерироваться.</p>
+
+<h3 id="dgram.createSocket">dgram.createSocket(type, [callback])</h3>
+
+<p>Создаёт сокет для датаграмм заданного типа. Доступные типы: <code>udp4</code>, <code>udp6</code> и <code>unix_dgram</code>.</p>
+
+<p>Принимает необязательную функцию, которая добавляется обработчиком событий <code>message</code>.</p>
+
+<h3 id="dgram.send">dgram.send(buf, offset, length, path, [callback])</h3>
+
+<p>Для датаграмм на Unix-сокетах адрес назначения это путь в файловой системе.
+Принимает необязательную функцию, которая будет вызвана после завершения
+вызова <code>sendto</code> операционной системой. Пока идёт вызов, повторное использование
+буфера <code>buf</code> небезопасно. Заметьте, что если сокет не привязан к пути в файловой
+системе с помощью <code>bind()</code>, на нём невозможно получать сообщения.</p>
+
+<p>Пример отправки сообщения демону syslogd в OSX через Unix-сокет <code>/var/run/syslog</code>:</p>
+
+<pre><code>var dgram = require('dgram');
+var message = new Buffer("A message to log.");
+var client = dgram.createSocket("unix_dgram");
+client.send(message, 0, message.length, "/var/run/syslog",
+  function (err, bytes) {
+    if (err) {
+      throw err;
+    }
+    console.log("Wrote " + bytes + " bytes to socket.");
+});</code></pre>
+
+<h3 id="dgram.send">dgram.send(buf, offset, length, port, address, [callback])</h3>
+
+<p>Для UDP сокета, адрес назначения представляет port and IP-адрес. В качетве
+аргумента <code>address</code> может быть передана строка, которая может быть разрешена
+с помощью DNS. Принимает необязательную функцию, которая будет вызвана после
+завершения разрешения DNS имени и когда буфер можно будет использовать заново.
+Следует иметь в виду, что DNS запросы требуют времени, по крайне мере
+до следующего витка цикола событий. Единственный способ узнать, что отправка
+состоялась — использовать callback.</p>
+
+<p>Пример отправки UDP-пакета на произвольный порт <code>localhost</code>:</p>
+
+<pre><code>var dgram = require('dgram');
+var message = new Buffer("Some bytes");
+var client = dgram.createSocket("udp4");
+client.send(message, 0, message.length, 41234, "localhost");
+client.close();</code></pre>
+
+<h3 id="dgram.bind">dgram.bind(path)</h3>
+
+<p>Для Unix-сокета задаёт путь <code>path</code>. Имейте в виду, что клиент может вызывать
+<code>send()</code> перед <code>bind()</code>, но данные не будут отправлены до вызова <code>bind()</code>.</p>
+
+<p>Пример сервера на Unix-сокете, который отправляет обратно поступающие сообщения:</p>
+
+<pre><code>var dgram = require("dgram");
+var serverPath = "/tmp/dgram_server_sock";
+var server = dgram.createSocket("unix_dgram");
+
+server.on("message", function (msg, rinfo) {
+  console.log("got: " + msg + " from " + rinfo.address);
+  server.send(msg, 0, msg.length, rinfo.address);
+});
+
+server.on("listening", function () {
+  console.log("server listening " + server.address().address);
+})
+
+server.bind(serverPath);</code></pre>
+
+<p>Пример клиента на Unix-сокете, обращающегося к серверу:</p>
+
+<pre><code>var dgram = require("dgram");
+var serverPath = "/tmp/dgram_server_sock";
+var clientPath = "/tmp/dgram_client_sock";
+
+var message = new Buffer("A message at " + (new Date()));
+
+var client = dgram.createSocket("unix_dgram");
+
+client.on("message", function (msg, rinfo) {
+  console.log("got: " + msg + " from " + rinfo.address);
+});
+
+client.on("listening", function () {
+  console.log("client listening " + client.address().address);
+  client.send(message, 0, message.length, serverPath);
+});
+
+client.bind(clientPath);</code></pre>
+
+<h3 id="dgram.bind">dgram.bind(port, [address])</h3>
+
+<p>Для UDP сокетов задаёт порт <code>port</code> и необязательный адрес <code>address</code>
+для прослушивания. Если <code>address</code> не задан, то будет предпринята попытка
+прослушивания всех адресов.</p>
+
+<p>Пример UDP-сервера, слушающего на 41234 порту:</p>
+
+<pre><code>var dgram = require("dgram");
+
+var server = dgram.createSocket("udp4");
+var messageToSend = new Buffer("A message to send");
+
+server.on("message", function (msg, rinfo) {
+  console.log("server got: " + msg + " from " +
+    rinfo.address + ":" + rinfo.port);
+});
+
+server.on("listening", function () {
+  var address = server.address();
+  console.log("server listening " +
+      address.address + ":" + address.port);
+});
+
+server.bind(41234);
+// server listening 0.0.0.0:41234</code></pre>
+
+<h3 id="dgram.close">dgram.close()</h3>
+
+<p>Закрывает сокет и прекращает приём данных.</p>
+
+<h3 id="dgram.address">dgram.address()</h3>
+
+<p>Возвращает объект с информацией об адресе, на который настроен сокет. Для UDP
+сокетов этот объект содержит свойства <code>address</code> и <code>port</code>, а для Unix-сокетов
+только свойство <code>address</code>.</p>
+
+<h3 id="dgram.setBroadcast">dgram.setBroadcast(flag)</h3>
+
+<p>Устанавливает или сбрасывает опцию <code>SO_BROADCAST</code> сокета. если эта опция установлена,
+то UDP пакеты могут оправляться по широковещательному адресу локального интерфейса.</p>
+
+<h3 id="dgram.setTTL">dgram.setTTL(ttl)</h3>
+
+<p>Устанавливает опуцию <code>IP_TTL</code> сокета.  TTL означает "время жизни", и его значение
+определяет количество IP, сквозь которые может быть передан пакет. Каждый роутер
+или шлюз на пути пакета уменьшают TTL. Как только он станет равным нуля, пакет уничтожится.
+Изменение TTL может быть полезно для тестирования сети или широковещательной рассылки.</p>
+
+<p>Аргументом <code>setTTL()</code> является число от 1 до 255. По умолчанию на большинстве
+систем ипользуется 64.</p>
+
+<h3 id="dgram.setMulticastTTL">dgram.setMulticastTTL(ttl)</h3>
+
+<p>Устанавливает опцию <code>IP_MULTICAST_TTL</code> сокета.  TTL означает "время жизни",
+и его значение определяет количество IP, сквозь которые может быть передан пакет,
+в данном случае при широковещательной рассылке. Каждый роутер или шлюз на пути пакета
+уменьшают TTL. Как только он станет равным нуля, пакет уничтожится.</p>
+
+<p>Аргументом <code>setMulticastTTL()</code> является число от 0 до 255. По умолчанию на большинстве
+систем ипользуется 64.</p>
+
+<h3 id="dgram.setMulticastLoopback">dgram.setMulticastLoopback(flag)</h3>
+
+<p>Устанавливает или очищает опцию <code>IP_MULTICAST_LOOP</code> сокета. Если эта опция установлена,
+то широковещательные пакеты также будут получены на локальных сетевых интерфейсах.</p>
+
+<h3 id="dgram.addMembership">dgram.addMembership(multicastAddress, [multicastInterface])</h3>
+
+<p>Указывает ядру вступить в широковещательную группу используя опцию <code>IP_ADD_MEMBERSHIP</code> сокета.</p>
+
+<p>Если <code>multicastInterface</code> не указан, то ОС будет пытаться вступить в группу,
+используя каждый доступный сетевой интерфейс.</p>
+
+<h3 id="dgram.dropMembership">dgram.dropMembership(multicastAddress, [multicastInterface])</h3>
+
+<p>Противоположность <code>addMembership</code> &amp;mdash; указывает ядру покинуть широковещательную
+группу используя опцию <code>IP_DROP_MEMBERSHIP</code> сокета. В большинстве приложений
+не обязательно вызывать эту функцию, так как ОС сделает это автоматически
+при закрытии сокета.</p>
+
+<p>Если <code>multicastInterface</code> не указан, то ОС будет пытаться покинуть группу,
+используя каждый доступный сетевой интерфейс.</p>
+
+<h2 id="hTTP">HTTP</h2>
+
+<p>Для использования клиента и сервера HTTP необходимо подключить
+соответствующий модуль с помощью <code>require('http')</code>.</p>
+
+<p>Интерфейс HTTP спроектирован в Node таким образом, чтобы поддерживать многие
+возможности протокола, которые традиционно было довольно сложно использовать.
+В частности, большие сообщения с возможным chunk-encoding. Интерфейс никогда
+не сохраняет в буфере целиком запрос или ответ, давая пользователю возможность
+принимать и отправлять данные в потоковом режиме.</p>
+
+<p>Заголовки сообщения HTTP представлены примерно таким объектом:</p>
+
+<pre><code>{ 'content-length': '123',
+  'content-type': 'text/plain',
+  'connection': 'keep-alive',
+  'accept': '*/*' }</code></pre>
+
+<p>Ключи приводятся к нижнему регистру. Значения не изменяются.</p>
+
+<p>Для поддержки всего спектра возможных применений HTTP, соответствующее API
+в Node довольно низкоуровневое. Оно основано на потоках и передаче сообщений.
+Node разбирает HTTP-сообщение на заголовки и тело, остальное должен сделать
+программист.</p>
+
+<h2 id="http.Server">http.Server</h2>
+
+<p>Это <code>EventEmitter</code> со следующими событиями:</p>
+
+<h3 id="_u0421_u043E_u0431_u044B_u0442_u0438_u0435_request_">Событие: 'request'</h3>
+
+<p><code>function (request, response) { }</code></p>
+
+<p>Генерируется каждый раз при получении запроса. Заметьте, что в течении одного
+соединения может происходить несколько запросов (в случае keep-alive соединения).
+Объект <code>request</code> — экземпляр <code>http.ServerRequest</code>,
+объект <code>response</code> — экземпляр <code>http.ServerResponse</code>.</p>
+
+<h3 id="_u0421_u043E_u0431_u044B_u0442_u0438_u0435_connection_">Событие: 'connection'</h3>
+
+<p><code>function (stream) { }</code></p>
+
+<p>Генерируется при установке нового HTTP-соединения. <code>stream</code> — объект типа <code>net.Stream</code>.
+Обычно пользователи не используют это событие. Объект потока <code>stream</code> также можно
+найти в свойстве объекта запроса <code>request.connection</code>.</p>
+
+<h3 id="_u0421_u043E_u0431_u044B_u0442_u0438_u0435_close_">Событие: 'close'</h3>
+
+<p><code>function (errno) { }</code></p>
+
+<p>Генерируется при завершении работы сервера.</p>
+
+<h3 id="_u0421_u043E_u0431_u044B_u0442_u0438_u0435_checkContinue_">Событие: 'checkContinue'</h3>
+
+<p><code>function (request, response) {}</code></p>
+
+<p>Событие наступает кажды раз при получении заголовка <code>'Expect: 100'</code>.
+Если для этого события не назначен ни один обработчик, то сервер автоматически
+отвечает <code>'100 Continue'</code>.</p>
+
+<p>Обработка этого события подразумевает вызов <code>response.writeContinue</code> если клиент
+должен продолжить отправку тела запроса, или генерацию другого HTTP запроса
+(например <code>'400 Bad Request'</code>) если клиент не должен этого делать.</p>
+
+<p>Имейте в виду, что если это событие наступило и было обработано, то событие
+<code>request</code> не наступает.</p>
+
+<h3 id="_u0421_u043E_u0431_u044B_u0442_u0438_u0435_upgrade_">Событие: 'upgrade'</h3>
+
+<p><code>function (request, socket, head)</code></p>
+
+<p>Генерируется каждый раз когда клиент запрашивает апгрейд соединения
+до защищённого (см. RFC 2817). Если это событие никак не обрабатывается
+соединение для которого запрошен апгрейд будет закрыто.</p>
+
+<ul><li><code>request</code> — аргументы для HTTP запроса, как в событии <code>'request'</code>.</li><li><code>socket</code> — сетевой сокет между сервером и клиентом.</li><li><code>head</code> — экземпляр Buffer, первый пакет защищенного потока, может быть пустым.</li></ul>
+
+<p>После генерации этого события, у объекта <code>server</code> не будет обработчика события
+<code>data</code>, и программисту нужно назначить его заново чтобы обрабатывать данные,
+получаемые этим соединением.</p>
+
+<h3 id="_u0421_u043E_u0431_u044B_u0442_u0438_u0435_clientError_">Событие: 'clientError'</h3>
+
+<p><code>function (exception) {}</code></p>
+
+<p>Если соединение с клиентом генерирует событие <code>'error'</code> — оно поднимается сюда.</p>
+
+<h3 id="http.createServer">http.createServer(requestListener)</h3>
+
+<p>Возвращает новый объект web-сервера.</p>
+
+<p>Функция <code>requestListener</code> автоматически добавляется к событию <code>'request'</code> сервера.</p>
+
+<h3 id="server.listen">server.listen(port, [hostname], [callback])</h3>
+
+<p>Начинает приём соединений на указанном порту и имени хоста. Если имя хоста не указано,
+сервер будет принимать соединения на любой IPv4-адрес машины (<code>INADDR_ANY</code>).</p>
+
+<p>Чтобы слушать unix-сокет, передайте имя файла вместо порта и имени хоста.</p>
+
+<p>Эта функция асинхронна. Функция, переданная последним параметром <code>callback</code>
+будет вызвана когда сервер будет связан с портом.</p>
+
+<h3 id="server.listen">server.listen(path, [callback])</h3>
+
+<p>Начинает слушать unix-сокет с заданным путём <code>path</code>.</p>
+
+<p>Эта функция асинхронна. Функция, переданная последним параметром <code>callback</code>
+будет вызвана когда сервер будет связан с сокетом.</p>
+
+<h3 id="server.close">server.close()</h3>
+
+<p>Прекращает приём новых соединений сервером.</p>
+
+<h2 id="http.ServerRequest">http.ServerRequest</h2>
+
+<p>Этот объект создаётся автоматически HTTP-сервером (не пользователем)
+и передаётся первым аргументом обработчику события <code>'request'</code>.</p>
+
+<p>Это <code>EventEmitter</code> со следующими событиями:</p>
+
+<h3 id="_u0421_u043E_u0431_u044B_u0442_u0438_u0435_data_">Событие: 'data'</h3>
+
+<p><code>function (chunk) { }</code></p>
+
+<p>Генерируется при получении части тела сообщения.</p>
+
+<h3 id="_u0421_u043E_u0431_u044B_u0442_u0438_u0435_end_">Событие: 'end'</h3>
+
+<p><code>function () { }</code></p>
+
+<p>Генерируется строго один раз для каждого сообщения. Нет аргументов. После этого
+события запрос не будет генерировать другие.</p>
+
+<h3 id="request.method">request.method</h3>
+
+<p>Метод запроса в виде строки. Только для чтения. Пример <code>'GET'</code> или <code>'DELETE'</code>.</p>
+
+<h3 id="request.url">request.url</h3>
+
+<p>Строка с URL запроса. Здесь содержится URL в том виде, в котором он задан
+в самом HTTP-запросе. Если запрос выглядит так:</p>
+
+<pre><code>GET /status?name=ryan HTTP/1.1\r\n
+Accept: text/plain\r\n
+\r\n</code></pre>
+
+<p>Тогда значением <code>request.url</code> будет:</p>
+
+<pre><code>'/status?name=ryan'</code></pre>
+
+<p>Если вы хотите разделить URL на составные части, вы можете использовать
+<code>require('url').parse(request.url)</code>. Пример:</p>
+
+<pre><code>node&gt; require('url').parse('/status?name=ryan')
+{ href: '/status?name=ryan',
+  search: '?name=ryan',
+  query: 'name=ryan',
+  pathname: '/status' }</code></pre>
+
+<p>Если вам нужно извлечь параметры из строки запроса, можно использовать функцию
+<code>require('querystring').parse</code>, или передать <code>true</code> в качестве второго аргумента
+<code>require('url').parse</code>. Пример:</p>
+
+<pre><code>node&gt; require('url').parse('/status?name=ryan', true)
+{ href: '/status?name=ryan',
+  search: '?name=ryan',
+  query: { name: 'ryan' },
+  pathname: '/status' }</code></pre>
+
+<h3 id="request.headers">request.headers</h3>
+
+<p>Заголовки запроса. Только для чтения.</p>
+
+<h3 id="request.trailers">request.trailers</h3>
+
+<p>HTTP trailers (если есть). Только для чтения.
+Доступны тольк после наступления события <code>'end'</code>.</p>
+
+<h3 id="request.httpVersion">request.httpVersion</h3>
+
+<p>Версия протокола HTTP в виде строки. Только чтение. Пример: <code>'1.1'</code>, <code>'1.0'</code>.
+Также <code>request.httpVersionMajor</code> содержит первое число и <code>request.httpVersionMinor</code> — второе.</p>
+
+<h3 id="request.setEncoding">request.setEncoding(encoding=null)</h3>
+
+<p>Задаёт кодировку тела запроса. Либо <code>'utf8'</code>, либо <code>'binary'</code>. По умолчанию
+принимает значение <code>null</code>, что означает что в обработчик события <code>'data'</code>
+поступает буфер.</p>
+
+<h3 id="request.pause">request.pause()</h3>
+
+<p>Прекращает генерирование событий запросом.
+Можно использовать для ускорения закачки файла.</p>
+
+<h3 id="request.resume">request.resume()</h3>
+
+<p>Возобновляет генерирование событий запросом</p>
+
+<h3 id="request.connection">request.connection</h3>
+
+<p>Объект соединения, экземпляр <code>net.Stream</code>.</p>
+
+<p>При поддержке HTTPS достоверность и содержимое сертификата могут быть проверены
+с помощью методов <code>verifyPeer()</code> и <code>getPeerCertificate()</code>
+объекта <code>request.connection</code> сервера.</p>
+
+<h2 id="http.ServerResponse">http.ServerResponse</h2>
+
+<p>Этот объект создаётся внутри HTTP-сервера — не пользователем. Он передаётся
+вторым параметром в обработчик события <code>'request'</code> и является <code>потоком с возможностью записи</code>.</p>
+
+<h3 id="response.writeContinue">response.writeContinue()</h3>
+
+<p>Отправдяет клиенту сообщение <code>'HTTP/1.1 100 Continue'</code>, которое разрешает
+отправку тела запроса. См. описанеи события <code>checkContinue</code> объекта <code>http.Server</code>.</p>
+
+<h3 id="response.writeHead">response.writeHead(statusCode, [reasonPhrase], [headers])</h3>
+
+<p>Отправляет заголовки ответа клиенту. <code>statusCode</code> это три цифры кода статуса HTTP,
+например 404. Последний аргумент, <code>headers</code>, это заголовки ответа. Также вторым
+аргументом можно передать фразу <code>reasonPhrase</code>.</p>
+
+<p>Пример:</p>
+
+<pre><code>var body = 'hello world';
+response.writeHead(200, {
+  'Content-Length': body.length,
+  'Content-Type': 'text/plain' });</code></pre>
+
+<p>Этот метод должен быть вызван только однажды для каждого сообщения
+и должен быть вызван до <code>response.end()</code>.</p>
+
+<p>Если вы вызываете <code>response.write()</code> или <code>response.end()</code> перед <code>response.writeHead()</code>,
+то эта функция будет вызвана автоматически со всеми неявно отправленными заголовками.</p>
+
+<h3 id="response.statusCode">response.statusCode</h3>
+
+<p>При использовании неявных заголовков (без явного вызова <code>response.writeHead()</code>)
+это свойство устанавливает код ответа, который будет послан клиенту
+при отправке заголовков.</p>
+
+<p>Пример:</p>
+
+<pre><code>response.statusCode = 404;</code></pre>
+
+<h3 id="response.setHeader">response.setHeader(name, value)</h3>
+
+<p>Устанавливает неявный заголовок. Если этот заголовок уже существует в очереди
+для отправки, то его значение будет переобпределено новым. если вы хотите
+установить несколько заголовков с одинаковым именем, используйте массив строк.</p>
+
+<p>Пример:</p>
+
+<pre><code>response.setHeader("Content-Type", "text/html");</code></pre>
+
+<p>или</p>
+
+<pre><code>response.setHeader("Set-Cookie", ["type=ninja", "language=javascript"]);</code></pre>
+
+<h3 id="response.getHeader">response.getHeader(name)</h3>
+
+<p>Возвращает значение заголовка, который был поставлен в очередь, но ещё не был
+отправлен клиенту. Обратите внимание, что имя заголовка регистро независимо.
+Этот метод может быть вызван только до явной отправки заголовков.</p>
+
+<p>Пример:</p>
+
+<pre><code>var contentType = response.getHeader('content-type');</code></pre>
+
+<h3 id="response.removeHeader">response.removeHeader(name)</h3>
+
+<p>Удаляет заголовок из очередь для отправки.</p>
+
+<p>Пример:</p>
+
+<pre><code>response.removeHeader("Content-Encoding");</code></pre>
+
+<h3 id="response.write">response.write(chunk, encoding='utf8')</h3>
+
+<p>Если этот метод вызывается, а <code>response.writeHead()</code> ещё не был вызван,
+то происходит выключение неявного режима отправки заголовков и все заголовки
+из очереди немедленно отправляются клиенту.</p>
+
+<p>Данный метод отправляет часть тела ответа. Метод может быть вызван несколько раз
+для отправки последующих частей тела ответа.</p>
+
+<p>Аргумент <code>chunk</code> может быть буфером или строкой. Если <code>chunk</code> это строка, то
+бойвторой параметр указывает в какой кодировке отправлять её в поток.
+По умолчанию encoding принимает значение 'utf8'.</p>
+
+<p><strong>Замечание:</strong> Это необработанное тело HTTP-ответа и не имеет отношения к более
+высокоуровневым вещам вроде multi-part encoding, которые тоже могут использоваться.</p>
+
+<p>После первого вызова <code>response.write()</code> клиенту будет отправлены заголовки
+и первая часть тела сообщения. После второго вызова <code>response.write()</code> Node
+предполагает что вы начинаете потоковую передачу данных и отправляет часть
+тела отдельно. Таким образом, данные буферизуются только до первой части тела ответа.</p>
+
+<h3 id="response.addTrailers">response.addTrailers(headers)</h3>
+
+<p>Этот метод добавляет завершающие заголовки HTTP, следующие после тела ответа.</p>
+
+<p>Эти заголовки могут быть использованы **только* в случае использование ответом 
+<code>chunked encoding</code>; в противном случае они будут проигнорированы.</p>
+
+<p>Имейте в виду, что протокол HTTP требует указания заголовка <code>Trailer</code>
+в случае использования HTTP trailers, например:</p>
+
+<pre><code>response.writeHead(200, { 'Content-Type': 'text/plain',
+                          'Trailer': 'TraceInfo' });
+response.write(fileData);
+response.addTrailers({'Content-MD5': "7895bf4b8828b55ceaf47747b4bca667"});
+response.end();</code></pre>
+
+<h3 id="response.end">response.end([data], [encoding])</h3>
+
+<p>Этот метод отправляет серверу сигнал что все заголовки и тело ответа отправлены;
+сервер должен считать это сообщение законченным. Метод <code>response.end()</code>
+<strong>ДОЛЖЕН</strong> быть вызван при каждом ответе.</p>
+
+<p>Если задан аргумент <code>data</code>, то этот вызов эквивалентен поледовательному вызову
+<code>response.write(data, encoding)</code> и <code>response.end()</code>.</p>
+
+<h2 id="http.request">http.request(options, callback)</h2>
+
+<p>Node поддерживает множественные соединения для выполнения HTTP запросов.
+Эта функция позволяет легко создавать их.</p>
+
+<p>Параметры <code>options</code>:</p>
+
+<ul><li><code>host</code>: Доменное имя или IP адрес для запроса.</li><li><code>port</code>: Порт на удалённом сервере.</li><li><code>method</code>: Строка, определяющая HTTP метод. возможные значения:
+<code>'GET'</code> (по умолчанию), <code>'POST'</code>, <code>'PUT'</code> и <code>'DELETE'</code>.</li><li><code>path</code>: HTTP-путь, может включать строку запроса при необходимости.
+Например <code>'/index.html?page=12'</code>.</li><li><code>headers</code>: Объект со списком дополнительных заголовков.</li></ul>
+
+<p><code>http.request()</code> возвращает объект класса <code>http.ClientRequest</code>, являющийся
+потоком с возможностью записи. Если вы хотите отпавить файл с помощью POST-запроса,
+вам нужно записать его в этот объект.</p>
+
+<p>Пример подключения к <code>google.com</code>:</p>
+
+<pre><code>var options = {
+  host: 'www.google.com',
+  port: 80,
+  path: '/upload',
+  method: 'POST'
+};
+
+var req = http.request(options, function(res) {
+  console.log('STATUS: ' + res.statusCode);
+  console.log('HEADERS: ' + JSON.stringify(res.headers));
+  res.setEncoding('utf8');
+  res.on('data', function (chunk) {
+    console.log('BODY: ' + chunk);
+  });
+});
+
+// write data to request body
+req.write('data\n');
+req.write('data\n');
+req.end();</code></pre>
+
+<p>Обратите внимание на вызов <code>req.end()</code> в примере. Используя <code>http.request()</code>
+вы должны вызвать <code>req.end()</code>, иначе всё что вы делали до этого с объектом
+не произойдёт и никакие данные не будут отправлены.</p>
+
+<p>В случае возникновение ошибки (на уровне разрешения DNS имени, на уровне TCP
+или на уровне обработки тела HTTP запроса) будет сгенерировано событие <code>'error'</code>
+объекта запроса <code>req</code>.</p>
+
+<p>Нужно иметь в виду следующие особенности реализации:</p>
+
+<ul><li><p>Отправка заголовка 'Connection: keep-alive' сообщает Node о необходимости
+сохранять соединения для последующих запросов.</p></li><li><p>Отправка заголовка <code>'Content-length'</code> отключит 'chunked encoding'.</p></li><li><p>Отправка заголовка 'Expect' немедленно приведёт к отправке всех заголовков.
+Обычно, при отправке 'Expect: 100-continue', вы должны установить таймаут
+и установить обработчик события <code>continue</code>.
+См. <a href="http://tools.ietf.org/html/rfc2616#section-8.2.3">RFC2616 Section 8.2.3</a>
+для дополнительной информации.</p></li></ul>
+
+<h2 id="http.get">http.get(options, callback)</h2>
+
+<p>Так как большинство запросов являются GET запросами без тела, Node содержит этот дополнительный метод.
+Единственное отличие от метода <code>http.request()</code> заключается в использовании
+запроса типа GET и автоматическом вызове <code>req.end()</code>.</p>
+
+<p>Пример:</p>
+
+<pre><code>var options = {
+  host: 'www.google.com',
+  port: 80,
+  path: '/index.html'
+};
+
+http.get(options, function(res) {
+  console.log("Got response: " + res.statusCode);
+}).on('error', function(e) {
+  console.log("Got error: " + e.message);
+});</code></pre>
+
+<h3 id="_u0421_u043E_u0431_u044B_u0442_u0438_u0435_upgrade_">Событие: 'upgrade'</h3>
+
+<p><code>function (request, socket, head)</code></p>
+
+<p>Генерируется каждый раз когда сервер отвечает на запрос предложением улучшить
+соединение до безопасного. Если это событие не обрабатывается, клиент
+при получении заголовка <code>upgrade</code> будет закрывать соединение.</p>
+
+<p>См. описание события <code>upgrade</code> для <code>http.Server</code>.</p>
+
+<h3 id="_u0421_u043E_u0431_u044B_u0442_u0438_u0435_continue_">Событие: 'continue'</h3>
+
+<p><code>function ()</code></p>
+
+<p>Наступает если сервер отправляет ответ с кодом '100 Continue', обычно в случае
+если зщапрос включает заголовк 'Expect: 100-continue'. Это является указанием
+клиенту на необходимость начала отправки тела запроса.</p>
+
+<h2 id="http.Agent">http.Agent</h2>
+
+<h2 id="http.getAgent">http.getAgent(host, port)</h2>
+
+<p><code>http.request()</code> использует специального <code>Агента</code> для обработки множества
+соединений с HTTP сервером. Обычно объекты класса <code>Agent</code> не должны быть доступны
+в пользовательском коде, однако иногда это может быть полезно. Метод <code>http.getAgent()</code>
+позволяет получить доступ к этому объекту.</p>
+
+<h3 id="agent.maxSockets">agent.maxSockets</h3>
+
+<p>По умолчанию равно 5. Определяет максимальное количество сокетов,
+одновременно открытых клиентом.</p>
+
+<h3 id="agent.sockets">agent.sockets</h3>
+
+<p>Массив сокетов, используемых в данный момент. Не изменяйте этот массив.</p>
+
+<h3 id="agent.queue">agent.queue</h3>
+
+<p>Очередь запросов, ожидающих отправки.</p>
+
+<h2 id="http.ClientRequest">http.ClientRequest</h2>
+
+<p>Объект создаётся внутри Node и возвращается методом <code>http.request()</code>.
+Он представляет собой <em>незаконченный запрос</em>, заголовки которого ещё не отправлены.
+Заголовки могут быть изменены с помощью методов <code>setHeader(name, value)</code>,
+<code>getHeader(name)</code> и <code>removeHeader(name)</code>. Установленные заголовки посылаются клиенту
+с первым фрагментом данных или при закрытии соединения.</p>
+
+<p>Чтобы получить ответ, добавьте обработчик событию <code>'response'</code> объекта запроса.
+Событие <code>'response'</code> будет сгенерировано объектом запроса при получении
+заголовков ответа. Обработчик события <code>'response'</code> выполняется с одним
+аргументом — экземпляром <code>http.ClientResponse</code>.</p>
+
+<p>Во время события <code>'response'</code> можно добавлять обработчики к объекту ответа;
+в частности, чтобы получать части тела ответа надо добавить обработчик
+событию <code>'data'</code>. Заметьте что обработчик события <code>'response'</code> вызывается
+до того, как будут получены части тела ответа, поэтому не надо беспокоиться,
+что первая часть тела будет пропущена. Если обработчик <code>'data'</code> добавляется
+во время события <code>'response'</code>, то всё тело ответа будет получено наверняка.</p>
+
+<pre><code>// Good
+request.on('response', function (response) {
+  response.on('data', function (chunk) {
+    console.log('BODY: ' + chunk);
+  });
+});
+
+// Bad - misses all or part of the body
+request.on('response', function (response) {
+  setTimeout(function () {
+    response.on('data', function (chunk) {
+      console.log('BODY: ' + chunk);
+    });
+  }, 10);
+});</code></pre>
+
+<p>Это <code>поток с возможностью записи</code>.</p>
+
+<p>Это экземпляр <code>EventEmitter</code> со следующими событиями:</p>
+
+<h3 id="_u0421_u043E_u0431_u044B_u0442_u0438_u0435_response_">Событие: 'response'</h3>
+
+<p><code>function (response) { }</code></p>
+
+<p>Генерируется когда на запрос приходит ответ. Это событие генерируется только
+один раз. Аргументом обработчика <code>response</code> будет экземпляр <code>http.ClientResponse</code>.</p>
+
+<h3 id="request.write">request.write(chunk, encoding='utf8')</h3>
+
+<p>Отправляет часть тела запроса. Вызывая этот метод несколько раз, пользователь
+может отправлять тело ответа серверу в потоковом режиме — в таком случае
+предпочтительно добавлять в заголовки <code>['Transfer-Encoding', 'chunked']</code>
+при создании запроса.</p>
+
+<p>Аргумент <code>chunk</code> должен быть массивом чисел или строкой.</p>
+
+<p>Аргумент <code>encoding</code> необязателен и имеет значение только если <code>chunk</code> строка.</p>
+
+<h3 id="request.end">request.end([data], [encoding])</h3>
+
+<p>Завершает отправку запроса. Если какие то части тела запроса ещё не были
+отправлены, они отправляются. Если запрос разбит на части, будет послана
+завершающая последовательность <code>'0\r\n\r\n'</code>.</p>
+
+<p>Если задан аргумент <code>data</code>, то этот вызов эквивалентен поледовательному вызову
+<code>request.write(data, encoding)</code> и <code>request.end()</code>.</p>
+
+<h3 id="request.abort">request.abort()</h3>
+
+<p>Прерывает запрос. (Добавлено в версии v0.3.8)</p>
+
+<h2 id="http.ClientResponse">http.ClientResponse</h2>
+
+<p>Этот объект создаётся при создании запроса с помощью <code>http.request()</code>.
+Он передаётся обработчику события <code>'response'</code> объекта запроса.</p>
+
+<p>Объект ответа — <code>поток с возможностью чтения</code>.</p>
+
+<h3 id="_u0421_u043E_u0431_u044B_u0442_u0438_u0435_data_">Событие: 'data'</h3>
+
+<p><code>function (chunk) {}</code></p>
+
+<p>Часть тела сообщения передаётся обработчику в качестве единственного аргуметна.
+Строка уже преобразована из кодировки с помощью которой осуществлялась передача.
+Часть тела сообщения передаётся обработчику в виде строки. Кодировка тела
+сообщения задаётся <code>response.setBodyEncoding()</code>.</p>
+
+<h3 id="_u0421_u043E_u0431_u044B_u0442_u0438_u0435_end_">Событие: 'end'</h3>
+
+<p><code>function () {}</code></p>
+
+<p>Генерируется только однажды для каждого сообщения. Обработчик вызывается
+без аргументов. После этого сообщение не будет генерировать никаких событий.</p>
+
+<h3 id="response.statusCode">response.statusCode</h3>
+
+<p>Код статуса HTTP из трёх цифр, например <code>404</code>.</p>
+
+<h3 id="response.httpVersion">response.httpVersion</h3>
+
+<p>Версия HTTP для текущего соединения. Скорее всего либо <code>'1.1'</code>, либо <code>'1.0'</code>.
+Также <code>response.httpVersionMajor</code> — первая цифра версии,
+а <code>response.httpVersionMinor</code> — вторая.</p>
+
+<h3 id="response.headers">response.headers</h3>
+
+<p>Заголовки ответа.</p>
+
+<h3 id="response.trailers">response.trailers</h3>
+
+<p>См. описание выше.</p>
+
+<h3 id="response.setEncoding">response.setEncoding(encoding=null)</h3>
+
+<p>Задаёт кодировку тела ответа. Может принимать значения <code>'utf8'</code>, <code>'ascii'</code>
+или <code>'base64'</code>. По умолчанию используется <code>null</code>, что означает что в обработчик
+события <code>'data'</code> поступает буфер.</p>
+
+<h3 id="response.pause">response.pause()</h3>
+
+<p>Приостанавливает генерацию событий ответом.
+Можно использовать для ускорения закачки файла.</p>
+
+<h3 id="response.resume">response.resume()</h3>
+
+<p>Возобновляет генерацию событий ответом.</p>
+
+<h2 id="hTTPS">HTTPS</h2>
+
+<p>HTTPS представляет из себя HTTP протокол с использованием TLS/SSL канала
+для передачи данных. Node включает отдельный модуль для HTTP.</p>
+
+<h2 id="https.Server">https.Server</h2>
+
+<h2 id="https.createServer">https.createServer</h2>
+
+<p>Пример:</p>
+
+<pre><code>// curl -k https://localhost:8000/
+var https = require('https');
+var fs = require('fs');
+
+var options = {
+  key: fs.readFileSync('test/fixtures/keys/agent2-key.pem'),
+  cert: fs.readFileSync('test/fixtures/keys/agent2-cert.pem')
+};
+
+https.createServer(options, function (req, res) {
+  res.writeHead(200);
+  res.end("hello world\n");
+}).listen(8000);</code></pre>
+
+<h2 id="https.request">https.request(options, callback)</h2>
+
+<p>Создаёт запрос к защищённому серверу.
+Параметры аналогичны параметрам <code>http.request()</code>.</p>
+
+<p>Пример:</p>
+
+<pre><code>var https = require('https');
+
+var options = {
+  host: 'encrypted.google.com',
+  port: 443,
+  path: '/',
+  method: 'GET'
+};
+
+var req = https.request(options, function(res) {
+  console.log("statusCode: ", res.statusCode);
+  console.log("headers: ", res.headers);
+
+  res.on('data', function(d) {
+    process.stdout.write(d);
+  });
+});
+req.end();
+
+req.on('error', function(e) {
+  console.error(e);
+});</code></pre>
+
+<h2 id="https.get">https.get(options, callback)</h2>
+
+<p>Аналог <code>http.get()</code> для HTTPS.</p>
+
+<p>Пример:</p>
+
+<pre><code>var https = require('https');
+
+https.get({ host: 'encrypted.google.com', path: '/' }, function(res) {
+  console.log("statusCode: ", res.statusCode);
+  console.log("headers: ", res.headers);
+
+  res.on('data', function(d) {
+    process.stdout.write(d);
+  });
+
+}).on('error', function(e) {
+  console.error(e);
+});</code></pre>
+
+<h2 id="uRL">URL</h2>
+
+<p>В это модуле собраны инструменты для разрешения и разбора URL.
+Вызовите <code>require('url')</code> чтобы его использовать.</p>
+
+<p>Объекты разобранного URL имеют либо все либо некоторые из перечисленных полей,
+в зависимости от их присутствия в строке URL. Части которых не было в URL
+не будут присутствовать в объекте. Примеры показаны для URL</p>
+
+<p><code>'http://user:pass@host.com:8080/p/a/t/h?query=string#hash'</code></p>
+
+<ul><li><p><code>href</code>: Полный URL который был разобран.</p><p>Пример: <code>'http://user:pass@host.com:8080/p/a/t/h?query=string#hash'</code></p></li><li><p><code>protocol</code>: Протокол запроса.</p><p>Пример: <code>'http:'</code></p></li><li><p><code>host</code>: Полный host, включая порт и информацию аутентификации.</p><p>Пример: <code>'user:pass@host.com:8080'</code></p></li><li><p><code>auth</code>: Информация для аутентификации.</p><p>Пример: <code>'user:pass'</code></p></li><li><p><code>hostname</code>: Имя хоста.</p><p>Пример: <code>'host.com'</code></p></li><li><p><code>port</code>: Номер порта.</p><p>Пример: <code>'8080'</code></p></li><li><p><code>pathname</code>: Секция пути, которая идёт после хоста и перед строкой параметров, включая начальный слеш если он есть.</p><p>Пример: <code>'/p/a/t/h'</code></p></li><li><p><code>search</code>: Строка запроса, включая ведущий знак вопроса.</p><p>Пример: <code>'?query=string'</code></p></li><li><p><code>query</code>: Параметры из строки запроса, либо уже разобранный объект с параметрами.</p><p>Пример: <code>'query=string'</code> or <code>{'query':'string'}</code></p></li><li><p><code>hash</code>: "Якорь" URL, включая знак решётки.</p><p>Пример: <code>'#hash'</code></p></li></ul>
+
+<p>Модуль URL предоставляет следующие методы:</p>
+
+<h3 id="url.parse">url.parse(urlStr, parseQueryString=false)</h3>
+
+<p>Получает строку URL и возвращает объект. Передайте <code>true</code> вторым аргументом
+чтобы одновременно разобрать строку запроса модулем <code>querystring</code>.</p>
+
+<h3 id="url.format">url.format(urlObj)</h3>
+
+<p>Получает объект URL и возвращает отформатированный URL в виде строки.</p>
+
+<h3 id="url.resolve">url.resolve(from, to)</h3>
+
+<p>Получает базовый URL и относительный URL, и разрешает их как это сделал бы браузер для гиперссылки.</p>
+
+<h2 id="_u0420_u0430_u0437_u0431_u043E_u0440_u0441_u0442_u0440_u043E_u043A_u0438_u0437_u0430_u043F_u0440_u043E_u0441_u0430">Разбор строки запроса</h2>
+
+<p>Этот модуль предоставляет инструменты для работы со строкой запроса.
+Используйте <code>require('querystring')</code> чтобы получить доступ к функциям модуля.</p>
+
+<h3 id="querystring.stringify">querystring.stringify(obj, sep='&amp;', eq='=')</h3>
+
+<p>Сериализует объект в строку запроса. Можно менять символы разделителя и присваивания.</p>
+
+<p>Пример:</p>
+
+<pre><code>querystring.stringify({foo: 'bar'})
+// returns
+'foo=bar'
+
+querystring.stringify({foo: 'bar', baz: 'bob'}, ';', ':')
+// returns
+'foo:bar;baz:bob'</code></pre>
+
+<h3 id="querystring.parse">querystring.parse(str, sep='&amp;', eq='=')</h3>
+
+<p>Десериализует строку запроса в объект. Можно менять символы разделителя и присваивания.</p>
+
+<p>Пример:</p>
+
+<pre><code>querystring.parse('a=b&amp;b=c')
+// returns
+{ a: 'b', b: 'c' }</code></pre>
+
+<h3 id="querystring.escape">querystring.escape</h3>
+
+<p>Функция экранирования, используемая в <code>querystring.stringify</code>,
+предоставляется для того чтобы проще было заменить её собственной.</p>
+
+<h3 id="querystring.unescape">querystring.unescape</h3>
+
+<p>Функция декодирования, используемая <code>querystring.parse</code>,
+предоставляется для того чтобы проще было заменить её собственной.</p>
+
+<h2 id="_u0418_u043D_u0442_u0435_u0440_u0430_u043A_u0442_u0438_u0432_u043D_u0430_u044F_u043A_u043E_u043D_u0441_u043E_u043B_u044C_">Интерактивная консоль (REPL)</h2>
+
+<p>Интерактивная консоль (Read-Eval-Print-Loop, REPL) доступна как самостоятельная
+программа и может включаться в другие скрипты. REPL предоставляет возможность
+интерактивно выполнять JavaScript и сразу видеть результат. Он может использоваться
+для отладки, тестирования, и просто знакомства с системой.</p>
+
+<p>Выполняя <code>node</code> без аргументов из командной строки вы попадёте прямо в REPL.
+В нём есть простое редактирование строк по образцу emacs.</p>
+
+<pre><code>mjr:~$ node
+Type '.help' for options.
+&gt; a = [ 1, 2, 3];
+[ 1, 2, 3 ]
+&gt; a.forEach(function (v) {
+...   console.log(v);
+...   });
+1
+2
+3</code></pre>
+
+<p>Чтобы использовать продвинутые редакторы, запустите Node с переменной окружения
+<code>NODE_NO_READLINE=1</code>. Это запустит REPL с обычными терминальными настройками,
+позволяющими использовать <code>rlwrap</code>.</p>
+
+<p>К примеру, можно добавить следующее к Вашему файлу bashrc:</p>
+
+<pre><code>alias node="env NODE_NO_READLINE=1 rlwrap node"</code></pre>
+
+<h3 id="repl.start_">repl.start(prompt='&gt; ', stream=process.openStdin())</h3>
+
+<p>Запускает REPL с <code>prompt</code> в качестве приглашения и потоком <code>stream</code> для ввода/вывода.
+Параметр <code>prompt</code> необязателен и по умолчанию принимает значение <code>'&gt;'</code>.
+Параметр <code>stream</code> также необязателен и по умолчанию принимает значение <code>process.stdin</code>.</p>
+
+<p>В одном экземпляре node могут быть запущены несколько консолей REPL.
+Все будут использовать один глобальный объект но разный ввод-вывод.</p>
+
+<p>Вот пример, запускающий консоль REPL на стандартном потоке ввода-вывода,
+сокете Unix, и TCP-сокете:</p>
+
+<pre><code>var net = require("net"),
+    repl = require("repl");
+
+connections = 0;
+
+repl.start("node via stdin&gt; ");
+
+net.createServer(function (socket) {
+  connections += 1;
+  repl.start("node via Unix socket&gt; ", socket);
+}).listen("/tmp/node-repl-sock");
+
+net.createServer(function (socket) {
+  connections += 1;
+  repl.start("node via TCP socket&gt; ", socket);
+}).listen(5001);</code></pre>
+
+<p>Запуск этой программы из командной строки запустит консоль на <code>stdin</code>. Другие
+клиенты могут подключаться через Unix-сокет или TCP-сокет. Для подключения
+к TCP сокетам можно использовать <code>telnet</code>, a <code>socat</code> можно использовать
+для обоих типов сокетов.</p>
+
+<p>Запуская REPL на сокете вместо стандартного ввода-вывода Вы можете подключаться
+к работающему процессу node не перезапуская его.</p>
+
+<h3 id="_u0412_u043E_u0437_u043C_u043E_u0436_u043D_u043E_u0441_u0442_u0438_REPL">Возможности REPL</h3>
+
+<p>Внутри REPL Control+D завершает его работу. Можно вводить многострочные выражения.</p>
+
+<p>Специальная переменная <code>_</code> (знак подчёркивания) содержит результат последнего выражения.</p>
+
+<pre><code>&gt; [ "a", "b", "c" ]
+[ 'a', 'b', 'c' ]
+&gt; _.length 
+3
+&gt; _ += 1
+4</code></pre>
+
+<p>REPL предоставляет доступ к любым переменным глобальной области видимости.
+Вы можете явно передать переменную в REPL, присвоив её объекту <code>context</code>,
+ассоциированному с каждым экземпляром <code>REPLServer</code>. Например:</p>
+
+<pre><code>// repl_test.js
+var repl = require("repl"),
+    msg = "message";
+
+repl.start().context.m = msg;</code></pre>
+
+<p>Свойства объекта <code>context</code> выглядят внутри REPL как локальные:</p>
+
+<pre><code>mjr:~$ node repl_test.js
+&gt; m
+'message'</code></pre>
+
+<p>В REPL есть несколько специальных команд:</p>
+
+<ul><li><code>.break</code> - При вводе многострочного выражения иногда можно ошибиться,
+либо совсем отказаться от его ввода. <code>.break</code> начнёт ввод заново.</li><li><code>.clear</code> - Сбрасывает объект <code>context</code> в пустой и очищает введённое многострочное выражение.</li><li><code>.exit</code> - Закрывает потоки ввода-вывода, принуждая REPL завершиться.</li><li><code>.help</code> - Показывает список специальных команд.</li></ul>
+
+<h2 id="_u0414_u043E_u0447_u0435_u0440_u043D_u0438_u0435_u043F_u0440_u043E_u0446_u0435_u0441_u0441_u044B">Дочерние процессы</h2>
+
+<p>Node предоставляет tri-directional popen(3) в классе <code>ChildProcess</code>.</p>
+
+<p>С дочерним потоком можно обмениваться данными через <code>stdin</code>, <code>stdout</code> и <code>stderr</code>
+в полностью неблокирующем стиле.</p>
+
+<p>Для создания дочернего процесса используйте <code>require('child_process').spawn()</code>.</p>
+
+<p>С дочерним процессом всегда ассоциированы три потока:
+<code>child.stdin</code>, <code>child.stdout</code> и <code>child.stderr</code>.</p>
+
+<p><code>ChildProcess</code> — экземпляр <code>EventEmitter</code>.</p>
+
+<h3 id="_u0421_u043E_u0431_u044B_u0442_u0438_u0435_exit_">Событие: 'exit'</h3>
+
+<p><code>function (code, signal) {}</code></p>
+
+<p>Это событие генерируется при завершении дочернего процесса. Если процесс
+завершён нормально, в <code>code</code> передаётся код завершения процесса, иначе
+передаётся <code>null</code>. Если процесс завершился от принятия сигнала, то <code>signal</code> —
+это строка, содержащая имя сигнала, либо <code>null</code>.</p>
+
+<p>См. также: <code>waitpid(2)</code>.</p>
+
+<h3 id="child.stdin">child.stdin</h3>
+
+<p><code>Поток с возможностью записи</code>, связанный со <code>stdin</code> процесса дочернего.
+Закрытие потока с помощью <code>end()</code> часто приводит к завершению процесса.</p>
+
+<h3 id="child.stdout">child.stdout</h3>
+
+<p><code>Поток с возможностью чтения</code>, связанный со <code>stdout</code> дочернего процесса.</p>
+
+<h3 id="child.stderr">child.stderr</h3>
+
+<p><code>Поток с возможностью чтения</code>, связанный со <code>stderr</code> дочернего процесса.</p>
+
+<h3 id="child.pid">child.pid</h3>
+
+<p>Идентификатор дочернего процесса.</p>
+
+<p>Пример:</p>
+
+<pre><code>var spawn = require('child_process').spawn,
+    grep  = spawn('grep', ['ssh']);
+
+console.log('Spawned child pid: ' + grep.pid);
+grep.stdin.end();</code></pre>
+
+<h3 id="child_process.spawn">child_process.spawn(command, args=[], [options])</h3>
+
+<p>Запускает новый процесс с указанной командой <code>command</code> и аргументами командной
+строки <code>args</code>. Если аргументы пропущены, args будет пустым массивом.</p>
+
+<p>Третий аргумент функции используется для задания дополнительных опций
+со следующими значениями по умолчанию:</p>
+
+<pre><code>{ cwd: undefined,
+  env: process.env,
+  customFds: [-1, -1, -1],
+  setsid: false
+}</code></pre>
+
+<p><code>cwd</code> позволяет вам задать рабочую папку для дочернего процесса.
+Используйте <code>env</code> для определия переменных окружения, видимых дочернему процессу.
+С помощью <code>customFds</code> возможно связать stdin, stout и stderr дочернего процесса
+с существующими потоками; -1 означает, что нужно создать новый поток.
+Если <code>setsid</code> истинно, то процесс будет создан в новой пользовательской сессии.</p>
+
+<p>Пример запуска <code>ls -lh /usr</code>, чтения <code>stdout</code>, <code>stderr</code> и получения кода завершения:</p>
+
+<pre><code>var util   = require('util'),
+    spawn  = require('child_process').spawn,
+    ls     = spawn('ls', ['-lh', '/usr']);
+
+ls.stdout.on('data', function (data) {
+  console.log('stdout: ' + data);
+});
+
+ls.stderr.on('data', function (data) {
+  console.log('stderr: ' + data);
+});
+
+ls.on('exit', function (code) {
+  console.log('child process exited with code ' + code);
+});</code></pre>
+
+<p>Пример: достаточно сложный способ выполнить 'ps ax | grep ssh'.</p>
+
+<pre><code>var util   = require('util'),
+    spawn = require('child_process').spawn,
+    ps    = spawn('ps', ['ax']),
+    grep  = spawn('grep', ['ssh']);
+
+ps.stdout.on('data', function (data) {
+  grep.stdin.write(data);
+});
+
+ps.stderr.on('data', function (data) {
+  console.log('ps stderr: ' + data);
+});
+
+ps.on('exit', function (code) {
+  if (code !== 0) {
+    console.log('ps process exited with code ' + code);
+  }
+  grep.stdin.end();
+});
+
+grep.stdout.on('data', function (data) {
+  console.log(data);
+});
+
+grep.stderr.on('data', function (data) {
+  console.log('grep stderr: ' + data);
+});
+
+grep.on('exit', function (code) {
+  if (code !== 0) {
+    console.log('grep process exited with code ' + code);
+  }
+});</code></pre>
+
+<p>Пример проверки ошибки запуска приложения:</p>
+
+<pre><code>var spawn = require('child_process').spawn,
+    child = spawn('bad_command');
+
+child.stderr.on('data', function (data) {
+  if (/^execvp\(\)/.test(data.asciiSlice(0,data.length))) {
+    console.log('Failed to start child process.');
+  }
+});</code></pre>
+
+<p>См. также: <code>child_process.exec()</code>.</p>
+
+<h3 id="child_process.exec">child_process.exec(command, [options], callback)</h3>
+
+<p>Высокоуровневый способ выполнить команду в качестве дочернего процесса,
+сохранить весь её вывод, и передать его в callback.</p>
+
+<pre><code>var util   = require('util'),
+    exec  = require('child_process').exec,
+    child;
+
+child = exec('cat *.js bad_file | wc -l',
+  function (error, stdout, stderr) {
+    console.log('stdout: ' + stdout);
+    console.log('stderr: ' + stderr);
+    if (error !== null) {
+      console.log('exec error: ' + error);
+    }
+});</code></pre>
+
+<p>Функция-callback получает аргументы <code>(error, stdout, stderr)</code>. При удачном
+выполнении в <code>error</code> будет <code>null</code>. При ошибке <code>error</code> будет экземпляром <code>Error</code>,
+<code>err.code</code> будет кодом завершения дочернего процесса, а в <code>err.signal</code> будет
+содержаться имя сигнала, завершившего процесс.</p>
+
+<p>Вторым аргументом могут быть переданы дополнительные опции
+со следующими значениями по умолчанию:</p>
+
+<pre><code>{ encoding: 'utf8',
+  timeout: 0,
+  maxBuffer: 200*1024,
+  killSignal: 'SIGTERM',
+  cwd: null,
+  env: null }</code></pre>
+
+<p>Если <code>timeout</code> больше 0, процесс будет завершён, если он выполняется дольше,
+чем <code>timeout</code> миллисекунд. Дочерний процесс завершается с помощью сигнала
+<code>killSignal</code>. В <code>maxBuffer</code> указывается максимальный объём данных, разрешённый
+на <code>stdout</code> или <code>stderr</code> — если этот объём будет превышен,
+то дочерний процесс будет завершён.</p>
+
+<h3 id="child.kill">child.kill(signal='SIGTERM')</h3>
+
+<p>Отправляет сигнал дочернему процессу. Если аргументы не переданы, то процессу
+будет отправлен сигнал <code>'SIGTERM'</code>. См. <code>signal(7)</code> для списка возможных имён сигналов.</p>
+
+<pre><code>var spawn = require('child_process').spawn,
+    grep  = spawn('grep', ['ssh']);
+
+grep.on('exit', function (code, signal) {
+  console.log('child process terminated due to receipt of signal '+signal);
+});
+
+// send SIGHUP to process
+grep.kill('SIGHUP');</code></pre>
+
+<p>Заметьте, что хотя функция называется <code>kill</code>, сигнал, отправляемый дочернему процессу,
+не обязательно его завершит. Метод <code>kill</code> просто отправляет сигналы.</p>
+
+<p>См. также: <code>kill(2)</code>.</p>
+
+<h2 id="_u0422_u0435_u0441_u0442_u0438_u0440_u043E_u0432_u0430_u043D_u0438_u0435_">Тестирование (asserts)</h2>
+
+<p>Этот модуль используется для написания юнит-тестов для ваших приложений,
+вы можете использовать его вызвав <code>require('assert')</code>.</p>
+
+<h3 id="assert.fail">assert.fail(actual, expected, message, operator)</h3>
+
+<p>Проверяет что <code>actual</code> соответствует <code>expected</code> используя указанный оператор.</p>
+
+<h3 id="assert.ok">assert.ok(value, [message])</h3>
+
+<p>Проверяет что значение <code>value</code> равно <code>true</code>, то же самое что
+<code>assert.equal(true, value, message);</code>.</p>
+
+<h3 id="assert.equal">assert.equal(actual, expected, [message])</h3>
+
+<p>Неглубокая проверка на равенство с использованием соответствующего оператора ( <code>==</code> ).</p>
+
+<h3 id="assert.notEqual">assert.notEqual(actual, expected, [message])</h3>
+
+<p>Неглубокая проверка на неравенство с использованием соответствующего оператора ( <code>!=</code> ).</p>
+
+<h3 id="assert.deepEqual">assert.deepEqual(actual, expected, [message])</h3>
+
+<p>Глубокая проверка на равенство.</p>
+
+<h3 id="assert.notDeepEqual">assert.notDeepEqual(actual, expected, [message])</h3>
+
+<p>Глубокая проверка на неравенство.</p>
+
+<h3 id="assert.strictEqual">assert.strictEqual(actual, expected, [message])</h3>
+
+<p>Проверка на строгое равенство, с использованием соответствующего оператора ( <code>===</code> ).</p>
+
+<h3 id="assert.notStrictEqual">assert.notStrictEqual(actual, expected, [message])</h3>
+
+<p>Проверка на строгое неравенство, с использованием соответствующего оператора ( <code>!==</code> ).</p>
+
+<h3 id="assert.throws">assert.throws(block, [error], [message])</h3>
+
+<p>Ожидает что блок кода <code>block</code> вызовет ошибку <code>error</code>.
+<code>error</code> может быть конструкторов, регулярным выражением или функцией валидации.</p>
+
+<p>Проверка ошибки по типу конструктора:</p>
+
+<pre><code>assert.throws(
+  function() {
+    throw new Error("Wrong value");
+  },
+  Error
+);</code></pre>
+
+<p>Проверка ошибки с помощью регулярного выражения:</p>
+
+<pre><code>assert.throws(
+  function() {
+    throw new Error("Wrong value");
+  },
+  /value/
+);</code></pre>
+
+<p>Произвольная проверка с помощью функции валидации:</p>
+
+<pre><code>assert.throws(
+  function() {
+    throw new Error("Wrong value");
+  },
+  function(err) {
+    if ( (err instanceof Error) &amp;&amp; /value/.test(err) ) {
+      return true;
+    }
+  },
+  "unexpected error"
+);</code></pre>
+
+<h3 id="assert.doesNotThrow">assert.doesNotThrow(block, [error], [message])</h3>
+
+<p>Ожидает что блок кода <code>block</code> не вызовет ошибки.
+См. описание параметров для <code>assert.throws</code>.</p>
+
+<h3 id="assert.ifError">assert.ifError(value)</h3>
+
+<p>Проверяет что <code>value</code> имеет значение <code>false</code>, бросает исключение встретив <code>true</code>.
+Удобно для проверки первого аргумента функций-обработчиков, <code>error</code>.</p>
+
+<h2 id="tTY">TTY</h2>
+
+<p>Используйте <code>require('tty')</code> чтобы получить доступ к этому модулю.</p>
+
+<h3 id="tty.open">tty.open(path, args=[])</h3>
+
+<p>Запускает новый процесс с исполняемымы файлом указанным в переменной path в новом псевдо-терминале.</p>
+
+<p>Возвращает массив <code>[slaveFD, childProcess]</code>. <code>slaveFD</code> это файловый дескриптор конца псевдотерминала, принадлежащего потомку. <code>childProcess</code> это объект дочернего процесса.</p>
+
+<h3 id="tty.isatty">tty.isatty(fd)</h3>
+
+<p>Возвращает <code>true</code> или <code>false</code> в зависимости от того принадлежит ли файловый дескриптор <code>fd</code> терминалу.</p>
+
+<h3 id="tty.setRawMode">tty.setRawMode(mode)</h3>
+
+<p>Переменная <code>mode</code> должна принимать значение <code>true</code> или <code>false</code>. Это задает режим работы потоков ввода-вывода текущего процесса: raw device или default.</p>
+
+<h3 id="tty.setWindowSize">tty.setWindowSize(fd, row, col)</h3>
+
+<p>Вызывает <code>ioctl()</code> для установки размеров терминала по файловуму дескриптору <code>fd</code>,
+ассоциированному с ним.</p>
+
+<h3 id="tty.getWindowSize">tty.getWindowSize(fd)</h3>
+
+<p>Возвращает массив <code>[row, col]</code> размеров терминала по файловуму дескриптору <code>fd</code>,
+ассоциированному с ним.</p>
+
+<h2 id="os_Module">os Module</h2>
+
+<p>Этот модуль содержит функции для определения параметров системы.
+Используйте <code>require('os')</code> чтобы получить к нему доступ.</p>
+
+<h3 id="os.hostname">os.hostname()</h3>
+
+<p>Возвращает имя компьютера в сети.</p>
+
+<h3 id="os.type">os.type()</h3>
+
+<p>Возвращает имя операционной системы.</p>
+
+<h3 id="os.release">os.release()</h3>
+
+<p>Возвращает версию операционной системы.</p>
+
+<h3 id="os.uptime">os.uptime()</h3>
+
+<p>Возвращает время работы системы в секундах с последней перезагрузки.</p>
+
+<h3 id="os.loadavg">os.loadavg()</h3>
+
+<p>Возвращает массив, содержащия среднюю загрузку системы за последние 1, 5 и 15 минут.</p>
+
+<h3 id="os.totalmem">os.totalmem()</h3>
+
+<p>Возвращает полный объём памяти, доступной системе.</p>
+
+<h3 id="os.freemem">os.freemem()</h3>
+
+<p>Возвращает объём свободной памяти.</p>
+
+<h3 id="os.cpus">os.cpus()</h3>
+
+<p>Возвращает массив объектов, содержащих информацию о каждом процессоре/ядре системы:
+модель, частоту в мегагерцах и время в тиках,
+проводимое в состояниях user, nice, sys, idle и irq.</p>
+
+<p>Example inspection of os.cpus:</p>
+
+<pre><code>[ { model: 'Intel(R) Core(TM) i7 CPU         860  @ 2.80GHz',
+    speed: 2926,
+    times:
+     { user: 252020,
+       nice: 0,
+       sys: 30340,
+       idle: 1070356870,
+       irq: 0 } },
+  { model: 'Intel(R) Core(TM) i7 CPU         860  @ 2.80GHz',
+    speed: 2926,
+    times:
+     { user: 306960,
+       nice: 0,
+       sys: 26980,
+       idle: 1071569080,
+       irq: 0 } },
+  { model: 'Intel(R) Core(TM) i7 CPU         860  @ 2.80GHz',
+    speed: 2926,
+    times:
+     { user: 248450,
+       nice: 0,
+       sys: 21750,
+       idle: 1070919370,
+       irq: 0 } },
+  { model: 'Intel(R) Core(TM) i7 CPU         860  @ 2.80GHz',
+    speed: 2926,
+    times:
+     { user: 256880,
+       nice: 0,
+       sys: 19430,
+       idle: 1070905480,
+       irq: 20 } },
+  { model: 'Intel(R) Core(TM) i7 CPU         860  @ 2.80GHz',
+    speed: 2926,
+    times:
+     { user: 511580,
+       nice: 20,
+       sys: 40900,
+       idle: 1070842510,
+       irq: 0 } },
+  { model: 'Intel(R) Core(TM) i7 CPU         860  @ 2.80GHz',
+    speed: 2926,
+    times:
+     { user: 291660,
+       nice: 0,
+       sys: 34360,
+       idle: 1070888000,
+       irq: 10 } },
+  { model: 'Intel(R) Core(TM) i7 CPU         860  @ 2.80GHz',
+    speed: 2926,
+    times:
+     { user: 308260,
+       nice: 0,
+       sys: 55410,
+       idle: 1071129970,
+       irq: 880 } },
+  { model: 'Intel(R) Core(TM) i7 CPU         860  @ 2.80GHz',
+    speed: 2926,
+    times:
+     { user: 266450,
+       nice: 1480,
+       sys: 34920,
+       idle: 1072572010,
+       irq: 30 } } ]</code></pre>
+
+<h2 id="_u0412_u0441_u0442_u0440_u043E_u0435_u043D_u043D_u044B_u0439_u043E_u0442_u043B_u0430_u0434_u0447_u0438_u043A">Встроенный отладчик</h2>
+
+<p>Вместе с V8 идет мощный отладчик, доступный прямо в процессе выполнения
+через простой <a href="http://code.google.com/p/v8/wiki/DebuggerProtocol">TCP протокол</a>.
+В Node есть встроенный клиент для этого отладчика. Чтобы его использовать,
+запустите Node с ключом <code>debug</code>; появится следующее приглашение:</p>
+
+<pre><code>% node debug myscript.js
+debug&gt;</code></pre>
+
+<p>Пока <code>myscript.js</code> ещё не запущен. Чтобы запустить скрипт, введите команду <code>run</code>.
+Если всё в порядке, вывод будет выглядеть примерно так:</p>
+
+<pre><code>% node debug myscript.js
+debug&gt; run
+debugger listening on port 5858
+connecting...ok</code></pre>
+
+<p>Отладчик Node не поддерживает полный набор команд но выполнение и просмотр окружения
+вполне возможны. Добавив строку <code>debugger;</code> в исходный код, вы добавляете точку остановки.</p>
+
+<p>Например, предположим что <code>myscript.js</code> выглядит так:</p>
+
+<pre><code>// myscript.js
+x = 5;
+setTimeout(function () {
+  debugger;
+  console.log("world");
+}, 1000);
+console.log("hello");</code></pre>
+
+<p>При запуске в режиме отладки остановка произойдёт на четвёртой строке.</p>
+
+<pre><code>% ./node debug myscript.js
+debug&gt; run
+debugger listening on port 5858
+connecting...ok
+hello
+break in #&lt;an Object&gt;._onTimeout(), myscript.js:4
+  debugger;
+  ^
+debug&gt; next
+break in #&lt;an Object&gt;._onTimeout(), myscript.js:5
+  console.log("world");
+  ^
+debug&gt; print x
+5
+debug&gt; print 2+2
+4
+debug&gt; next
+world
+break in #&lt;an Object&gt;._onTimeout() returning undefined, myscript.js:6
+}, 1000);
+^
+debug&gt; quit
+A debugging session is active. Quit anyway? (y or n) y
+%</code></pre>
+
+<p>Команда <code>print</code> позволяет просматривать переменные. Команда <code>next</code> выполняет
+следующую строку скрипта. Кроме этого доступно ещё несколько команд, и ещё больше
+будут добавлены. Введите <code>help</code> чтобы увидеть остальные.</p>
+
+<h3 id="_u041F_u0440_u043E_u0434_u0432_u0438_u043D_u0443_u0442_u043E_u0435_u0438_u0441_u043F_u043E_u043B_u044C_u0437_u043E_u0432_u0430_u043D_u0438_u0435">Продвинутое использование</h3>
+
+<p>Отладчик V8 может быть включен и использован либо при запуске Node с ключом <code>--debug</code>
+или при передаче существующему процессу Node сигнала <code>SIGUSR1</code>.</p>
+
+<h1>Приложения</h1>
+
+<h2 id="_u041F_u0440_u0438_u043B_u043E_u0436_u0435_u043D_u0438_u0435_1_u0420_u0435_u043A_u043E_u043C_u0435_u043D_u0434_u0443_u0435_u043C_u044B_u0435_u0441_u0442_u043E_u0440_u043E_u043D_u043D_u0438_u0435_u043C_u043E_u0434_u0443_u043B_u0438">Приложение 1 - Рекомендуемые сторонние модули</h2>
+
+<p>Для Node есть множество модулей.
+Их список можно найти в <a href="https://github.com/ry/node/wiki/modules">вики на GitHub</a>.</p>
+
+<p>Это приложение предназначено для новичков, чтобы помочь им быстро найти
+качественные модули. Этот список не претендует на полноту. Мы будем рады
+дополнениям к этому списку.</p>
+
+<ul><li><p>Менеджер/регистр модулей: <a href="https://github.com/isaacs/npm">npm</a></p></li><li><p>https Middleware: <a href="https://github.com/senchalabs/connect">Connect</a></p></li><li><p>Web-фреймворк: <a href="https://github.com/visionmedia/express">Express</a></p></li><li><p>Web-сокеты: <a href="https://github.com/LearnBoost/Socket.IO-node">Socket.IO</a></p></li><li><p>Работа с DOM: <a href="https://github.com/aredridel/html5">HTML5</a></p></li><li><p><a href="https://github.com/agnat/node_mdns">mDNS/Zeroconf/Bonjour</a></p></li><li><p><a href="https://github.com/ry/node-amqp">RabbitMQ, AMQP</a></p></li><li><p>MySQL: <a href="https://github.com/felixge/node-mysql">на чистом Javascript</a>,
+<a href="https://github.com/Sannis/node-mysql-libmysqlclient">на основе libmysqlclient</a>.</p></li><li><p>Сериализация: <a href="https://github.com/pgriess/node-msgpack">msgpack</a></p></li><li><p>Парсинг HTML: <a href="https://github.com/silentrob/Apricot">Apricot</a></p></li><li><p>Отладка: <a href="https://github.com/smtlaissezfaire/ndb">ndb</a> — консольный отладчик,
+<a href="https://github.com/dannycoates/node-inspector">inspector</a> — web-based инструмент.</p></li><li><p><a href="https://github.com/mranney/node_pcap">pcap binding</a></p></li><li><p><a href="https://github.com/mscdex/node-ncurses">ncurses</a></p></li><li><p>Тестирование/TDD/BDD: <a href="http://vowsjs.org/">vows</a>,
+<a href="https://github.com/visionmedia/expresso">expresso</a>,
+<a href="https://github.com/tmpvar/mjsunit.runner">mjsunit.runner</a></p></li></ul>
+  </div>
+  <script type="text/javascript" src="assets/sh_main.js"></script>
+  <script type="text/javascript" src="assets/sh_javascript.min.js"></script>
+  <script type="text/javascript">highlight(undefined, undefined, 'pre');</script>
+  <!-- Yandex.Metrika --> 
+  <script src="//mc.yandex.ru/metrika/watch.js" type="text/javascript"></script> 
+  <script type="text/javascript"> 
+  try { var yaCounter612423 = new Ya.Metrika(612423); } catch(e){}
+  </script> 
+  <noscript><div style="position: absolute;"><img src="//mc.yandex.ru/watch/612423" alt="" /></div></noscript> 
+  <!-- /Yandex.Metrika -->   
+</body>
+</html>
