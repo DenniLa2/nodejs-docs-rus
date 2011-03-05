@@ -7,7 +7,7 @@
   <link rel="stylesheet" href="assets/sh.css" type="text/css" media="all" />
 </head>
 <body>
-<a href="http://github.com/kurokikaze/nodejs-docs-rus"><img style="position: absolute; top: 0; left: 0; border: 0;" src="https://assets0.github.com/img/ce742187c818c67d98af16f96ed21c00160c234a?repo=&url=http%3A%2F%2Fs3.amazonaws.com%2Fgithub%2Fribbons%2Fforkme_left_gray_6d6d6d.png&path=" alt="Fork me on GitHub"></a>
+  <a href="http://github.com/kurokikaze/nodejs-docs-rus"><img style="position: absolute; top: 0; left: 0; border: 0;" src="assets/forkme_left_gray_6d6d6d.png" alt="Fork me on GitHub"></a>
   <div id="container">
     <header>
       <h1>Node.js &mdash; Документация</h1>
@@ -209,6 +209,10 @@ NODE_MODULES_PATHS(START)
 
 <pre><code>/home/micheil/.node_modules:/usr/local/lib/node_modules</code></pre>
 
+<p>Загрузка из <code>require.paths</code> предпринимается только в том случае, если алгоритм
+с использованием <code>node_modules</code>, описанный выше, не принёс успеха. Глобальные
+модули имеют меньший приоритет, чем зависимости, включённые в текущий модуль.</p>
+
 <h4 id="_u041F_u0440_u0438_u043C_u0435_u0447_u0430_u043D_u0438_u0435_u041F_u043E_u0436_u0430_u043B_u0443_u0439_u0441_u0442_u0430_u0438_u0437_u0431_u0435_u0433_u0430_u0439_u0442_u0435_u0438_u0437_u043C_u0435_u043D_u0435_u043D_u0438_u044F_require.paths_">**Примечание:** Пожалуйста, избегайте изменения `require.paths`</h4>
 
 <p>Из-за обеспечения совместимости, <code>require.paths</code> имеет приоритет в процессе
@@ -235,7 +239,7 @@ NODE_MODULES_PATHS(START)
 в файловой системе. Напротив, в массив будет добавлена строка <code>'./lib'</code>.
 Соответственно, если вы вызовете <code>require('y.js')</code> в модуле <code>/a/b/x.js</code>,
 то будет подключен модуль <code>/a/b/lib/y.js</code>, а если вы вызовете <code>require('y.js')</code>
-в модуле <code>/l/m/n/o/p.js</code>, то будет подключен модуль <code>/l/m/n/o/p/lib/y.js</code>.</p>
+в модуле <code>/l/m/n/o/p.js</code>, то будет подключен модуль <code>/l/m/n/o/lib/y.js</code>.</p>
 
 <p>На практике некоторые используют это при включении зависимостей в модуль,
 но это хрупкая техника.</p>
