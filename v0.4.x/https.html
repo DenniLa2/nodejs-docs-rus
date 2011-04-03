@@ -72,6 +72,13 @@ req.on('error', function(e) {
   console.error(e);
 });</code></pre>
 
+<p>Параметры <code>options</code>:</p>
+
+<ul><li><code>host</code>: Доменное имя или IP адрес для запроса. По умолчанию <code>'localhost'</code>.</li><li><code>port</code>: Порт на удалённом сервере. По умолчанию 443.</li><li><code>method</code>: Строка, определяющая HTTP метод. возможные значения:
+<code>'GET'</code> (по умолчанию), <code>'POST'</code>, <code>'PUT'</code> и <code>'DELETE'</code>.</li><li><code>path</code>: HTTP-путь, может включать строку запроса при необходимости.
+По умолчанию <code>'/'</code>.</li><li>key: Приватный ключ для SSL. По умолчанию <code>null</code>.</li><li>cert: Публичный x509 сертификат. По умолчанию <code>null</code>.</li><li>ca: Сертификат или список доверенных сертификатов
+для проверки подлинности удалённого хоста.</li></ul>
+
 <h2 id="https.get">https.get(options, callback)</h2>
 
 <p>Аналог <code>http.get()</code> для HTTPS.</p>
