@@ -16,11 +16,11 @@
       </div>
       <hr />
     </header>
-    <div id="toc"><h2>Содержание</h2><ul><li><a href="#_u0413_u043B_u043E_u0431_u0430_u043B_u044C_u043D_u044B_u0435_u043E_u0431_u044A_u0435_u043A_u0442_u044B">Глобальные объекты</a><ul><li><a href="#global">global</a></li><li><a href="#process">process</a></li><li><a href="#require">require()</a></li><li><a href="#require.resolve">require.resolve()</a></li><li><a href="#require.paths">require.paths</a></li><li><a href="#filename">filename</a></li><li><a href="#dirname">dirname</a></li><li><a href="#module">module</a></li></ul></li></ul><hr /></div>
+    <div id="toc"><h2>Содержание</h2><ul><li><a href="#_u0413_u043B_u043E_u0431_u0430_u043B_u044C_u043D_u044B_u0435_u043E_u0431_u044A_u0435_u043A_u0442_u044B">Глобальные объекты</a><ul><li><a href="#global">global</a></li><li><a href="#process">process</a></li><li><a href="#console">console</a></li><li><a href="#require">require()</a></li><li><a href="#require.resolve">require.resolve()</a></li><li><a href="#require.paths">require.paths</a></li><li><a href="#filename">filename</a></li><li><a href="#dirname">dirname</a></li><li><a href="#module">module</a></li><li><a href="#setTimeout">setTimeout(cb, ms)</a></li><li><a href="#clearTimeout">clearTimeout(t)</a></li><li><a href="#setInterval">setInterval(cb, ms)</a></li><li><a href="#clearInterval">clearInterval(t)</a></li></ul></li></ul><hr /></div>
 <h2 id="_u0413_u043B_u043E_u0431_u0430_u043B_u044C_u043D_u044B_u0435_u043E_u0431_u044A_u0435_u043A_u0442_u044B">Глобальные объекты</h2>
 
-<p>Эти объекты доступны в глобальной области видимости
-и могут быть использованы в любом месте кода.</p>
+<p>Эти объекты доступны в любом модуле. При их использовании нужно иметь в виду
+что некоторые из них находятся не в глобальной области видимости, а в области видимости модуля.</p>
 
 <h3 id="global">global</h3>
 
@@ -34,11 +34,16 @@
 <h3 id="process">process</h3>
 
 <p>Объект процесса. Большая часть данных процесса находится именно здесь.
-См. секцию 'Процесс' ниже.</p>
+См. секцию <a href="process.html#process">'Процесс'</a>.</p>
+
+<h3 id="console">console</h3>
+
+<p>Используется для вывода в stdout и stderr. См. секцию <a href="stdio.html">'Стандартный вывод'</a>.
+<code>require</code> является не глобальной функцией, а локальной для каждого модуля.</p>
 
 <h3 id="require">require()</h3>
 
-<p>Подключает модули. См. секцию 'Модули'.</p>
+<p>Подключает модули. См. секцию <a href="modules.html#modules">'Модули'</a>.</p>
 
 <h3 id="require.resolve">require.resolve()</h3>
 
@@ -63,6 +68,8 @@
 <pre><code>console.log(__filename);
 // /Users/mjr/example.js</code></pre>
 
+<p><code>__filename</code> является не глобальной переменной, а локальной для каждого модуля.</p>
+
 <h3 id="__dirname">__dirname</h3>
 
 <p>Имя директории исполняемого скрипта.</p>
@@ -72,10 +79,23 @@
 <pre><code>console.log(__dirname);
 // /Users/mjr</code></pre>
 
+<p><code>__dirname</code> является не глобальной переменной, а локальной для каждого модуля.</p>
+
 <h3 id="module">module</h3>
 
 <p>Ссылка на текущий модуль (типа <code>process.Module</code>). В частности, <code>module.exports</code> —
-то же самое, что и объект <code>exports</code>. См. <code>src/node.js</code> для подробной информации.</p>
+то же самое, что и объект <code>exports</code>. См. <code>src/node.js</code> для подробной информации.
+<code>module</code> является не глобальной переменной, а локальной для каждого модуля.</p>
+
+<h3 id="setTimeout">setTimeout(cb, ms)</h3>
+
+<h3 id="clearTimeout">clearTimeout(t)</h3>
+
+<h3 id="setInterval">setInterval(cb, ms)</h3>
+
+<h3 id="clearInterval">clearInterval(t)</h3>
+
+<p>Функции таймера являются глобальными. См. секцию <a href="timers.html">'Таймеры'</a>.</p>
   </div>
   <script type="text/javascript" src="assets/sh_main.js"></script>
   <script type="text/javascript" src="assets/sh_javascript.min.js"></script>

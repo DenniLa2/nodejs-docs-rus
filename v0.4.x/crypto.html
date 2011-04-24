@@ -46,6 +46,24 @@ hash, hmac, cipher, decipher, sign и verify.</p>
 В последней версии OpenSSL список поддерживаемых алгоритмов можно было узнать
 с помощью команды <code>openssl list-message-digest-algorithms</code>.</p>
 
+<p>Пример: программа, рассчитывающая sha1 хеш-сумму содержимого файла.</p>
+
+<pre><code>var filename = process.argv[2];
+var crypto = require('crypto');
+var fs = require('fs');
+
+var shasum = crypto.createHash('sha1');
+
+var s = fs.ReadStream(filename);
+s.on('data', function(d) {
+  shasum.update(d);
+});
+
+s.on('end', function() {
+  var d = shasum.digest('hex');
+  console.log(d + '  ' + filename);
+});</code></pre>
+
 <h3 id="hash.update">hash.update(data)</h3>
 
 <p>Обновляет содержимое на <code>data</code>. Этот метод может быть вызван несколько раз.</p>
@@ -137,7 +155,7 @@ hash, hmac, cipher, decipher, sign и verify.</p>
 
 <h3 id="verifier.verify">verifier.verify(cert, signature, signature_format='binary')</h3>
 
-<p>Проверяет данные с помощью открытого ключа <code>cert</code> в формате PEM и подписи
+<p>Проверяет данные с помощью сертификата <code>cert</code> в формате PEM и подписи
 <code>signature</code> формата <code>signature_format</code> (может равняться <code>'binary'</code>, <code>'hex'</code> или <code>'base64'</code>.</p>
 
 <p>Возвращает <code>true</code> или <code>false</code> в зависимости от действительности подписи и публичного ключа.</p>

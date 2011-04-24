@@ -16,7 +16,7 @@
       </div>
       <hr />
     </header>
-    <div id="toc"><h2>Содержание</h2><ul><li><a href="#tLS_">TLS (SSL)</a><ul><li><a href="#s_tls.connect">s = tls.connect(port, [host], [options], callback)</a></li><li><a href="#tls.Server">tls.Server</a><ul><li><a href="#tls.createServer">tls.createServer(options, secureConnectionListener)</a></li><li><a href="#_u0421_u043E_u0431_u044B_u0442_u0438_u0435_secureConnection_">Событие: 'secureConnection'</a></li><li><a href="#server.listen">server.listen(port, [host], [callback])</a></li><li><a href="#server.close">server.close()</a></li><li><a href="#server.maxConnections">server.maxConnections</a></li><li><a href="#server.connections">server.connections</a></li></ul></li></ul></li></ul><hr /></div>
+    <div id="toc"><h2>Содержание</h2><ul><li><a href="#tLS_">TLS (SSL)</a><ul><li><a href="#s_tls.connect">s = tls.connect(port, [host], [options], callback)</a></li><li><a href="#sTARTTLS">STARTTLS</a></li><li><a href="#tls.Server">tls.Server</a><ul><li><a href="#tls.createServer">tls.createServer(options, secureConnectionListener)</a></li><li><a href="#_u0421_u043E_u0431_u044B_u0442_u0438_u0435_secureConnection_">Событие: 'secureConnection'</a></li><li><a href="#server.listen">server.listen(port, [host], [callback])</a></li><li><a href="#server.close">server.close()</a></li><li><a href="#server.maxConnections">server.maxConnections</a></li><li><a href="#server.connections">server.connections</a></li></ul></li></ul></li></ul><hr /></div>
 <h2 id="tLS_">TLS (SSL)</h2>
 
 <p>Используйте <code>require('tls')</code> чтобы получить доступ к функциям этого модуля.</p>
@@ -50,6 +50,15 @@ Secure Socket Layer (SSL): зашифрованные соединения.</p>
 <p><code>tls.connect()</code> возвращает текстовый объект <code>CryptoStream</code>.</p>
 
 <p>После рукопожатия TLS/SSL вызывается переданная функция. Вызов произойдёт независимо от того был ли авторизрван сертификат. Пользователь сам должен проверить значение <code>s.authorized</code> чтобы увидеть был ли сертификат подписан одним из указанных центров. Если <code>s.authorized === false</code> то в переменной <code>s.authorizationError</code> будет содержаться объект соответствующей ошибки.</p>
+
+<h3 id="sTARTTLS">STARTTLS</h3>
+
+<p>В ветке v0.4 нет функций для начала TLS-сессии для существующего TCP-соединения.
+Тем не менее это возможно сделать. техника состоит в вызове <code>tls.createSecurePair()</code>,
+который возвратит два потока: шифрованный и текстовый. Далее вам необходимо
+перенаправить шифрованный поток в сокет, а в приложении использовать текстовый.</p>
+
+<p><a href="http://gist.github.com/848444">Пример использование этой техники</a>.</p>
 
 <h3 id="tls.Server">tls.Server</h3>
 

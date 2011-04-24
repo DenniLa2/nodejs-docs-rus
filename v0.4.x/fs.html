@@ -16,7 +16,7 @@
       </div>
       <hr />
     </header>
-    <div id="toc"><h2>Содержание</h2><ul><li><a href="#_u0424_u0430_u0439_u043B_u043E_u0432_u0430_u044F_u0441_u0438_u0441_u0442_u0435_u043C_u0430">Файловая система</a><ul><li><a href="#fs.rename">fs.rename(path1, path2, [callback])</a></li><li><a href="#fs.renameSync">fs.renameSync(path1, path2)</a></li><li><a href="#fs.truncate">fs.truncate(fd, len, [callback])</a></li><li><a href="#fs.truncateSync">fs.truncateSync(fd, len)</a></li><li><a href="#fs.chmod">fs.chmod(path, mode, [callback])</a></li><li><a href="#fs.chmodSync">fs.chmodSync(path, mode)</a></li><li><a href="#fs.stat">fs.stat(path, [callback])</a></li><li><a href="#fs.lstat">fs.lstat(path, [callback])</a></li><li><a href="#fs.fstat">fs.fstat(fd, [callback])</a></li><li><a href="#fs.statSync">fs.statSync(path)</a></li><li><a href="#fs.lstatSync">fs.lstatSync(path)</a></li><li><a href="#fs.fstatSync">fs.fstatSync(fd)</a></li><li><a href="#fs.link">fs.link(srcpath, dstpath, [callback])</a></li><li><a href="#fs.linkSync">fs.linkSync(srcpath, dstpath)</a></li><li><a href="#fs.symlink">fs.symlink(linkdata, path, [callback])</a></li><li><a href="#fs.symlinkSync">fs.symlinkSync(linkdata, path)</a></li><li><a href="#fs.readlink">fs.readlink(path, [callback])</a></li><li><a href="#fs.readlinkSync">fs.readlinkSync(path)</a></li><li><a href="#fs.realpath">fs.realpath(path, [callback])</a></li><li><a href="#fs.realpathSync">fs.realpathSync(path)</a></li><li><a href="#fs.unlink">fs.unlink(path, [callback])</a></li><li><a href="#fs.unlinkSync">fs.unlinkSync(path)</a></li><li><a href="#fs.rmdir">fs.rmdir(path, [callback])</a></li><li><a href="#fs.rmdirSync">fs.rmdirSync(path)</a></li><li><a href="#fs.mkdir">fs.mkdir(path, mode, [callback])</a></li><li><a href="#fs.mkdirSync">fs.mkdirSync(path, mode)</a></li><li><a href="#fs.readdir">fs.readdir(path, [callback])</a></li><li><a href="#fs.readdirSync">fs.readdirSync(path)</a></li><li><a href="#fs.close">fs.close(fd, [callback])</a></li><li><a href="#fs.closeSync">fs.closeSync(fd)</a></li><li><a href="#fs.open">fs.open(path, flags, [mode], [callback])</a></li><li><a href="#fs.openSync">fs.openSync(path, flags, [mode])</a></li><li><a href="#fs.utimes">fs.utimes(path, atime, mtime, callback)</a></li><li><a href="#fs.utimesSync">fs.utimesSync(path, atime, mtime)</a></li><li><a href="#fs.futimes">fs.futimes(path, atime, mtime, callback)</a></li><li><a href="#fs.futimesSync">fs.futimesSync(path, atime, mtime)</a></li><li><a href="#fs.write">fs.write(fd, buffer, offset, length, position, [callback])</a></li><li><a href="#fs.writeSync">fs.writeSync(fd, buffer, offset, length, position)</a></li><li><a href="#fs.writeSync">fs.writeSync(fd, str, position, encoding='utf8')</a></li><li><a href="#fs.read">fs.read(fd, buffer, offset, length, position, [callback])</a></li><li><a href="#fs.readSync">fs.readSync(fd, buffer, offset, length, position)</a></li><li><a href="#fs.readSync">fs.readSync(fd, length, position, encoding)</a></li><li><a href="#fs.readFile">fs.readFile(filename, [encoding], [callback])</a></li><li><a href="#fs.readFileSync">fs.readFileSync(filename, [encoding])</a></li><li><a href="#fs.writeFile">fs.writeFile(filename, data, encoding='utf8', [callback])</a></li><li><a href="#fs.writeFileSync">fs.writeFileSync(filename, data, encoding='utf8')</a></li><li><a href="#fs.watchFile">fs.watchFile(filename, [options], listener)</a></li><li><a href="#fs.unwatchFile">fs.unwatchFile(filename)</a></li></ul></li><li><a href="#fs.Stats">fs.Stats</a></li><li><a href="#fs.ReadStream">fs.ReadStream</a><ul><li><a href="#fs.createReadStream">fs.createReadStream(path, [options])</a></li></ul></li><li><a href="#fs.WriteStream">fs.WriteStream</a><ul><li><a href="#_u0421_u043E_u0431_u044B_u0442_u0438_u0435_open_">Событие: 'open'</a></li><li><a href="#fs.createWriteStream">fs.createWriteStream(path, [options])</a></li></ul></li></ul><hr /></div>
+    <div id="toc"><h2>Содержание</h2><ul><li><a href="#_u0424_u0430_u0439_u043B_u043E_u0432_u0430_u044F_u0441_u0438_u0441_u0442_u0435_u043C_u0430">Файловая система</a><ul><li><a href="#fs.rename">fs.rename(path1, path2, [callback])</a></li><li><a href="#fs.renameSync">fs.renameSync(path1, path2)</a></li><li><a href="#fs.truncate">fs.truncate(fd, len, [callback])</a></li><li><a href="#fs.truncateSync">fs.truncateSync(fd, len)</a></li><li><a href="#fs.chmod">fs.chmod(path, mode, [callback])</a></li><li><a href="#fs.chmodSync">fs.chmodSync(path, mode)</a></li><li><a href="#fs.stat">fs.stat(path, [callback])</a></li><li><a href="#fs.lstat">fs.lstat(path, [callback])</a></li><li><a href="#fs.fstat">fs.fstat(fd, [callback])</a></li><li><a href="#fs.statSync">fs.statSync(path)</a></li><li><a href="#fs.lstatSync">fs.lstatSync(path)</a></li><li><a href="#fs.fstatSync">fs.fstatSync(fd)</a></li><li><a href="#fs.link">fs.link(srcpath, dstpath, [callback])</a></li><li><a href="#fs.linkSync">fs.linkSync(srcpath, dstpath)</a></li><li><a href="#fs.symlink">fs.symlink(linkdata, path, [callback])</a></li><li><a href="#fs.symlinkSync">fs.symlinkSync(linkdata, path)</a></li><li><a href="#fs.readlink">fs.readlink(path, [callback])</a></li><li><a href="#fs.readlinkSync">fs.readlinkSync(path)</a></li><li><a href="#fs.realpath">fs.realpath(path, [callback])</a></li><li><a href="#fs.realpathSync">fs.realpathSync(path)</a></li><li><a href="#fs.unlink">fs.unlink(path, [callback])</a></li><li><a href="#fs.unlinkSync">fs.unlinkSync(path)</a></li><li><a href="#fs.rmdir">fs.rmdir(path, [callback])</a></li><li><a href="#fs.rmdirSync">fs.rmdirSync(path)</a></li><li><a href="#fs.mkdir">fs.mkdir(path, mode, [callback])</a></li><li><a href="#fs.mkdirSync">fs.mkdirSync(path, mode)</a></li><li><a href="#fs.readdir">fs.readdir(path, [callback])</a></li><li><a href="#fs.readdirSync">fs.readdirSync(path)</a></li><li><a href="#fs.close">fs.close(fd, [callback])</a></li><li><a href="#fs.closeSync">fs.closeSync(fd)</a></li><li><a href="#fs.open">fs.open(path, flags, [mode], [callback])</a></li><li><a href="#fs.openSync">fs.openSync(path, flags, [mode])</a></li><li><a href="#fs.write">fs.write(fd, buffer, offset, length, position, [callback])</a></li><li><a href="#fs.writeSync">fs.writeSync(fd, buffer, offset, length, position)</a></li><li><a href="#fs.writeSync">fs.writeSync(fd, str, position, encoding='utf8')</a></li><li><a href="#fs.read">fs.read(fd, buffer, offset, length, position, [callback])</a></li><li><a href="#fs.readSync">fs.readSync(fd, buffer, offset, length, position)</a></li><li><a href="#fs.readSync">fs.readSync(fd, length, position, encoding)</a></li><li><a href="#fs.readFile">fs.readFile(filename, [encoding], [callback])</a></li><li><a href="#fs.readFileSync">fs.readFileSync(filename, [encoding])</a></li><li><a href="#fs.writeFile">fs.writeFile(filename, data, encoding='utf8', [callback])</a></li><li><a href="#fs.writeFileSync">fs.writeFileSync(filename, data, encoding='utf8')</a></li><li><a href="#fs.watchFile">fs.watchFile(filename, [options], listener)</a></li><li><a href="#fs.unwatchFile">fs.unwatchFile(filename)</a></li></ul></li><li><a href="#fs.Stats">fs.Stats</a></li><li><a href="#fs.ReadStream">fs.ReadStream</a><ul><li><a href="#fs.createReadStream">fs.createReadStream(path, [options])</a></li></ul></li><li><a href="#fs.WriteStream">fs.WriteStream</a><ul><li><a href="#_u0421_u043E_u0431_u044B_u0442_u0438_u0435_open_">Событие: 'open'</a></li><li><a href="#fs.createWriteStream">fs.createWriteStream(path, [options])</a></li></ul></li></ul><hr /></div>
 <h2 id="_u0424_u0430_u0439_u043B_u043E_u0432_u0430_u044F_u0441_u0438_u0441_u0442_u0435_u043C_u0430">Файловая система</h2>
 
 <p>Файловый ввод/вывод обеспечивается с помощью простой обертки вокруг стандартных
@@ -123,12 +123,12 @@ fs.stat('/tmp/world', function (err, stats) {
 <h3 id="fs.lstat">fs.lstat(path, [callback])</h3>
 
 <p>Асинхронный lstat(2). Обработчик получает два аргумента <code>(err, stats)</code>,
-где <code>stats</code> это экземпляр <code>fs.Stats</code>.</p>
+где <code>stats</code> это экземпляр <a href="#fs.Stats">`fs.Stats`</a>.</p>
 
 <h3 id="fs.fstat">fs.fstat(fd, [callback])</h3>
 
 <p>Асинхронный fstat(2). Обработчик получает два аргумента <code>(err, stats)</code>,
-где <code>stats</code> это экземпляр <code>fs.Stats</code>.</p>
+где <code>stats</code> это экземпляр <a href="#fs.Stats">`fs.Stats`</a>.</p>
 
 <h3 id="fs.statSync">fs.statSync(path)</h3>
 
@@ -234,19 +234,6 @@ fs.stat('/tmp/world', function (err, stats) {
 
 <p>Синхронный open(2).</p>
 
-<h3 id="fs.utimes">fs.utimes(path, atime, mtime, callback)</h3>
-
-<h3 id="fs.utimesSync">fs.utimesSync(path, atime, mtime)</h3>
-
-<p>Изменяет время доступа и модификации файла.</p>
-
-<h3 id="fs.futimes">fs.futimes(path, atime, mtime, callback)</h3>
-
-<h3 id="fs.futimesSync">fs.futimesSync(path, atime, mtime)</h3>
-
-<p>Изменяет время доступа и модификации файла. В отличие от fs.utime[Sync]
-не открепляет ссылку от файла если <code>path</code> -- ссылка.</p>
-
 <h3 id="fs.write">fs.write(fd, buffer, offset, length, position, [callback])</h3>
 
 <p>Записывает буфер <code>buffer</code> в файл указанный дескриптором <code>fd</code>.</p>
@@ -256,8 +243,11 @@ fs.stat('/tmp/world', function (err, stats) {
 <p>Позиция <code>position</code> задаёт смещение от начала файла куда должны быть записаны данные.
 Если <code>position</code> равна <code>null</code>, данные записываются с текущей позиции. См. pwrite(2).</p>
 
-<p>Обработчик принимает два аргумента <code>(err, written)</code>,
-где <code>written</code> указывает сколько <em>байт</em> было записано в файлn.</p>
+<p>Обработчик принимает три аргумента <code>(err, written, buffer)</code>,
+где <code>written</code> указывает сколько <em>байт</em> было записано в буфер buffer.</p>
+
+<p>Нужно иметь в виду, что вызов <code>fs.write</code> несколько раз для одного файла не дожидаясь
+коллбека не безопасен. При таком сценарии лучше использовать <code>fs.createWriteStream</code>.</p>
 
 <h3 id="fs.writeSync">fs.writeSync(fd, buffer, offset, length, position)</h3>
 
@@ -281,7 +271,7 @@ fs.stat('/tmp/world', function (err, stats) {
 <p><code>position</code> — число означающее позицию, с которой начнётся чтение файла.
 Если <code>position</code> принимает значение <code>null</code>, данные будут прочитаны с текущей позиции.</p>
 
-<p>Функция-обработчик принимает два аргумента, <code>(err, bytesRead)</code>.</p>
+<p>Функция-обработчик принимает два аргумента, <code>(err, bytesRead, buffer)</code>.</p>
 
 <h3 id="fs.readSync">fs.readSync(fd, buffer, offset, length, position)</h3>
 
@@ -313,7 +303,8 @@ fs.stat('/tmp/world', function (err, stats) {
 
 <h3 id="fs.writeFile">fs.writeFile(filename, data, encoding='utf8', [callback])</h3>
 
-<p>Асинхронно записывает данные в файл. <code>data</code> может быть строкой или буфером.</p>
+<p>Асинхронно записывает данные в файл. В случае существования файла перезаписывает его.
+<code>data</code> может быть строкой или буфером.</p>
 
 <p>Пример:</p>
 
@@ -377,7 +368,7 @@ fs.stat('/tmp/world', function (err, stats) {
 
 <p>Объект <code>options</code> может содержать поля <code>start</code> и <code>end</code> для чтения фрагмента файла
 вместо всего файла. И <code>start</code>, и <code>end</code> являются границами с включением
-и начинаюся с 0. При использовании необходимо задавать обе границы</p>
+и начинаюся с 0. При использовании необходимо задавать обе границы.</p>
 
 <p>Пример чтения последних 10 байт файла размером 100 байт:</p>
 
