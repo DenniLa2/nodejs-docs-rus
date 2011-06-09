@@ -16,7 +16,7 @@
       </div>
       <hr />
     </header>
-    <div id="toc"><h2>Содержание</h2><ul><li><a href="#hTTPS">HTTPS</a></li><li><a href="#https.Server">https.Server</a></li><li><a href="#https.createServer">https.createServer</a></li><li><a href="#https.request">https.request(options, callback)</a></li><li><a href="#https.get">https.get(options, callback)</a></li></ul><hr /></div>
+    <div id="toc"><h2>Содержание</h2><ul><li><a href="#hTTPS">HTTPS</a></li><li><a href="#https.Server">https.Server</a></li><li><a href="#https.createServer">https.createServer(options, [requestListener])</a></li><li><a href="#https.request">https.request(options, callback)</a></li><li><a href="#https.get">https.get(options, callback)</a></li></ul><hr /></div>
 <h2 id="hTTPS">HTTPS</h2>
 
 <p>HTTPS представляет из себя HTTP протокол с использованием TLS/SSL канала
@@ -24,7 +24,14 @@
 
 <h2 id="https.Server">https.Server</h2>
 
-<h2 id="https.createServer">https.createServer</h2>
+<p>Этот класс является потомком <code>tls.Server</code> и генерирует те же события, что и <code>http.Server</code>.
+См. описание <code>http.Server</code> для более подробной информации.</p>
+
+<h2 id="https.createServer">https.createServer(options, [requestListener])</h2>
+
+<p>Возвращает новый объект HTTPS веб сервера. Параметры <code>options</code> такие же,
+как у <code>tls.createServer()</code>. Функция <code>requestListener</code> будет автоматически
+добавлена в качестве обработчика события <code>'request'</code>.</p>
 
 <p>Пример:</p>
 
