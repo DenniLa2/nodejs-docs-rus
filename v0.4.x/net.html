@@ -7,7 +7,9 @@
   <link rel="stylesheet" href="assets/sh.css" type="text/css" media="all" />
 </head>
 <body>
-  <a href="http://github.com/kurokikaze/nodejs-docs-rus"><img style="position: absolute; top: 0; left: 0; border: 0;" src="assets/forkme_left_gray_6d6d6d.png" alt="Fork me on GitHub"></a>
+  <a href="http://github.com/kurokikaze/nodejs-docs-rus">
+    <img style="position: absolute; top: 0; right: 0; border: 0;" src="assets/forkme_right_gray.png" alt="Fork me on GitHub">
+  </a>
   <div id="container">
     <header>
       <h1>Node.js &mdash; Документация</h1>
@@ -43,7 +45,7 @@
 <p>Создаёт новый сокет. Когда соединение установлено, будет сгенерировано
 событие <code>'connect'</code>.</p>
 
-<p>Аргументы для этого метода определяются тепим соединения:</p>
+<p>Аргументы для этого метода определяются типом соединения:</p>
 
 <ul><li><p><code>net.createConnection(port, [host])</code></p><p>Открывает TCP-соединение с указанным портом <code>port</code> и адресом <code>host</code>.
 Если второй параметр не задан, предполагается значение <code>localhost</code>.</p></li><li><p><code>net.createConnection(path)</code></p><p>Создаёт соединение с Unix-сокетом <code>path</code>.</p></li></ul>

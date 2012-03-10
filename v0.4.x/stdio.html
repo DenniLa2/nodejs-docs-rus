@@ -7,7 +7,9 @@
   <link rel="stylesheet" href="assets/sh.css" type="text/css" media="all" />
 </head>
 <body>
-  <a href="http://github.com/kurokikaze/nodejs-docs-rus"><img style="position: absolute; top: 0; left: 0; border: 0;" src="assets/forkme_left_gray_6d6d6d.png" alt="Fork me on GitHub"></a>
+  <a href="http://github.com/kurokikaze/nodejs-docs-rus">
+    <img style="position: absolute; top: 0; right: 0; border: 0;" src="assets/forkme_right_gray.png" alt="Fork me on GitHub">
+  </a>
   <div id="container">
     <header>
       <h1>Node.js &mdash; Документация</h1>
@@ -28,8 +30,27 @@
 
 <pre><code>console.log('count: %d', count);</code></pre>
 
-<p>Если в первой строке не будут найдны символы формата для последующих аргументов,
-то для их вывода будет использоваться <code>util.inspect</code>.</p>
+<p>Первый аргумент является строкой, которая может содержать нуль
+или несколько <em>заменителей</em>. Каждый заменитель при выводе будет заменён
+на отформатированное значение в зависимости от типа аргумента.
+Поддерживаемые заменители:</p>
+
+<ul><li><code>%s</code> - String.</li><li><code>%d</code> - Number (both integer and float).</li><li><code>%j</code> - JSON.</li></ul>
+
+<p>Если для заменителя не задан соответствующий аргумент, будет использоваться <code>undefined</code>.</p>
+
+<pre><code>console.log('%s:%s', 'foo'); // 'foo:undefined'</code></pre>
+
+<p>Если аргументов больше, чем заменителей в строке, оставшиеся аргументы
+будут преобразованы в строки с помощью <code>util.inspect()</code> и склеены
+с использованием пробела:</p>
+
+<pre><code>console.log('%s:%s', 'foo', 'bar', 'baz'); // 'foo:bar baz'</code></pre>
+
+<p>Если первый аргумент <code>console.log()</code> не является строкой, то будут выведены преобразованные в строки аргументы, разделённые пробелом.
+Преобразование осуществляется функцией <code>util.inspect()</code>.</p>
+
+<pre><code>console.log(1, 2, 3); // '1 2 3'</code></pre>
 
 <h3 id="console.info">console.info()</h3>
 
@@ -54,7 +75,7 @@
 <p>Завершает отсчёт времени и выводит результат. Пример:</p>
 
 <pre><code>console.time('100-elements');
-while (var i = 0; i &lt; 100; i++) {
+for (var i = 0; i &lt; 100; i++) {
   ;
 }
 console.timeEnd('100-elements');</code></pre>

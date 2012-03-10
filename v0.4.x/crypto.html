@@ -7,7 +7,9 @@
   <link rel="stylesheet" href="assets/sh.css" type="text/css" media="all" />
 </head>
 <body>
-  <a href="http://github.com/kurokikaze/nodejs-docs-rus"><img style="position: absolute; top: 0; left: 0; border: 0;" src="assets/forkme_left_gray_6d6d6d.png" alt="Fork me on GitHub"></a>
+  <a href="http://github.com/kurokikaze/nodejs-docs-rus">
+    <img style="position: absolute; top: 0; right: 0; border: 0;" src="assets/forkme_right_gray.png" alt="Fork me on GitHub">
+  </a>
   <div id="container">
     <header>
       <h1>Node.js &mdash; Документация</h1>
@@ -16,7 +18,7 @@
       </div>
       <hr />
     </header>
-    <div id="toc"><h2>Содержание</h2><ul><li><a href="#_u041C_u043E_u0434_u0443_u043B_u044C_u043A_u0440_u0438_u043F_u0442_u043E_u0433_u0440_u0430_u0444_u0438_u0438">Модуль криптографии</a><ul><li><a href="#crypto.createCredentials">crypto.createCredentials(details)</a></li><li><a href="#crypto.createHash">crypto.createHash(algorithm)</a></li><li><a href="#hash.update">hash.update(data)</a></li><li><a href="#hash.digest">hash.digest(encoding='binary')</a></li><li><a href="#crypto.createHmac">crypto.createHmac(algorithm, key)</a></li><li><a href="#hmac.update">hmac.update(data)</a></li><li><a href="#hmac.digest">hmac.digest(encoding='binary')</a></li><li><a href="#crypto.createCipher">crypto.createCipher(algorithm, key)</a></li><li><a href="#cipher.update">cipher.update(data, input_encoding='binary', output_encoding='binary')</a></li><li><a href="#cipher.final">cipher.final(output_encoding='binary')</a></li><li><a href="#crypto.createDecipher">crypto.createDecipher(algorithm, key)</a></li><li><a href="#decipher.update">decipher.update(data, input_encoding='binary', output_encoding='binary')</a></li><li><a href="#decipher.final">decipher.final(output_encoding='binary')</a></li><li><a href="#crypto.createSign">crypto.createSign(algorithm)</a></li><li><a href="#signer.update">signer.update(data)</a></li><li><a href="#signer.sign">signer.sign(private_key, output_format='binary')</a></li><li><a href="#crypto.createVerify">crypto.createVerify(algorithm)</a></li><li><a href="#verifier.update">verifier.update(data)</a></li><li><a href="#verifier.verify">verifier.verify(cert, signature, signature_format='binary')</a></li></ul></li></ul><hr /></div>
+    <div id="toc"><h2>Содержание</h2><ul><li><a href="#_u041C_u043E_u0434_u0443_u043B_u044C_u043A_u0440_u0438_u043F_u0442_u043E_u0433_u0440_u0430_u0444_u0438_u0438">Модуль криптографии</a><ul><li><a href="#crypto.createCredentials">crypto.createCredentials(details)</a></li><li><a href="#crypto.createHash">crypto.createHash(algorithm)</a></li><li><a href="#hash.update">hash.update(data)</a></li><li><a href="#hash.digest">hash.digest(encoding='binary')</a></li><li><a href="#crypto.createHmac">crypto.createHmac(algorithm, key)</a></li><li><a href="#hmac.update">hmac.update(data)</a></li><li><a href="#hmac.digest">hmac.digest(encoding='binary')</a></li><li><a href="#crypto.createCipher">crypto.createCipher(algorithm, password)</a></li><li><a href="#crypto.createCipheriv">crypto.createCipheriv(algorithm, key, iv)</a></li><li><a href="#cipher.update">cipher.update(data, input_encoding='binary', output_encoding='binary')</a></li><li><a href="#cipher.final">cipher.final(output_encoding='binary')</a></li><li><a href="#crypto.createDecipher">crypto.createDecipher(algorithm, password)</a></li><li><a href="#crypto.createDecipheriv">crypto.createDecipheriv(algorithm, key, iv)</a></li><li><a href="#decipher.update">decipher.update(data, input_encoding='binary', output_encoding='binary')</a></li><li><a href="#decipher.final">decipher.final(output_encoding='binary')</a></li><li><a href="#crypto.createSign">crypto.createSign(algorithm)</a></li><li><a href="#signer.update">signer.update(data)</a></li><li><a href="#signer.sign">signer.sign(private_key, output_format='binary')</a></li><li><a href="#crypto.createVerify">crypto.createVerify(algorithm)</a></li><li><a href="#verifier.update">verifier.update(data)</a></li><li><a href="#verifier.verify">verifier.verify(cert, signature, signature_format='binary')</a></li></ul></li></ul><hr /></div>
 <h2 id="_u041C_u043E_u0434_u0443_u043B_u044C_u043A_u0440_u0438_u043F_u0442_u043E_u0433_u0440_u0430_u0444_u0438_u0438">Модуль криптографии</h2>
 
 <p>Используйте <code>require('crypto')</code> чтобы получить доступ к функциям модуля.</p>
@@ -73,6 +75,8 @@ s.on('end', function() {
 <p>Вычисляет хеш от всех поступивших данных.
 Параметр <code>encoding</code> может равняться <code>'hex'</code>, <code>'binary'</code> или <code>'base64'</code>.</p>
 
+<p>Замечание: объект <code>hash</code> нельзя использовать после того, как будет вызван метод <code>digest()</code>.</p>
+
 <h3 id="crypto.createHmac">crypto.createHmac(algorithm, key)</h3>
 
 <p>Создает и возвращает объект <code>hmac</code>, который может быть использован
@@ -90,15 +94,29 @@ s.on('end', function() {
 <p>Вычисляет хеш от всех поступивших данных.
 Параметр encoding может равняться <code>'hex'</code>, <code>'binary'</code> или <code>'base64'</code>.</p>
 
-<h3 id="crypto.createCipher">crypto.createCipher(algorithm, key)</h3>
+<p>Замечание: объект <code>hmac</code> нельзя использовать после того, как будет вызван метод <code>digest()</code>.</p>
+
+<h3 id="crypto.createCipher">crypto.createCipher(algorithm, password)</h3>
 
 <p>Создает и возвращает объект <code>cipher</code>, который может быть использован
-для шифрования по заданному алгоритму и ключу.</p>
+для шифрования по заданному алгоритму и паролю.</p>
 
 <p>Возможные значения для <code>algorithm</code> зависят от доступных алгоритмах в той версии OpenSSL,
 которая у вас установлена. Например, это может быть <code>'aes192'</code>, <code>'blowfish'</code> и т.д.
 В последней версии OpenSSL список поддерживаемых алгоритмов можно было узнать
 с помощью команды <code>openssl list-cipher-algorithms</code>.</p>
+
+<p><code>password</code> используется для получения информации о ключе и IV, и должен быть строкой,
+закодированной с использованием кодировки <code>'binary'</code> (см. <a href="buffers.html)">Buffers</a>.</p>
+
+<h3 id="crypto.createCipheriv">crypto.createCipheriv(algorithm, key, iv)</h3>
+
+<p>Создает и возвращает объект <code>cipher</code>, который может быть использован
+для шифрования по заданному алгоритму, ключу и IV.</p>
+
+<p><code>algorithm</code> может иметь такие же значения, что и для метода <code>createCipher()</code>. <code>key</code> является ключём,
+используемым в этом алгоритме. <code>iv</code> задаёт вектор инициализации. <code>key</code> и <code>iv</code> должны быть строками,
+закодированными с использованием кодировки <code>'binary'</code> (см. <a href="buffers.html)">Buffers</a>.</p>
 
 <h3 id="cipher.update">cipher.update(data, input_encoding='binary', output_encoding='binary')</h3>
 
@@ -113,10 +131,19 @@ s.on('end', function() {
 <p>Возвращает все оставшиеся зашифрованного содержимого в кодировке <code>output_encoding</code>,
 которая может равняться <code>'binary'</code>, <code>'ascii'</code> или <code>'utf8'</code>.</p>
 
-<h3 id="crypto.createDecipher">crypto.createDecipher(algorithm, key)</h3>
+<p>Замечание: объект <code>cipher</code> не может быть использован после вызова метода <code>final()</code>.</p>
+
+<h3 id="crypto.createDecipher">crypto.createDecipher(algorithm, password)</h3>
 
 <p>Создает и возвращает объект <code>decipher</code>, который может быть использован
-для дешифрования по заданному алгоритму и ключу. Это объект-близнец для объекта <code>cipher</code>.</p>
+для дешифрования по заданному алгоритму и паролю.
+Это метод-близнец для <a href="#crypto.createCipher">createCipher()</a>`, описанному выше.</p>
+
+<h3 id="crypto.createDecipheriv">crypto.createDecipheriv(algorithm, key, iv)</h3>
+
+<p>Создает и возвращает объект <code>decipher</code>, который может быть использован
+для дешифрования по заданному алгоритму, ключу и IV.
+Это метод-близнец для <a href="#crypto.createCipheriv">createCipheriv()</a>, описанному выше.</p>
 
 <h3 id="decipher.update">decipher.update(data, input_encoding='binary', output_encoding='binary')</h3>
 
@@ -128,6 +155,8 @@ s.on('end', function() {
 
 <p>Возвращает все оставшиеся разшифрованного содержимого в виде простого текста.
 Значение аргументо output_encoding объяснено выше.</p>
+
+<p>Замечание: объект <code>decipher</code> не может быть использован после вызова метода <code>final()</code>.</p>
 
 <h3 id="crypto.createSign">crypto.createSign(algorithm)</h3>
 
@@ -144,6 +173,8 @@ s.on('end', function() {
 
 <p>Возвращает подпись в формате <code>output_format</code>, который может равняться <code>'binary'</code>, <code>'hex'</code> или <code>'base64'</code>.</p>
 
+<p>Замечание: объект <code>signer</code> не может быть использован после вызова метода <code>sign()</code>.</p>
+
 <h3 id="crypto.createVerify">crypto.createVerify(algorithm)</h3>
 
 <p>Создает и возвращает объект <code>verifier</code>, который может быть использован
@@ -159,6 +190,8 @@ s.on('end', function() {
 <code>signature</code> формата <code>signature_format</code> (может равняться <code>'binary'</code>, <code>'hex'</code> или <code>'base64'</code>.</p>
 
 <p>Возвращает <code>true</code> или <code>false</code> в зависимости от действительности подписи и публичного ключа.</p>
+
+<p>Замечание: объект <code>verifier</code> не может быть использован после вызова метода <code>verify()</code>.</p>
   </div>
   <script type="text/javascript" src="assets/sh_main.js"></script>
   <script type="text/javascript" src="assets/sh_javascript.min.js"></script>

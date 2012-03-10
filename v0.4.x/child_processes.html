@@ -7,7 +7,9 @@
   <link rel="stylesheet" href="assets/sh.css" type="text/css" media="all" />
 </head>
 <body>
-  <a href="http://github.com/kurokikaze/nodejs-docs-rus"><img style="position: absolute; top: 0; left: 0; border: 0;" src="assets/forkme_left_gray_6d6d6d.png" alt="Fork me on GitHub"></a>
+  <a href="http://github.com/kurokikaze/nodejs-docs-rus">
+    <img style="position: absolute; top: 0; right: 0; border: 0;" src="assets/forkme_right_gray.png" alt="Fork me on GitHub">
+  </a>
   <div id="container">
     <header>
       <h1>Node.js &mdash; Документация</h1>
@@ -83,7 +85,7 @@ grep.stdin.end();</code></pre>
 
 <p><code>cwd</code> позволяет вам задать рабочую папку для дочернего процесса.
 Используйте <code>env</code> для определия переменных окружения, видимых дочернему процессу.
-С помощью <code>customFds</code> возможно связать stdin, stout и stderr дочернего процесса
+С помощью <code>customFds</code> возможно связать <code>stdin</code>, <code>stdout</code> и <code>stderr</code> дочернего процесса
 с существующими потоками; -1 означает, что нужно создать новый поток.
 Если <code>setsid</code> истинно, то процесс будет создан в новой пользовательской сессии.</p>
 

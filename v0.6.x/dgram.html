@@ -1,0 +1,320 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <title>UDP / Датаграммы Node.js v0.6.x Документация</title>
+  <link rel="stylesheet" href="assets/style.css">
+  <link rel="stylesheet" href="assets/sh.css">
+  <link rel="canonical" href="http://nodejs.org/api/dgram.html">
+</head>
+<body class="alt apidoc" id="api-section-dgram">
+    <a href="http://github.com/kurokikaze/nodejs-docs-rus">
+        <img style="position: fixed; top: 0; right: 0; border: 0;" src="assets/forkme_right_green.png" alt="Fork me on GitHub">
+    </a>
+    <div id="intro" class="interior">
+        <a href="http://nodejs.org/" title="Go to the Node.js home page">
+            <img id="logo" src="http://nodejs.org/images/logo-light.png" alt="node.js">
+        </a>
+    </div>
+    <div id="content" class="clearfix">
+        <div id="column1" class="interior">
+          <header>
+            <h1>Node.js v0.6.x — Документация</h1>
+            <div id="gtoc">
+              <p>
+                <a href="index.html" name="toc">Содержание</a> |
+                <a href="all.html">Просмотреть на одной странице</a> |
+                <a href="dgram.json">Просмотреть в виде JSON</a>
+              </p>
+            </div>
+            <hr>
+          </header>
+
+          <div id="toc">
+            <h2>Содержание</h2>
+            <ul>
+<li><a href="#dgram_udp">UDP / Датаграммы</a><ul>
+<li><a href="#dgram_dgram_createsocket_type_callback">dgram.createSocket(type, [callback])</a></li>
+<li><a href="#dgram_socket">Класс: Socket</a><ul>
+<li><a href="#dgram_message">Событие: &apos;message&apos;</a></li>
+<li><a href="#dgram_listening">Событие: &apos;listening&apos;</a></li>
+<li><a href="#dgram_close">Событие: &apos;close&apos;</a></li>
+<li><a href="#dgram_dgram_send_buf_offset_length_path_callback">dgram.send(buf, offset, length, path, [callback])</a></li>
+<li><a href="#dgram_dgram_send_buf_offset_length_port_address_callback">dgram.send(buf, offset, length, port, address, [callback])</a></li>
+<li><a href="#dgram_dgram_bind_path">dgram.bind(path)</a></li>
+<li><a href="#dgram_dgram_bind_port_address">dgram.bind(port, [address])</a></li>
+<li><a href="#dgram_dgram_close">dgram.close()</a></li>
+<li><a href="#dgram_dgram_address">dgram.address()</a></li>
+<li><a href="#dgram_dgram_setbroadcast_flag">dgram.setBroadcast(flag)</a></li>
+<li><a href="#dgram_dgram_setttl_ttl">dgram.setTTL(ttl)</a></li>
+<li><a href="#dgram_dgram_setmulticastttl_ttl">dgram.setMulticastTTL(ttl)</a></li>
+<li><a href="#dgram_dgram_setmulticastloopback_flag">dgram.setMulticastLoopback(flag)</a></li>
+<li><a href="#dgram_dgram_addmembership_multicastaddress_multicastinterface">dgram.addMembership(multicastAddress, [multicastInterface])</a></li>
+<li><a href="#dgram_dgram_dropmembership_multicastaddress_multicastinterface">dgram.dropMembership(multicastAddress, [multicastInterface])</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+          </div>
+
+          <div id="apicontent">
+            <h1>UDP / Датаграммы<span><a class="mark" href="#dgram_udp" id="dgram_udp">#</a></span></h1>
+<!-- name=dgram -->
+
+<p>Сокеты для датаграмм доступны при включении <code>require(&apos;dgram&apos;)</code>.
+
+</p>
+<h2>dgram.createSocket(type, [callback])<span><a class="mark" href="#dgram_dgram_createsocket_type_callback" id="dgram_dgram_createsocket_type_callback">#</a></span></h2>
+<div class="signature"><ul>
+<li><code>type</code> String. Может принимать значения &apos;udp4&apos; или &apos;udp6&apos;</li>
+<li><code>callback</code> Function. Функция назвачается обработчиков события <code>message</code> сокета. Необязательный параметр</li>
+<li>Возвращает: Объект сокета</li>
+</div></ul>
+<p>Создаёт сокет для датаграмм заданного типа. Доступные типы: <code>udp4</code>, <code>udp6</code>.
+
+</p>
+<p>Call <code>socket.bind</code> if you want to receive datagrams. <code>socket.bind()</code> will bind
+to the &quot;all interfaces&quot; address on a random port (it does the right thing for
+both <code>udp4</code> and <code>udp6</code> sockets). You can then retrieve the address and port
+with <code>socket.address().address</code> and <code>socket.address().port</code>.
+
+</p>
+<p>Принимает необязательную функцию, которая добавляется обработчиком событий <code>message</code>.
+
+</p>
+<h2>Класс: Socket<span><a class="mark" href="#dgram_socket" id="dgram_socket">#</a></span></h2>
+<p>Класс сокета датаграмм инкапсулирует всю функциональность, которая для них доступна.
+Должен быть инстанцирован с помощью метода <code>dgram.createSocket(type, [callback])</code>.
+
+</p>
+<h3>Событие: &apos;message&apos;<span><a class="mark" href="#dgram_message" id="dgram_message">#</a></span></h3>
+<p><code>function (msg, rinfo) { }</code>
+
+</p>
+<p>Генерируется когда новая датаграмма доступна на сокете. <code>msg</code> это <code>Buffer</code>,
+а <code>rinfo</code> это объект с информацией об адресе отправителя и количестве байт в датаграмме.
+
+</p>
+<h3>Событие: &apos;listening&apos;<span><a class="mark" href="#dgram_listening" id="dgram_listening">#</a></span></h3>
+<p><code>function () { }</code>
+
+</p>
+<p>Генеритуется когда сокет начинает приём датаграмм. Для UDP-сокета это происходит
+при создании. Сокеты Unix не начинают приём до вызова для них <code>bind()</code>.
+
+</p>
+<h3>Событие: &apos;close&apos;<span><a class="mark" href="#dgram_close" id="dgram_close">#</a></span></h3>
+<p><code>function () { }</code>
+
+</p>
+<p>Генерируется когда сокет закрывается с помощью <code>close()</code>.
+События <code>message</code> на этом сокете больше не будут генерироваться.
+
+
+</p>
+<h3>dgram.send(buf, offset, length, path, [callback])<span><a class="mark" href="#dgram_dgram_send_buf_offset_length_path_callback" id="dgram_dgram_send_buf_offset_length_path_callback">#</a></span></h3>
+<p>Для датаграмм на Unix-сокетах адрес назначения это путь в файловой системе.
+Принимает необязательную функцию, которая будет вызвана после завершения
+вызова <code>sendto</code> операционной системой. Пока идёт вызов, повторное использование
+буфера <code>buf</code> небезопасно. Заметьте, что если сокет не привязан к пути в файловой
+системе с помощью <code>bind()</code>, на нём невозможно получать сообщения.
+
+</p>
+<p>Пример отправки сообщения демону syslogd в OSX через Unix-сокет <code>/var/run/syslog</code>:
+
+</p>
+<pre><code>var dgram = require(&apos;dgram&apos;);
+var message = new Buffer(&quot;A message to log.&quot;);
+var client = dgram.createSocket(&quot;unix_dgram&quot;);
+client.send(message, 0, message.length, &quot;/var/run/syslog&quot;,
+  function (err, bytes) {
+    if (err) {
+      throw err;
+    }
+    console.log(&quot;Wrote &quot; + bytes + &quot; bytes to socket.&quot;);
+});</code></pre>
+<h3>dgram.send(buf, offset, length, port, address, [callback])<span><a class="mark" href="#dgram_dgram_send_buf_offset_length_port_address_callback" id="dgram_dgram_send_buf_offset_length_port_address_callback">#</a></span></h3>
+<p>Для UDP сокета, адрес назначения представляет port and IP-адрес. В качетве
+аргумента <code>address</code> может быть передана строка, которая может быть разрешена
+с помощью DNS. Принимает необязательную функцию, которая будет вызвана после
+завершения разрешения DNS имени и когда буфер можно будет использовать заново.
+Следует иметь в виду, что DNS запросы требуют времени, по крайне мере
+до следующего витка цикола событий. Единственный способ узнать, что отправка
+состоялась — использовать callback.
+
+</p>
+<p>Пример отправки UDP-пакета на произвольный порт <code>localhost</code>:
+
+</p>
+<pre><code>var dgram = require(&apos;dgram&apos;);
+var message = new Buffer(&quot;Some bytes&quot;);
+var client = dgram.createSocket(&quot;udp4&quot;);
+client.send(message, 0, message.length, 41234, &quot;localhost&quot;);
+client.close();</code></pre>
+<h3>dgram.bind(path)<span><a class="mark" href="#dgram_dgram_bind_path" id="dgram_dgram_bind_path">#</a></span></h3>
+<p>Для Unix-сокета задаёт путь <code>path</code>. Имейте в виду, что клиент может вызывать
+<code>send()</code> перед <code>bind()</code>, но данные не будут отправлены до вызова <code>bind()</code>.
+
+</p>
+<p>Пример сервера на Unix-сокете, который отправляет обратно поступающие сообщения:
+
+</p>
+<pre><code>var dgram = require(&quot;dgram&quot;);
+var serverPath = &quot;/tmp/dgram_server_sock&quot;;
+var server = dgram.createSocket(&quot;unix_dgram&quot;);
+
+server.on(&quot;message&quot;, function (msg, rinfo) {
+  console.log(&quot;got: &quot; + msg + &quot; from &quot; + rinfo.address);
+  server.send(msg, 0, msg.length, rinfo.address);
+});
+
+server.on(&quot;listening&quot;, function () {
+  console.log(&quot;server listening &quot; + server.address().address);
+})
+
+server.bind(serverPath);</code></pre>
+<p>Пример клиента на Unix-сокете, обращающегося к серверу:
+
+</p>
+<pre><code>var dgram = require(&quot;dgram&quot;);
+var serverPath = &quot;/tmp/dgram_server_sock&quot;;
+var clientPath = &quot;/tmp/dgram_client_sock&quot;;
+
+var message = new Buffer(&quot;A message at &quot; + (new Date()));
+
+var client = dgram.createSocket(&quot;unix_dgram&quot;);
+
+client.on(&quot;message&quot;, function (msg, rinfo) {
+  console.log(&quot;got: &quot; + msg + &quot; from &quot; + rinfo.address);
+});
+
+client.on(&quot;listening&quot;, function () {
+  console.log(&quot;client listening &quot; + client.address().address);
+  client.send(message, 0, message.length, serverPath);
+});
+
+client.bind(clientPath);</code></pre>
+<h3>dgram.bind(port, [address])<span><a class="mark" href="#dgram_dgram_bind_port_address" id="dgram_dgram_bind_port_address">#</a></span></h3>
+<p>Для UDP сокетов задаёт порт <code>port</code> и необязательный адрес <code>address</code>
+для прослушивания. Если <code>address</code> не задан, то будет предпринята попытка
+прослушивания всех адресов.
+
+</p>
+<p>Пример UDP-сервера, слушающего на 41234 порту:
+
+</p>
+<pre><code>var dgram = require(&quot;dgram&quot;);
+
+var server = dgram.createSocket(&quot;udp4&quot;);
+
+server.on(&quot;message&quot;, function (msg, rinfo) {
+  console.log(&quot;server got: &quot; + msg + &quot; from &quot; +
+    rinfo.address + &quot;:&quot; + rinfo.port);
+});
+
+server.on(&quot;listening&quot;, function () {
+  var address = server.address();
+  console.log(&quot;server listening &quot; +
+      address.address + &quot;:&quot; + address.port);
+});
+
+server.bind(41234);
+// server listening 0.0.0.0:41234</code></pre>
+<h3>dgram.close()<span><a class="mark" href="#dgram_dgram_close" id="dgram_dgram_close">#</a></span></h3>
+<p>Закрывает сокет и прекращает приём данных.
+
+</p>
+<h3>dgram.address()<span><a class="mark" href="#dgram_dgram_address" id="dgram_dgram_address">#</a></span></h3>
+<p>Возвращает объект с информацией об адресе, на который настроен сокет. Для UDP
+сокетов этот объект содержит свойства <code>address</code> и <code>port</code>, а для Unix-сокетов
+только свойство <code>address</code>.
+
+</p>
+<h3>dgram.setBroadcast(flag)<span><a class="mark" href="#dgram_dgram_setbroadcast_flag" id="dgram_dgram_setbroadcast_flag">#</a></span></h3>
+<p>Устанавливает или сбрасывает опцию <code>SO_BROADCAST</code> сокета. если эта опция установлена,
+то UDP пакеты могут оправляться по широковещательному адресу локального интерфейса.
+
+</p>
+<h3>dgram.setTTL(ttl)<span><a class="mark" href="#dgram_dgram_setttl_ttl" id="dgram_dgram_setttl_ttl">#</a></span></h3>
+<p>Устанавливает опуцию <code>IP_TTL</code> сокета.  TTL означает &quot;время жизни&quot;, и его значение
+определяет количество IP, сквозь которые может быть передан пакет. Каждый роутер
+или шлюз на пути пакета уменьшают TTL. Как только он станет равным нуля, пакет уничтожится.
+Изменение TTL может быть полезно для тестирования сети или широковещательной рассылки.
+
+</p>
+<p>Аргументом <code>setTTL()</code> является число от 1 до 255. По умолчанию на большинстве
+систем ипользуется 64.
+
+</p>
+<h3>dgram.setMulticastTTL(ttl)<span><a class="mark" href="#dgram_dgram_setmulticastttl_ttl" id="dgram_dgram_setmulticastttl_ttl">#</a></span></h3>
+<p>Устанавливает опцию <code>IP_MULTICAST_TTL</code> сокета.  TTL означает &quot;время жизни&quot;,
+и его значение определяет количество IP, сквозь которые может быть передан пакет,
+в данном случае при широковещательной рассылке. Каждый роутер или шлюз на пути пакета
+уменьшают TTL. Как только он станет равным нуля, пакет уничтожится.
+
+</p>
+<p>Аргументом <code>setMulticastTTL()</code> является число от 0 до 255. По умолчанию на большинстве
+систем ипользуется 64.
+
+</p>
+<h3>dgram.setMulticastLoopback(flag)<span><a class="mark" href="#dgram_dgram_setmulticastloopback_flag" id="dgram_dgram_setmulticastloopback_flag">#</a></span></h3>
+<p>Устанавливает или очищает опцию <code>IP_MULTICAST_LOOP</code> сокета. Если эта опция установлена,
+то широковещательные пакеты также будут получены на локальных сетевых интерфейсах.
+
+</p>
+<h3>dgram.addMembership(multicastAddress, [multicastInterface])<span><a class="mark" href="#dgram_dgram_addmembership_multicastaddress_multicastinterface" id="dgram_dgram_addmembership_multicastaddress_multicastinterface">#</a></span></h3>
+<p>Указывает ядру вступить в широковещательную группу используя опцию <code>IP_ADD_MEMBERSHIP</code> сокета.
+
+</p>
+<p>Если <code>multicastInterface</code> не указан, то ОС будет пытаться вступить в группу,
+используя каждый доступный сетевой интерфейс.
+
+</p>
+<h3>dgram.dropMembership(multicastAddress, [multicastInterface])<span><a class="mark" href="#dgram_dgram_dropmembership_multicastaddress_multicastinterface" id="dgram_dgram_dropmembership_multicastaddress_multicastinterface">#</a></span></h3>
+<p>Противоположность <code>addMembership</code> &mdash; указывает ядру покинуть широковещательную
+группу используя опцию <code>IP_DROP_MEMBERSHIP</code> сокета. В большинстве приложений
+не обязательно вызывать эту функцию, так как ОС сделает это автоматически
+при закрытии сокета.
+
+</p>
+<p>Если <code>multicastInterface</code> не указан, то ОС будет пытаться покинуть группу,
+используя каждый доступный сетевой интерфейс.
+
+</p>
+
+          </div>
+        </div>
+    </div>
+    <div id="footer">
+        <ul class="clearfix">
+            <li><a href="http://nodejs.org/">Node.js</a></li>
+            <li><a href="http://nodejs.org/#download">Download</a></li>
+            <li><a href="http://nodejs.org/about/">About</a></li>
+            <li><a href="http://search.npmjs.org/">npm Registry</a></li>
+            <li><a href="http://nodejs.org/api/index.html">Docs</a></li>
+            <li><a href="http://blog.nodejs.org">Blog</a></li>
+            <li><a href="http://nodejs.org/community/">Community</a></li>
+            <li><a href="http://nodejs.org/logos/">Logos</a></li>
+            <li><a href="http://jobs.nodejs.org/">Jobs</a></li>
+            <li><a href="http://twitter.com/nodejs" class="twitter">@nodejs</a></li>
+        </ul>
+
+        <p>Оригинальная документация &copy; 2010 <a href="http://joyent.com">Joyent, Inc</a>, Node.js также является <a href="/trademark-policy.pdf">торговой маркой</a> Joyent, Inc. Подробности ищите в <a href="https://raw.github.com/joyent/node/v0.6.x/LICENSE">лицензии</a>.</p>
+        <p>Перевод размещается в репозитори <a href="https://github.com/kurokikaze/nodejs-docs-rus">github.com/kurokikaze/nodejs-docs-rus</a>, список участников указан в файле <a href="https://github.com/kurokikaze/nodejs-docs-rus/blob/master/README.markdown">README</a>.</p>
+    </div>
+
+    <script src="assets/sh_main.js"></script>
+    <script src="assets/sh_javascript.min.js"></script>
+    <script>highlight(undefined, undefined, 'pre');</script>
+    <!-- Yandex.Metrika --> 
+    <script src="//mc.yandex.ru/metrika/watch.js" type="text/javascript"></script> 
+    <script type="text/javascript"> 
+    try { var yaCounter612423 = new Ya.Metrika(612423); } catch(e){}
+    </script> 
+    <noscript><div style="position: absolute;"><img src="//mc.yandex.ru/watch/612423" alt="" /></div></noscript> 
+    <!-- /Yandex.Metrika -->   
+</body>
+</html>
+

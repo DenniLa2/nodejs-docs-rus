@@ -1,0 +1,489 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <title>Дочерний процесс Node.js v0.6.x Документация</title>
+  <link rel="stylesheet" href="assets/style.css">
+  <link rel="stylesheet" href="assets/sh.css">
+  <link rel="canonical" href="http://nodejs.org/api/child_process.html">
+</head>
+<body class="alt apidoc" id="api-section-child_process">
+    <a href="http://github.com/kurokikaze/nodejs-docs-rus">
+        <img style="position: fixed; top: 0; right: 0; border: 0;" src="assets/forkme_right_green.png" alt="Fork me on GitHub">
+    </a>
+    <div id="intro" class="interior">
+        <a href="http://nodejs.org/" title="Go to the Node.js home page">
+            <img id="logo" src="http://nodejs.org/images/logo-light.png" alt="node.js">
+        </a>
+    </div>
+    <div id="content" class="clearfix">
+        <div id="column1" class="interior">
+          <header>
+            <h1>Node.js v0.6.x — Документация</h1>
+            <div id="gtoc">
+              <p>
+                <a href="index.html" name="toc">Содержание</a> |
+                <a href="all.html">Просмотреть на одной странице</a> |
+                <a href="child_process.json">Просмотреть в виде JSON</a>
+              </p>
+            </div>
+            <hr>
+          </header>
+
+          <div id="toc">
+            <h2>Содержание</h2>
+            <ul>
+<li><a href="#child_process">Дочерний процесс</a><ul>
+<li><a href="#child_process_class_childprocess">Class: ChildProcess</a><ul>
+<li><a href="#child_process_exit">Событие: &apos;exit&apos;</a></li>
+<li><a href="#child_process_child_stdin">child.stdin</a></li>
+<li><a href="#child_process_child_stdout">child.stdout</a></li>
+<li><a href="#child_process_child_stderr">child.stderr</a></li>
+<li><a href="#child_process_child_pid">child.pid</a></li>
+<li><a href="#child_process_child_kill_signal_sigterm">child.kill(signal=&apos;SIGTERM&apos;)</a></li>
+<li><a href="#child_process_child_send_message_sendhandle">child.send(message, [sendHandle])</a></li>
+</ul>
+</li>
+<li><a href="#child_process_child_process_spawn_command_args_options">child_process.spawn(command, [args], [options])</a></li>
+<li><a href="#child_process_child_process_exec_command_options_callback">child_process.exec(command, [options], callback)</a></li>
+<li><a href="#child_process_child_process_execfile_file_args_options_callback">child_process.execFile(file, args, options, callback)</a></li>
+<li><a href="#child_process_child_process_fork_modulepath_args_options">child_process.fork(modulePath, [args], [options])</a></li>
+</ul>
+</li>
+</ul>
+
+          </div>
+
+          <div id="apicontent">
+            <h1>Дочерний процесс<span><a class="mark" href="#child_process" id="child_process">#</a></span></h1>
+<pre><code>Стабильность: 3 - Стабильно</code></pre>
+<p>Node предоставляет tri-directional popen(3) с помощью модуля <code>child_process</code>.
+
+</p>
+<p>С дочерним потоком можно обмениваться данными через <code>stdin</code>, <code>stdout</code> и <code>stderr</code>
+в полностью неблокирующем стиле.
+
+</p>
+<p>Для создания дочернего процесса используйте <code>require(&apos;child_process&apos;).spawn()</code> или
+<code>require(&apos;child_process&apos;).fork()</code>. Различие между этими вызовами опасаны ниже.
+
+</p>
+<h2>Class: ChildProcess<span><a class="mark" href="#child_process_class_childprocess" id="child_process_class_childprocess">#</a></span></h2>
+<p><code>ChildProcess</code> — экземпляр <code>EventEmitter</code>.
+
+</p>
+<p>С дочерним процессом всегда ассоциированы три потока: <code>child.stdin</code>, <code>child.stdout</code> и <code>child.stderr</code>.
+Они могут быть общими с соответствующими потоками родителя, или различаться.
+
+</p>
+<p>Класс ChildProcess не должен быть использован напрямую, используйте метод <code>spawn()</code> или <code>fork()</code>
+модуля <code>child_process</code> для создания дочернего процесса.
+
+</p>
+<h3>Событие: &apos;exit&apos;<span><a class="mark" href="#child_process_exit" id="child_process_exit">#</a></span></h3>
+<div class="signature"><ul>
+<li><code>code</code> <span class="type">Number</span> Код выхода, в случае успешного совершения работы.</li>
+<li><code>signal</code> <span class="type">String</span> Сигнал, завершивший процесс, если он был завершён родителем.</li>
+</div></ul>
+<p><code>function (code, signal) {}</code>
+
+</p>
+<p>Это событие генерируется при завершении дочернего процесса. Если процесс
+завершён нормально, в <code>code</code> передаётся код завершения процесса, иначе
+передаётся <code>null</code>. Если процесс завершился от принятия сигнала, то <code>signal</code> —
+это строка, содержащая имя сигнала, либо <code>null</code>.
+
+</p>
+<p>См. также: <code>waitpid(2)</code>.
+
+</p>
+<h3>child.stdin<span><a class="mark" href="#child_process_child_stdin" id="child_process_child_stdin">#</a></span></h3>
+<div class="signature"><ul>
+<li><span class="type">Stream object</span></li>
+</div></ul>
+<p><code>Поток с возможностью записи</code>, связанный со <code>stdin</code> процесса дочернего.
+Закрытие потока с помощью <code>end()</code> часто приводит к завершению процесса.
+
+</p>
+<p>Если поток <code>stdin</code> дочернего потока совпадает с соответствующим поток родителя, то это свойство не задано.
+
+</p>
+<h3>child.stdout<span><a class="mark" href="#child_process_child_stdout" id="child_process_child_stdout">#</a></span></h3>
+<div class="signature"><ul>
+<li><span class="type">Stream object</span></li>
+</div></ul>
+<p><code>Поток с возможностью чтения</code>, связанный со <code>stdout</code> дочернего процесса.
+
+</p>
+<p>Если поток <code>stdout</code> дочернего потока совпадает с соответствующим поток родителя, то это свойство не задано.
+
+</p>
+<h3>child.stderr<span><a class="mark" href="#child_process_child_stderr" id="child_process_child_stderr">#</a></span></h3>
+<div class="signature"><ul>
+<li><span class="type">Stream object</span></li>
+</div></ul>
+<p><code>Поток с возможностью чтения</code>, связанный со <code>stderr</code> дочернего процесса.
+
+</p>
+<p>Если поток <code>stderr</code> дочернего потока совпадает с соответствующим поток родителя, то это свойство не задано.
+
+</p>
+<h3>child.pid<span><a class="mark" href="#child_process_child_pid" id="child_process_child_pid">#</a></span></h3>
+<div class="signature"><ul>
+<li><span class="type">Integer</span></li>
+</div></ul>
+<p>Идентификатор дочернего процесса.
+
+</p>
+<p>Пример:
+
+</p>
+<pre><code>var spawn = require(&apos;child_process&apos;).spawn,
+    grep  = spawn(&apos;grep&apos;, [&apos;ssh&apos;]);
+
+console.log(&apos;Spawned child pid: &apos; + grep.pid);
+grep.stdin.end();</code></pre>
+<h3>child.kill(signal=&apos;SIGTERM&apos;)<span><a class="mark" href="#child_process_child_kill_signal_sigterm" id="child_process_child_kill_signal_sigterm">#</a></span></h3>
+<div class="signature"><ul>
+<li><code>signal</code> <span class="type">String</span></li>
+</div></ul>
+<p>Отправляет сигнал дочернему процессу. Если аргументы не переданы, то процессу
+будет отправлен сигнал <code>&apos;SIGTERM&apos;</code>. См. <code>signal(7)</code> для списка возможных имён сигналов.
+
+</p>
+<pre><code>var spawn = require(&apos;child_process&apos;).spawn,
+    grep  = spawn(&apos;grep&apos;, [&apos;ssh&apos;]);
+
+grep.on(&apos;exit&apos;, function (code, signal) {
+  console.log(&apos;child process terminated due to receipt of signal &apos;+signal);
+});
+
+// send SIGHUP to process
+grep.kill(&apos;SIGHUP&apos;);</code></pre>
+<p>Заметьте, что хотя функция называется <code>kill</code>, сигнал, отправляемый дочернему процессу,
+не обязательно его завершит. Метод <code>kill</code> просто отправляет сигналы.
+
+</p>
+<p>См. также: <code>kill(2)</code>.
+
+</p>
+<h3>child.send(message, [sendHandle])<span><a class="mark" href="#child_process_child_send_message_sendhandle" id="child_process_child_send_message_sendhandle">#</a></span></h3>
+<div class="signature"><ul>
+<li><code>message</code> <span class="type">Object</span></li>
+<li><code>sendHandle</code> <span class="type">Handle object</span></li>
+</div></ul>
+<p>Send a message (and, optionally, a handle object) to a child process.
+
+</p>
+<p>See <code>child_process.fork()</code> for details.
+
+</p>
+<h2>child_process.spawn(command, [args], [options])<span><a class="mark" href="#child_process_child_process_spawn_command_args_options" id="child_process_child_process_spawn_command_args_options">#</a></span></h2>
+<div class="signature"><ul>
+<li><code>command</code> <span class="type">String</span> Команда для исполнения</li>
+<li><code>args</code> <span class="type">Array</span> Список строк-аргументов</li>
+<li><code>options</code> <span class="type">Object</span><ul>
+<li><code>cwd</code> <span class="type">String</span> Рабочая директория дочернего процесса</li>
+<li><code>customFds</code> <span class="type">Array</span> <strong>Устарело</strong> Файловые дескрипторы для использования дочерним процессом, см. ниже</li>
+<li><code>env</code> <span class="type">Object</span> Переменные окружение дочернего процесса, пары имя-значение</li>
+<li><code>setsid</code> <span class="type">Boolean</span></li>
+</ul>
+</li>
+<li>Возвращает: <span class="type">ChildProcess object</span></li>
+</div></ul>
+<p>Запускает новый процесс с указанной командой <code>command</code> и аргументами командной
+строки <code>args</code>. Если аргументы пропущены, args будет пустым массивом.
+
+</p>
+<p>Третий аргумент функции используется для задания дополнительных опций
+со следующими значениями по умолчанию:
+
+</p>
+<pre><code>{ cwd: undefined,
+  env: process.env,
+  customFds: [-1, -1, -1],
+  setsid: false
+}</code></pre>
+<p><code>cwd</code> позволяет вам задать рабочую папку для дочернего процесса.
+Используйте <code>env</code> для определия переменных окружения, видимых дочернему процессу.
+С помощью <code>customFds</code> возможно связать <code>stdin</code>, <code>stdout</code> и <code>stderr</code> дочернего процесса
+с существующими потоками; -1 означает, что нужно создать новый поток.
+Если <code>setsid</code> истинно, то процесс будет создан в новой пользовательской сессии.
+
+</p>
+<p>Пример запуска <code>ls -lh /usr</code>, чтения <code>stdout</code>, <code>stderr</code> и получения кода завершения:
+
+</p>
+<pre><code>var util   = require(&apos;util&apos;),
+    spawn  = require(&apos;child_process&apos;).spawn,
+    ls     = spawn(&apos;ls&apos;, [&apos;-lh&apos;, &apos;/usr&apos;]);
+
+ls.stdout.on(&apos;data&apos;, function (data) {
+  console.log(&apos;stdout: &apos; + data);
+});
+
+ls.stderr.on(&apos;data&apos;, function (data) {
+  console.log(&apos;stderr: &apos; + data);
+});
+
+ls.on(&apos;exit&apos;, function (code) {
+  console.log(&apos;child process exited with code &apos; + code);
+});</code></pre>
+<p>Пример: достаточно сложный способ выполнить &apos;ps ax | grep ssh&apos;.
+
+</p>
+<pre><code>var util  = require(&apos;util&apos;),
+    spawn = require(&apos;child_process&apos;).spawn,
+    ps    = spawn(&apos;ps&apos;, [&apos;ax&apos;]),
+    grep  = spawn(&apos;grep&apos;, [&apos;ssh&apos;]);
+
+ps.stdout.on(&apos;data&apos;, function (data) {
+  grep.stdin.write(data);
+});
+
+ps.stderr.on(&apos;data&apos;, function (data) {
+  console.log(&apos;ps stderr: &apos; + data);
+});
+
+ps.on(&apos;exit&apos;, function (code) {
+  if (code !== 0) {
+    console.log(&apos;ps process exited with code &apos; + code);
+  }
+  grep.stdin.end();
+});
+
+grep.stdout.on(&apos;data&apos;, function (data) {
+  console.log(data);
+});
+
+grep.stderr.on(&apos;data&apos;, function (data) {
+  console.log(&apos;grep stderr: &apos; + data);
+});
+
+grep.on(&apos;exit&apos;, function (code) {
+  if (code !== 0) {
+    console.log(&apos;grep process exited with code &apos; + code);
+  }
+});</code></pre>
+<p>Пример проверки ошибки запуска приложения:
+
+</p>
+<pre><code>var spawn = require(&apos;child_process&apos;).spawn,
+    child = spawn(&apos;bad_command&apos;);
+
+child.stderr.setEncoding(&apos;utf8&apos;);
+child.stderr.on(&apos;data&apos;, function (data) {
+  if (/^execvp\(\)/.test(data)) {
+    console.log(&apos;Failed to start child process.&apos;);
+  }
+});</code></pre>
+<p>См. также: <code>child_process.exec()</code> и <code>child_process.fork()</code>.
+
+
+</p>
+<h2>child_process.exec(command, [options], callback)<span><a class="mark" href="#child_process_child_process_exec_command_options_callback" id="child_process_child_process_exec_command_options_callback">#</a></span></h2>
+<div class="signature"><ul>
+<li><code>command</code> <span class="type">String</span> Команда для исполнения, с аргументами, разделёнными пробелами</li>
+<li><code>options</code> <span class="type">Object</span><ul>
+<li><code>cwd</code> <span class="type">String</span> Рабочая директория дочернего процесса</li>
+<li><code>customFds</code> <span class="type">Array</span> <strong>Устарело</strong> Файловые дескрипторы для использования дочерним процессом, см. ниже</li>
+<li><code>env</code> <span class="type">Object</span> Переменные окружение дочернего процесса, пары имя-значение</li>
+<li><code>setsid</code> <span class="type">Boolean</span></li>
+<li><code>encoding</code> <span class="type">String</span> (По умолчанию: &apos;utf8&apos;)</li>
+<li><code>timeout</code> <span class="type">Number</span> (По умолчанию: 0)</li>
+<li><code>maxBuffer</code> <span class="type">Number</span> (По умолчанию: 200*1024)</li>
+<li><code>killSignal</code> <span class="type">String</span> (По умолчанию: &apos;SIGTERM&apos;)</li>
+</ul>
+</li>
+<li><code>callback</code> <span class="type">Function</span> Функция обратного вызова, принимающая вывод процесса после его завершения<ul>
+<li><code>code</code> <span class="type">Integer</span> Код выхода</li>
+<li><code>stdout</code> <span class="type">Buffer</span></li>
+<li><code>stderr</code> <span class="type">Buffer</span></li>
+</ul>
+</li>
+<li>Возвращает: <span class="type">ChildProcess object</span></li>
+</div></ul>
+<p>Высокоуровневый способ выполнить команду в качестве дочернего процесса,
+сохранить весь её вывод, и передать его в callback.
+
+</p>
+<pre><code>var util = require(&apos;util&apos;),
+    exec = require(&apos;child_process&apos;).exec,
+    child;
+
+child = exec(&apos;cat *.js bad_file | wc -l&apos;,
+  function (error, stdout, stderr) {
+    console.log(&apos;stdout: &apos; + stdout);
+    console.log(&apos;stderr: &apos; + stderr);
+    if (error !== null) {
+      console.log(&apos;exec error: &apos; + error);
+    }
+});</code></pre>
+<p>Функция-callback получает аргументы <code>(error, stdout, stderr)</code>. При удачном
+выполнении в <code>error</code> будет <code>null</code>. При ошибке <code>error</code> будет экземпляром <code>Error</code>,
+<code>err.code</code> будет кодом завершения дочернего процесса, а в <code>err.signal</code> будет
+содержаться имя сигнала, завершившего процесс.
+
+</p>
+<p>Вторым аргументом могут быть переданы дополнительные опции
+со следующими значениями по умолчанию:
+
+</p>
+<pre><code>{ encoding: &apos;utf8&apos;,
+  timeout: 0,
+  maxBuffer: 200*1024,
+  killSignal: &apos;SIGTERM&apos;,
+  cwd: null,
+  env: null }</code></pre>
+<p>Если <code>timeout</code> больше 0, процесс будет завершён, если он выполняется дольше,
+чем <code>timeout</code> миллисекунд. Дочерний процесс завершается с помощью сигнала
+<code>killSignal</code>. В <code>maxBuffer</code> указывается максимальный объём данных, разрешённый
+на <code>stdout</code> или <code>stderr</code> — если этот объём будет превышен,
+то дочерний процесс будет завершён.
+
+</p>
+<h2>child_process.execFile(file, args, options, callback)<span><a class="mark" href="#child_process_child_process_execfile_file_args_options_callback" id="child_process_child_process_execfile_file_args_options_callback">#</a></span></h2>
+<div class="signature"><ul>
+<li><code>file</code> <span class="type">String</span> Файл для исполнения</li>
+<li><code>args</code> <span class="type">Array</span> Список строк-аргументов</li>
+<li><code>options</code> <span class="type">Object</span><ul>
+<li><code>cwd</code> <span class="type">String</span> Рабочая директория дочернего процесса</li>
+<li><code>customFds</code> <span class="type">Array</span> <strong>Устарело</strong> Файловые дескрипторы для использования дочерним процессом, см. ниже</li>
+<li><code>env</code> <span class="type">Object</span> Переменные окружение дочернего процесса, пары имя-значение</li>
+<li><code>setsid</code> <span class="type">Boolean</span></li>
+<li><code>encoding</code> <span class="type">String</span> (По умолчанию: &apos;utf8&apos;)</li>
+<li><code>timeout</code> <span class="type">Number</span> (По умолчанию: 0)</li>
+<li><code>maxBuffer</code> <span class="type">Number</span> (По умолчанию: 200*1024)</li>
+<li><code>killSignal</code> <span class="type">String</span> (По умолчанию: &apos;SIGTERM&apos;)</li>
+</ul>
+</li>
+<li><code>callback</code> <span class="type">Function</span> Функция обратного вызова, принимающая вывод процесса после его завершения<ul>
+<li><code>code</code> <span class="type">Integer</span> Код выхода</li>
+<li><code>stdout</code> <span class="type">Buffer</span></li>
+<li><code>stderr</code> <span class="type">Buffer</span></li>
+</ul>
+</li>
+<li>Возвращает: <span class="type">ChildProcess object</span></li>
+</div></ul>
+<p>Идентично <code>child_process.exec()</code>, но не создаёт subshell, а выполняет файл напрямую.
+Это делает его компактнее <code>child_process.exec</code>. Имеет аналогичные опции.
+
+</p>
+<h2>child_process.fork(modulePath, [args], [options])<span><a class="mark" href="#child_process_child_process_fork_modulepath_args_options" id="child_process_child_process_fork_modulepath_args_options">#</a></span></h2>
+<div class="signature"><ul>
+<li><code>modulePath</code> <span class="type">String</span> The module to run in the child</li>
+<li><code>args</code> <span class="type">Array</span> List of string arguments</li>
+<li><code>options</code> <span class="type">Object</span><ul>
+<li><code>cwd</code> <span class="type">String</span> Current working directory of the child process</li>
+<li><code>customFds</code> <span class="type">Array</span> <strong>Deprecated</strong> File descriptors for the child to use
+for stdio.  (See below)</li>
+<li><code>env</code> <span class="type">Object</span> Environment key-value pairs</li>
+<li><code>setsid</code> <span class="type">Boolean</span></li>
+<li><code>encoding</code> <span class="type">String</span> (Default: &apos;utf8&apos;)</li>
+<li><code>timeout</code> <span class="type">Number</span> (Default: 0)</li>
+</ul>
+</li>
+<li><code>callback</code> <span class="type">Function</span> called with the output when process terminates<ul>
+<li><code>code</code> <span class="type">Integer</span> Exit code</li>
+<li><code>stdout</code> <span class="type">Buffer</span></li>
+<li><code>stderr</code> <span class="type">Buffer</span></li>
+</ul>
+</li>
+<li>Return: ChildProcess object</li>
+</div></ul>
+<p>This is a special case of the <code>spawn()</code> functionality for spawning Node
+processes. In addition to having all the methods in a normal ChildProcess
+instance, the returned object has a communication channel built-in. The
+channel is written to with <code>child.send(message, [sendHandle])</code> and messages
+are received by a <code>&apos;message&apos;</code> event on the child.
+
+</p>
+<p>For example:
+
+</p>
+<pre><code>var cp = require(&apos;child_process&apos;);
+
+var n = cp.fork(__dirname + &apos;/sub.js&apos;);
+
+n.on(&apos;message&apos;, function(m) {
+  console.log(&apos;PARENT got message:&apos;, m);
+});
+
+n.send({ hello: &apos;world&apos; });</code></pre>
+<p>And then the child script, <code>&apos;sub.js&apos;</code> might look like this:
+
+</p>
+<pre><code>process.on(&apos;message&apos;, function(m) {
+  console.log(&apos;CHILD got message:&apos;, m);
+});
+
+process.send({ foo: &apos;bar&apos; });</code></pre>
+<p>In the child the <code>process</code> object will have a <code>send()</code> method, and <code>process</code>
+will emit objects each time it receives a message on its channel.
+
+</p>
+<p>By default the spawned Node process will have the stdin, stdout, stderr
+associated with the parent&apos;s.
+
+</p>
+<p>These child Nodes are still whole new instances of V8. Assume at least 30ms
+startup and 10mb memory for each new Node. That is, you cannot create many
+thousands of them.
+
+</p>
+<p>The <code>sendHandle</code> option to <code>child.send()</code> is for sending a handle object to
+another process. Child will receive the handle as as second argument to the
+<code>message</code> event. Here is an example of sending a handle:
+
+</p>
+<pre><code>var server = require(&apos;net&apos;).createServer();
+var child = require(&apos;child_process&apos;).fork(__dirname + &apos;/child.js&apos;);
+// Open up the server object and send the handle.
+server.listen(1337, function() {
+  child.send({ server: true }, server._handle);
+});</code></pre>
+<p>Here is an example of receiving the server handle and sharing it between
+processes:
+
+</p>
+<pre><code>process.on(&apos;message&apos;, function(m, serverHandle) {
+  if (serverHandle) {
+    var server = require(&apos;net&apos;).createServer();
+    server.listen(serverHandle);
+  }
+});</code></pre>
+
+          </div>
+        </div>
+    </div>
+    <div id="footer">
+        <ul class="clearfix">
+            <li><a href="http://nodejs.org/">Node.js</a></li>
+            <li><a href="http://nodejs.org/#download">Download</a></li>
+            <li><a href="http://nodejs.org/about/">About</a></li>
+            <li><a href="http://search.npmjs.org/">npm Registry</a></li>
+            <li><a href="http://nodejs.org/api/index.html">Docs</a></li>
+            <li><a href="http://blog.nodejs.org">Blog</a></li>
+            <li><a href="http://nodejs.org/community/">Community</a></li>
+            <li><a href="http://nodejs.org/logos/">Logos</a></li>
+            <li><a href="http://jobs.nodejs.org/">Jobs</a></li>
+            <li><a href="http://twitter.com/nodejs" class="twitter">@nodejs</a></li>
+        </ul>
+
+        <p>Оригинальная документация &copy; 2010 <a href="http://joyent.com">Joyent, Inc</a>, Node.js также является <a href="/trademark-policy.pdf">торговой маркой</a> Joyent, Inc. Подробности ищите в <a href="https://raw.github.com/joyent/node/v0.6.x/LICENSE">лицензии</a>.</p>
+        <p>Перевод размещается в репозитори <a href="https://github.com/kurokikaze/nodejs-docs-rus">github.com/kurokikaze/nodejs-docs-rus</a>, список участников указан в файле <a href="https://github.com/kurokikaze/nodejs-docs-rus/blob/master/README.markdown">README</a>.</p>
+    </div>
+
+    <script src="assets/sh_main.js"></script>
+    <script src="assets/sh_javascript.min.js"></script>
+    <script>highlight(undefined, undefined, 'pre');</script>
+    <!-- Yandex.Metrika --> 
+    <script src="//mc.yandex.ru/metrika/watch.js" type="text/javascript"></script> 
+    <script type="text/javascript"> 
+    try { var yaCounter612423 = new Ya.Metrika(612423); } catch(e){}
+    </script> 
+    <noscript><div style="position: absolute;"><img src="//mc.yandex.ru/watch/612423" alt="" /></div></noscript> 
+    <!-- /Yandex.Metrika -->   
+</body>
+</html>
+

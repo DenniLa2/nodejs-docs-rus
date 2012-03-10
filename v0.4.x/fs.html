@@ -7,7 +7,9 @@
   <link rel="stylesheet" href="assets/sh.css" type="text/css" media="all" />
 </head>
 <body>
-  <a href="http://github.com/kurokikaze/nodejs-docs-rus"><img style="position: absolute; top: 0; left: 0; border: 0;" src="assets/forkme_left_gray_6d6d6d.png" alt="Fork me on GitHub"></a>
+  <a href="http://github.com/kurokikaze/nodejs-docs-rus">
+    <img style="position: absolute; top: 0; right: 0; border: 0;" src="assets/forkme_right_gray.png" alt="Fork me on GitHub">
+  </a>
   <div id="container">
     <header>
       <h1>Node.js &mdash; Документация</h1>
@@ -16,7 +18,7 @@
       </div>
       <hr />
     </header>
-    <div id="toc"><h2>Содержание</h2><ul><li><a href="#_u0424_u0430_u0439_u043B_u043E_u0432_u0430_u044F_u0441_u0438_u0441_u0442_u0435_u043C_u0430">Файловая система</a><ul><li><a href="#fs.rename">fs.rename(path1, path2, [callback])</a></li><li><a href="#fs.renameSync">fs.renameSync(path1, path2)</a></li><li><a href="#fs.truncate">fs.truncate(fd, len, [callback])</a></li><li><a href="#fs.truncateSync">fs.truncateSync(fd, len)</a></li><li><a href="#fs.chmod">fs.chmod(path, mode, [callback])</a></li><li><a href="#fs.chmodSync">fs.chmodSync(path, mode)</a></li><li><a href="#fs.stat">fs.stat(path, [callback])</a></li><li><a href="#fs.lstat">fs.lstat(path, [callback])</a></li><li><a href="#fs.fstat">fs.fstat(fd, [callback])</a></li><li><a href="#fs.statSync">fs.statSync(path)</a></li><li><a href="#fs.lstatSync">fs.lstatSync(path)</a></li><li><a href="#fs.fstatSync">fs.fstatSync(fd)</a></li><li><a href="#fs.link">fs.link(srcpath, dstpath, [callback])</a></li><li><a href="#fs.linkSync">fs.linkSync(srcpath, dstpath)</a></li><li><a href="#fs.symlink">fs.symlink(linkdata, path, [callback])</a></li><li><a href="#fs.symlinkSync">fs.symlinkSync(linkdata, path)</a></li><li><a href="#fs.readlink">fs.readlink(path, [callback])</a></li><li><a href="#fs.readlinkSync">fs.readlinkSync(path)</a></li><li><a href="#fs.realpath">fs.realpath(path, [callback])</a></li><li><a href="#fs.realpathSync">fs.realpathSync(path)</a></li><li><a href="#fs.unlink">fs.unlink(path, [callback])</a></li><li><a href="#fs.unlinkSync">fs.unlinkSync(path)</a></li><li><a href="#fs.rmdir">fs.rmdir(path, [callback])</a></li><li><a href="#fs.rmdirSync">fs.rmdirSync(path)</a></li><li><a href="#fs.mkdir">fs.mkdir(path, mode, [callback])</a></li><li><a href="#fs.mkdirSync">fs.mkdirSync(path, mode)</a></li><li><a href="#fs.readdir">fs.readdir(path, [callback])</a></li><li><a href="#fs.readdirSync">fs.readdirSync(path)</a></li><li><a href="#fs.close">fs.close(fd, [callback])</a></li><li><a href="#fs.closeSync">fs.closeSync(fd)</a></li><li><a href="#fs.open">fs.open(path, flags, [mode], [callback])</a></li><li><a href="#fs.openSync">fs.openSync(path, flags, [mode])</a></li><li><a href="#fs.write">fs.write(fd, buffer, offset, length, position, [callback])</a></li><li><a href="#fs.writeSync">fs.writeSync(fd, buffer, offset, length, position)</a></li><li><a href="#fs.writeSync">fs.writeSync(fd, str, position, encoding='utf8')</a></li><li><a href="#fs.read">fs.read(fd, buffer, offset, length, position, [callback])</a></li><li><a href="#fs.readSync">fs.readSync(fd, buffer, offset, length, position)</a></li><li><a href="#fs.readSync">fs.readSync(fd, length, position, encoding)</a></li><li><a href="#fs.readFile">fs.readFile(filename, [encoding], [callback])</a></li><li><a href="#fs.readFileSync">fs.readFileSync(filename, [encoding])</a></li><li><a href="#fs.writeFile">fs.writeFile(filename, data, encoding='utf8', [callback])</a></li><li><a href="#fs.writeFileSync">fs.writeFileSync(filename, data, encoding='utf8')</a></li><li><a href="#fs.watchFile">fs.watchFile(filename, [options], listener)</a></li><li><a href="#fs.unwatchFile">fs.unwatchFile(filename)</a></li></ul></li><li><a href="#fs.Stats">fs.Stats</a></li><li><a href="#fs.ReadStream">fs.ReadStream</a><ul><li><a href="#fs.createReadStream">fs.createReadStream(path, [options])</a></li></ul></li><li><a href="#fs.WriteStream">fs.WriteStream</a><ul><li><a href="#_u0421_u043E_u0431_u044B_u0442_u0438_u0435_open_">Событие: 'open'</a></li><li><a href="#fs.createWriteStream">fs.createWriteStream(path, [options])</a></li></ul></li></ul><hr /></div>
+    <div id="toc"><h2>Содержание</h2><ul><li><a href="#_u0424_u0430_u0439_u043B_u043E_u0432_u0430_u044F_u0441_u0438_u0441_u0442_u0435_u043C_u0430">Файловая система</a><ul><li><a href="#fs.rename">fs.rename(path1, path2, [callback])</a></li><li><a href="#fs.renameSync">fs.renameSync(path1, path2)</a></li><li><a href="#fs.truncate">fs.truncate(fd, len, [callback])</a></li><li><a href="#fs.truncateSync">fs.truncateSync(fd, len)</a></li><li><a href="#fs.chown">fs.chown(path, uid, gid, [callback])</a></li><li><a href="#fs.chownSync">fs.chownSync(path, uid, gid)</a></li><li><a href="#fs.fchown">fs.fchown(path, uid, gid, [callback])</a></li><li><a href="#fs.fchownSync">fs.fchownSync(path, uid, gid)</a></li><li><a href="#fs.lchown">fs.lchown(path, uid, gid, [callback])</a></li><li><a href="#fs.lchownSync">fs.lchownSync(path, uid, gid)</a></li><li><a href="#fs.chmod">fs.chmod(path, mode, [callback])</a></li><li><a href="#fs.chmodSync">fs.chmodSync(path, mode)</a></li><li><a href="#fs.fchmod">fs.fchmod(fd, mode, [callback])</a></li><li><a href="#fs.fchmodSync">fs.fchmodSync(path, mode)</a></li><li><a href="#fs.lchmod">fs.lchmod(fd, mode, [callback])</a></li><li><a href="#fs.lchmodSync">fs.lchmodSync(path, mode)</a></li><li><a href="#fs.stat">fs.stat(path, [callback])</a></li><li><a href="#fs.lstat">fs.lstat(path, [callback])</a></li><li><a href="#fs.fstat">fs.fstat(fd, [callback])</a></li><li><a href="#fs.statSync">fs.statSync(path)</a></li><li><a href="#fs.lstatSync">fs.lstatSync(path)</a></li><li><a href="#fs.fstatSync">fs.fstatSync(fd)</a></li><li><a href="#fs.link">fs.link(srcpath, dstpath, [callback])</a></li><li><a href="#fs.linkSync">fs.linkSync(srcpath, dstpath)</a></li><li><a href="#fs.symlink">fs.symlink(linkdata, path, [callback])</a></li><li><a href="#fs.symlinkSync">fs.symlinkSync(linkdata, path)</a></li><li><a href="#fs.readlink">fs.readlink(path, [callback])</a></li><li><a href="#fs.readlinkSync">fs.readlinkSync(path)</a></li><li><a href="#fs.realpath">fs.realpath(path, [callback])</a></li><li><a href="#fs.realpathSync">fs.realpathSync(path)</a></li><li><a href="#fs.unlink">fs.unlink(path, [callback])</a></li><li><a href="#fs.unlinkSync">fs.unlinkSync(path)</a></li><li><a href="#fs.rmdir">fs.rmdir(path, [callback])</a></li><li><a href="#fs.rmdirSync">fs.rmdirSync(path)</a></li><li><a href="#fs.mkdir">fs.mkdir(path, mode, [callback])</a></li><li><a href="#fs.mkdirSync">fs.mkdirSync(path, mode)</a></li><li><a href="#fs.readdir">fs.readdir(path, [callback])</a></li><li><a href="#fs.readdirSync">fs.readdirSync(path)</a></li><li><a href="#fs.close">fs.close(fd, [callback])</a></li><li><a href="#fs.closeSync">fs.closeSync(fd)</a></li><li><a href="#fs.open">fs.open(path, flags, [mode], [callback])</a></li><li><a href="#fs.openSync">fs.openSync(path, flags, [mode])</a></li><li><a href="#fs.write">fs.write(fd, buffer, offset, length, position, [callback])</a></li><li><a href="#fs.writeSync">fs.writeSync(fd, buffer, offset, length, position)</a></li><li><a href="#fs.writeSync">fs.writeSync(fd, str, position, encoding='utf8')</a></li><li><a href="#fs.read">fs.read(fd, buffer, offset, length, position, [callback])</a></li><li><a href="#fs.readSync">fs.readSync(fd, buffer, offset, length, position)</a></li><li><a href="#fs.readSync">fs.readSync(fd, length, position, encoding)</a></li><li><a href="#fs.readFile">fs.readFile(filename, [encoding], [callback])</a></li><li><a href="#fs.readFileSync">fs.readFileSync(filename, [encoding])</a></li><li><a href="#fs.writeFile">fs.writeFile(filename, data, encoding='utf8', [callback])</a></li><li><a href="#fs.writeFileSync">fs.writeFileSync(filename, data, encoding='utf8')</a></li><li><a href="#fs.watchFile">fs.watchFile(filename, [options], listener)</a></li><li><a href="#fs.unwatchFile">fs.unwatchFile(filename)</a></li></ul></li><li><a href="#fs.Stats">fs.Stats</a></li><li><a href="#fs.ReadStream">fs.ReadStream</a><ul><li><a href="#_u0421_u043E_u0431_u044B_u0442_u0438_u0435_open_">Событие: 'open'</a></li><li><a href="#fs.createReadStream">fs.createReadStream(path, [options])</a></li></ul></li><li><a href="#fs.WriteStream">fs.WriteStream</a><ul><li><a href="#_u0421_u043E_u0431_u044B_u0442_u0438_u0435_open_">Событие: 'open'</a></li><li><a href="#fs.createWriteStream">fs.createWriteStream(path, [options])</a></li></ul></li></ul><hr /></div>
 <h2 id="_u0424_u0430_u0439_u043B_u043E_u0432_u0430_u044F_u0441_u0438_u0441_u0442_u0435_u043C_u0430">Файловая система</h2>
 
 <p>Файловый ввод/вывод обеспечивается с помощью простой обертки вокруг стандартных
@@ -72,6 +74,9 @@ fs.stat('/tmp/world', function (err, stats) {
 асинхронные версии вызовов. Синхронные версии будут блокировать весь процесс
 до своего завершения — предотвращая любые новые соединения.</p>
 
+<p>В агрументах приведённых функций можно указывать относительные пути до файлов,
+тогда в качестве родительской папки будет использоваться <code>process.cwd()</code>.</p>
+
 <h3 id="fs.rename">fs.rename(path1, path2, [callback])</h3>
 
 <p>Асинхронное переименование (rename(2)).
@@ -90,6 +95,33 @@ fs.stat('/tmp/world', function (err, stats) {
 
 <p>Синхронный ftruncate(2).</p>
 
+<h3 id="fs.chown">fs.chown(path, uid, gid, [callback])</h3>
+
+<p>Асинхронный chown(2).
+Обработчику не передаётся аргументов кроме возможного исключения.</p>
+
+<h3 id="fs.chownSync">fs.chownSync(path, uid, gid)</h3>
+
+<p>Синхронный chown(2).</p>
+
+<h3 id="fs.fchown">fs.fchown(path, uid, gid, [callback])</h3>
+
+<p>Асинхронный fchown(2).
+Обработчику не передаётся аргументов кроме возможного исключения.</p>
+
+<h3 id="fs.fchownSync">fs.fchownSync(path, uid, gid)</h3>
+
+<p>Синхронный fchown(2).</p>
+
+<h3 id="fs.lchown">fs.lchown(path, uid, gid, [callback])</h3>
+
+<p>Асинхронный lchown(2).
+Обработчику не передаётся аргументов кроме возможного исключения.</p>
+
+<h3 id="fs.lchownSync">fs.lchownSync(path, uid, gid)</h3>
+
+<p>Синхронный lchown(2).</p>
+
 <h3 id="fs.chmod">fs.chmod(path, mode, [callback])</h3>
 
 <p>Асинхронное изменение прав доступа (chmod(2)).
@@ -98,6 +130,24 @@ fs.stat('/tmp/world', function (err, stats) {
 <h3 id="fs.chmodSync">fs.chmodSync(path, mode)</h3>
 
 <p>Синхронный chmod(2).</p>
+
+<h3 id="fs.fchmod">fs.fchmod(fd, mode, [callback])</h3>
+
+<p>Асинхронный fchmod(2).
+Обработчику не передаётся аргументов кроме возможного исключения.</p>
+
+<h3 id="fs.fchmodSync">fs.fchmodSync(path, mode)</h3>
+
+<p>Синхронный fchmod(2).</p>
+
+<h3 id="fs.lchmod">fs.lchmod(fd, mode, [callback])</h3>
+
+<p>Асинхронный lchmod(2).
+Обработчику не передаётся аргументов кроме возможного исключения.</p>
+
+<h3 id="fs.lchmodSync">fs.lchmodSync(path, mode)</h3>
+
+<p>Синхронный lchmod(2).</p>
 
 <h3 id="fs.stat">fs.stat(path, [callback])</h3>
 
@@ -227,8 +277,17 @@ fs.stat('/tmp/world', function (err, stats) {
 <h3 id="_fs.open">### fs.open(path, flags, [mode], [callback])</h3>
 
 <p>Асинхронное открытие файла. См. open(2).
-Флаги могут быть <code>'r'</code>, <code>'r+'</code>, <code>'w'</code>, <code>'w+'</code>, <code>'a'</code> или <code>'a+'</code>.
-По умолчанию <code>mode</code> равняется 0666. Обработчик принимает два аргумента: <code>(err, fd)</code>.</p>
+Флаги могут быть:</p>
+
+<ul><li><p><code>'r'</code> - Файл открывается для чтения.
+Если файл не существуется, произойдёт исключение.</p></li><li><p><code>'r+'</code> - Файл открывается для чтения и записи.
+Если файл не существуется, произойдёт исключение.</p></li><li><p><code>'w'</code> - Файл открывается для записи.
+Файл будет создан (если не существует) или очищен (если существует).</p></li><li><p><code>'w+'</code> - Файл открывается для чтения и записи.
+Файл будет создан (если не существует) или очищен (если существует).</p></li><li><p><code>'a'</code> - Файл открывается для для добавления данных.
+Если файл не существуется, он будет создан.</p></li><li><p><code>'a+'</code> - Файл открывается для добавления данных и чтения.
+Если файл не существуется, он будет создан.</p></li></ul>
+
+<p>По умолчанию <code>mode</code> равняется 0666. Обработчик принимает два аргумента: <code>(err, fd)</code>.</p>
 
 <h3 id="fs.openSync">fs.openSync(path, flags, [mode])</h3>
 
@@ -328,7 +387,7 @@ fs.stat('/tmp/world', function (err, stats) {
 
 <p>Обработчик <code>listener</code> принимает два аргумента: текущий объект stat и предыдущий объект stat.</p>
 
-<pre><code>fs.watchFile(f, function (curr, prev) {
+<pre><code>fs.watchFile('message.text', function (curr, prev) {
   console.log('the current mtime is: ' + curr.mtime);
   console.log('the previous mtime was: ' + prev.mtime);
 });</code></pre>
@@ -336,7 +395,7 @@ fs.stat('/tmp/world', function (err, stats) {
 <p>Эти объекты — экземпляры <code>fs.Stat</code>.</p>
 
 <p>Если вы хотите обрабатывать только события изменения файла, вам следует сравнивать
-<code>curr.mtime</code> и `prev.mtime.</p>
+<code>curr.mtime</code> и <code>prev.mtime</code>.</p>
 
 <h3 id="fs.unwatchFile">fs.unwatchFile(filename)</h3>
 
@@ -352,6 +411,12 @@ fs.stat('/tmp/world', function (err, stats) {
 <h2 id="fs.ReadStream">fs.ReadStream</h2>
 
 <p><code>ReadStream</code> является <code>потоком с возможностью чтения</code>.</p>
+
+<h3 id="_u0421_u043E_u0431_u044B_u0442_u0438_u0435_open_">Событие: 'open'</h3>
+
+<p><code>function (fd) { }</code></p>
+
+<p><code>fd</code> содержит файловый дескриптов, используемый ReadStream.</p>
 
 <h3 id="fs.createReadStream">fs.createReadStream(path, [options])</h3>
 

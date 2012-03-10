@@ -7,7 +7,9 @@
   <link rel="stylesheet" href="assets/sh.css" type="text/css" media="all" />
 </head>
 <body>
-  <a href="http://github.com/kurokikaze/nodejs-docs-rus"><img style="position: absolute; top: 0; left: 0; border: 0;" src="assets/forkme_left_gray_6d6d6d.png" alt="Fork me on GitHub"></a>
+  <a href="http://github.com/kurokikaze/nodejs-docs-rus">
+    <img style="position: absolute; top: 0; right: 0; border: 0;" src="assets/forkme_right_gray.png" alt="Fork me on GitHub">
+  </a>
   <div id="container">
     <header>
       <h1>Node.js &mdash; Документация</h1>
@@ -34,7 +36,10 @@
 указывать метод кодирования символов. Node поддерживает 3 кодировки для строк:</p>
 
 <ul><li><p><code>'ascii'</code> — только для 7-битных ASCII-строк. Этот метод кодирования очень
-быстрый, и будет сбрасывать старший бит символа, если тот установлен.</p></li><li><p><code>'utf8'</code> — Многобайтовые Unicode-символы. Многие веб-страницы и документы используют UTF-8.</p></li><li><p><code>'ucs2'</code> — Двухбайтовые little endian Unicode-символы.
+быстрый, и будет сбрасывать старший бит символа, если тот установлен.
+Нужно помнить, что при использовании этой кодировки нулевые символы (<code>'\0'</code> или <code>'\u0000'</code>)
+преобразуются в <code>0x20</code> (символ пробела). Если вам нужно сохранить нулевые символы как <code>0x00</code>,
+то вам нужно использовать кодировку <code>'utf8'</code>.</p></li><li><p><code>'utf8'</code> — Многобайтовые Unicode-символы. Многие веб-страницы и документы используют UTF-8.</p></li><li><p><code>'ucs2'</code> — Двухбайтовые little endian Unicode-символы.
 Могут кодировать только символы в диапазоне U+0000 - U+FFFF (Basic Multilingual Plane).</p></li><li><p><code>'binary'</code> — устаревший способ. Хранит двоичные данные в строке используя
 младшие 8 бит каждого символа. Не используйте эту кодировку.</p></li></ul>
 
@@ -128,7 +133,7 @@ console.log(buf.length);
 
 <h3 id="buffer.copy">buffer.copy(targetBuffer, targetStart=0, sourceStart=0, sourceEnd=buffer.length)</h3>
 
-<p>Копирует данные между буферами с помощью memcpy().</p>
+<p>Копирует данные между буферами. Области <code>target</code> и <code>source</code> могут пересекаться.</p>
 
 <p>Пример: создадим два буфера, потом скопировать <code>buf1</code>
 с байта 16 по байт 19 в <code>buf2</code>, начиная с 8-го байта в <code>buf2</code>.</p>

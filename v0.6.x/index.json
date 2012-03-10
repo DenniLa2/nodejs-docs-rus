@@ -1,0 +1,382 @@
+{
+  "source": "index.markdown",
+  "desc": [
+    {
+      "type": "list_start",
+      "ordered": false
+    },
+    {
+      "type": "list_item_start"
+    },
+    {
+      "type": "text",
+      "text": "[О документации](documentation.html)"
+    },
+    {
+      "type": "list_item_end"
+    },
+    {
+      "type": "list_item_start"
+    },
+    {
+      "type": "text",
+      "text": "[Краткий обзор](synopsis.html)"
+    },
+    {
+      "type": "list_item_end"
+    },
+    {
+      "type": "list_item_start"
+    },
+    {
+      "type": "text",
+      "text": "[Глобальные объекты](globals.html)"
+    },
+    {
+      "type": "list_item_end"
+    },
+    {
+      "type": "list_item_start"
+    },
+    {
+      "type": "text",
+      "text": "[Стандартный ввод/вывод](stdio.html)"
+    },
+    {
+      "type": "list_item_end"
+    },
+    {
+      "type": "list_item_start"
+    },
+    {
+      "type": "text",
+      "text": "[Таймеры](timers.html)"
+    },
+    {
+      "type": "list_item_end"
+    },
+    {
+      "type": "list_item_start"
+    },
+    {
+      "type": "text",
+      "text": "[Модули](modules.html)"
+    },
+    {
+      "type": "list_item_end"
+    },
+    {
+      "type": "list_item_start"
+    },
+    {
+      "type": "text",
+      "text": "[C/C++ дополнения](addons.html)"
+    },
+    {
+      "type": "list_item_end"
+    },
+    {
+      "type": "list_item_start"
+    },
+    {
+      "type": "text",
+      "text": "[Процесс](process.html)"
+    },
+    {
+      "type": "list_item_end"
+    },
+    {
+      "type": "list_item_start"
+    },
+    {
+      "type": "text",
+      "text": "[Утилиты](util.html)"
+    },
+    {
+      "type": "list_item_end"
+    },
+    {
+      "type": "list_item_start"
+    },
+    {
+      "type": "text",
+      "text": "[События](events.html)"
+    },
+    {
+      "type": "list_item_end"
+    },
+    {
+      "type": "list_item_start"
+    },
+    {
+      "type": "text",
+      "text": "[Буфер](buffer.html)"
+    },
+    {
+      "type": "list_item_end"
+    },
+    {
+      "type": "list_item_start"
+    },
+    {
+      "type": "text",
+      "text": "[Поток](stream.html)"
+    },
+    {
+      "type": "list_item_end"
+    },
+    {
+      "type": "list_item_start"
+    },
+    {
+      "type": "text",
+      "text": "[Модуль криптографии](crypto.html)"
+    },
+    {
+      "type": "list_item_end"
+    },
+    {
+      "type": "list_item_start"
+    },
+    {
+      "type": "text",
+      "text": "[TLS/SSL](tls.html)"
+    },
+    {
+      "type": "list_item_end"
+    },
+    {
+      "type": "list_item_start"
+    },
+    {
+      "type": "text",
+      "text": "[String Decoder](string_decoder.html)"
+    },
+    {
+      "type": "list_item_end"
+    },
+    {
+      "type": "list_item_start"
+    },
+    {
+      "type": "text",
+      "text": "[Файловая система](fs.html)"
+    },
+    {
+      "type": "list_item_end"
+    },
+    {
+      "type": "list_item_start"
+    },
+    {
+      "type": "text",
+      "text": "[Работа с путями](path.html)"
+    },
+    {
+      "type": "list_item_end"
+    },
+    {
+      "type": "list_item_start"
+    },
+    {
+      "type": "text",
+      "text": "[TCP/Сеть](net.html)"
+    },
+    {
+      "type": "list_item_end"
+    },
+    {
+      "type": "list_item_start"
+    },
+    {
+      "type": "text",
+      "text": "[UDP/Датаграммы](dgram.html)"
+    },
+    {
+      "type": "list_item_end"
+    },
+    {
+      "type": "list_item_start"
+    },
+    {
+      "type": "text",
+      "text": "[DNS](dns.html)"
+    },
+    {
+      "type": "list_item_end"
+    },
+    {
+      "type": "list_item_start"
+    },
+    {
+      "type": "text",
+      "text": "[HTTP](http.html)"
+    },
+    {
+      "type": "list_item_end"
+    },
+    {
+      "type": "list_item_start"
+    },
+    {
+      "type": "text",
+      "text": "[HTTPS](https.html)"
+    },
+    {
+      "type": "list_item_end"
+    },
+    {
+      "type": "list_item_start"
+    },
+    {
+      "type": "text",
+      "text": "[URL](url.html)"
+    },
+    {
+      "type": "list_item_end"
+    },
+    {
+      "type": "list_item_start"
+    },
+    {
+      "type": "text",
+      "text": "[Разбор строки запроса](querystring.html)"
+    },
+    {
+      "type": "list_item_end"
+    },
+    {
+      "type": "list_item_start"
+    },
+    {
+      "type": "text",
+      "text": "[Модуль readline](readline.html)"
+    },
+    {
+      "type": "list_item_end"
+    },
+    {
+      "type": "list_item_start"
+    },
+    {
+      "type": "text",
+      "text": "[Интерактивная консоль (REPL)](repl.html)"
+    },
+    {
+      "type": "list_item_end"
+    },
+    {
+      "type": "list_item_start"
+    },
+    {
+      "type": "text",
+      "text": "[Выполнение JavaScript](vm.html)"
+    },
+    {
+      "type": "list_item_end"
+    },
+    {
+      "type": "list_item_start"
+    },
+    {
+      "type": "text",
+      "text": "[Дочерние процессы](child_process.html)"
+    },
+    {
+      "type": "list_item_end"
+    },
+    {
+      "type": "list_item_start"
+    },
+    {
+      "type": "text",
+      "text": "[Тестирование (asserts)](assert.html)"
+    },
+    {
+      "type": "list_item_end"
+    },
+    {
+      "type": "list_item_start"
+    },
+    {
+      "type": "text",
+      "text": "[Текстовый терминал](tty.html)"
+    },
+    {
+      "type": "list_item_end"
+    },
+    {
+      "type": "list_item_start"
+    },
+    {
+      "type": "text",
+      "text": "[Сжатие данных](zlib.html)"
+    },
+    {
+      "type": "list_item_end"
+    },
+    {
+      "type": "list_item_start"
+    },
+    {
+      "type": "text",
+      "text": "[Операционная система](os.html)"
+    },
+    {
+      "type": "list_item_end"
+    },
+    {
+      "type": "list_item_start"
+    },
+    {
+      "type": "text",
+      "text": "[Встроенный отладчик](debugger.html)"
+    },
+    {
+      "type": "list_item_end"
+    },
+    {
+      "type": "list_item_start"
+    },
+    {
+      "type": "text",
+      "text": "[Кластеризация](cluster.html)"
+    },
+    {
+      "type": "list_item_end"
+    },
+    {
+      "type": "list_item_start"
+    },
+    {
+      "type": "text",
+      "text": "Приложения"
+    },
+    {
+      "type": "list_start",
+      "ordered": false
+    },
+    {
+      "type": "list_item_start"
+    },
+    {
+      "type": "text",
+      "text": "[Приложение 1: Рекомендуемые сторонние модули](appendix_1.html)"
+    },
+    {
+      "type": "space"
+    },
+    {
+      "type": "list_item_end"
+    },
+    {
+      "type": "list_end"
+    },
+    {
+      "type": "list_item_end"
+    },
+    {
+      "type": "list_end"
+    }
+  ]
+}
