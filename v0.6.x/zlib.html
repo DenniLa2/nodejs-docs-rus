@@ -1,0 +1,379 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Zlib Node.js v0.6.x &mdash; Документация</title>
+  <link rel="stylesheet" href="assets/style.css">
+  <link rel="stylesheet" href="assets/sh.css">
+  <link rel="canonical" href="http://nodejs.org/api/zlib.html">
+</head>
+<body class="alt apidoc" id="api-section-zlib">
+    <a href="http://github.com/kurokikaze/nodejs-docs-rus">
+        <img style="position: absolute; top: 0; right: 0; border: 0;" src="assets/forkme_right_green.png" alt="Fork me on GitHub">
+    </a>
+    <div id="intro" class="interior">
+        <a href="/" title="Go back to the home page">
+            <img id="logo" src="http://nodejs.org/images/logo-light.png" alt="node.js">
+        </a>
+    </div>
+    <div id="content" class="clearfix">
+        <div id="column1" class="interior">
+          <header>
+            <h1>Node.js v0.6.x &mdash; Документация</h1>
+            <div id="gtoc">
+              <p>
+                <a href="index.html" name="toc">Содержание</a> |
+                <a href="all.html">Просмотреть на одной странице</a> |
+                <a href="zlib.json">Просмотреть в виде JSON</a>
+              </p>
+            </div>
+            <hr>
+          </header>
+
+          <div id="toc">
+            <h2>Содержание</h2>
+            <ul>
+<li><a href="#zlib_zlib">Zlib</a><ul>
+<li><a href="#zlib">Примеры</a></li>
+<li><a href="#zlib_1">Константы</a></li>
+<li><a href="#zlib_zlib_creategzip">zlib.createGzip([параметры])</a></li>
+<li><a href="#zlib_zlib_creategunzip">zlib.createGunzip([параметры])</a></li>
+<li><a href="#zlib_zlib_createdeflate">zlib.createDeflate([параметры])</a></li>
+<li><a href="#zlib_zlib_createinflate">zlib.createInflate([параметры])</a></li>
+<li><a href="#zlib_zlib_createdeflateraw">zlib.createDeflateRaw([параметры])</a></li>
+<li><a href="#zlib_zlib_createinflateraw">zlib.createInflateRaw([параметры])</a></li>
+<li><a href="#zlib_zlib_createunzip">zlib.createUnzip([параметры])</a></li>
+<li><a href="#zlib_zlib_gzip">Класс: zlib.Gzip</a></li>
+<li><a href="#zlib_zlib_gunzip">Класс: zlib.Gunzip</a></li>
+<li><a href="#zlib_zlib_deflate">Класс: zlib.Deflate</a></li>
+<li><a href="#zlib_zlib_inflate">Класс: zlib.Inflate</a></li>
+<li><a href="#zlib_zlib_deflateraw">Класс: zlib.DeflateRaw</a></li>
+<li><a href="#zlib_zlib_inflateraw">Класс: zlib.InflateRaw</a></li>
+<li><a href="#zlib_zlib_unzip">Класс: zlib.Unzip</a></li>
+<li><a href="#zlib_2">Удобные методы</a></li>
+<li><a href="#zlib_zlib_deflate_buf_callback">zlib.deflate(buf, callback)</a></li>
+<li><a href="#zlib_zlib_deflateraw_buf_callback">zlib.deflateRaw(buf, callback)</a></li>
+<li><a href="#zlib_zlib_gzip_buf_callback">zlib.gzip(buf, callback)</a></li>
+<li><a href="#zlib_zlib_gunzip_buf_callback">zlib.gunzip(buf, callback)</a></li>
+<li><a href="#zlib_zlib_inflate_buf_callback">zlib.inflate(buf, callback)</a></li>
+<li><a href="#zlib_zlib_inflateraw_buf_callback">zlib.inflateRaw(buf, callback)</a></li>
+<li><a href="#zlib_zlib_unzip_buf_callback">zlib.unzip(buf, callback)</a></li>
+<li><a href="#zlib_3">Опции</a></li>
+<li><a href="#zlib_4">Настройки использования памяти</a></li>
+</ul>
+</li>
+</ul>
+
+          </div>
+
+          <div id="apicontent">
+            <h1>Zlib<span><a class="mark" href="#zlib_zlib" id="zlib_zlib">#</a></span></h1>
+<p>Что бы получить доступ к этому модулю воспользуйтесь:
+
+</p>
+<pre><code>var zlib = require(&apos;zlib&apos;);</code></pre>
+<p>Это привязка к Gzip/Gunzip, Deflate/Inflate, и
+DeflateRaw/InflateRaw классам. Каждый класс имеет набор опций,
+а также является потоком чтения/записи.
+
+</p>
+<h2>Примеры<span><a class="mark" href="#zlib" id="zlib">#</a></span></h2>
+<p>Сжатие или распаковка файлов может быть выполнена путем передачи
+потока fs.ReadStream в поток zlib, а затем в fs.WriteStream.
+
+</p>
+<pre><code>var gzip = zlib.createGzip();
+var fs = require(&apos;fs&apos;);
+var inp = fs.createReadStream(&apos;input.txt&apos;);
+var out = fs.createWriteStream(&apos;input.txt.gz&apos;);
+
+inp.pipe(gzip).pipe(out);</code></pre>
+<p>Выполнить сжатие или распаковку в один шаг можно с помощью 
+удобных методов.
+
+</p>
+<pre><code>var input = &apos;.................................&apos;;
+zlib.deflate(input, function(err, buffer) {
+  if (!err) {
+    console.log(buffer.toString(&apos;base64&apos;));
+  }
+});
+
+var buffer = new Buffer(&apos;eJzT0yMAAGTvBe8=&apos;, &apos;base64&apos;);
+zlib.unzip(buffer, function(err, buffer) {
+  if (!err) {
+    console.log(buffer.toString());
+  }
+});</code></pre>
+<p>Для испоьзования этого модуля в HTTP клиенте/сервере, воспользуйтесь установкой
+заголовков, 
+<a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.3">accept-encoding</a>
+для запросов, и
+<a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.11">content-encoding</a>
+для ответов.
+
+</p>
+<p><strong>Примечание: эти примеры очень сильно упрощены для того что бы 
+показать основную идею.</strong> Zlib операции могут быть дорогими, результаты
+должны сохраняться в кеш.  Смотри <a href="#memory_Usage_Tuning">настройки использования памяти</a>
+ниже для получения информации о скорости/памяти/компресии влияющие на использование zlib.
+
+</p>
+<pre><code>//пример клиентского запроса
+var zlib = require(&apos;zlib&apos;);
+var http = require(&apos;http&apos;);
+var fs = require(&apos;fs&apos;);
+var request = http.get({ host: &apos;izs.me&apos;,
+                         path: &apos;/&apos;,
+                         port: 80,
+                         headers: { &apos;accept-encoding&apos;: &apos;gzip,deflate&apos; } });
+request.on(&apos;response&apos;, function(response) {
+  var output = fs.createWriteStream(&apos;izs.me_index.html&apos;);
+
+  switch (response.headers[&apos;content-encoding&apos;]) {
+    // или просто используйте zlib.createUnzip(), для 
+    // обработки обоих случаев
+    case &apos;gzip&apos;:
+      response.pipe(zlib.createGunzip()).pipe(output);
+      break;
+    case &apos;deflate&apos;:
+      response.pipe(zlib.createInflate()).pipe(output);
+      break;
+    default:
+      response.pipe(output);
+      break;
+  }
+});
+
+// пример сервера
+// Выполнение gzip операций на каждый запрос стоит достаточно дорого.
+// использование кеширования может быть очень эффективным.
+var zlib = require(&apos;zlib&apos;);
+var http = require(&apos;http&apos;);
+var fs = require(&apos;fs&apos;);
+http.createServer(function(request, response) {
+  var raw = fs.createReadStream(&apos;index.html&apos;);
+  var acceptEncoding = request.headers[&apos;accept-encoding&apos;];
+  if (!acceptEncoding) {
+    acceptEncoding = &apos;&apos;;
+  }
+
+  // Примечание: это не совместимый accept-encoding парсер.
+  // Смотри http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.3
+  if (acceptEncoding.match(/\bdeflate\b/)) {
+    response.writeHead(200, { &apos;content-encoding&apos;: &apos;deflate&apos; });
+    raw.pipe(zlib.createDeflate()).pipe(response);
+  } else if (acceptEncoding.match(/\bgzip\b/)) {
+    response.writeHead(200, { &apos;content-encoding&apos;: &apos;gzip&apos; });
+    raw.pipe(zlib.createGzip()).pipe(response);
+  } else {
+    response.writeHead(200, {});
+    raw.pipe(response);
+  }
+}).listen(1337);</code></pre>
+<h2>Константы<span><a class="mark" href="#zlib_1" id="zlib_1">#</a></span></h2>
+<!--type=misc-->
+
+<p>Все константы определенные в  zlib.h также определены в 
+<code>require(&apos;zlib&apos;)</code>. Они подробно описаны в документации Zlib.
+Смотри <a href="http://zlib.net/manual.html#Constants">http://zlib.net/manual.html#Constants</a> для получения
+подробной информации.
+
+</p>
+<h2>zlib.createGzip([параметры])<span><a class="mark" href="#zlib_zlib_creategzip" id="zlib_zlib_creategzip">#</a></span></h2>
+<p>Возвращает новый <a href="#zlib.Gzip">Gzip</a> объект с <a href="#options">параметрами</a>.
+
+</p>
+<h2>zlib.createGunzip([параметры])<span><a class="mark" href="#zlib_zlib_creategunzip" id="zlib_zlib_creategunzip">#</a></span></h2>
+<p>Возвращает новый <a href="#zlib.Gunzip">Gunzip</a> объект с <a href="#options">параметрами</a>.
+
+</p>
+<h2>zlib.createDeflate([параметры])<span><a class="mark" href="#zlib_zlib_createdeflate" id="zlib_zlib_createdeflate">#</a></span></h2>
+<p>Возвращает новый <a href="#zlib.Deflate">Deflate</a> объект с <a href="#options">параметрами</a>.
+
+</p>
+<h2>zlib.createInflate([параметры])<span><a class="mark" href="#zlib_zlib_createinflate" id="zlib_zlib_createinflate">#</a></span></h2>
+<p>Возвращает новый <a href="#zlib.Inflate">Inflate</a> объект с <a href="#options">параметрами</a>.
+
+</p>
+<h2>zlib.createDeflateRaw([параметры])<span><a class="mark" href="#zlib_zlib_createdeflateraw" id="zlib_zlib_createdeflateraw">#</a></span></h2>
+<p>Возвращает новый <a href="#zlib.DeflateRaw">DeflateRaw</a> объект с <a href="#options">параметрами</a>.
+
+</p>
+<h2>zlib.createInflateRaw([параметры])<span><a class="mark" href="#zlib_zlib_createinflateraw" id="zlib_zlib_createinflateraw">#</a></span></h2>
+<p>Возвращает новый <a href="#zlib.InflateRaw">InflateRaw</a> объект с <a href="#options">параметрами</a>.
+
+</p>
+<h2>zlib.createUnzip([параметры])<span><a class="mark" href="#zlib_zlib_createunzip" id="zlib_zlib_createunzip">#</a></span></h2>
+<p>Возвращает новый <a href="#zlib.Unzip">Unzip</a> объект с <a href="#options">параметрами</a>.
+
+
+</p>
+<h2>Класс: zlib.Gzip<span><a class="mark" href="#zlib_zlib_gzip" id="zlib_zlib_gzip">#</a></span></h2>
+<p>Сжатие данных используя gzip.
+
+</p>
+<h2>Класс: zlib.Gunzip<span><a class="mark" href="#zlib_zlib_gunzip" id="zlib_zlib_gunzip">#</a></span></h2>
+<p>Расспаковка gzip потока.
+
+</p>
+<h2>Класс: zlib.Deflate<span><a class="mark" href="#zlib_zlib_deflate" id="zlib_zlib_deflate">#</a></span></h2>
+<p>Сжатие данных используя deflate.
+
+</p>
+<h2>Класс: zlib.Inflate<span><a class="mark" href="#zlib_zlib_inflate" id="zlib_zlib_inflate">#</a></span></h2>
+<p>Расспаковка deflate потока.
+
+</p>
+<h2>Класс: zlib.DeflateRaw<span><a class="mark" href="#zlib_zlib_deflateraw" id="zlib_zlib_deflateraw">#</a></span></h2>
+<p>Сжатие данных используя deflate, без установки zlib заголовка.
+
+</p>
+<h2>Класс: zlib.InflateRaw<span><a class="mark" href="#zlib_zlib_inflateraw" id="zlib_zlib_inflateraw">#</a></span></h2>
+<p>Расспаковка raw deflate потока.
+
+</p>
+<h2>Класс: zlib.Unzip<span><a class="mark" href="#zlib_zlib_unzip" id="zlib_zlib_unzip">#</a></span></h2>
+<p>Расспаковка либо Gzip-, либо Deflate-сжатого потока с 
+автоматическим определением заголовка.
+
+</p>
+<h2>Удобные методы<span><a class="mark" href="#zlib_2" id="zlib_2">#</a></span></h2>
+<!--type=misc-->
+
+<p>Все удобные методы в качестве первого аргумента принимают строки или буферы,
+и возвращают результат вызывая функцию обратного вызова 
+с параметрами <code>callback(error, result)</code>. Движки компрессии/декомпрессии создаются
+с настройками по умолчанию. Для использования различных настроек пользуйтесь
+Zlib классами напрямую.
+
+</p>
+<h2>zlib.deflate(buf, callback)<span><a class="mark" href="#zlib_zlib_deflate_buf_callback" id="zlib_zlib_deflate_buf_callback">#</a></span></h2>
+<p>Сжатие строки используя Deflate.
+
+</p>
+<h2>zlib.deflateRaw(buf, callback)<span><a class="mark" href="#zlib_zlib_deflateraw_buf_callback" id="zlib_zlib_deflateraw_buf_callback">#</a></span></h2>
+<p>Сжатие строки используя DeflateRaw.
+
+</p>
+<h2>zlib.gzip(buf, callback)<span><a class="mark" href="#zlib_zlib_gzip_buf_callback" id="zlib_zlib_gzip_buf_callback">#</a></span></h2>
+<p>Сжатие строки используя Gzip.
+
+</p>
+<h2>zlib.gunzip(buf, callback)<span><a class="mark" href="#zlib_zlib_gunzip_buf_callback" id="zlib_zlib_gunzip_buf_callback">#</a></span></h2>
+<p>Распаковка raw Buffer используя Gunzip.
+
+</p>
+<h2>zlib.inflate(buf, callback)<span><a class="mark" href="#zlib_zlib_inflate_buf_callback" id="zlib_zlib_inflate_buf_callback">#</a></span></h2>
+<p>Распаковка raw Buffer используя Inflate.
+
+</p>
+<h2>zlib.inflateRaw(buf, callback)<span><a class="mark" href="#zlib_zlib_inflateraw_buf_callback" id="zlib_zlib_inflateraw_buf_callback">#</a></span></h2>
+<p>Распаковка raw Buffer используя InflateRaw.
+
+</p>
+<h2>zlib.unzip(buf, callback)<span><a class="mark" href="#zlib_zlib_unzip_buf_callback" id="zlib_zlib_unzip_buf_callback">#</a></span></h2>
+<p>Распаковка raw Buffer используя Unzip.
+
+</p>
+<h2>Опции<span><a class="mark" href="#zlib_3" id="zlib_3">#</a></span></h2>
+<!--type=misc-->
+
+<p>Каждый класс может принимать объект с параметрами. Все параметры являются 
+опциональными. (Удобные методы использую настройки по умолчанию для всех опций).
+
+</p>
+<p>Обратите внимание что часть опций доступна только для сжатия, и игнорируются
+классами распаковщиками.
+
+</p>
+<ul>
+<li>chunkSize (default: 16*1024)</li>
+<li>windowBits</li>
+<li>level (compression only)</li>
+<li>memLevel (compression only)</li>
+<li>strategy (compression only)</li>
+</ul>
+<p>Смотри описание о <code>deflateInit2</code> и <code>inflateInit2</code> на
+</p>
+<p><a href="http://zlib.net/manual.html#Advanced">http://zlib.net/manual.html#Advanced</a> для большей информации о них.
+
+</p>
+<h2>Настройки использования памяти<span><a class="mark" href="#zlib_4" id="zlib_4">#</a></span></h2>
+<!--type=misc-->
+
+<p>Файл <code>zlib/zconf.h</code>, изменен для использования nodejs:
+
+</p>
+<p>Требования к памяти для deflate (в байтах):
+
+</p>
+<pre><code>(1 &lt;&lt; (windowBits+2)) +  (1 &lt;&lt; (memLevel+9))</code></pre>
+<p>это: 128K для windowBits=15  +  128K для memLevel = 8
+(по умолчанию) плюс несколько килобайт для небольших объектов.
+
+</p>
+<p>Например, если вы хотите уменьшить требования к памяти по умолчанию
+с 256K до 128K, установите параметры:
+
+</p>
+<pre><code>{ windowBits: 14, memLevel: 7 }</code></pre>
+<p>Конечно это как правило ухудшает сжатие (there&apos;s no free lunch).
+
+</p>
+<p>Требования памяти при inflate (в байтах)
+
+</p>
+<pre><code>1 &lt;&lt; windowBits</code></pre>
+<p>это, 32K для windowBits=15 (по умолчанию) плюс несколько килобайт
+для небольших объектов.
+
+</p>
+<p>Это в дополнение к одиночной части исходящего буффера размером <code>chunkSize</code>,
+который по умолчанию 16К.
+
+</p>
+<p>На скорость сжатия Zlib существенно влияет настройки <code>уровня сжатия</code>. 
+Высокий уровень дает лучшее сжатие, но занимает больше времени. Низкий
+уровень дает меньше сжатие, но может быть намного быстрее.
+
+</p>
+<p>В общем, варианты настроек с большим расходом памяти означают, что node 
+может делать меньше вызовов zlib, и значит сможет обработать больше данных
+за одину операцию <code>записи</code>. Так что, это еще один фактор влияющим на
+скорость, за счет увеличения использования памяти.</p>
+
+          </div>
+        </div>
+    </div>
+    <div id="footer">
+        <ul class="clearfix">
+            <li><a href="http://nodejs.org/">Node.js</a></li>
+            <li><a href="http://nodejs.org/#download">Download</a></li>
+            <li><a href="http://nodejs.org/about/">About</a></li>
+            <li><a href="http://search.npmjs.org/">npm Registry</a></li>
+            <li><a href="http://blog.nodejs.org">Blog</a></li>
+            <li><a href="http://nodejs.org/community/">Community</a></li>
+            <li><a href="http://nodejs.org/logos/">Logos</a></li>
+            <li><a href="http://jobs.nodejs.org/">Jobs</a></li>
+            <li><a href="http://twitter.com/nodejs" class="twitter">@nodejs</a></li>
+        </ul>
+
+        <p>&copy; 2010 <a href="http://joyent.com">Joyent, Inc</a>, Node.js является <a href="http://nodejs.org/trademark-policy.pdf">торговой маркой</a> Joyent, Inc. Подробную информацию вы можете прочитать в <a href="https://raw.github.com/joyent/node/v0.6.x/LICENSE">лицензии</a>.</p>
+        
+        <p>Перевод &copy; 2010 <a href="https://github.com/kurokikaze/nodejs-docs-rus/contributors">соавтороами</a> репозитория <a href="https://github.com/kurokikaze/nodejs-docs-rus">github.com/kurokikaze/nodejs-docs-rus</a>.</p>
+    </div>
+
+    <script src="assets/sh_main.js"></script>
+    <script src="assets/sh_javascript.min.js"></script>
+    <script>highlight(undefined, undefined, 'pre');</script>
+    <!-- Yandex.Metrika --> 
+    <script src="//mc.yandex.ru/metrika/watch.js" type="text/javascript"></script> 
+    <script type="text/javascript"> 
+    try { var yaCounter612423 = new Ya.Metrika(612423); } catch(e){}
+    </script> 
+    <noscript><div style="position: absolute;"><img src="//mc.yandex.ru/watch/612423" alt="" /></div></noscript> 
+    <!-- /Yandex.Metrika -->  
+</body>
+</html>
+
