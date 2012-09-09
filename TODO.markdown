@@ -22,3 +22,7 @@ Current version: v0.6.x
 * modules.markdown
 * net.markdown
 * tls.markdown
+
+## Need change translation
+
+* API - это прикладной программный интерфейс, "он", в мужском роде. А не "оно", в среднем роде, как почему-то написано, например, в nodejs-docs-rus\v0.6.x\documentation.markdown Надо бы исправить род.
