@@ -1,37 +1,41 @@
 * [О документации](documentation.markdown) +
 * [Краткий обзор](synopsis.markdown) +
-* [Глобальные объекты](globals.markdown) +
-* [Стандартный ввод/вывод](stdio.markdown) +
-* [Таймеры](timers.markdown) +
-* [Модули](modules.markdown) +
-* [C/C++ дополнения](addons.markdown)
-* [Процесс](process.markdown)
-* [Утилиты](util.markdown)
-* [События](events.markdown)
-* [Буфер](buffer.markdown)
-* [Поток](stream.markdown)
-* [Модуль криптографии](crypto.markdown)
-* [TLS/SSL](tls.markdown)
-* [String Decoder](string_decoder.markdown)
-* [Файловая система](fs.markdown)
-* [Работа с файловыми путями](path.markdown)
-* [TCP/Сеть](net.markdown)
-* [UDP/Датаграммы](dgram.markdown)
+* [Тестирование (asserts)](assert.markdown) -> [Assertion Testing](https://nodejs.org/api/assert.html)
+* [Буфер](buffer.markdown) -> [buffer](https://nodejs.org/api/buffer.html)
+* [C/C++ дополнения](addons.markdown) -> 
+* [Дочерние процессы](child_process.markdown) -> [child process](https://nodejs.org/api/child_process.html)
+* [Кластеризация](cluster.markdown)
+* [Стандартный ввод/вывод](stdio.markdown) -> [console](https://nodejs.org/api/console.html)
+* [Модуль криптографии](crypto.markdown) -> [crypto](https://nodejs.org/api/crypto.html)
+* [Встроенный отладчик](debugger.markdown) -> [debugger](https://nodejs.org/api/debugger.html)
 * [DNS](dns.markdown)
+* -> [domain](https://nodejs.org/api/domain.html)
+* -> [errors](https://nodejs.org/api/errors.html)
+* [События](events.markdown) -> [events](https://nodejs.org/api/events.html)
+* [Файловая система](fs.markdown)
+* [Глобальные объекты](globals.markdown) +
 * [HTTP](http.markdown)
 * [HTTPS](https.markdown)
-* [URL](url.markdown)
+* [Модули](modules.markdown) +
+* [TCP/Сеть](net.markdown)
+* [Операционная система](os.markdown)
+* [Работа с файловыми путями](path.markdown)
+* [Процесс](process.markdown)
+* -> [punycode](https://nodejs.org/api/punycode.html)
 * [Разбор строки запроса](querystring.markdown)
 * [Модуль readline](readline.markdown)
 * [Интерактивная консоль (REPL)](repl.markdown)
-* [Выполнение JavaScript](vm.markdown)
-* [Дочерние процессы](child_process.markdown)
-* [Тестирование (asserts)](assert.markdown)
+* [Поток](stream.markdown)
+* [String Decoder](string_decoder.markdown)
+* [Таймеры](timers.markdown) +
+* [TLS/SSL](tls.markdown)
 * [Текстовый терминал](tty.markdown)
+* [UDP/Датаграммы](dgram.markdown)
+* [URL](url.markdown)
+* [Утилиты](util.markdown)
+* -> v8 []()
+* [Выполнение JavaScript](vm.markdown)
 * [Сжатие данных](zlib.markdown)
-* [Операционная система](os.markdown)
-* [Встроенный отладчик](debugger.markdown)
-* [Кластеризация](cluster.markdown)
 * Приложения
   * [Приложение 1: Рекомендуемые сторонние модули](appendix_1.markdown)
 
