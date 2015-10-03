@@ -1,5 +1,5 @@
 * + [О документации (ru)](documentation.markdown) -> [documentation (en)](https://nodejs.org/api/documentation.html)
-* [Краткий обзор](synopsis.markdown) +
+* + [Краткий обзор](synopsis.markdown)
 * [Тестирование (asserts)](assert.markdown) -> [Assertion Testing](https://nodejs.org/api/assert.html)
 * [Буфер](buffer.markdown) -> [buffer](https://nodejs.org/api/buffer.html)
 * [C/C++ дополнения](addons.markdown) -> 
@@ -13,21 +13,21 @@
 * -> [errors](https://nodejs.org/api/errors.html)
 * + [События](events.markdown) -> [events](https://nodejs.org/api/events.html)
 * [Файловая система](fs.markdown)
-* [Глобальные объекты](globals.markdown) +
+* + [Глобальные объекты](globals.markdown)
 * [HTTP](http.markdown)
 * [HTTPS](https.markdown)
-* [Модули](modules.markdown) +
+* + [Модули](modules.markdown)
 * [TCP/Сеть](net.markdown)
 * [Операционная система](os.markdown)
 * [Работа с файловыми путями](path.markdown)
 * [Процесс](process.markdown)
 * -> [punycode](https://nodejs.org/api/punycode.html)
 * [Разбор строки запроса](querystring.markdown)
-* [Модуль readline](readline.markdown)
+* + [Модуль readline](readline.markdown)
 * [Интерактивная консоль (REPL)](repl.markdown)
 * [Поток](stream.markdown)
 * [String Decoder](string_decoder.markdown)
-* [Таймеры](timers.markdown) +
+* + [Таймеры](timers.markdown)
 * [TLS/SSL](tls.markdown)
 * [Текстовый терминал](tty.markdown)
 * [UDP/Датаграммы](dgram.markdown)
