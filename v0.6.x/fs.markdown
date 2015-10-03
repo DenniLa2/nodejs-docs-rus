@@ -474,7 +474,7 @@
 
 `function (fd) { }`
 
-`fd` содержит файловый дескриптов, используемый WriteStream.
+`fd` содержит файловый дескриптор, используемый WriteStream.
 
 ### fs.createWriteStream(path, [options])
 
