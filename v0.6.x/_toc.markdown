@@ -11,7 +11,7 @@
 * [DNS](dns.markdown)
 * -> [domain](https://nodejs.org/api/domain.html)
 * -> [errors](https://nodejs.org/api/errors.html)
-* [События](events.markdown) -> [events](https://nodejs.org/api/events.html)
+* + [События](events.markdown) -> [events](https://nodejs.org/api/events.html)
 * [Файловая система](fs.markdown)
 * [Глобальные объекты](globals.markdown) +
 * [HTTP](http.markdown)
