@@ -1,4 +1,4 @@
-* (+)[О документации(ru)](documentation.markdown) -> [documentation(en)](https://nodejs.org/api/documentation.html)
+* + [О документации(ru)](documentation.markdown) -> [documentation(en)](https://nodejs.org/api/documentation.html)
 * [Краткий обзор](synopsis.markdown) +
 * [Тестирование (asserts)](assert.markdown) -> [Assertion Testing](https://nodejs.org/api/assert.html)
 * [Буфер](buffer.markdown) -> [buffer](https://nodejs.org/api/buffer.html)
@@ -33,7 +33,7 @@
 * [UDP/Датаграммы](dgram.markdown)
 * [URL](url.markdown)
 * [Утилиты](util.markdown)
-* -> v8 []()
+* -> [v8(en)](https://nodejs.org/api/v8.html)
 * [Выполнение JavaScript](vm.markdown)
 * [Сжатие данных](zlib.markdown)
 * Приложения
