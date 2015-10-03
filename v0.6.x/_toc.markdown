@@ -1,4 +1,4 @@
-* + [О документации(ru)](documentation.markdown) -> [documentation(en)](https://nodejs.org/api/documentation.html)
+* + [О документации (ru)](documentation.markdown) -> [documentation (en)](https://nodejs.org/api/documentation.html)
 * [Краткий обзор](synopsis.markdown) +
 * [Тестирование (asserts)](assert.markdown) -> [Assertion Testing](https://nodejs.org/api/assert.html)
 * [Буфер](buffer.markdown) -> [buffer](https://nodejs.org/api/buffer.html)
