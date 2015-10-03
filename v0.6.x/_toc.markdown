@@ -1,6 +1,6 @@
 * [О документации](documentation.markdown) +
 * [Краткий обзор](synopsis.markdown) +
-* [Глобальные объекты](globals.markdown)
+* [Глобальные объекты](globals.markdown) +
 * [Стандартный ввод/вывод](stdio.markdown)
 * [Таймеры](timers.markdown)
 * [Модули](modules.markdown)
