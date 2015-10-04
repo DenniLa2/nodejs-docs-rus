@@ -6,9 +6,6 @@
 Большинстов из этих методов осуществляют лишь строковые преобразования.
 Они не содержат проверок существования и валидности путей с помощью обращений к файловой системе.
 
-Исключениями являются функции `path.exists` и `path.existsSync`, которые более логично расположить в модуле `fs`,
-так как они осуществляют запросы к файловой системе.
-
 Используйте `require('path')` чтобы получить доступ к этому модулю.
 
 ## path.normalize(p)
@@ -24,13 +21,18 @@
 ## path.join([path1], [path2], [...])
 
 Соединяет все аргументы и нормализует получившийся путь.
-Игнорирует аргументы, не являющиеся строками.
+Начиная с v0.10 все аргументы должны быть `string`.
 
 Пример:
 
-    path.join('foo', {}, 'bar')
+    path.join('/foo', 'bar/sub', 'xxl', 'file.ext')
     // returns
-    'foo/bar'
+    '/foo/bar/sub/xxl/file.ext'
+
+    path.join('foo', {}, 'bar')
+    //               ^
+    //             throws exception
+    TypeError: Arguments to path.join must be strings
 
 ## path.resolve([from ...], to)
 
@@ -135,17 +137,91 @@
     // returns
     ''
 
-## path.exists(p, [callback])
+///////////////////////////////
+## path.sep()
 
-Проверяет, существует ли данный путь, делая запрос к файловой системе. Вызывает переданный обработчик
-с аргументом `true` или `false`.
+Возвращает платформозависимый файл-сепаратор. '\\' or '/'.
 
-Пример:
+В *nix системах:
 
-    path.exists('/etc/passwd', function (exists) {
-      util.debug(exists ? "it's there" : "no passwd!");
-    });
+    'foo/bar/baz'.split(path.sep)
+    // returns
+    ['foo', 'bar', 'baz']
 
-## path.existsSync(p)
+В Windows:
 
-Синхронная версия `path.exists`.
+    'foo\\bar\\baz'.split(path.sep)
+    // returns
+    ['foo', 'bar', 'baz']
+    
+## path.delimiter
+
+Платформо-зависимый путь-сепаратор: ';' или ':'.
+
+В *nix системах:
+
+    console.log(process.env.PATH)
+    // '/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin'
+
+    process.env.PATH.split(path.delimiter)
+    // returns
+    ['/usr/bin', '/bin', '/usr/sbin', '/sbin', '/usr/local/bin']
+
+В Windows:
+
+    console.log(process.env.PATH)
+    // 'C:\Windows\system32;C:\Windows;C:\Program Files\node\'
+
+    process.env.PATH.split(path.delimiter)
+    // returns
+    ['C:\\Windows\\system32', 'C:\\Windows', 'C:\\Program Files\\node\\']
+    
+## path.parse(pathString)
+
+Возвращает объект из составных частей пути.
+
+В *nix системах:
+
+    path.parse('/home/user/dir/file.txt')
+    // returns
+    {
+        root : "/",
+        dir : "/home/user/dir",
+        base : "file.txt",
+        ext : ".txt",
+        name : "file"
+    }
+    
+В Windows:
+
+    path.parse('C:\\path\\dir\\index.html')
+    // returns
+    {
+        root : "C:\\",
+        dir : "C:\\path\\dir",
+        base : "index.html",
+        ext : ".html",
+        name : "index"
+    }
+
+## path.format(pathObject)
+
+Обратная операция для `path.parse(pathString)` Возвращает путь из объекта.
+
+    path.format({
+        root : "/",
+        dir : "/home/user/dir",
+        base : "file.txt",
+        ext : ".txt",
+        name : "file"
+    })
+    // returns
+    '/home/user/dir/file.txt'
+    
+## path.posix
+
+Provide access to aforementioned path methods but always interact in a posix compatible way.
+
+## path.win32#
+
+Provide access to aforementioned path methods but always interact in a win32 compatible way.
